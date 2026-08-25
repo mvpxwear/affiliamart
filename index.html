@@ -63,13 +63,9 @@
 
     body {
       font-family: "Inter", Arial, sans-serif;
-
       background: #f5f7f6;
-
       color: #17201a;
-
       line-height: 1.5;
-
       padding-bottom: 75px;
     }
 
@@ -1460,6 +1456,127 @@
 
 
     /* =========================
+       ANALYTICS
+    ========================= */
+
+    function getVisitorId() {
+
+      let visitorId =
+        localStorage.getItem(
+          "affiliamart_visitor_id"
+        );
+
+
+      if (!visitorId) {
+
+        if (
+          window.crypto &&
+          typeof window.crypto.randomUUID === "function"
+        ) {
+
+          visitorId =
+            window.crypto.randomUUID();
+
+        } else {
+
+          visitorId =
+            "visitor-" +
+            Date.now() +
+            "-" +
+            Math.random()
+              .toString(36)
+              .substring(2, 12);
+
+        }
+
+
+        localStorage.setItem(
+          "affiliamart_visitor_id",
+          visitorId
+        );
+
+      }
+
+
+      return visitorId;
+
+    }
+
+
+    async function trackEvent(
+      eventType,
+      productId = null,
+      platform = null
+    ) {
+
+      try {
+
+        const visitorId =
+          getVisitorId();
+
+
+        const {
+          error
+        } =
+        await supabaseClient
+
+          .from("analytics_events")
+
+          .insert({
+
+            event_type:
+              eventType,
+
+            product_id:
+              productId,
+
+            platform:
+              platform,
+
+            visitor_id:
+              visitorId
+
+          });
+
+
+        if (error) {
+
+          console.error(
+            "Analytics error:",
+            error
+          );
+
+          return false;
+
+        }
+
+
+        return true;
+
+      } catch (error) {
+
+        console.error(
+          "Tracking error:",
+          error
+        );
+
+        return false;
+
+      }
+
+    }
+
+
+    /* =========================
+       CATAT PENGUNJUNG
+    ========================= */
+
+    trackEvent(
+      "page_view"
+    );
+
+
+    /* =========================
        FORMAT RUPIAH
     ========================= */
 
@@ -1966,6 +2083,14 @@
             }
 
 
+            /* PLATFORM NORMALIZATION */
+
+            const platform =
+              String(product.platform || "")
+                .toLowerCase()
+                .trim();
+
+
             /* PLATFORM */
 
             let platformHTML = "";
@@ -2076,6 +2201,7 @@
                   class="btn"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onclick="handleAffiliateClick(event, '${escapeHTML(product.id)}', '${escapeHTML(platform)}', '${escapeHTML(affiliateURL)}')"
                 >
                   Lihat Produk
                 </a>
@@ -2097,14 +2223,6 @@
               `;
 
             }
-
-
-            /* PLATFORM NORMALIZATION */
-
-            const platform =
-              String(product.platform || "")
-                .toLowerCase()
-                .trim();
 
 
             return `
@@ -2180,6 +2298,65 @@
           })
 
           .join("");
+
+    }
+
+
+    /* =========================
+       TRACK PRODUCT CLICK
+    ========================= */
+
+    async function trackProductClick(
+      productId,
+      platform
+    ) {
+
+      const normalizedPlatform =
+        String(platform || "")
+          .toLowerCase()
+          .trim();
+
+
+      await trackEvent(
+        "product_click",
+        productId,
+        normalizedPlatform
+      );
+
+    }
+
+
+    /* =========================
+       HANDLE AFFILIATE CLICK
+    ========================= */
+
+    async function handleAffiliateClick(
+      event,
+      productId,
+      platform,
+      affiliateURL
+    ) {
+
+      event.preventDefault();
+
+
+      const normalizedPlatform =
+        String(platform || "")
+          .toLowerCase()
+          .trim();
+
+
+      await trackProductClick(
+        productId,
+        normalizedPlatform
+      );
+
+
+      window.open(
+        affiliateURL,
+        "_blank",
+        "noopener,noreferrer"
+      );
 
     }
 

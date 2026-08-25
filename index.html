@@ -1,1 +1,278 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AffiliaMart - Temukan Produk Terbaik</title>
 
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f6f7f9;
+      color: #222;
+    }
+
+    header {
+      background: #ffffff;
+      padding: 18px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,.08);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #16a34a;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      margin-left: 20px;
+      font-size: 14px;
+    }
+
+    .hero {
+      padding: 60px 6%;
+      background: linear-gradient(135deg, #16a34a, #22c55e);
+      color: white;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 38px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 17px;
+      margin-bottom: 25px;
+    }
+
+    .search {
+      max-width: 600px;
+      margin: auto;
+      display: flex;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .search input {
+      flex: 1;
+      border: 0;
+      padding: 16px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    .search button {
+      border: 0;
+      background: #111827;
+      color: white;
+      padding: 0 22px;
+      cursor: pointer;
+    }
+
+    section {
+      padding: 45px 6%;
+    }
+
+    .title {
+      font-size: 25px;
+      margin-bottom: 25px;
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 15px;
+    }
+
+    .category {
+      background: white;
+      padding: 25px 15px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    }
+
+    .category span {
+      font-size: 30px;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+    }
+
+    .product {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,.08);
+    }
+
+    .product-img {
+      height: 160px;
+      background: #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 45px;
+    }
+
+    .product-info {
+      padding: 15px;
+    }
+
+    .product h3 {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .product p {
+      color: #16a34a;
+      font-weight: bold;
+    }
+
+    .btn {
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      background: #16a34a;
+      color: white;
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 12px;
+    }
+
+    footer {
+      background: #111827;
+      color: white;
+      text-align: center;
+      padding: 30px;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">AffiliaMart</div>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#kategori">Kategori</a>
+    <a href="#produk">Produk</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Temukan Produk Terbaik</h1>
+  <p>Belanja lebih mudah melalui rekomendasi produk affiliate.</p>
+
+  <div class="search">
+    <input type="text" placeholder="Cari produk...">
+    <button>Cari</button>
+  </div>
+</section>
+
+<section id="kategori">
+  <h2 class="title">Kategori</h2>
+
+  <div class="categories">
+    <div class="category">
+      <span>📱</span>
+      Elektronik
+    </div>
+
+    <div class="category">
+      <span>👕</span>
+      Fashion
+    </div>
+
+    <div class="category">
+      <span>💄</span>
+      Kecantikan
+    </div>
+
+    <div class="category">
+      <span>🏠</span>
+      Rumah
+    </div>
+
+    <div class="category">
+      <span>🚗</span>
+      Otomotif
+    </div>
+  </div>
+</section>
+
+<section id="produk">
+  <h2 class="title">Produk Pilihan</h2>
+
+  <div class="products">
+
+    <div class="product">
+      <div class="product-img">📱</div>
+      <div class="product-info">
+        <h3>Produk Elektronik</h3>
+        <p>Rp 99.000</p>
+        <a class="btn" href="#">Lihat Produk</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <div class="product-img">👕</div>
+      <div class="product-info">
+        <h3>Produk Fashion</h3>
+        <p>Rp 79.000</p>
+        <a class="btn" href="#">Lihat Produk</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <div class="product-img">🏠</div>
+      <div class="product-info">
+        <h3>Produk Rumah</h3>
+        <p>Rp 59.000</p>
+        <a class="btn" href="#">Lihat Produk</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 AffiliaMart</p>
+  <p>Platform rekomendasi produk affiliate Shopee & TikTok</p>
+</footer>
+
+</body>
+</html>

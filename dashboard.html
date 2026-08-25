@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -11,7 +12,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link
+href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+rel="stylesheet"
+>
 
 <style>
 
@@ -38,16 +42,21 @@ button{
   cursor:pointer;
 }
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 
 header{
   height:70px;
   background:white;
   border-bottom:1px solid #e5e7eb;
+
   display:flex;
   align-items:center;
   justify-content:space-between;
+
   padding:0 5%;
+
   position:sticky;
   top:0;
   z-index:100;
@@ -74,13 +83,18 @@ header{
   border:0;
   background:#fee2e2;
   color:#b91c1c;
+
   padding:9px 13px;
+
   border-radius:9px;
+
   font-size:13px;
   font-weight:600;
 }
 
-/* CONTAINER */
+/* =========================
+   CONTAINER
+========================= */
 
 .container{
   width:90%;
@@ -103,7 +117,9 @@ header{
   font-size:14px;
 }
 
-/* STATS */
+/* =========================
+   STATS
+========================= */
 
 .stats{
   display:grid;
@@ -131,7 +147,9 @@ header{
   color:#16a34a;
 }
 
-/* MENU */
+/* =========================
+   MENU
+========================= */
 
 .menu{
   display:flex;
@@ -144,8 +162,11 @@ header{
   border:1px solid #d1d5db;
   background:white;
   color:#374151;
+
   padding:11px 17px;
+
   border-radius:10px;
+
   font-size:13px;
   font-weight:600;
 }
@@ -156,7 +177,9 @@ header{
   border-color:#16a34a;
 }
 
-/* CARD */
+/* =========================
+   CARD
+========================= */
 
 .card{
   background:white;
@@ -182,8 +205,11 @@ header{
   border:0;
   background:#16a34a;
   color:white;
+
   padding:10px 15px;
+
   border-radius:9px;
+
   font-size:13px;
   font-weight:700;
 }
@@ -192,7 +218,9 @@ header{
   background:#15803d;
 }
 
-/* CATEGORY */
+/* =========================
+   CATEGORY
+========================= */
 
 .category-list{
   display:grid;
@@ -203,10 +231,15 @@ header{
   display:flex;
   align-items:center;
   justify-content:space-between;
+
   gap:15px;
+
   padding:15px;
+
   border:1px solid #edf0ee;
+
   border-radius:12px;
+
   background:#fafafa;
 }
 
@@ -214,19 +247,25 @@ header{
   display:flex;
   align-items:center;
   gap:13px;
+
   min-width:0;
 }
 
 .category-icon{
-  width:45px;
-  height:45px;
+  width:65px;
+  height:65px;
+
   flex-shrink:0;
+
   display:flex;
   align-items:center;
   justify-content:center;
-  border-radius:12px;
+
+  border-radius:16px;
+
   background:#f0fdf4;
-  font-size:23px;
+
+  font-size:32px;
 }
 
 .category-info{
@@ -246,9 +285,13 @@ header{
 
 .status{
   display:inline-block;
+
   margin-top:5px;
+
   padding:3px 7px;
+
   border-radius:6px;
+
   font-size:10px;
   font-weight:700;
 }
@@ -269,26 +312,9 @@ header{
   flex-shrink:0;
 }
 
-.edit-btn,
-.delete-btn{
-  border:0;
-  padding:8px 11px;
-  border-radius:8px;
-  font-size:12px;
-  font-weight:600;
-}
-
-.edit-btn{
-  background:#eff6ff;
-  color:#2563eb;
-}
-
-.delete-btn{
-  background:#fee2e2;
-  color:#dc2626;
-}
-
-/* PRODUCTS */
+/* =========================
+   PRODUCTS
+========================= */
 
 .product-list{
   display:grid;
@@ -299,10 +325,15 @@ header{
   display:flex;
   align-items:center;
   justify-content:space-between;
+
   gap:15px;
+
   padding:14px;
+
   border:1px solid #edf0ee;
+
   border-radius:13px;
+
   background:#fafafa;
 }
 
@@ -310,15 +341,20 @@ header{
   display:flex;
   align-items:center;
   gap:13px;
+
   min-width:0;
 }
 
 .product-image{
-  width:65px;
-  height:65px;
+  width:70px;
+  height:70px;
+
   flex-shrink:0;
+
   border-radius:11px;
+
   object-fit:cover;
+
   background:#eeeeee;
 }
 
@@ -329,6 +365,7 @@ header{
 .product-name{
   font-size:14px;
   font-weight:700;
+
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
@@ -349,10 +386,15 @@ header{
 
 .product-platform{
   display:inline-block;
+
   margin-top:5px;
+
   background:#f3f4f6;
+
   padding:3px 7px;
+
   border-radius:5px;
+
   font-size:10px;
   font-weight:700;
 }
@@ -363,26 +405,64 @@ header{
   flex-shrink:0;
 }
 
-/* LOADING */
+/* =========================
+   BUTTONS
+========================= */
+
+.edit-btn,
+.delete-btn{
+  border:0;
+
+  padding:8px 11px;
+
+  border-radius:8px;
+
+  font-size:12px;
+  font-weight:600;
+}
+
+.edit-btn{
+  background:#eff6ff;
+  color:#2563eb;
+}
+
+.delete-btn{
+  background:#fee2e2;
+  color:#dc2626;
+}
+
+/* =========================
+   LOADING
+========================= */
 
 .loading,
 .empty{
   text-align:center;
+
   padding:45px 20px;
+
   color:#6b7280;
+
   font-size:14px;
 }
 
-/* MODAL */
+/* =========================
+   MODAL
+========================= */
 
 .modal{
   position:fixed;
   inset:0;
+
   background:rgba(0,0,0,.45);
+
   display:none;
+
   align-items:center;
   justify-content:center;
+
   padding:20px;
+
   z-index:999;
 }
 
@@ -392,12 +472,18 @@ header{
 
 .modal-box{
   width:100%;
-  max-width:500px;
-  max-height:90vh;
+  max-width:560px;
+
+  max-height:92vh;
+
   overflow-y:auto;
+
   background:white;
-  border-radius:18px;
+
+  border-radius:20px;
+
   padding:25px;
+
   box-shadow:0 20px 50px rgba(0,0,0,.18);
 }
 
@@ -405,6 +491,7 @@ header{
   display:flex;
   justify-content:space-between;
   align-items:center;
+
   margin-bottom:22px;
 }
 
@@ -415,12 +502,20 @@ header{
 
 .close-btn{
   border:0;
+
   background:#f3f4f6;
-  width:34px;
-  height:34px;
-  border-radius:9px;
-  font-size:18px;
+
+  width:38px;
+  height:38px;
+
+  border-radius:10px;
+
+  font-size:20px;
 }
+
+/* =========================
+   FORM
+========================= */
 
 .form-group{
   margin-bottom:15px;
@@ -428,7 +523,9 @@ header{
 
 .form-group label{
   display:block;
+
   margin-bottom:7px;
+
   font-size:13px;
   font-weight:600;
 }
@@ -436,160 +533,471 @@ header{
 .form-group input,
 .form-group select,
 .form-group textarea{
-  width:100%;
-  border:1px solid #d1d5db;
-  border-radius:10px;
-  padding:12px;
-  font-size:14px;
-  outline:none;
-  background:white;
-}
 
-.form-group textarea{
-  min-height:90px;
-  resize:vertical;
+  width:100%;
+
+  border:1px solid #d1d5db;
+
+  border-radius:10px;
+
+  padding:12px;
+
+  font-size:14px;
+
+  outline:none;
+
+  background:white;
+
 }
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus{
+
   border-color:#16a34a;
+
 }
+
+.form-group textarea{
+
+  min-height:90px;
+
+  resize:vertical;
+
+}
+
+/* =========================
+   CATEGORY ICON
+========================= */
 
 .icon-preview{
-  width:60px;
-  height:60px;
+
+  width:70px;
+  height:70px;
+
   display:flex;
+
   align-items:center;
   justify-content:center;
-  border-radius:14px;
+
   background:#f0fdf4;
-  border:1px solid #dcfce7;
-  font-size:30px;
+
+  border-radius:16px;
+
+  font-size:35px;
+
   margin-top:10px;
+
 }
 
-.checkbox-row{
+.icon-select-row{
+
+  display:grid;
+
+  grid-template-columns:1fr;
+
+  gap:10px;
+
+}
+
+.icon-custom{
+
+  margin-top:10px;
+
+}
+
+/* =========================
+   IMAGE UPLOAD
+========================= */
+
+.image-tools{
+
+  display:grid;
+
+  gap:10px;
+
+  margin-top:8px;
+
+}
+
+.image-upload-label{
+
   display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  min-height:48px;
+
+  border:2px dashed #d1d5db;
+
+  border-radius:12px;
+
+  color:#374151;
+
+  font-size:13px;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+  background:#fafafa;
+
+}
+
+.image-upload-label:hover{
+
+  border-color:#16a34a;
+
+  background:#f0fdf4;
+
+}
+
+.image-upload-label input{
+
+  display:none;
+
+}
+
+.image-url-row{
+
+  display:flex;
+
+  gap:8px;
+
+}
+
+.image-url-row input{
+
+  flex:1;
+
+}
+
+.image-url-btn{
+
+  border:0;
+
+  background:#eff6ff;
+
+  color:#2563eb;
+
+  padding:0 13px;
+
+  border-radius:9px;
+
+  font-size:12px;
+
+  font-weight:700;
+
+}
+
+.image-preview-grid{
+
+  display:grid;
+
+  grid-template-columns:repeat(3,1fr);
+
+  gap:10px;
+
+  margin-top:12px;
+
+}
+
+.preview-item{
+
+  position:relative;
+
+  border:1px solid #e5e7eb;
+
+  border-radius:12px;
+
+  overflow:hidden;
+
+  background:#f9fafb;
+
+}
+
+.preview-item img{
+
+  display:block;
+
+  width:100%;
+
+  aspect-ratio:1/1;
+
+  object-fit:cover;
+
+}
+
+.preview-main{
+
+  position:absolute;
+
+  left:6px;
+
+  top:6px;
+
+  background:#16a34a;
+
+  color:white;
+
+  padding:3px 6px;
+
+  border-radius:5px;
+
+  font-size:9px;
+
+  font-weight:700;
+
+}
+
+.preview-remove{
+
+  position:absolute;
+
+  right:5px;
+
+  top:5px;
+
+  width:27px;
+
+  height:27px;
+
+  border:0;
+
+  border-radius:50%;
+
+  background:rgba(220,38,38,.9);
+
+  color:white;
+
+  font-size:14px;
+
+}
+
+/* =========================
+   CHECKBOX
+========================= */
+
+.checkbox-row{
+
+  display:flex;
+
   gap:15px;
+
   flex-wrap:wrap;
+
   margin-bottom:18px;
+
 }
 
 .checkbox{
+
   display:flex;
+
   align-items:center;
+
   gap:7px;
+
   font-size:13px;
+
 }
 
 .checkbox input{
+
   width:auto;
+
 }
 
+/* =========================
+   SAVE
+========================= */
+
 .save-btn{
+
   width:100%;
+
   border:0;
+
   background:#16a34a;
+
   color:white;
+
   padding:13px;
+
   border-radius:10px;
+
   font-size:14px;
+
   font-weight:700;
+
 }
 
 .save-btn:disabled{
+
   opacity:.6;
+
 }
 
-/* MESSAGE */
+/* =========================
+   MESSAGE
+========================= */
 
 #message{
+
   position:fixed;
+
   right:20px;
   bottom:20px;
-  max-width:320px;
+
+  max-width:350px;
+
   background:#17201a;
+
   color:white;
+
   padding:13px 17px;
+
   border-radius:10px;
+
   font-size:13px;
+
   display:none;
+
   z-index:2000;
+
 }
 
 #message.show{
+
   display:block;
+
 }
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:700px){
 
   header{
+
     padding:0 20px;
+
   }
 
   .admin-name{
+
     display:none;
+
   }
 
   .container{
+
     width:94%;
+
     margin:25px auto;
+
   }
 
   .welcome h1{
+
     font-size:23px;
+
   }
 
   .stats{
+
     grid-template-columns:1fr;
+
     gap:10px;
+
   }
 
   .stat{
+
     padding:16px;
+
   }
 
   .stat-value{
+
     font-size:24px;
+
   }
 
   .card{
+
     padding:16px;
+
   }
 
   .card-header{
+
     align-items:flex-start;
+
   }
 
   .card-header h2{
+
     font-size:17px;
+
   }
 
   .category-item,
   .product-item{
+
     align-items:flex-start;
+
   }
 
   .category-actions,
   .product-actions{
+
     flex-direction:column;
+
   }
 
   .product-image{
+
     width:55px;
     height:55px;
+
   }
 
   .product-name{
+
     max-width:150px;
+
+  }
+
+  .modal{
+
+    padding:10px;
+
+  }
+
+  .modal-box{
+
+    max-height:94vh;
+
+    padding:20px;
+
+    border-radius:18px;
+
+  }
+
+  .image-preview-grid{
+
+    grid-template-columns:repeat(3,1fr);
+
   }
 
 }
 
 </style>
+
 </head>
 
 <body>
@@ -602,11 +1010,17 @@ header{
 
   <div class="header-right">
 
-    <div class="admin-name" id="adminName">
+    <div
+      class="admin-name"
+      id="adminName"
+    >
       Memuat...
     </div>
 
-    <button class="logout-btn" onclick="logout()">
+    <button
+      class="logout-btn"
+      onclick="logout()"
+    >
       Keluar
     </button>
 
@@ -619,7 +1033,9 @@ header{
 
   <div class="welcome">
 
-    <h1>Dashboard Admin</h1>
+    <h1>
+      Dashboard Admin
+    </h1>
 
     <p>
       Kelola kategori dan produk AffiliaMart dari satu tempat.
@@ -628,40 +1044,55 @@ header{
   </div>
 
 
-  <!-- STAT -->
+  <!-- STATS -->
 
   <div class="stats">
 
     <div class="stat">
+
       <div class="stat-label">
         Total Kategori
       </div>
 
-      <div class="stat-value" id="categoryCount">
+      <div
+        class="stat-value"
+        id="categoryCount"
+      >
         0
       </div>
+
     </div>
 
 
     <div class="stat">
+
       <div class="stat-label">
         Total Produk
       </div>
 
-      <div class="stat-value" id="productCount">
+      <div
+        class="stat-value"
+        id="productCount"
+      >
         0
       </div>
+
     </div>
 
 
     <div class="stat">
+
       <div class="stat-label">
         Produk Aktif
       </div>
 
-      <div class="stat-value" id="activeProductCount">
+      <div
+        class="stat-value"
+        id="activeProductCount"
+      >
         0
       </div>
+
     </div>
 
   </div>
@@ -714,9 +1145,11 @@ header{
         id="categoryList"
         class="category-list"
       >
+
         <div class="loading">
           Memuat kategori...
         </div>
+
       </div>
 
     </div>
@@ -752,9 +1185,11 @@ header{
         id="productList"
         class="product-list"
       >
+
         <div class="loading">
           Memuat produk...
         </div>
+
       </div>
 
     </div>
@@ -764,7 +1199,9 @@ header{
 </div>
 
 
-<!-- CATEGORY MODAL -->
+<!-- =========================
+     CATEGORY MODAL
+========================= -->
 
 <div
   class="modal"
@@ -829,51 +1266,95 @@ header{
       </div>
 
 
-      <!-- ICON BARU -->
-
       <div class="form-group">
 
         <label>
           Icon Kategori
         </label>
 
-        <select id="categoryIconSelect">
+        <div class="icon-select-row">
 
-          <option value="📁">📁 Folder</option>
-          <option value="📱">📱 Elektronik</option>
-          <option value="👕">👕 Fashion</option>
-          <option value="💄">💄 Kecantikan</option>
-          <option value="🏠">🏠 Rumah</option>
-          <option value="🍔">🍔 Makanan</option>
-          <option value="🎮">🎮 Gaming</option>
-          <option value="⚽">⚽ Olahraga</option>
-          <option value="📚">📚 Buku</option>
-          <option value="👜">👜 Tas</option>
-          <option value="👟">👟 Sepatu</option>
-          <option value="💻">💻 Komputer</option>
-          <option value="🎧">🎧 Audio</option>
-          <option value="⌚">⌚ Jam</option>
-          <option value="🚗">🚗 Otomotif</option>
-          <option value="🧸">🧸 Mainan</option>
-          <option value="💍">💍 Aksesoris</option>
-          <option value="🎁">🎁 Hadiah</option>
+          <select id="categoryIconSelect">
 
-        </select>
+            <option value="📱">
+              📱 Elektronik
+            </option>
+
+            <option value="👗">
+              👗 Fashion
+            </option>
+
+            <option value="💄">
+              💄 Kecantikan
+            </option>
+
+            <option value="🏠">
+              🏠 Rumah
+            </option>
+
+            <option value="🍳">
+              🍳 Dapur
+            </option>
+
+            <option value="⚽">
+              ⚽ Olahraga
+            </option>
+
+            <option value="🎮">
+              🎮 Gaming
+            </option>
+
+            <option value="📚">
+              📚 Buku
+            </option>
+
+            <option value="👜">
+              👜 Tas
+            </option>
+
+            <option value="👟">
+              👟 Sepatu
+            </option>
+
+            <option value="🚗">
+              🚗 Otomotif
+            </option>
+
+            <option value="💻">
+              💻 Komputer
+            </option>
+
+            <option value="🎧">
+              🎧 Audio
+            </option>
+
+            <option value="⌚">
+              ⌚ Aksesoris
+            </option>
+
+            <option value="🎁">
+              🎁 Lainnya
+            </option>
+
+          </select>
 
 
-        <input
-          type="text"
-          id="categoryIconCustom"
-          placeholder="Atau masukkan emoji sendiri, contoh: 🌟"
-          style="margin-top:8px;"
-        >
+          <input
+            type="text"
+            id="categoryIconCustom"
+            class="icon-custom"
+            placeholder="Atau masukkan emoji sendiri, contoh: 🌟"
+            maxlength="10"
+          >
 
 
-        <div
-          class="icon-preview"
-          id="categoryIconPreview"
-        >
-          📁
+          <div
+            class="icon-preview"
+            id="categoryIconPreview"
+          >
+            📱
+          </div>
+
         </div>
 
       </div>
@@ -925,7 +1406,9 @@ header{
 </div>
 
 
-<!-- PRODUCT MODAL -->
+<!-- =========================
+     PRODUCT MODAL
+========================= -->
 
 <div
   class="modal"
@@ -958,6 +1441,8 @@ header{
       >
 
 
+      <!-- NAME -->
+
       <div class="form-group">
 
         <label>
@@ -973,6 +1458,8 @@ header{
 
       </div>
 
+
+      <!-- CATEGORY -->
 
       <div class="form-group">
 
@@ -994,6 +1481,8 @@ header{
       </div>
 
 
+      <!-- SLUG -->
+
       <div class="form-group">
 
         <label>
@@ -1010,6 +1499,8 @@ header{
       </div>
 
 
+      <!-- DESCRIPTION -->
+
       <div class="form-group">
 
         <label>
@@ -1024,34 +1515,94 @@ header{
       </div>
 
 
+      <!-- IMAGE -->
+
       <div class="form-group">
 
         <label>
-          Image URL
+          Gambar Produk
+        </label>
+
+        <div class="image-tools">
+
+
+          <!-- UPLOAD -->
+
+          <label class="image-upload-label">
+
+            📷 Upload Gambar dari HP
+
+            <input
+              type="file"
+              id="productImageFiles"
+              accept="image/*"
+              multiple
+            >
+
+          </label>
+
+
+          <!-- IMAGE URL -->
+
+          <div class="image-url-row">
+
+            <input
+              type="url"
+              id="productImageUrl"
+              placeholder="Tempel URL gambar produk"
+            >
+
+            <button
+              type="button"
+              class="image-url-btn"
+              onclick="addImageFromUrl()"
+            >
+              Tambah
+            </button>
+
+          </div>
+
+
+          <div
+            style="
+              font-size:11px;
+              color:#6b7280;
+              line-height:1.5;
+            "
+          >
+            Upload gambar dari HP atau masukkan URL gambar.
+            Gambar pertama akan menjadi gambar utama.
+          </div>
+
+
+          <div
+            id="imagePreviewGrid"
+            class="image-preview-grid"
+          ></div>
+
+        </div>
+
+      </div>
+
+
+      <!-- AFFILIATE -->
+
+      <div class="form-group">
+
+        <label>
+          Link Produk / Affiliate URL
         </label>
 
         <input
           type="url"
-          id="productImage"
-          placeholder="https://..."
+          id="productAffiliate"
+          placeholder="https://shopee.co.id/..."
         >
 
       </div>
 
 
-      <div class="form-group">
-
-        <label>
-          Gallery JSON
-        </label>
-
-        <textarea
-          id="productGallery"
-          placeholder='["https://gambar1.jpg","https://gambar2.jpg"]'
-        ></textarea>
-
-      </div>
-
+      <!-- PRICE -->
 
       <div class="form-group">
 
@@ -1062,14 +1613,16 @@ header{
         <input
           type="number"
           id="productPrice"
-          placeholder="50000"
+          placeholder="1990000"
           min="0"
-          step="0.01"
+          step="1"
           required
         >
 
       </div>
 
+
+      <!-- ORIGINAL PRICE -->
 
       <div class="form-group">
 
@@ -1080,13 +1633,15 @@ header{
         <input
           type="number"
           id="productOriginalPrice"
-          placeholder="75000"
+          placeholder="2490000"
           min="0"
-          step="0.01"
+          step="1"
         >
 
       </div>
 
+
+      <!-- DISCOUNT -->
 
       <div class="form-group">
 
@@ -1106,19 +1661,24 @@ header{
       </div>
 
 
+      <!-- PLATFORM -->
+
       <div class="form-group">
 
         <label>
           Platform
         </label>
 
-        <select id="productPlatform">
+        <select
+          id="productPlatform"
+          required
+        >
 
-          <option value="Shopee">
+          <option value="shopee">
             Shopee
           </option>
 
-          <option value="TikTok">
+          <option value="tiktok">
             TikTok
           </option>
 
@@ -1127,20 +1687,7 @@ header{
       </div>
 
 
-      <div class="form-group">
-
-        <label>
-          Affiliate URL
-        </label>
-
-        <input
-          type="url"
-          id="productAffiliate"
-          placeholder="https://..."
-        >
-
-      </div>
-
+      <!-- EXTERNAL ID -->
 
       <div class="form-group">
 
@@ -1157,6 +1704,8 @@ header{
       </div>
 
 
+      <!-- RATING -->
+
       <div class="form-group">
 
         <label>
@@ -1164,16 +1713,16 @@ header{
         </label>
 
         <input
-          type="number"
+          type="text"
           id="productRating"
+          inputmode="decimal"
           placeholder="4.8"
-          min="0"
-          max="5"
-          step="0.1"
         >
 
       </div>
 
+
+      <!-- SOLD -->
 
       <div class="form-group">
 
@@ -1190,6 +1739,8 @@ header{
 
       </div>
 
+
+      <!-- CHECKBOX -->
 
       <div class="checkbox-row">
 
@@ -1270,6 +1821,14 @@ window.supabase.createClient(
 
 
 /* =====================================
+   STORAGE
+===================================== */
+
+const IMAGE_BUCKET =
+"product-images";
+
+
+/* =====================================
    GLOBAL
 ===================================== */
 
@@ -1278,6 +1837,8 @@ let currentUser = null;
 let categories = [];
 
 let products = [];
+
+let productImages = [];
 
 
 /* =====================================
@@ -1289,7 +1850,8 @@ function showMessage(text){
   const message =
     document.getElementById("message");
 
-  message.textContent = text;
+  message.textContent =
+    text;
 
   message.classList.add("show");
 
@@ -1297,7 +1859,7 @@ function showMessage(text){
 
     message.classList.remove("show");
 
-  },3000);
+  },3500);
 
 }
 
@@ -1321,7 +1883,10 @@ async function init(){
   await supabaseClient.auth.getUser();
 
 
-  if(error || !data.user){
+  if(
+    error ||
+    !data.user
+  ){
 
     window.location.href =
       "admin.html";
@@ -1344,7 +1909,10 @@ async function init(){
   await supabaseClient
     .from("profiles")
     .select("role")
-    .eq("id",currentUser.id)
+    .eq(
+      "id",
+      currentUser.id
+    )
     .single();
 
 
@@ -1418,7 +1986,9 @@ function showSection(section){
     );
 
 
-  if(section === "categories"){
+  if(
+    section === "categories"
+  ){
 
     categoriesSection.style.display =
       "block";
@@ -1507,7 +2077,7 @@ async function loadCategories(){
 
 
 /* =====================================
-   RENDER CATEGORIES
+   RENDER CATEGORY
 ===================================== */
 
 function renderCategories(){
@@ -1518,7 +2088,9 @@ function renderCategories(){
     );
 
 
-  if(!categories.length){
+  if(
+    !categories.length
+  ){
 
     list.innerHTML =
       `<div class="empty">
@@ -1531,30 +2103,37 @@ function renderCategories(){
 
 
   list.innerHTML =
-    categories.map(category => `
+    categories.map(
+      category => `
 
       <div class="category-item">
 
         <div class="category-left">
 
           <div class="category-icon">
+
             ${escapeHtml(
               category.icon || "📁"
             )}
+
           </div>
 
           <div class="category-info">
 
             <div class="category-name">
+
               ${escapeHtml(
                 category.name
               )}
+
             </div>
 
             <div class="category-slug">
+
               ${escapeHtml(
                 category.slug || ""
               )}
+
             </div>
 
             <span class="status ${
@@ -1596,7 +2175,8 @@ function renderCategories(){
 
       </div>
 
-    `).join("");
+    `
+    ).join("");
 
 }
 
@@ -1620,25 +2200,29 @@ function populateCategorySelect(){
 
 
   categories
-    .filter(c => c.is_active)
-    .forEach(category => {
+    .filter(
+      c => c.is_active
+    )
+    .forEach(
+      category => {
 
-      const option =
-        document.createElement(
-          "option"
+        const option =
+          document.createElement(
+            "option"
+          );
+
+        option.value =
+          category.id;
+
+        option.textContent =
+          category.name;
+
+        select.appendChild(
+          option
         );
 
-      option.value =
-        category.id;
-
-      option.textContent =
-        category.name;
-
-      select.appendChild(
-        option
-      );
-
-    });
+      }
+    );
 
 }
 
@@ -1662,22 +2246,14 @@ function openCategoryModal(){
 
   document.getElementById(
     "categoryId"
-  ).value = "";
+  ).value =
+    "";
 
 
   document.getElementById(
     "categoryActive"
-  ).checked = true;
-
-
-  document.getElementById(
-    "categoryIconSelect"
-  ).value = "📁";
-
-
-  document.getElementById(
-    "categoryIconCustom"
-  ).value = "";
+  ).checked =
+    true;
 
 
   updateIconPreview();
@@ -1685,7 +2261,9 @@ function openCategoryModal(){
 
   document.getElementById(
     "categoryModal"
-  ).classList.add("show");
+  ).classList.add(
+    "show"
+  );
 
 }
 
@@ -1694,7 +2272,9 @@ function closeCategoryModal(){
 
   document.getElementById(
     "categoryModal"
-  ).classList.remove("show");
+  ).classList.remove(
+    "show"
+  );
 
 }
 
@@ -1718,7 +2298,9 @@ function updateIconPreview(){
 
 
   const icon =
-    custom || selected || "📁";
+    custom ||
+    selected ||
+    "📁";
 
 
   document.getElementById(
@@ -1727,6 +2309,31 @@ function updateIconPreview(){
     icon;
 
 }
+
+
+document.getElementById(
+  "categoryIconSelect"
+).addEventListener(
+  "change",
+  function(){
+
+    document.getElementById(
+      "categoryIconCustom"
+    ).value =
+      "";
+
+    updateIconPreview();
+
+  }
+);
+
+
+document.getElementById(
+  "categoryIconCustom"
+).addEventListener(
+  "input",
+  updateIconPreview
+);
 
 
 /* =====================================
@@ -1741,7 +2348,8 @@ function editCategory(id){
     );
 
 
-  if(!category) return;
+  if(!category)
+    return;
 
 
   document.getElementById(
@@ -1768,58 +2376,6 @@ function editCategory(id){
     category.slug || "";
 
 
-  const icon =
-    category.icon || "📁";
-
-
-  const iconOptions = [
-    "📁",
-    "📱",
-    "👕",
-    "💄",
-    "🏠",
-    "🍔",
-    "🎮",
-    "⚽",
-    "📚",
-    "👜",
-    "👟",
-    "💻",
-    "🎧",
-    "⌚",
-    "🚗",
-    "🧸",
-    "💍",
-    "🎁"
-  ];
-
-
-  if(iconOptions.includes(icon)){
-
-    document.getElementById(
-      "categoryIconSelect"
-    ).value =
-      icon;
-
-    document.getElementById(
-      "categoryIconCustom"
-    ).value = "";
-
-  }else{
-
-    document.getElementById(
-      "categoryIconSelect"
-    ).value =
-      "📁";
-
-    document.getElementById(
-      "categoryIconCustom"
-    ).value =
-      icon;
-
-  }
-
-
   document.getElementById(
     "categoryDescription"
   ).value =
@@ -1832,12 +2388,57 @@ function editCategory(id){
     !!category.is_active;
 
 
+  const icon =
+    category.icon || "📁";
+
+
+  const select =
+    document.getElementById(
+      "categoryIconSelect"
+    );
+
+
+  const custom =
+    document.getElementById(
+      "categoryIconCustom"
+    );
+
+
+  const exists =
+    [...select.options]
+      .some(
+        option =>
+          option.value === icon
+      );
+
+
+  if(exists){
+
+    select.value =
+      icon;
+
+    custom.value =
+      "";
+
+  }else{
+
+    select.value =
+      "📱";
+
+    custom.value =
+      icon;
+
+  }
+
+
   updateIconPreview();
 
 
   document.getElementById(
     "categoryModal"
-  ).classList.add("show");
+  ).classList.add(
+    "show"
+  );
 
 }
 
@@ -1861,7 +2462,9 @@ document.getElementById(
       );
 
 
-    button.disabled = true;
+    button.disabled =
+      true;
+
 
     button.textContent =
       "Menyimpan...";
@@ -1917,12 +2520,6 @@ document.getElementById(
     };
 
 
-    console.log(
-      "Payload kategori:",
-      payload
-    );
-
-
     let result;
 
 
@@ -1932,14 +2529,19 @@ document.getElementById(
         await supabaseClient
           .from("categories")
           .update(payload)
-          .eq("id",id);
+          .eq(
+            "id",
+            id
+          );
 
     }else{
 
       result =
         await supabaseClient
           .from("categories")
-          .insert(payload);
+          .insert(
+            payload
+          );
 
     }
 
@@ -1947,16 +2549,13 @@ document.getElementById(
     if(result.error){
 
       console.error(
-        "ERROR KATEGORI:",
         result.error
       );
-
 
       showMessage(
         "Gagal menyimpan kategori: " +
         result.error.message
       );
-
 
     }else{
 
@@ -1964,16 +2563,16 @@ document.getElementById(
         "Kategori berhasil disimpan."
       );
 
-
       closeCategoryModal();
-
 
       await loadCategories();
 
     }
 
 
-    button.disabled = false;
+    button.disabled =
+      false;
+
 
     button.textContent =
       "Simpan Kategori";
@@ -1994,7 +2593,8 @@ async function deleteCategory(id){
     );
 
 
-  if(!category) return;
+  if(!category)
+    return;
 
 
   const confirmDelete =
@@ -2003,7 +2603,8 @@ async function deleteCategory(id){
     );
 
 
-  if(!confirmDelete) return;
+  if(!confirmDelete)
+    return;
 
 
   const {
@@ -2012,7 +2613,10 @@ async function deleteCategory(id){
   await supabaseClient
     .from("categories")
     .delete()
-    .eq("id",id);
+    .eq(
+      "id",
+      id
+    );
 
 
   if(error){
@@ -2145,92 +2749,130 @@ function renderProducts(){
 
 
   list.innerHTML =
-    products.map(product => {
+    products.map(
+      product => {
 
-      const category =
-        categories.find(
-          c =>
-            c.id ===
-            product.category_id
-        );
-
-
-      const image =
-        product.image_url ||
-        "https://placehold.co/100x100?text=Produk";
+        const category =
+          categories.find(
+            c =>
+              c.id ===
+              product.category_id
+          );
 
 
-      return `
+        let image =
+          product.image_url;
 
-        <div class="product-item">
 
-          <div class="product-left">
+        if(
+          !image &&
+          Array.isArray(
+            product.gallery
+          ) &&
+          product.gallery.length
+        ){
 
-            <img
-              class="product-image"
-              src="${escapeHtml(image)}"
-              onerror="this.src='https://placehold.co/100x100?text=Produk'"
-            >
+          image =
+            product.gallery[0];
 
-            <div class="product-info">
+        }
 
-              <div class="product-name">
-                ${escapeHtml(
-                  product.name
-                )}
+
+        image =
+          image ||
+          "https://placehold.co/100x100?text=Produk";
+
+
+        const platform =
+          String(
+            product.platform || "-"
+          )
+          .toUpperCase();
+
+
+        return `
+
+          <div class="product-item">
+
+            <div class="product-left">
+
+              <img
+                class="product-image"
+                src="${escapeHtml(image)}"
+                onerror="this.src='https://placehold.co/100x100?text=Produk'"
+              >
+
+              <div class="product-info">
+
+                <div class="product-name">
+
+                  ${escapeHtml(
+                    product.name
+                  )}
+
+                </div>
+
+
+                <div class="product-category">
+
+                  ${
+                    category
+                      ? escapeHtml(
+                          category.name
+                        )
+                      : "Tanpa kategori"
+                  }
+
+                </div>
+
+
+                <div class="product-price">
+
+                  ${formatRupiah(
+                    product.price
+                  )}
+
+                </div>
+
+
+                <span class="product-platform">
+
+                  ${escapeHtml(
+                    platform
+                  )}
+
+                </span>
+
               </div>
 
-              <div class="product-category">
-                ${
-                  category
-                    ? escapeHtml(
-                        category.name
-                      )
-                    : "Tanpa kategori"
-                }
-              </div>
+            </div>
 
-              <div class="product-price">
-                ${formatRupiah(
-                  product.price
-                )}
-              </div>
 
-              <span class="product-platform">
-                ${escapeHtml(
-                  product.platform ||
-                  "-"
-                )}
-              </span>
+            <div class="product-actions">
+
+              <button
+                class="edit-btn"
+                onclick="editProduct('${product.id}')"
+              >
+                Edit
+              </button>
+
+
+              <button
+                class="delete-btn"
+                onclick="deleteProduct('${product.id}')"
+              >
+                Hapus
+              </button>
 
             </div>
 
           </div>
 
+        `;
 
-          <div class="product-actions">
-
-            <button
-              class="edit-btn"
-              onclick="editProduct('${product.id}')"
-            >
-              Edit
-            </button>
-
-            <button
-              class="delete-btn"
-              onclick="deleteProduct('${product.id}')"
-            >
-              Hapus
-            </button>
-
-          </div>
-
-        </div>
-
-      `;
-
-    }).join("");
+      }
+    ).join("");
 
 }
 
@@ -2254,17 +2896,34 @@ function openProductModal(){
 
   document.getElementById(
     "productId"
-  ).value = "";
+  ).value =
+    "";
 
 
   document.getElementById(
     "productActive"
-  ).checked = true;
+  ).checked =
+    true;
+
+
+  productImages =
+    [];
+
+
+  renderImagePreview();
+
+
+  document.getElementById(
+    "productPlatform"
+  ).value =
+    "shopee";
 
 
   document.getElementById(
     "productModal"
-  ).classList.add("show");
+  ).classList.add(
+    "show"
+  );
 
 }
 
@@ -2273,7 +2932,320 @@ function closeProductModal(){
 
   document.getElementById(
     "productModal"
-  ).classList.remove("show");
+  ).classList.remove(
+    "show"
+  );
+
+}
+
+
+/* =====================================
+   IMAGE FILE UPLOAD
+===================================== */
+
+document.getElementById(
+  "productImageFiles"
+).addEventListener(
+  "change",
+  async function(){
+
+    const files =
+      [...this.files];
+
+
+    if(!files.length)
+      return;
+
+
+    for(
+      const file of files
+    ){
+
+      if(
+        !file.type.startsWith(
+          "image/"
+        )
+      ){
+
+        continue;
+
+      }
+
+
+      if(
+        file.size >
+        5 * 1024 * 1024
+      ){
+
+        showMessage(
+          `${file.name} terlalu besar. Maksimal 5MB.`
+        );
+
+        continue;
+
+      }
+
+
+      await uploadProductImage(
+        file
+      );
+
+    }
+
+
+    this.value =
+      "";
+
+  }
+);
+
+
+/* =====================================
+   UPLOAD TO SUPABASE STORAGE
+===================================== */
+
+async function uploadProductImage(
+  file
+){
+
+  showMessage(
+    "Mengupload " +
+    file.name +
+    "..."
+  );
+
+
+  const extension =
+    file.name
+      .split(".")
+      .pop()
+      .toLowerCase();
+
+
+  const filename =
+    `${Date.now()}-${Math.random()
+      .toString(36)
+      .substring(2,9)}.${extension}`;
+
+
+  const path =
+    `${currentUser.id}/${filename}`;
+
+
+  const {
+    error
+  } =
+  await supabaseClient
+    .storage
+    .from(
+      IMAGE_BUCKET
+    )
+    .upload(
+      path,
+      file,
+      {
+        cacheControl:"3600",
+        upsert:false,
+        contentType:file.type
+      }
+    );
+
+
+  if(error){
+
+    console.error(error);
+
+    showMessage(
+      "Upload gagal: " +
+      error.message
+    );
+
+    return;
+
+  }
+
+
+  const {
+    data
+  } =
+  supabaseClient
+    .storage
+    .from(
+      IMAGE_BUCKET
+    )
+    .getPublicUrl(
+      path
+    );
+
+
+  if(
+    data &&
+    data.publicUrl
+  ){
+
+    productImages.push(
+      data.publicUrl
+    );
+
+
+    renderImagePreview();
+
+
+    showMessage(
+      "Gambar berhasil diupload."
+    );
+
+  }
+
+}
+
+
+/* =====================================
+   ADD IMAGE FROM URL
+===================================== */
+
+function addImageFromUrl(){
+
+  const input =
+    document.getElementById(
+      "productImageUrl"
+    );
+
+
+  const url =
+    input.value.trim();
+
+
+  if(!url){
+
+    showMessage(
+      "Masukkan URL gambar terlebih dahulu."
+    );
+
+    return;
+
+  }
+
+
+  try{
+
+    new URL(url);
+
+  }catch(error){
+
+    showMessage(
+      "URL gambar tidak valid."
+    );
+
+    return;
+
+  }
+
+
+  productImages.push(
+    url
+  );
+
+
+  input.value =
+    "";
+
+
+  renderImagePreview();
+
+}
+
+
+/* =====================================
+   IMAGE PREVIEW
+===================================== */
+
+function renderImagePreview(){
+
+  const grid =
+    document.getElementById(
+      "imagePreviewGrid"
+    );
+
+
+  if(
+    !productImages.length
+  ){
+
+    grid.innerHTML =
+      `<div
+        style="
+          grid-column:1/-1;
+          padding:20px;
+          text-align:center;
+          color:#9ca3af;
+          font-size:12px;
+          border:1px dashed #d1d5db;
+          border-radius:10px;
+        "
+      >
+        Belum ada gambar.
+      </div>`;
+
+    return;
+
+  }
+
+
+  grid.innerHTML =
+    productImages.map(
+      (url,index) => `
+
+        <div class="preview-item">
+
+          <img
+            src="${escapeHtml(url)}"
+            onerror="this.style.opacity='.3'"
+          >
+
+
+          ${
+            index === 0
+              ? `
+                <span class="preview-main">
+                  UTAMA
+                </span>
+              `
+              : ""
+          }
+
+
+          <button
+            type="button"
+            class="preview-remove"
+            onclick="removeProductImage(${index})"
+          >
+            ×
+          </button>
+
+        </div>
+
+      `
+    ).join("");
+
+}
+
+
+/* =====================================
+   REMOVE IMAGE
+===================================== */
+
+function removeProductImage(
+  index
+){
+
+  productImages.splice(
+    index,
+    1
+  );
+
+
+  renderImagePreview();
 
 }
 
@@ -2290,7 +3262,8 @@ function editProduct(id){
     );
 
 
-  if(!product) return;
+  if(!product)
+    return;
 
 
   document.getElementById(
@@ -2330,22 +3303,6 @@ function editProduct(id){
 
 
   document.getElementById(
-    "productImage"
-  ).value =
-    product.image_url || "";
-
-
-  document.getElementById(
-    "productGallery"
-  ).value =
-    product.gallery
-      ? JSON.stringify(
-          product.gallery
-        )
-      : "";
-
-
-  document.getElementById(
     "productPrice"
   ).value =
     product.price ?? "";
@@ -2363,10 +3320,18 @@ function editProduct(id){
     product.discount_percent ?? "";
 
 
+  const platform =
+    String(
+      product.platform || "shopee"
+    ).toLowerCase();
+
+
   document.getElementById(
     "productPlatform"
   ).value =
-    product.platform || "Shopee";
+    platform === "tiktok"
+      ? "tiktok"
+      : "shopee";
 
 
   document.getElementById(
@@ -2411,9 +3376,46 @@ function editProduct(id){
     !!product.is_active;
 
 
+  /* LOAD GALLERY */
+
+  productImages =
+    [];
+
+
+  if(
+    Array.isArray(
+      product.gallery
+    )
+  ){
+
+    productImages =
+      [...product.gallery];
+
+  }
+
+
+  if(
+    product.image_url &&
+    !productImages.includes(
+      product.image_url
+    )
+  ){
+
+    productImages.unshift(
+      product.image_url
+    );
+
+  }
+
+
+  renderImagePreview();
+
+
   document.getElementById(
     "productModal"
-  ).classList.add("show");
+  ).classList.add(
+    "show"
+  );
 
 }
 
@@ -2437,7 +3439,9 @@ document.getElementById(
       );
 
 
-    button.disabled = true;
+    button.disabled =
+      true;
+
 
     button.textContent =
       "Menyimpan...";
@@ -2449,40 +3453,73 @@ document.getElementById(
       ).value;
 
 
-    let gallery = null;
+    /* RATING */
 
-
-    const galleryText =
+    const ratingText =
       document.getElementById(
-        "productGallery"
-      ).value.trim();
+        "productRating"
+      ).value
+      .trim()
+      .replace(",", ".");
 
 
-    if(galleryText){
+    const rating =
+      ratingText
+        ? Number(ratingText)
+        : null;
 
-      try{
 
-        gallery =
-          JSON.parse(
-            galleryText
-          );
+    if(
+      rating !== null &&
+      (
+        isNaN(rating) ||
+        rating < 0 ||
+        rating > 5
+      )
+    ){
 
-      }catch(error){
+      showMessage(
+        "Rating harus antara 0 sampai 5."
+      );
 
-        showMessage(
-          "Gallery JSON tidak valid."
-        );
 
-        button.disabled = false;
+      button.disabled =
+        false;
 
-        button.textContent =
-          "Simpan Produk";
 
-        return;
+      button.textContent =
+        "Simpan Produk";
 
-      }
+
+      return;
 
     }
+
+
+    /* IMAGE */
+
+    const mainImage =
+      productImages.length
+        ? productImages[0]
+        : null;
+
+
+    const gallery =
+      productImages.length
+        ? productImages
+        : [];
+
+
+    /* PLATFORM */
+
+    const platform =
+      String(
+        document.getElementById(
+          "productPlatform"
+        ).value
+      )
+      .trim()
+      .toLowerCase();
 
 
     const payload = {
@@ -2495,14 +3532,18 @@ document.getElementById(
       category_id:
         document.getElementById(
           "productCategory"
-        ).value || null,
+        ).value ||
+        null,
 
       slug:
         document.getElementById(
           "productSlug"
         ).value.trim()
         .toLowerCase()
-        .replace(/\s+/g,"-"),
+        .replace(
+          /\s+/g,
+          "-"
+        ),
 
       description:
         document.getElementById(
@@ -2510,9 +3551,7 @@ document.getElementById(
         ).value.trim(),
 
       image_url:
-        document.getElementById(
-          "productImage"
-        ).value.trim() || null,
+        mainImage,
 
       gallery:
         gallery,
@@ -2538,22 +3577,21 @@ document.getElementById(
           ).value
         ) || 0,
 
+      /* IMPORTANT:
+         DATABASE VALUE LOWERCASE
+      */
+
       platform:
-        document.getElementById(
-          "productPlatform"
-        ).value,
+        platform,
 
       external_product_id:
         document.getElementById(
           "productExternalId"
-        ).value.trim() || null,
+        ).value.trim() ||
+        null,
 
       rating:
-        Number(
-          document.getElementById(
-            "productRating"
-          ).value
-        ) || null,
+        rating,
 
       sold_count:
         Number(
@@ -2580,9 +3618,16 @@ document.getElementById(
       affiliate_url:
         document.getElementById(
           "productAffiliate"
-        ).value.trim() || null
+        ).value.trim() ||
+        null
 
     };
+
+
+    console.log(
+      "PRODUCT PAYLOAD:",
+      payload
+    );
 
 
     let result;
@@ -2594,21 +3639,29 @@ document.getElementById(
         await supabaseClient
           .from("products")
           .update(payload)
-          .eq("id",id);
+          .eq(
+            "id",
+            id
+          );
 
     }else{
 
       result =
         await supabaseClient
           .from("products")
-          .insert(payload);
+          .insert(
+            payload
+          );
 
     }
 
 
     if(result.error){
 
-      console.error(result.error);
+      console.error(
+        result.error
+      );
+
 
       showMessage(
         "Gagal menyimpan produk: " +
@@ -2621,14 +3674,18 @@ document.getElementById(
         "Produk berhasil disimpan."
       );
 
+
       closeProductModal();
+
 
       await loadProducts();
 
     }
 
 
-    button.disabled = false;
+    button.disabled =
+      false;
+
 
     button.textContent =
       "Simpan Produk";
@@ -2649,7 +3706,8 @@ async function deleteProduct(id){
     );
 
 
-  if(!product) return;
+  if(!product)
+    return;
 
 
   const confirmDelete =
@@ -2658,7 +3716,8 @@ async function deleteProduct(id){
     );
 
 
-  if(!confirmDelete) return;
+  if(!confirmDelete)
+    return;
 
 
   const {
@@ -2667,7 +3726,10 @@ async function deleteProduct(id){
   await supabaseClient
     .from("products")
     .delete()
-    .eq("id",id);
+    .eq(
+      "id",
+      id
+    );
 
 
   if(error){
@@ -2729,12 +3791,29 @@ function formatRupiah(value){
 
 function escapeHtml(value){
 
-  return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+  return String(
+    value ?? ""
+  )
+  .replace(
+    /&/g,
+    "&amp;"
+  )
+  .replace(
+    /</g,
+    "&lt;"
+  )
+  .replace(
+    />/g,
+    "&gt;"
+  )
+  .replace(
+    /"/g,
+    "&quot;"
+  )
+  .replace(
+    /'/g,
+    "&#039;"
+  );
 
 }
 
@@ -2755,7 +3834,8 @@ document.getElementById(
       ).value;
 
 
-    if(id) return;
+    if(id)
+      return;
 
 
     document.getElementById(
@@ -2764,8 +3844,14 @@ document.getElementById(
       this.value
         .toLowerCase()
         .trim()
-        .replace(/[^a-z0-9\s-]/g,"")
-        .replace(/\s+/g,"-");
+        .replace(
+          /[^a-z0-9\s-]/g,
+          ""
+        )
+        .replace(
+          /\s+/g,
+          "-"
+        );
 
   }
 );
@@ -2787,7 +3873,8 @@ document.getElementById(
       ).value;
 
 
-    if(id) return;
+    if(id)
+      return;
 
 
     document.getElementById(
@@ -2796,44 +3883,14 @@ document.getElementById(
       this.value
         .toLowerCase()
         .trim()
-        .replace(/[^a-z0-9\s-]/g,"")
-        .replace(/\s+/g,"-");
-
-  }
-);
-
-
-/* =====================================
-   ICON SELECT CHANGE
-===================================== */
-
-document.getElementById(
-  "categoryIconSelect"
-).addEventListener(
-  "change",
-  function(){
-
-    document.getElementById(
-      "categoryIconCustom"
-    ).value = "";
-
-    updateIconPreview();
-
-  }
-);
-
-
-/* =====================================
-   CUSTOM ICON CHANGE
-===================================== */
-
-document.getElementById(
-  "categoryIconCustom"
-).addEventListener(
-  "input",
-  function(){
-
-    updateIconPreview();
+        .replace(
+          /[^a-z0-9\s-]/g,
+          ""
+        )
+        .replace(
+          /\s+/g,
+          "-"
+        );
 
   }
 );
@@ -2849,7 +3906,9 @@ document.getElementById(
   "click",
   function(event){
 
-    if(event.target === this){
+    if(
+      event.target === this
+    ){
 
       closeCategoryModal();
 
@@ -2865,7 +3924,9 @@ document.getElementById(
   "click",
   function(event){
 
-    if(event.target === this){
+    if(
+      event.target === this
+    ){
 
       closeProductModal();
 
@@ -2877,4 +3938,4 @@ document.getElementById(
 </script>
 
 </body>
-  </html>
+</html>

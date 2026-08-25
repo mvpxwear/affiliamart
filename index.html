@@ -40,7 +40,9 @@
       text-decoration: none;
     }
 
-    /* HEADER */
+    /* =========================
+       HEADER
+    ========================= */
 
     header {
       height: 76px;
@@ -96,10 +98,13 @@
       background: #dcfce7;
     }
 
-    /* HERO */
+    /* =========================
+       HERO
+    ========================= */
 
     .hero {
       padding: 90px 6% 100px;
+
       text-align: center;
       color: white;
 
@@ -140,8 +145,11 @@
     .hero h1 {
       font-size: clamp(36px, 6vw, 58px);
       line-height: 1.08;
+
       letter-spacing: -2px;
+
       font-weight: 800;
+
       margin-bottom: 20px;
     }
 
@@ -155,7 +163,9 @@
       color: rgba(255,255,255,0.92);
     }
 
-    /* SEARCH */
+    /* =========================
+       SEARCH
+    ========================= */
 
     .search {
       max-width: 650px;
@@ -217,7 +227,9 @@
       transform: translateY(-1px);
     }
 
-    /* SECTION */
+    /* =========================
+       SECTION
+    ========================= */
 
     section {
       padding: 70px 6%;
@@ -227,28 +239,35 @@
       display: flex;
       align-items: end;
       justify-content: space-between;
+
       margin-bottom: 30px;
     }
 
     .title {
       font-size: 30px;
       line-height: 1.2;
+
       font-weight: 800;
       letter-spacing: -0.8px;
     }
 
     .subtitle {
       margin-top: 8px;
+
       color: #6b7280;
       font-size: 14px;
     }
 
-    /* CATEGORY */
+    /* =========================
+       CATEGORY
+    ========================= */
 
     .categories {
       display: grid;
+
       grid-template-columns:
         repeat(auto-fit, minmax(170px, 1fr));
+
       gap: 18px;
     }
 
@@ -280,6 +299,7 @@
 
     .category:hover {
       transform: translateY(-5px);
+
       border-color: #bbf7d0;
 
       box-shadow:
@@ -309,7 +329,9 @@
       color: #1f2937;
     }
 
-    /* PRODUCTS */
+    /* =========================
+       PRODUCTS
+    ========================= */
 
     .products {
       display: grid;
@@ -505,7 +527,9 @@
       color: #6b7280;
     }
 
-    /* FOOTER */
+    /* =========================
+       FOOTER
+    ========================= */
 
     footer {
       background: #111827;
@@ -541,7 +565,9 @@
       color: #6b7280;
     }
 
-    /* MOBILE */
+    /* =========================
+       MOBILE
+    ========================= */
 
     @media (max-width: 700px) {
 
@@ -682,7 +708,9 @@
 
 <body>
 
-  <!-- HEADER -->
+  <!-- =========================
+       HEADER
+  ========================== -->
 
   <header>
 
@@ -713,7 +741,9 @@
   </header>
 
 
-  <!-- HERO -->
+  <!-- =========================
+       HERO
+  ========================== -->
 
   <section class="hero">
 
@@ -751,7 +781,9 @@
   </section>
 
 
-  <!-- KATEGORI -->
+  <!-- =========================
+       KATEGORI
+  ========================== -->
 
   <section id="kategori">
 
@@ -771,9 +803,13 @@
 
     </div>
 
+
     <div class="categories">
 
-      <div class="category" onclick="filterKategori('Elektronik')">
+      <div
+        class="category"
+        onclick="filterKategori('Elektronik')"
+      >
 
         <div class="category-icon">
           📱
@@ -785,7 +821,11 @@
 
       </div>
 
-      <div class="category" onclick="filterKategori('Fashion')">
+
+      <div
+        class="category"
+        onclick="filterKategori('Fashion')"
+      >
 
         <div class="category-icon">
           👕
@@ -797,7 +837,11 @@
 
       </div>
 
-      <div class="category" onclick="filterKategori('Kecantikan')">
+
+      <div
+        class="category"
+        onclick="filterKategori('Kecantikan')"
+      >
 
         <div class="category-icon">
           💄
@@ -809,7 +853,11 @@
 
       </div>
 
-      <div class="category" onclick="filterKategori('Rumah')">
+
+      <div
+        class="category"
+        onclick="filterKategori('Rumah')"
+      >
 
         <div class="category-icon">
           🏠
@@ -821,7 +869,11 @@
 
       </div>
 
-      <div class="category" onclick="filterKategori('Otomotif')">
+
+      <div
+        class="category"
+        onclick="filterKategori('Otomotif')"
+      >
 
         <div class="category-icon">
           🚗
@@ -838,7 +890,9 @@
   </section>
 
 
-  <!-- PRODUK -->
+  <!-- =========================
+       PRODUK
+  ========================== -->
 
   <section id="produk">
 
@@ -858,6 +912,7 @@
 
     </div>
 
+
     <div
       class="products"
       id="productList"
@@ -872,7 +927,9 @@
   </section>
 
 
-  <!-- FOOTER -->
+  <!-- =========================
+       FOOTER
+  ========================== -->
 
   <footer>
 
@@ -892,7 +949,9 @@
   </footer>
 
 
-  <!-- JAVASCRIPT -->
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
 
   <script>
 
@@ -919,7 +978,11 @@
 
     function formatRupiah(value) {
 
-      if (value === null || value === undefined) {
+      if (
+        value === null ||
+        value === undefined ||
+        value === ""
+      ) {
         return "-";
       }
 
@@ -941,7 +1004,10 @@
 
     function escapeHTML(value) {
 
-      if (!value) {
+      if (
+        value === null ||
+        value === undefined
+      ) {
         return "";
       }
 
@@ -963,6 +1029,7 @@
 
       const productList =
         document.getElementById("productList");
+
 
       productList.innerHTML =
         '<div class="loading">⏳ Memuat produk...</div>';
@@ -988,6 +1055,7 @@
           discount_percent,
           platform,
           external_product_id,
+          affiliate_url,
           rating,
           sold_count,
           is_featured,
@@ -995,7 +1063,10 @@
           is_active
         `)
 
-        .eq("is_active", true)
+        .eq(
+          "is_active",
+          true
+        )
 
         .order(
           "created_at",
@@ -1012,28 +1083,46 @@
           error
         );
 
+
         productList.innerHTML = `
+
           <div class="empty">
-            <h3>Gagal memuat produk</h3>
+
+            <h3>
+              Gagal memuat produk
+            </h3>
+
             <p style="margin-top:8px;">
               ${escapeHTML(error.message)}
             </p>
+
           </div>
+
         `;
 
         return;
       }
 
 
-      if (!data || data.length === 0) {
+      if (
+        !data ||
+        data.length === 0
+      ) {
 
         productList.innerHTML = `
+
           <div class="empty">
-            <h3>Belum ada produk</h3>
+
+            <h3>
+              Belum ada produk
+            </h3>
+
             <p style="margin-top:8px;">
               Produk akan tampil di sini setelah ditambahkan dari admin.
             </p>
+
           </div>
+
         `;
 
         return;
@@ -1056,154 +1145,169 @@
 
 
       productList.innerHTML =
-        products.map(function(product) {
-
-          let imageHTML =
-            '<div class="product-placeholder">🛍️</div>';
+        products
+          .map(function(product) {
 
 
-          if (
-            product.image_url &&
-            product.image_url.trim() !== ""
-          ) {
+            /* IMAGE */
 
-            imageHTML = `
-              <img
-                src="${escapeHTML(product.image_url)}"
-                alt="${escapeHTML(product.name)}"
-                loading="lazy"
-                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
-              >
-
-              <div
-                class="product-placeholder"
-                style="display:none;"
-              >
-                🛍️
-              </div>
-            `;
-
-          }
+            let imageHTML =
+              '<div class="product-placeholder">🛍️</div>';
 
 
-          let discountHTML = "";
+            if (
+              product.image_url &&
+              product.image_url.trim() !== ""
+            ) {
 
-          if (
-            product.discount_percent !== null &&
-            Number(product.discount_percent) > 0
-          ) {
+              imageHTML = `
 
-            discountHTML = `
-              <div class="discount">
-                -${Number(product.discount_percent)}%
-              </div>
-            `;
+                <img
+                  src="${escapeHTML(product.image_url)}"
+                  alt="${escapeHTML(product.name)}"
+                  loading="lazy"
+                  onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+                >
 
-          }
-
-
-          let platformHTML = "";
-
-          if (product.platform) {
-
-            platformHTML = `
-              <div class="platform">
-                ${escapeHTML(product.platform)}
-              </div>
-            `;
-
-          }
-
-
-          let originalPriceHTML = "";
-
-          if (
-            product.original_price &&
-            Number(product.original_price) > Number(product.price)
-          ) {
-
-            originalPriceHTML = `
-              <div class="original-price">
-                ${formatRupiah(product.original_price)}
-              </div>
-            `;
-
-          }
-
-
-          let metaHTML = "";
-
-
-          if (product.rating) {
-
-            metaHTML += `
-              <span>
-                ⭐ ${Number(product.rating).toFixed(1)}
-              </span>
-            `;
-
-          }
-
-
-          if (product.sold_count) {
-
-            metaHTML += `
-              <span>
-                ${Number(product.sold_count).toLocaleString("id-ID")} terjual
-              </span>
-            `;
-
-          }
-
-
-          let description =
-            product.description ||
-            "Produk pilihan AffiliaMart.";
-
-
-          return `
-
-            <div
-              class="product"
-              data-name="${escapeHTML(product.name)}"
-              data-category="${escapeHTML(product.category_id || "")}"
-            >
-
-              <div class="product-img">
-
-                ${imageHTML}
-
-                ${discountHTML}
-
-                ${platformHTML}
-
-              </div>
-
-
-              <div class="product-info">
-
-                <h3>
-                  ${escapeHTML(product.name)}
-                </h3>
-
-
-                <div class="product-price">
-                  ${formatRupiah(product.price)}
+                <div
+                  class="product-placeholder"
+                  style="display:none;"
+                >
+                  🛍️
                 </div>
 
+              `;
 
-                ${originalPriceHTML}
+            }
 
 
-                <div class="product-meta">
-                  ${metaHTML}
+            /* DISCOUNT */
+
+            let discountHTML = "";
+
+
+            if (
+              product.discount_percent !== null &&
+              Number(product.discount_percent) > 0
+            ) {
+
+              discountHTML = `
+
+                <div class="discount">
+                  -${Number(product.discount_percent)}%
                 </div>
 
+              `;
 
-                <p class="product-description">
-                  ${escapeHTML(description)}
-                </p>
+            }
 
+
+            /* PLATFORM */
+
+            let platformHTML = "";
+
+
+            if (product.platform) {
+
+              platformHTML = `
+
+                <div class="platform">
+                  ${escapeHTML(product.platform)}
+                </div>
+
+              `;
+
+            }
+
+
+            /* ORIGINAL PRICE */
+
+            let originalPriceHTML = "";
+
+
+            if (
+              product.original_price &&
+              Number(product.original_price) >
+              Number(product.price)
+            ) {
+
+              originalPriceHTML = `
+
+                <div class="original-price">
+                  ${formatRupiah(product.original_price)}
+                </div>
+
+              `;
+
+            }
+
+
+            /* RATING + SOLD */
+
+            let metaHTML = "";
+
+
+            if (product.rating) {
+
+              metaHTML += `
+
+                <span>
+                  ⭐ ${Number(product.rating).toFixed(1)}
+                </span>
+
+              `;
+
+            }
+
+
+            if (product.sold_count) {
+
+              metaHTML += `
+
+                <span>
+                  ${Number(product.sold_count).toLocaleString("id-ID")}
+                  terjual
+                </span>
+
+              `;
+
+            }
+
+
+            /* DESCRIPTION */
+
+            const description =
+              product.description ||
+              "Produk pilihan AffiliaMart.";
+
+
+            /* AFFILIATE URL */
+
+            const affiliateURL =
+              product.affiliate_url || "";
+
+
+            let buttonHTML = "";
+
+
+            if (affiliateURL) {
+
+              buttonHTML = `
+
+                <a
+                  href="${escapeHTML(affiliateURL)}"
+                  class="btn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Lihat Produk
+                </a>
+
+              `;
+
+            } else {
+
+              buttonHTML = `
 
                 <a
                   href="#"
@@ -1213,14 +1317,68 @@
                   Lihat Produk
                 </a>
 
+              `;
+
+            }
+
+
+            return `
+
+              <div
+                class="product"
+                data-name="${escapeHTML(product.name)}"
+                data-category="${escapeHTML(product.category_id || "")}"
+              >
+
+
+                <div class="product-img">
+
+                  ${imageHTML}
+
+                  ${discountHTML}
+
+                  ${platformHTML}
+
+                </div>
+
+
+                <div class="product-info">
+
+
+                  <h3>
+                    ${escapeHTML(product.name)}
+                  </h3>
+
+
+                  <div class="product-price">
+                    ${formatRupiah(product.price)}
+                  </div>
+
+
+                  ${originalPriceHTML}
+
+
+                  <div class="product-meta">
+                    ${metaHTML}
+                  </div>
+
+
+                  <p class="product-description">
+                    ${escapeHTML(description)}
+                  </p>
+
+
+                  ${buttonHTML}
+
+
+                </div>
+
               </div>
 
-            </div>
+            `;
 
-          `;
-
-        })
-        .join("");
+          })
+          .join("");
 
     }
 
@@ -1251,11 +1409,13 @@
 
         });
 
+
         document
           .getElementById("produk")
           .scrollIntoView({
             behavior: "smooth"
           });
+
 
         return;
       }
@@ -1272,7 +1432,9 @@
             .toLowerCase();
 
 
-        if (nama.includes(input)) {
+        if (
+          nama.includes(input)
+        ) {
 
           product.style.display = "";
 
@@ -1315,7 +1477,9 @@
         "keypress",
         function(event) {
 
-          if (event.key === "Enter") {
+          if (
+            event.key === "Enter"
+          ) {
 
             cariProduk();
 
@@ -1326,8 +1490,7 @@
 
 
     /* =========================
-       CATEGORY
-       sementara
+       CATEGORY FILTER
     ========================= */
 
     function filterKategori(kategori) {
@@ -1341,13 +1504,6 @@
 
       products.forEach(function(product) {
 
-        /*
-         * Untuk sementara kategori
-         * menggunakan nama/category_id.
-         * Nanti kita hubungkan langsung
-         * ke tabel categories.
-         */
-
         const category =
           product
             .getAttribute("data-category")
@@ -1359,11 +1515,7 @@
 
 
         if (
-          category.includes(target) ||
-          product
-            .getAttribute("data-name")
-            .toLowerCase()
-            .includes(target)
+          category.includes(target)
         ) {
 
           product.style.display = "";
@@ -1385,12 +1537,23 @@
           behavior: "smooth"
         });
 
+
+      if (!ditemukan) {
+
+        alert(
+          "Belum ada produk di kategori " +
+          kategori +
+          "."
+        );
+
+      }
+
     }
 
 
     /* =========================
-       AFFILIATE LINK
-       ========================= */
+       AFFILIATE LINK KOSONG
+    ========================= */
 
     function produkBelumTersedia(event) {
 

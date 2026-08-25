@@ -1,12 +1,33 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Dashboard Statistik - AffiliaMart</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
+  <title>
+    Statistik - AffiliaMart
+  </title>
+
+  <!-- SUPABASE -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- FONT -->
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+    crossorigin
+  >
 
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
@@ -14,6 +35,7 @@
   >
 
   <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -28,91 +50,127 @@
     }
 
     header {
-      height: 72px;
+      height: 76px;
       background: white;
-      border-bottom: 1px solid #e5e7eb;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 6%;
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      padding: 0 5%;
+      border-bottom: 1px solid #edf0ee;
     }
 
     .logo {
       color: #16a34a;
-      font-size: 23px;
+      font-size: 25px;
       font-weight: 800;
+      text-decoration: none;
     }
 
-    .back {
-      text-decoration: none;
+    .admin-link {
       background: #ecfdf3;
       color: #15803d;
-      padding: 9px 14px;
-      border-radius: 10px;
-      font-size: 13px;
+      padding: 11px 18px;
+      border-radius: 12px;
+      text-decoration: none;
       font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .admin-link:hover {
+      background: #dcfce7;
     }
 
     main {
-      padding: 45px 6% 80px;
-      max-width: 1400px;
+      max-width: 1200px;
       margin: auto;
+      padding: 55px 5% 100px;
     }
 
     .page-title {
-      margin-bottom: 30px;
+      margin-bottom: 35px;
     }
 
     .page-title h1 {
-      font-size: 32px;
+      font-size: 42px;
       font-weight: 800;
-      letter-spacing: -1px;
+      letter-spacing: -1.5px;
     }
 
     .page-title p {
+      margin-top: 8px;
       color: #6b7280;
-      font-size: 14px;
-      margin-top: 7px;
+      font-size: 16px;
     }
 
-    .stats {
+    .message {
+      display: none;
+      background: #fff1f2;
+      color: #be123c;
+      border: 1px solid #fecdd3;
+      padding: 15px 18px;
+      border-radius: 14px;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .refresh {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: none;
+      background: #16a34a;
+      color: white;
+      padding: 13px 20px;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-bottom: 35px;
+    }
+
+    .refresh:hover {
+      background: #15803d;
+    }
+
+    .stats-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-      margin-bottom: 30px;
+      grid-template-columns:
+        repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 35px;
     }
 
     .stat-card {
       background: white;
       border: 1px solid #edf0ee;
-      border-radius: 18px;
-      padding: 23px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.04);
+      border-radius: 22px;
+      padding: 28px;
+      min-height: 190px;
+      box-shadow:
+        0 5px 25px rgba(0,0,0,0.04);
     }
 
     .stat-icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 13px;
-      background: #f0fdf4;
+      width: 62px;
+      height: 62px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 22px;
-      margin-bottom: 15px;
+      background: #f0fdf4;
+      border-radius: 18px;
+      font-size: 30px;
+      margin-bottom: 20px;
     }
 
-    .stat-label {
+    .stat-title {
       color: #6b7280;
-      font-size: 13px;
-      margin-bottom: 5px;
+      font-size: 15px;
+      margin-bottom: 8px;
     }
 
     .stat-value {
-      font-size: 28px;
+      font-size: 34px;
       font-weight: 800;
       color: #111827;
     }
@@ -120,577 +178,700 @@
     .section {
       background: white;
       border: 1px solid #edf0ee;
-      border-radius: 18px;
-      padding: 25px;
-      margin-bottom: 25px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.04);
+      border-radius: 22px;
+      padding: 30px;
+      box-shadow:
+        0 5px 25px rgba(0,0,0,0.04);
     }
 
     .section h2 {
-      font-size: 19px;
-      margin-bottom: 20px;
+      font-size: 25px;
+      margin-bottom: 25px;
     }
 
-    .platform-grid {
+    .platform-list {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns:
+        repeat(2, 1fr);
       gap: 18px;
     }
 
     .platform-card {
       border: 1px solid #e5e7eb;
-      border-radius: 14px;
-      padding: 20px;
+      border-radius: 18px;
+      padding: 22px;
     }
 
     .platform-name {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
       font-weight: 700;
-      margin-bottom: 8px;
     }
 
-    .platform-count {
-      font-size: 25px;
-      font-weight: 800;
+    .platform-number {
+      margin-top: 10px;
       color: #16a34a;
+      font-size: 32px;
+      font-weight: 800;
     }
 
-    .table-wrapper {
-      width: 100%;
-      overflow-x: auto;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 600px;
-    }
-
-    th,
-    td {
-      padding: 14px 12px;
-      text-align: left;
-      border-bottom: 1px solid #edf0ee;
-      font-size: 13px;
-    }
-
-    th {
+    .platform-description {
       color: #6b7280;
-      font-weight: 600;
-      background: #f9fafb;
+      font-size: 13px;
+      margin-top: 4px;
     }
 
-    td {
-      color: #374151;
+    .info-section {
+      margin-top: 25px;
+      background: white;
+      border: 1px solid #edf0ee;
+      border-radius: 22px;
+      padding: 25px;
     }
 
-    .product-name {
-      font-weight: 700;
-      color: #111827;
+    .info-section h3 {
+      font-size: 19px;
+      margin-bottom: 12px;
     }
 
-    .badge {
-      display: inline-block;
-      padding: 5px 9px;
-      border-radius: 7px;
-      background: #ecfdf3;
-      color: #15803d;
-      font-size: 11px;
-      font-weight: 700;
-    }
-
-    .empty {
-      text-align: center;
-      padding: 30px;
+    .info-section p {
       color: #6b7280;
       font-size: 14px;
-    }
-
-    .refresh {
-      border: none;
-      background: #16a34a;
-      color: white;
-      padding: 10px 16px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-family: inherit;
-      font-weight: 600;
-      font-size: 13px;
-      margin-bottom: 25px;
-    }
-
-    .refresh:hover {
-      background: #15803d;
+      line-height: 1.7;
     }
 
     .loading {
       color: #6b7280;
-      text-align: center;
-      padding: 25px;
     }
 
-    .error {
-      color: #dc2626;
-      background: #fef2f2;
-      border: 1px solid #fecaca;
-      padding: 15px;
-      border-radius: 10px;
-      margin-bottom: 20px;
+    footer {
+      text-align: center;
+      padding: 35px 5%;
+      background: #111827;
+      color: white;
+    }
+
+    footer strong {
+      color: #4ade80;
+    }
+
+    footer p {
+      margin-top: 7px;
+      color: #9ca3af;
       font-size: 13px;
-      display: none;
     }
 
     @media (max-width: 900px) {
-      .stats {
-        grid-template-columns: repeat(2, 1fr);
+
+      .stats-grid {
+        grid-template-columns:
+          repeat(2, 1fr);
       }
+
     }
 
     @media (max-width: 600px) {
+
       header {
-        padding: 0 5%;
+        height: 68px;
       }
 
       .logo {
-        font-size: 20px;
+        font-size: 21px;
+      }
+
+      .admin-link {
+        padding: 9px 13px;
+        font-size: 13px;
       }
 
       main {
-        padding: 30px 5% 60px;
+        padding:
+          40px 5% 90px;
       }
 
       .page-title h1 {
-        font-size: 27px;
+        font-size: 35px;
       }
 
-      .stats {
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
+      .stats-grid {
+        grid-template-columns:
+          repeat(2, 1fr);
+        gap: 14px;
       }
 
       .stat-card {
-        padding: 17px;
+        min-height: 165px;
+        padding: 20px;
+      }
+
+      .stat-icon {
+        width: 52px;
+        height: 52px;
+        font-size: 25px;
+        margin-bottom: 15px;
+      }
+
+      .stat-title {
+        font-size: 13px;
       }
 
       .stat-value {
-        font-size: 23px;
-      }
-
-      .platform-grid {
-        grid-template-columns: 1fr;
+        font-size: 29px;
       }
 
       .section {
-        padding: 18px;
+        padding: 22px;
       }
+
+      .platform-list {
+        grid-template-columns: 1fr;
+      }
+
     }
+
   </style>
+
 </head>
+
 
 <body>
 
-<header>
-  <div class="logo">
-    AffiliaMart
-  </div>
+  <!-- HEADER -->
 
-  <a href="admin.html" class="back">
-    ← Admin
-  </a>
-</header>
+  <header>
 
-<main>
+    <a
+      href="dashboard.html"
+      class="logo"
+    >
+      AffiliaMart
+    </a>
 
-  <div class="page-title">
-    <h1>📊 Dashboard Statistik</h1>
-    <p>Pantau performa website dan klik affiliate AffiliaMart.</p>
-  </div>
+    <!-- KEMBALI KE DASHBOARD -->
+    <a
+      href="dashboard.html"
+      class="admin-link"
+    >
+      ← Admin
+    </a>
 
-  <div id="errorBox" class="error"></div>
+  </header>
 
-  <button class="refresh" onclick="loadDashboard()">
-    🔄 Refresh Statistik
-  </button>
 
-  <!-- STATISTIK UTAMA -->
+  <!-- MAIN -->
 
-  <div class="stats">
+  <main>
 
-    <div class="stat-card">
-      <div class="stat-icon">👁️</div>
+    <div class="page-title">
 
-      <div class="stat-label">
-        Total Pengunjung
-      </div>
+      <h1>
+        📊 Dashboard Statistik
+      </h1>
 
-      <div
-        class="stat-value"
-        id="totalVisitors"
-      >
-        -
-      </div>
+      <p>
+        Pantau performa website dan klik affiliate AffiliaMart.
+      </p>
+
     </div>
 
-    <div class="stat-card">
-      <div class="stat-icon">🛍️</div>
 
-      <div class="stat-label">
-        Total Klik Produk
-      </div>
+    <!-- ERROR -->
 
-      <div
-        class="stat-value"
-        id="totalProductClicks"
-      >
-        -
-      </div>
-    </div>
+    <div
+      id="errorMessage"
+      class="message"
+    ></div>
 
-    <div class="stat-card">
-      <div class="stat-icon">🟠</div>
 
-      <div class="stat-label">
-        Klik Shopee
-      </div>
+    <!-- REFRESH -->
 
-      <div
-        class="stat-value"
-        id="totalShopee"
-      >
-        -
-      </div>
-    </div>
+    <button
+      class="refresh"
+      onclick="loadStatistics()"
+    >
+      🔄 Refresh Statistik
+    </button>
 
-    <div class="stat-card">
-      <div class="stat-icon">🎵</div>
 
-      <div class="stat-label">
-        Klik TikTok
-      </div>
+    <!-- STATISTICS -->
 
-      <div
-        class="stat-value"
-        id="totalTiktok"
-      >
-        -
-      </div>
-    </div>
+    <div class="stats-grid">
 
-  </div>
 
-  <!-- PLATFORM -->
+      <!-- VISITOR -->
 
-  <div class="section">
+      <div class="stat-card">
 
-    <h2>📈 Statistik Platform</h2>
+        <div class="stat-icon">
+          👁️
+        </div>
 
-    <div class="platform-grid">
-
-      <div class="platform-card">
-
-        <div class="platform-name">
-          🟠 Shopee
+        <div class="stat-title">
+          Total Pengunjung
         </div>
 
         <div
-          class="platform-count"
-          id="shopeeCount"
+          class="stat-value"
+          id="totalVisitors"
         >
           -
         </div>
 
       </div>
 
-      <div class="platform-card">
 
-        <div class="platform-name">
-          🎵 TikTok
+      <!-- PRODUCT CLICK -->
+
+      <div class="stat-card">
+
+        <div class="stat-icon">
+          🛍️
+        </div>
+
+        <div class="stat-title">
+          Total Klik Produk
         </div>
 
         <div
-          class="platform-count"
-          id="tiktokCount"
+          class="stat-value"
+          id="totalProductClicks"
         >
           -
         </div>
 
       </div>
 
-    </div>
 
-  </div>
+      <!-- SHOPEE -->
 
-  <!-- PRODUK TERPOPULER -->
+      <div class="stat-card">
 
-  <div class="section">
+        <div class="stat-icon">
+          🟠
+        </div>
 
-    <h2>🔥 Produk Paling Banyak Diklik</h2>
+        <div class="stat-title">
+          Klik Shopee
+        </div>
 
-    <div class="table-wrapper">
+        <div
+          class="stat-value"
+          id="totalShopee"
+        >
+          -
+        </div>
 
-      <table>
+      </div>
 
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Produk</th>
-            <th>Platform</th>
-            <th>Total Klik</th>
-          </tr>
-        </thead>
 
-        <tbody id="productStats">
+      <!-- TIKTOK -->
 
-          <tr>
-            <td colspan="4">
-              <div class="loading">
-                ⏳ Memuat statistik...
-              </div>
-            </td>
-          </tr>
+      <div class="stat-card">
 
-        </tbody>
+        <div class="stat-icon">
+          🎵
+        </div>
 
-      </table>
+        <div class="stat-title">
+          Klik TikTok
+        </div>
 
-    </div>
+        <div
+          class="stat-value"
+          id="totalTiktok"
+        >
+          -
+        </div>
 
-  </div>
+      </div>
 
-  <!-- EVENT TERBARU -->
-
-  <div class="section">
-
-    <h2>🕒 Aktivitas Terbaru</h2>
-
-    <div class="table-wrapper">
-
-      <table>
-
-        <thead>
-          <tr>
-            <th>Waktu</th>
-            <th>Event</th>
-            <th>Platform</th>
-          </tr>
-        </thead>
-
-        <tbody id="recentEvents">
-
-          <tr>
-            <td colspan="3">
-              <div class="loading">
-                ⏳ Memuat aktivitas...
-              </div>
-            </td>
-          </tr>
-
-        </tbody>
-
-      </table>
 
     </div>
 
-  </div>
 
-</main>
+    <!-- PLATFORM -->
 
-<script>
+    <div class="section">
 
-  /* =========================
-     SUPABASE
-  ========================= */
+      <h2>
+        📈 Statistik Platform
+      </h2>
 
-  const SUPABASE_URL =
-    "https://fmftcisigssgfjqqezqz.supabase.co";
-
-  const SUPABASE_KEY =
-    "sb_publishable_0YyKpZ3_HOED9iHlgfJldw_4ZrugD7C";
-
-  const supabaseClient =
-    window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_KEY
-    );
+      <div class="platform-list">
 
 
-  /* =========================
-     FORMAT ANGKA
-  ========================= */
+        <div class="platform-card">
 
-  function formatNumber(value) {
+          <div class="platform-name">
+            🟠 Shopee
+          </div>
 
-    return Number(value || 0)
-      .toLocaleString("id-ID");
+          <div
+            class="platform-number"
+            id="platformShopee"
+          >
+            -
+          </div>
 
-  }
+          <div class="platform-description">
+            Total klik affiliate Shopee
+          </div>
+
+        </div>
 
 
-  /* =========================
-     ESCAPE HTML
-  ========================= */
+        <div class="platform-card">
 
-  function escapeHTML(value) {
+          <div class="platform-name">
+            🎵 TikTok
+          </div>
 
-    if (
-      value === null ||
-      value === undefined
-    ) {
-      return "";
+          <div
+            class="platform-number"
+            id="platformTiktok"
+          >
+            -
+          </div>
+
+          <div class="platform-description">
+            Total klik affiliate TikTok
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+
+    <!-- INFO -->
+
+    <div class="info-section">
+
+      <h3>
+        ℹ️ Informasi Statistik
+      </h3>
+
+      <p>
+        Pengunjung dihitung berdasarkan visitor ID unik.
+        Klik produk dihitung setiap kali pengunjung menekan
+        tombol produk affiliate. Data berasal dari tabel
+        analytics_events di Supabase.
+      </p>
+
+    </div>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <strong>
+      AffiliaMart
+    </strong>
+
+    <p>
+      Dashboard Statistik Affiliate
+    </p>
+
+  </footer>
+
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+
+    /* =====================================
+       SUPABASE
+    ===================================== */
+
+    const SUPABASE_URL =
+      "https://fmftcisigssgfjqqezqz.supabase.co";
+
+    const SUPABASE_KEY =
+      "sb_publishable_0YyKpZ3_HOED9iHlgfJldw_4ZrugD7C";
+
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
+
+
+    /* =====================================
+       FORMAT ANGKA
+    ===================================== */
+
+    function formatNumber(number) {
+
+      return Number(number || 0)
+        .toLocaleString("id-ID");
+
     }
 
-    return String(value)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-  }
+
+    /* =====================================
+       ERROR
+    ===================================== */
+
+    function showError(message) {
+
+      const box =
+        document.getElementById(
+          "errorMessage"
+        );
+
+      box.textContent =
+        "⚠️ " + message;
+
+      box.style.display =
+        "block";
+
+    }
 
 
-  /* =========================
-     ERROR
-  ========================= */
+    function hideError() {
 
-  function showError(message) {
+      const box =
+        document.getElementById(
+          "errorMessage"
+        );
 
-    const box =
-      document.getElementById(
-        "errorBox"
-      );
+      box.style.display =
+        "none";
 
-    box.style.display = "block";
-
-    box.innerHTML =
-      "⚠️ " +
-      escapeHTML(message);
-  }
+    }
 
 
-  function hideError() {
+    /* =====================================
+       CHECK LOGIN
+    ===================================== */
 
-    const box =
-      document.getElementById(
-        "errorBox"
-      );
-
-    box.style.display = "none";
-  }
-
-
-  /* =========================
-     LOAD DASHBOARD
-  ========================= */
-
-  async function loadDashboard() {
-
-    hideError();
-
-    try {
-
-      /*
-        AMBIL SEMUA EVENT
-      */
+    async function checkSession() {
 
       const {
-        data: events,
-        error: eventError
+        data,
+        error
       } =
         await supabaseClient
-          .from("analytics_events")
-          .select(`
-            id,
-            event_type,
-            product_id,
-            platform,
-            visitor_id,
-            created_at
-          `)
-          .order(
-            "created_at",
-            {
-              ascending: false
-            }
-          );
+          .auth
+          .getSession();
 
-      if (eventError) {
 
-        throw eventError;
+      if (error) {
+
+        console.error(
+          "Session error:",
+          error
+        );
+
+        return false;
+
+      }
+
+
+      if (
+        !data ||
+        !data.session
+      ) {
+
+        /*
+          JANGAN LOGOUT.
+          Hanya kembali ke halaman login
+          jika memang session sudah tidak ada.
+        */
+
+        window.location.href =
+          "admin.html";
+
+        return false;
+
+      }
+
+
+      return true;
+
+    }
+
+
+    /* =====================================
+       LOAD STATISTICS
+    ===================================== */
+
+    async function loadStatistics() {
+
+      hideError();
+
+
+      const loggedIn =
+        await checkSession();
+
+
+      if (!loggedIn) {
+
+        return;
 
       }
 
 
       /*
-        TOTAL PENGUNJUNG
+        Ambil data analytics.
+
+        Kita tidak menggunakan visitor_id
+        di SELECT statistik dashboard
+        secara langsung untuk menghindari
+        error permission sebelumnya.
       */
 
-      const visitorSet =
-        new Set();
-
-      events.forEach(function(event) {
-
-        if (
-          event.event_type ===
-          "page_view" &&
-          event.visitor_id
-        ) {
-
-          visitorSet.add(
-            event.visitor_id
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+          .from("analytics_events")
+          .select(
+            "event_type, platform, visitor_id"
           );
 
+
+      if (error) {
+
+        console.error(
+          "Analytics error:",
+          error
+        );
+
+        showError(
+          error.message
+        );
+
+        return;
+
+      }
+
+
+      const events =
+        data || [];
+
+
+      /* =====================================
+         TOTAL VISITOR UNIK
+      ===================================== */
+
+      const visitors =
+        new Set();
+
+
+      events.forEach(
+        function(event) {
+
+          if (
+            event.event_type ===
+              "page_view" &&
+            event.visitor_id
+          ) {
+
+            visitors.add(
+              event.visitor_id
+            );
+
+          }
+
         }
+      );
 
-      });
 
+      const totalVisitors =
+        visitors.size;
+
+
+      /* =====================================
+         PRODUCT CLICK
+      ===================================== */
+
+      const productClicks =
+        events.filter(
+          function(event) {
+
+            return (
+              event.event_type ===
+              "product_click"
+            );
+
+          }
+        ).length;
+
+
+      /* =====================================
+         SHOPEE
+      ===================================== */
+
+      const shopeeClicks =
+        events.filter(
+          function(event) {
+
+            return (
+              event.event_type ===
+                "product_click" &&
+              String(
+                event.platform || ""
+              )
+                .toLowerCase()
+                .trim() ===
+                "shopee"
+            );
+
+          }
+        ).length;
+
+
+      /* =====================================
+         TIKTOK
+      ===================================== */
+
+      const tiktokClicks =
+        events.filter(
+          function(event) {
+
+            return (
+              event.event_type ===
+                "product_click" &&
+              String(
+                event.platform || ""
+              )
+                .toLowerCase()
+                .trim() ===
+                "tiktok"
+            );
+
+          }
+        ).length;
+
+
+      /* =====================================
+         TAMPILKAN
+      ===================================== */
 
       document.getElementById(
         "totalVisitors"
       ).textContent =
         formatNumber(
-          visitorSet.size
+          totalVisitors
         );
 
-
-      /*
-        TOTAL PRODUCT CLICK
-      */
-
-      const productClicks =
-        events.filter(function(event) {
-
-          return (
-            event.event_type ===
-            "product_click"
-          );
-
-        });
 
       document.getElementById(
         "totalProductClicks"
       ).textContent =
         formatNumber(
-          productClicks.length
-        );
-
-
-      /*
-        SHOPEE
-      */
-
-      const shopeeClicks =
-        productClicks.filter(
-          function(event) {
-
-            return (
-              String(
-                event.platform || ""
-              )
-              .toLowerCase()
-              .trim() ===
-              "shopee"
-            );
-
-          }
+          productClicks
         );
 
 
@@ -698,36 +879,7 @@
         "totalShopee"
       ).textContent =
         formatNumber(
-          shopeeClicks.length
-        );
-
-
-      document.getElementById(
-        "shopeeCount"
-      ).textContent =
-        formatNumber(
-          shopeeClicks.length
-        );
-
-
-      /*
-        TIKTOK
-      */
-
-      const tiktokClicks =
-        productClicks.filter(
-          function(event) {
-
-            return (
-              String(
-                event.platform || ""
-              )
-              .toLowerCase()
-              .trim() ===
-              "tiktok"
-            );
-
-          }
+          shopeeClicks
         );
 
 
@@ -735,441 +887,37 @@
         "totalTiktok"
       ).textContent =
         formatNumber(
-          tiktokClicks.length
+          tiktokClicks
         );
 
 
       document.getElementById(
-        "tiktokCount"
+        "platformShopee"
       ).textContent =
         formatNumber(
-          tiktokClicks.length
+          shopeeClicks
         );
 
 
-      /*
-        PRODUK
-      */
-
-      await loadProductStatistics(
-        productClicks
-      );
-
-
-      /*
-        EVENT TERBARU
-      */
-
-      renderRecentEvents(
-        events.slice(0, 20)
-      );
-
-    } catch (error) {
-
-      console.error(
-        "Dashboard error:",
-        error
-      );
-
-      showError(
-        error.message ||
-        "Gagal memuat statistik."
-      );
-
-    }
-
-  }
-
-
-  /* =========================
-     PRODUCT STATISTICS
-  ========================= */
-
-  async function loadProductStatistics(
-    productClicks
-  ) {
-
-    const tbody =
       document.getElementById(
-        "productStats"
-      );
-
-
-    if (
-      productClicks.length === 0
-    ) {
-
-      tbody.innerHTML = `
-        <tr>
-          <td colspan="4">
-            <div class="empty">
-              Belum ada klik produk.
-            </div>
-          </td>
-        </tr>
-      `;
-
-      return;
-
-    }
-
-
-    /*
-      AMBIL PRODUK
-    */
-
-    const productIds =
-      [
-        ...new Set(
-          productClicks
-            .map(
-              event =>
-                event.product_id
-            )
-            .filter(Boolean)
-        )
-      ];
-
-
-    if (
-      productIds.length === 0
-    ) {
-
-      tbody.innerHTML = `
-        <tr>
-          <td colspan="4">
-            <div class="empty">
-              Belum ada data produk.
-            </div>
-          </td>
-        </tr>
-      `;
-
-      return;
-
-    }
-
-
-    const {
-      data: products,
-      error
-    } =
-      await supabaseClient
-        .from("products")
-        .select(`
-          id,
-          name
-        `)
-        .in(
-          "id",
-          productIds
+        "platformTiktok"
+      ).textContent =
+        formatNumber(
+          tiktokClicks
         );
 
-
-    if (error) {
-
-      throw error;
-
     }
 
 
-    /*
-      HITUNG KLIK PER PRODUK
-    */
+    /* =====================================
+       START
+    ===================================== */
 
-    const productMap =
-      {};
+    loadStatistics();
 
-    products.forEach(
-      function(product) {
+  </script>
 
-        productMap[
-          product.id
-        ] = {
-
-          name:
-            product.name,
-
-          total:
-            0,
-
-          shopee:
-            0,
-
-          tiktok:
-            0
-
-        };
-
-      }
-    );
-
-
-    productClicks.forEach(
-      function(event) {
-
-        const id =
-          event.product_id;
-
-        if (
-          !productMap[id]
-        ) {
-          return;
-        }
-
-        productMap[id].total++;
-
-
-        const platform =
-          String(
-            event.platform || ""
-          )
-          .toLowerCase()
-          .trim();
-
-
-        if (
-          platform === "shopee"
-        ) {
-
-          productMap[id]
-            .shopee++;
-
-        }
-
-
-        if (
-          platform === "tiktok"
-        ) {
-
-          productMap[id]
-            .tiktok++;
-
-        }
-
-      }
-    );
-
-
-    const rows =
-      Object.values(
-        productMap
-      )
-      .sort(
-        function(a, b) {
-
-          return (
-            b.total -
-            a.total
-          );
-
-        }
-      );
-
-
-    tbody.innerHTML =
-      rows
-        .map(
-          function(product, index) {
-
-            let platform =
-              "—";
-
-            if (
-              product.shopee >
-              0 &&
-              product.tiktok >
-              0
-            ) {
-
-              platform =
-                "Shopee + TikTok";
-
-            } else if (
-              product.shopee >
-              0
-            ) {
-
-              platform =
-                "Shopee";
-
-            } else if (
-              product.tiktok >
-              0
-            ) {
-
-              platform =
-                "TikTok";
-
-            }
-
-
-            return `
-              <tr>
-
-                <td>
-                  ${index + 1}
-                </td>
-
-                <td>
-                  <div class="product-name">
-                    ${escapeHTML(
-                      product.name
-                    )}
-                  </div>
-                </td>
-
-                <td>
-                  <span class="badge">
-                    ${escapeHTML(
-                      platform
-                    )}
-                  </span>
-                </td>
-
-                <td>
-                  <strong>
-                    ${formatNumber(
-                      product.total
-                    )}
-                  </strong>
-                </td>
-
-              </tr>
-            `;
-
-          }
-        )
-        .join("");
-
-  }
-
-
-  /* =========================
-     RECENT EVENTS
-  ========================= */
-
-  function renderRecentEvents(
-    events
-  ) {
-
-    const tbody =
-      document.getElementById(
-        "recentEvents"
-      );
-
-
-    if (
-      !events ||
-      events.length === 0
-    ) {
-
-      tbody.innerHTML = `
-        <tr>
-          <td colspan="3">
-            <div class="empty">
-              Belum ada aktivitas.
-            </div>
-          </td>
-        </tr>
-      `;
-
-      return;
-
-    }
-
-
-    tbody.innerHTML =
-      events
-        .map(
-          function(event) {
-
-            const date =
-              new Date(
-                event.created_at
-              );
-
-
-            const waktu =
-              date.toLocaleString(
-                "id-ID",
-                {
-                  dateStyle:
-                    "short",
-                  timeStyle:
-                    "short"
-                }
-              );
-
-
-            let eventName =
-              event.event_type;
-
-
-            if (
-              event.event_type ===
-              "page_view"
-            ) {
-
-              eventName =
-                "👁️ Pengunjung";
-
-            }
-
-
-            if (
-              event.event_type ===
-              "product_click"
-            ) {
-
-              eventName =
-                "🛍️ Klik Produk";
-
-            }
-
-
-            return `
-              <tr>
-
-                <td>
-                  ${escapeHTML(
-                    waktu
-                  )}
-                </td>
-
-                <td>
-                  ${escapeHTML(
-                    eventName
-                  )}
-                </td>
-
-                <td>
-                  ${
-                    event.platform
-                      ? escapeHTML(
-                          event.platform
-                        )
-                      : "—"
-                  }
-                </td>
-
-              </tr>
-            `;
-
-          }
-        )
-        .join("");
-
-  }
-
-
-  /* =========================
-     START
-  ========================= */
-
-  loadDashboard();
-
-</script>
 
 </body>
+
 </html>

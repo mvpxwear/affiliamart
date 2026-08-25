@@ -198,7 +198,7 @@ header{
   background:#15803d;
 }
 
-/* STATISTIC CARDS */
+/* ANALYTICS */
 
 .analytics-grid{
   display:grid;
@@ -539,7 +539,7 @@ header{
 
 .modal-box{
   width:100%;
-  max-width:560px;
+  max-width:600px;
   max-height:92vh;
   overflow-y:auto;
   background:white;
@@ -617,6 +617,87 @@ header{
   color:#6b7280;
   font-size:11px;
   line-height:1.4;
+}
+
+/* SEO */
+
+.seo-box{
+  margin:20px 0;
+  padding:18px;
+  border:1px solid #bbf7d0;
+  background:#f0fdf4;
+  border-radius:15px;
+}
+
+.seo-header{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:5px;
+}
+
+.seo-header strong{
+  font-size:15px;
+  color:#15803d;
+}
+
+.seo-description{
+  color:#6b7280;
+  font-size:11px;
+  line-height:1.5;
+  margin-bottom:15px;
+}
+
+.seo-tools{
+  display:flex;
+  justify-content:flex-end;
+  margin-bottom:10px;
+}
+
+.seo-auto-btn{
+  border:0;
+  background:#dcfce7;
+  color:#15803d;
+  padding:8px 11px;
+  border-radius:8px;
+  font-size:11px;
+  font-weight:700;
+}
+
+.seo-counter{
+  display:flex;
+  justify-content:space-between;
+  margin-top:5px;
+  color:#9ca3af;
+  font-size:10px;
+}
+
+.seo-preview{
+  margin-top:15px;
+  padding:13px;
+  background:white;
+  border:1px solid #e5e7eb;
+  border-radius:10px;
+}
+
+.seo-preview-title{
+  color:#1a0dab;
+  font-size:16px;
+  font-weight:500;
+  line-height:1.3;
+}
+
+.seo-preview-url{
+  color:#15803d;
+  font-size:11px;
+  margin-top:4px;
+}
+
+.seo-preview-description{
+  color:#4b5563;
+  font-size:11px;
+  line-height:1.5;
+  margin-top:4px;
 }
 
 /* ICON */
@@ -917,17 +998,11 @@ header{
 
   <div class="header-right">
 
-    <div
-      class="admin-name"
-      id="adminName"
-    >
+    <div class="admin-name" id="adminName">
       Memuat...
     </div>
 
-    <button
-      class="logout-btn"
-      onclick="logout()"
-    >
+    <button class="logout-btn" onclick="logout()">
       Keluar
     </button>
 
@@ -945,13 +1020,13 @@ header{
     </h1>
 
     <p>
-      Kelola kategori, produk dan statistik AffiliaMart.
+      Kelola kategori, produk, SEO dan statistik AffiliaMart.
     </p>
 
   </div>
 
 
-  <!-- STATISTIK UTAMA LAMA -->
+  <!-- STATISTIK UTAMA -->
 
   <div class="stats">
 
@@ -961,10 +1036,7 @@ header{
         Total Kategori
       </div>
 
-      <div
-        class="stat-value"
-        id="categoryCount"
-      >
+      <div class="stat-value" id="categoryCount">
         0
       </div>
 
@@ -977,10 +1049,7 @@ header{
         Total Produk
       </div>
 
-      <div
-        class="stat-value"
-        id="productCount"
-      >
+      <div class="stat-value" id="productCount">
         0
       </div>
 
@@ -993,10 +1062,7 @@ header{
         Produk Aktif
       </div>
 
-      <div
-        class="stat-value"
-        id="activeProductCount"
-      >
+      <div class="stat-value" id="activeProductCount">
         0
       </div>
 
@@ -1113,9 +1179,7 @@ header{
   </section>
 
 
-  <!-- =========================
-       STATISTICS
-  ========================= -->
+  <!-- STATISTICS -->
 
   <section
     id="statisticsSection"
@@ -1153,8 +1217,6 @@ header{
 
       </div>
 
-
-      <!-- ANALYTICS -->
 
       <div class="analytics-grid">
 
@@ -1240,8 +1302,6 @@ header{
       </div>
 
 
-      <!-- PLATFORM -->
-
       <div class="platform-grid">
 
         <div class="platform-card">
@@ -1278,8 +1338,6 @@ header{
       </div>
 
 
-      <!-- PER PRODUCT -->
-
       <div
         class="card"
         style="
@@ -1289,11 +1347,7 @@ header{
         "
       >
 
-        <div
-          style="
-            margin-bottom:15px;
-          "
-        >
+        <div style="margin-bottom:15px;">
 
           <h2
             style="
@@ -1325,25 +1379,11 @@ header{
 
               <tr>
 
-                <th>
-                  Produk
-                </th>
-
-                <th>
-                  Total Klik
-                </th>
-
-                <th>
-                  Shopee
-                </th>
-
-                <th>
-                  TikTok
-                </th>
-
-                <th>
-                  Popularitas
-                </th>
+                <th>Produk</th>
+                <th>Total Klik</th>
+                <th>Shopee</th>
+                <th>TikTok</th>
+                <th>Popularitas</th>
 
               </tr>
 
@@ -1571,6 +1611,8 @@ header{
       >
 
 
+      <!-- NAMA -->
+
       <div class="form-group">
 
         <label>
@@ -1586,6 +1628,8 @@ header{
 
       </div>
 
+
+      <!-- KATEGORI -->
 
       <div class="form-group">
 
@@ -1607,10 +1651,12 @@ header{
       </div>
 
 
+      <!-- SLUG -->
+
       <div class="form-group">
 
         <label>
-          Slug
+          Slug URL Produk
         </label>
 
         <input
@@ -1620,13 +1666,19 @@ header{
           required
         >
 
+        <div class="price-help">
+          Contoh: sepatu-sneakers-pria-casual
+        </div>
+
       </div>
 
+
+      <!-- DESKRIPSI -->
 
       <div class="form-group">
 
         <label>
-          Deskripsi
+          Deskripsi Produk
         </label>
 
         <textarea
@@ -1636,6 +1688,145 @@ header{
 
       </div>
 
+
+      <!-- SEO -->
+
+      <div class="seo-box">
+
+        <div class="seo-header">
+
+          <span>🔎</span>
+
+          <strong>
+            SEO Produk
+          </strong>
+
+        </div>
+
+        <div class="seo-description">
+
+          Isi informasi SEO agar halaman produk lebih mudah dipahami
+          mesin pencari seperti Google.
+
+        </div>
+
+
+        <div class="seo-tools">
+
+          <button
+            type="button"
+            class="seo-auto-btn"
+            onclick="generateSEO()"
+          >
+            ✨ Buat SEO Otomatis
+          </button>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            SEO Title
+          </label>
+
+          <input
+            type="text"
+            id="productSeoTitle"
+            maxlength="60"
+            placeholder="Contoh: Sepatu Sneakers Pria Casual Murah"
+          >
+
+          <div class="seo-counter">
+
+            <span>
+              Judul untuk Google
+            </span>
+
+            <span id="seoTitleCounter">
+              0/60
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            SEO Description
+          </label>
+
+          <textarea
+            id="productSeoDescription"
+            maxlength="160"
+            placeholder="Deskripsi singkat produk untuk hasil pencarian Google"
+          ></textarea>
+
+          <div class="seo-counter">
+
+            <span>
+              Deskripsi untuk Google
+            </span>
+
+            <span id="seoDescriptionCounter">
+              0/160
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            SEO Keywords
+          </label>
+
+          <input
+            type="text"
+            id="productSeoKeywords"
+            placeholder="sepatu sneakers pria, sepatu casual, sneakers murah"
+          >
+
+          <div class="price-help">
+            Pisahkan keyword dengan koma.
+          </div>
+
+        </div>
+
+
+        <div class="seo-preview">
+
+          <div
+            class="seo-preview-title"
+            id="seoPreviewTitle"
+          >
+            Judul Produk
+          </div>
+
+          <div
+            class="seo-preview-url"
+            id="seoPreviewUrl"
+          >
+            affiliamart.com/produk/nama-produk
+          </div>
+
+          <div
+            class="seo-preview-description"
+            id="seoPreviewDescription"
+          >
+            Deskripsi produk akan tampil di sini.
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- GAMBAR -->
 
       <div class="form-group">
 
@@ -1700,6 +1891,8 @@ header{
       </div>
 
 
+      <!-- AFFILIATE -->
+
       <div class="form-group">
 
         <label>
@@ -1714,6 +1907,8 @@ header{
 
       </div>
 
+
+      <!-- HARGA -->
 
       <div class="form-group">
 
@@ -1775,6 +1970,8 @@ header{
       </div>
 
 
+      <!-- PLATFORM -->
+
       <div class="form-group">
 
         <label>
@@ -1799,6 +1996,8 @@ header{
       </div>
 
 
+      <!-- RATING -->
+
       <div class="form-group">
 
         <label>
@@ -1815,6 +2014,8 @@ header{
       </div>
 
 
+      <!-- SOLD -->
+
       <div class="form-group">
 
         <label>
@@ -1830,6 +2031,8 @@ header{
 
       </div>
 
+
+      <!-- STATUS -->
 
       <div class="checkbox-row">
 
@@ -1910,16 +2113,11 @@ window.supabase.createClient(
 
 
 /* =====================================
-   TABLE STATISTIK
+   CONSTANT
 ===================================== */
 
 const ANALYTICS_TABLE =
 "analytics_events";
-
-
-/* =====================================
-   STORAGE
-===================================== */
 
 const IMAGE_BUCKET =
 "product-images";
@@ -1947,8 +2145,7 @@ function showMessage(text){
   const message =
     document.getElementById("message");
 
-  message.textContent =
-    text;
+  message.textContent = text;
 
   message.classList.add("show");
 
@@ -2004,10 +2201,7 @@ async function init(){
   await supabaseClient
     .from("profiles")
     .select("role")
-    .eq(
-      "id",
-      currentUser.id
-    )
+    .eq("id",currentUser.id)
     .single();
 
 
@@ -2102,57 +2296,39 @@ function showSection(section){
     "none";
 
 
-  categoryMenu.classList.remove(
-    "active"
-  );
+  categoryMenu.classList.remove("active");
 
-  productMenu.classList.remove(
-    "active"
-  );
+  productMenu.classList.remove("active");
 
-  statisticsMenu.classList.remove(
-    "active"
-  );
+  statisticsMenu.classList.remove("active");
 
 
-  if(
-    section === "categories"
-  ){
+  if(section === "categories"){
 
     categoriesSection.style.display =
       "block";
 
-    categoryMenu.classList.add(
-      "active"
-    );
+    categoryMenu.classList.add("active");
 
   }
 
 
-  else if(
-    section === "products"
-  ){
+  if(section === "products"){
 
     productsSection.style.display =
       "block";
 
-    productMenu.classList.add(
-      "active"
-    );
+    productMenu.classList.add("active");
 
   }
 
 
-  else if(
-    section === "statistics"
-  ){
+  if(section === "statistics"){
 
     statisticsSection.style.display =
       "block";
 
-    statisticsMenu.classList.add(
-      "active"
-    );
+    statisticsMenu.classList.add("active");
 
     loadStatistics();
 
@@ -2162,7 +2338,7 @@ function showSection(section){
 
 
 /* =====================================
-   LOAD STATISTICS
+   STATISTICS
 ===================================== */
 
 async function loadStatistics(){
@@ -2188,17 +2364,10 @@ async function loadStatistics(){
     );
 
 
-  visitorElement.textContent =
-    "...";
-
-  productClickElement.textContent =
-    "...";
-
-  shopeeElement.textContent =
-    "...";
-
-  tiktokElement.textContent =
-    "...";
+  visitorElement.textContent = "...";
+  productClickElement.textContent = "...";
+  shopeeElement.textContent = "...";
+  tiktokElement.textContent = "...";
 
 
   const {
@@ -2206,9 +2375,7 @@ async function loadStatistics(){
     error
   } =
   await supabaseClient
-    .from(
-      ANALYTICS_TABLE
-    )
+    .from(ANALYTICS_TABLE)
     .select(
       "id,event_type,product_id,platform"
     );
@@ -2216,24 +2383,12 @@ async function loadStatistics(){
 
   if(error){
 
-    console.error(
-      "STATISTICS ERROR:",
-      error
-    );
+    console.error(error);
 
-
-    visitorElement.textContent =
-      "0";
-
-    productClickElement.textContent =
-      "0";
-
-    shopeeElement.textContent =
-      "0";
-
-    tiktokElement.textContent =
-      "0";
-
+    visitorElement.textContent = "0";
+    productClickElement.textContent = "0";
+    shopeeElement.textContent = "0";
+    tiktokElement.textContent = "0";
 
     document.getElementById(
       "productStatisticsBody"
@@ -2241,12 +2396,12 @@ async function loadStatistics(){
 
       <tr>
 
-        <td
-          colspan="5"
-          class="empty"
-        >
+        <td colspan="5" class="empty">
+
           Gagal membaca data statistik.
+
           <br><br>
+
           ${escapeHtml(error.message)}
 
         </td>
@@ -2265,195 +2420,122 @@ async function loadStatistics(){
 
 
   let visitors = 0;
-
   let productClicks = 0;
-
   let shopeeClicks = 0;
-
   let tiktokClicks = 0;
 
 
   const productStats = {};
 
 
-  events.forEach(
-    event => {
+  events.forEach(event => {
 
-      const type =
-        String(
-          event.event_type || ""
-        )
+    const type =
+      String(event.event_type || "")
         .toLowerCase()
         .trim();
 
 
-      const platform =
-        String(
-          event.platform || ""
-        )
+    const platform =
+      String(event.platform || "")
         .toLowerCase()
         .trim();
 
 
-      /*
-       * PENGUNJUNG
-       */
+    if([
+      "page_view",
+      "pageview",
+      "visit",
+      "visitor",
+      "website_visit"
+    ].includes(type)){
 
-      if(
-        [
-          "page_view",
-          "pageview",
-          "visit",
-          "visitor",
-          "website_visit"
-        ].includes(type)
-      ){
+      visitors++;
 
-        visitors++;
+    }
+
+
+    if([
+      "product_click",
+      "click_product",
+      "product_clicked"
+    ].includes(type)){
+
+      productClicks++;
+
+
+      if(event.product_id){
+
+        if(!productStats[event.product_id]){
+
+          productStats[event.product_id] = {
+            clicks:0,
+            shopee:0,
+            tiktok:0
+          };
+
+        }
+
+        productStats[event.product_id].clicks++;
 
       }
 
-
-      /*
-       * KLIK PRODUK
-       */
-
-      if(
-        [
-          "product_click",
-          "click_product",
-          "product_clicked"
-        ].includes(type)
-      ){
-
-        productClicks++;
+    }
 
 
-        if(
-          event.product_id
-        ){
+    if([
+      "affiliate_click",
+      "click_affiliate",
+      "affiliate_clicked"
+    ].includes(type)){
 
-          if(
-            !productStats[
-              event.product_id
-            ]
-          ){
-
-            productStats[
-              event.product_id
-            ] = {
-
-              clicks:0,
-              shopee:0,
-              tiktok:0
-
-            };
-
-          }
-
-
-          productStats[
-            event.product_id
-          ].clicks++;
-
-        }
-
+      if(platform === "shopee"){
+        shopeeClicks++;
       }
 
 
-      /*
-       * AFFILIATE
-       */
+      if(platform === "tiktok"){
+        tiktokClicks++;
+      }
 
-      if(
-        [
-          "affiliate_click",
-          "click_affiliate",
-          "affiliate_clicked"
-        ].includes(type)
-      ){
 
-        if(
-          platform === "shopee"
-        ){
+      if(event.product_id){
 
-          shopeeClicks++;
+        if(!productStats[event.product_id]){
+
+          productStats[event.product_id] = {
+            clicks:0,
+            shopee:0,
+            tiktok:0
+          };
 
         }
 
 
-        if(
-          platform === "tiktok"
-        ){
-
-          tiktokClicks++;
-
+        if(platform === "shopee"){
+          productStats[event.product_id].shopee++;
         }
 
 
-        if(
-          event.product_id
-        ){
-
-          if(
-            !productStats[
-              event.product_id
-            ]
-          ){
-
-            productStats[
-              event.product_id
-            ] = {
-
-              clicks:0,
-              shopee:0,
-              tiktok:0
-
-            };
-
-          }
-
-
-          if(
-            platform === "shopee"
-          ){
-
-            productStats[
-              event.product_id
-            ].shopee++;
-
-          }
-
-
-          if(
-            platform === "tiktok"
-          ){
-
-            productStats[
-              event.product_id
-            ].tiktok++;
-
-          }
-
+        if(platform === "tiktok"){
+          productStats[event.product_id].tiktok++;
         }
 
       }
 
     }
-  );
+
+  });
 
 
   visitorElement.textContent =
     formatNumber(visitors);
 
-
   productClickElement.textContent =
     formatNumber(productClicks);
 
-
   shopeeElement.textContent =
     formatNumber(shopeeClicks);
-
 
   tiktokElement.textContent =
     formatNumber(tiktokClicks);
@@ -2473,9 +2555,7 @@ async function loadStatistics(){
     " klik";
 
 
-  renderProductStatistics(
-    productStats
-  );
+  renderProductStatistics(productStats);
 
 }
 
@@ -2484,9 +2564,7 @@ async function loadStatistics(){
    PRODUCT STATISTICS
 ===================================== */
 
-function renderProductStatistics(
-  productStats
-){
+function renderProductStatistics(productStats){
 
   const body =
     document.getElementById(
@@ -2494,20 +2572,14 @@ function renderProductStatistics(
     );
 
 
-  if(
-    !products.length
-  ){
+  if(!products.length){
 
     body.innerHTML = `
 
       <tr>
 
-        <td
-          colspan="5"
-          class="empty"
-        >
+        <td colspan="5" class="empty">
           Belum ada produk.
-
         </td>
 
       </tr>
@@ -2521,59 +2593,42 @@ function renderProductStatistics(
 
   const rows =
     products
-      .map(
-        product => {
+      .map(product => {
 
-          const stats =
-            productStats[
-              product.id
-            ] || {
-
-              clicks:0,
-              shopee:0,
-              tiktok:0
-
-            };
-
-
-          return {
-
-            product,
-            clicks:stats.clicks,
-            shopee:stats.shopee,
-            tiktok:stats.tiktok
-
+        const stats =
+          productStats[product.id] || {
+            clicks:0,
+            shopee:0,
+            tiktok:0
           };
 
-        }
+
+        return {
+          product,
+          clicks:stats.clicks,
+          shopee:stats.shopee,
+          tiktok:stats.tiktok
+        };
+
+      })
+      .filter(item =>
+        item.clicks > 0 ||
+        item.shopee > 0 ||
+        item.tiktok > 0
       )
-      .filter(
-        item =>
-          item.clicks > 0 ||
-          item.shopee > 0 ||
-          item.tiktok > 0
-      )
-      .sort(
-        (a,b) =>
-          b.clicks -
-          a.clicks
+      .sort((a,b) =>
+        b.clicks - a.clicks
       );
 
 
-  if(
-    !rows.length
-  ){
+  if(!rows.length){
 
     body.innerHTML = `
 
       <tr>
 
-        <td
-          colspan="5"
-          class="empty"
-        >
+        <td colspan="5" class="empty">
           Belum ada klik produk.
-
         </td>
 
       </tr>
@@ -2587,112 +2642,84 @@ function renderProductStatistics(
 
   const maxClicks =
     Math.max(
-      ...rows.map(
-        item =>
-          item.clicks
-      ),
+      ...rows.map(item => item.clicks),
       1
     );
 
 
   body.innerHTML =
-    rows.map(
-      item => {
+    rows.map(item => {
 
-        const percentage =
-          Math.round(
-            (
-              item.clicks /
-              maxClicks
-            ) *
-            100
-          );
+      const percentage =
+        Math.round(
+          item.clicks /
+          maxClicks *
+          100
+        );
 
 
-        return `
+      return `
 
-          <tr>
+        <tr>
 
-            <td>
+          <td>
 
-              <div class="product-stat-name">
+            <div class="product-stat-name">
 
-                ${escapeHtml(
-                  item.product.name
-                )}
+              ${escapeHtml(
+                item.product.name
+              )}
 
-              </div>
+            </div>
 
-            </td>
-
-
-            <td>
-
-              <span class="number">
-
-                ${formatNumber(
-                  item.clicks
-                )}
-
-              </span>
-
-            </td>
+          </td>
 
 
-            <td>
+          <td class="number">
 
-              <span
-                class="number shopee"
-              >
+            ${formatNumber(
+              item.clicks
+            )}
 
-                ${formatNumber(
-                  item.shopee
-                )}
-
-              </span>
-
-            </td>
+          </td>
 
 
-            <td>
+          <td class="number shopee">
 
-              <span
-                class="number tiktok"
-              >
+            ${formatNumber(
+              item.shopee
+            )}
 
-                ${formatNumber(
-                  item.tiktok
-                )}
-
-              </span>
-
-            </td>
+          </td>
 
 
-            <td
-              style="min-width:140px;"
-            >
+          <td class="number tiktok">
 
-              <div class="progress">
+            ${formatNumber(
+              item.tiktok
+            )}
 
-                <div
-                  class="progress-bar"
-                  style="
-                    width:${percentage}%;
-                  "
-                ></div>
+          </td>
 
-              </div>
 
-            </td>
+          <td style="min-width:140px;">
 
-          </tr>
+            <div class="progress">
 
-        `;
+              <div
+                class="progress-bar"
+                style="width:${percentage}%"
+              ></div>
 
-      }
-    )
-    .join("");
+            </div>
+
+          </td>
+
+        </tr>
+
+      `;
+
+    }).join("");
 
 }
 
@@ -2760,9 +2787,7 @@ function renderCategories(){
     );
 
 
-  if(
-    !categories.length
-  ){
+  if(!categories.length){
 
     list.innerHTML =
       `<div class="empty">
@@ -2775,8 +2800,7 @@ function renderCategories(){
 
 
   list.innerHTML =
-    categories.map(
-      category => `
+    categories.map(category => `
 
       <div class="category-item">
 
@@ -2790,6 +2814,7 @@ function renderCategories(){
 
           </div>
 
+
           <div class="category-info">
 
             <div class="category-name">
@@ -2800,6 +2825,7 @@ function renderCategories(){
 
             </div>
 
+
             <div class="category-slug">
 
               ${escapeHtml(
@@ -2807,6 +2833,7 @@ function renderCategories(){
               )}
 
             </div>
+
 
             <span class="status ${
               category.is_active
@@ -2836,6 +2863,7 @@ function renderCategories(){
             Edit
           </button>
 
+
           <button
             class="delete-btn"
             onclick="deleteCategory('${category.id}')"
@@ -2847,8 +2875,7 @@ function renderCategories(){
 
       </div>
 
-    `
-    ).join("");
+    `).join("");
 
 }
 
@@ -2872,29 +2899,21 @@ function populateCategorySelect(){
 
 
   categories
-    .filter(
-      c => c.is_active
-    )
-    .forEach(
-      category => {
+    .filter(c => c.is_active)
+    .forEach(category => {
 
-        const option =
-          document.createElement(
-            "option"
-          );
+      const option =
+        document.createElement("option");
 
-        option.value =
-          category.id;
+      option.value =
+        category.id;
 
-        option.textContent =
-          category.name;
+      option.textContent =
+        category.name;
 
-        select.appendChild(
-          option
-        );
+      select.appendChild(option);
 
-      }
-    );
+    });
 
 }
 
@@ -2933,9 +2952,7 @@ function openCategoryModal(){
 
   document.getElementById(
     "categoryModal"
-  ).classList.add(
-    "show"
-  );
+  ).classList.add("show");
 
 }
 
@@ -2944,9 +2961,7 @@ function closeCategoryModal(){
 
   document.getElementById(
     "categoryModal"
-  ).classList.remove(
-    "show"
-  );
+  ).classList.remove("show");
 
 }
 
@@ -2987,8 +3002,7 @@ document.getElementById(
 
     document.getElementById(
       "categoryIconCustom"
-    ).value =
-      "";
+    ).value = "";
 
     updateIconPreview();
 
@@ -3082,19 +3096,13 @@ function editCategory(id){
 
   if(exists){
 
-    select.value =
-      icon;
-
-    custom.value =
-      "";
+    select.value = icon;
+    custom.value = "";
 
   }else{
 
-    select.value =
-      "📱";
-
-    custom.value =
-      icon;
+    select.value = "📱";
+    custom.value = icon;
 
   }
 
@@ -3104,9 +3112,7 @@ function editCategory(id){
 
   document.getElementById(
     "categoryModal"
-  ).classList.add(
-    "show"
-  );
+  ).classList.add("show");
 
 }
 
@@ -3130,8 +3136,7 @@ document.getElementById(
       );
 
 
-    button.disabled =
-      true;
+    button.disabled = true;
 
     button.textContent =
       "Menyimpan...";
@@ -3228,8 +3233,7 @@ document.getElementById(
     }
 
 
-    button.disabled =
-      false;
+    button.disabled = false;
 
     button.textContent =
       "Simpan Kategori";
@@ -3326,6 +3330,9 @@ async function loadProducts(){
       is_trending,
       is_active,
       affiliate_url,
+      seo_title,
+      seo_description,
+      seo_keywords,
       created_at,
       updated_at
     `)
@@ -3401,125 +3408,122 @@ function renderProducts(){
 
 
   list.innerHTML =
-    products.map(
-      product => {
+    products.map(product => {
 
-        const category =
-          categories.find(
-            c =>
-              c.id ===
-              product.category_id
-          );
-
-
-        let image =
-          product.image_url;
+      const category =
+        categories.find(
+          c =>
+            c.id ===
+            product.category_id
+        );
 
 
-        if(
-          !image &&
-          Array.isArray(
-            product.gallery
-          ) &&
-          product.gallery.length
-        ){
+      let image =
+        product.image_url;
 
-          image =
-            product.gallery[0];
 
-        }
-
+      if(
+        !image &&
+        Array.isArray(product.gallery) &&
+        product.gallery.length
+      ){
 
         image =
-          image ||
-          "https://placehold.co/100x100?text=Produk";
+          product.gallery[0];
+
+      }
 
 
-        return `
-
-          <div class="product-item">
-
-            <div class="product-left">
-
-              <img
-                class="product-image"
-                src="${escapeHtml(image)}"
-                onerror="this.src='https://placehold.co/100x100?text=Produk'"
-              >
-
-              <div class="product-info">
-
-                <div class="product-name">
-
-                  ${escapeHtml(
-                    product.name
-                  )}
-
-                </div>
+      image =
+        image ||
+        "https://placehold.co/100x100?text=Produk";
 
 
-                <div class="product-category">
+      return `
 
-                  ${
-                    category
-                      ? escapeHtml(
-                          category.name
-                        )
-                      : "Tanpa kategori"
-                  }
+        <div class="product-item">
 
-                </div>
+          <div class="product-left">
 
-
-                <div class="product-price">
-
-                  ${formatRupiah(
-                    product.price
-                  )}
-
-                </div>
+            <img
+              class="product-image"
+              src="${escapeHtml(image)}"
+              onerror="this.src='https://placehold.co/100x100?text=Produk'"
+            >
 
 
-                <span class="product-platform">
+            <div class="product-info">
 
-                  ${escapeHtml(
-                    String(
-                      product.platform || "-"
-                    ).toUpperCase()
-                  )}
+              <div class="product-name">
 
-                </span>
+                ${escapeHtml(
+                  product.name
+                )}
 
               </div>
 
-            </div>
+
+              <div class="product-category">
+
+                ${
+                  category
+                    ? escapeHtml(
+                        category.name
+                      )
+                    : "Tanpa kategori"
+                }
+
+              </div>
 
 
-            <div class="product-actions">
+              <div class="product-price">
 
-              <button
-                class="edit-btn"
-                onclick="editProduct('${product.id}')"
-              >
-                Edit
-              </button>
+                ${formatRupiah(
+                  product.price
+                )}
+
+              </div>
 
 
-              <button
-                class="delete-btn"
-                onclick="deleteProduct('${product.id}')"
-              >
-                Hapus
-              </button>
+              <span class="product-platform">
+
+                ${escapeHtml(
+                  String(
+                    product.platform || "-"
+                  ).toUpperCase()
+                )}
+
+              </span>
 
             </div>
 
           </div>
 
-        `;
 
-      }
-    ).join("");
+          <div class="product-actions">
+
+            <button
+              class="edit-btn"
+              onclick="editProduct('${product.id}')"
+            >
+              Edit
+            </button>
+
+
+            <button
+              class="delete-btn"
+              onclick="deleteProduct('${product.id}')"
+            >
+              Hapus
+            </button>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
 
 }
 
@@ -3553,9 +3557,7 @@ function openProductModal(){
     true;
 
 
-  productImages =
-    [];
-
+  productImages = [];
 
   renderImagePreview();
 
@@ -3572,11 +3574,14 @@ function openProductModal(){
     "";
 
 
+  updateSEOCounters();
+
+  updateSEOPreview();
+
+
   document.getElementById(
     "productModal"
-  ).classList.add(
-    "show"
-  );
+  ).classList.add("show");
 
 }
 
@@ -3585,11 +3590,336 @@ function closeProductModal(){
 
   document.getElementById(
     "productModal"
-  ).classList.remove(
-    "show"
+  ).classList.remove("show");
+
+}
+
+
+/* =====================================
+   SEO AUTO GENERATOR
+===================================== */
+
+function createSlug(text){
+
+  return String(text || "")
+    .toLowerCase()
+    .trim()
+    .replace(
+      /[^a-z0-9\s-]/g,
+      ""
+    )
+    .replace(
+      /\s+/g,
+      "-"
+    )
+    .replace(
+      /-+/g,
+      "-"
+    );
+
+}
+
+
+function generateSEO(){
+
+  const name =
+    document.getElementById(
+      "productName"
+    ).value.trim();
+
+
+  const description =
+    document.getElementById(
+      "productDescription"
+    ).value.trim();
+
+
+  const categorySelect =
+    document.getElementById(
+      "productCategory"
+    );
+
+
+  const categoryName =
+    categorySelect.options[
+      categorySelect.selectedIndex
+    ]?.text || "";
+
+
+  if(!name){
+
+    showMessage(
+      "Isi nama produk terlebih dahulu."
+    );
+
+    return;
+
+  }
+
+
+  let seoTitle =
+    name;
+
+
+  if(categoryName){
+
+    seoTitle =
+      `${name} ${categoryName}`;
+
+  }
+
+
+  seoTitle =
+    seoTitle
+      .replace(/\s+/g," ")
+      .trim();
+
+
+  if(seoTitle.length > 60){
+
+    seoTitle =
+      seoTitle.substring(
+        0,
+        60
+      )
+      .trim();
+
+  }
+
+
+  let seoDescription =
+    description;
+
+
+  if(!seoDescription){
+
+    seoDescription =
+      `Temukan ${name} dengan harga terbaik dan pilihan menarik di AffiliaMart. Lihat detail produk dan penawaran terbaik.`;
+
+  }else{
+
+    seoDescription =
+      `Temukan ${name}. ${seoDescription}`;
+
+  }
+
+
+  seoDescription =
+    seoDescription
+      .replace(/\s+/g," ")
+      .trim();
+
+
+  if(seoDescription.length > 160){
+
+    seoDescription =
+      seoDescription.substring(
+        0,
+        157
+      )
+      .trim() +
+      "...";
+
+  }
+
+
+  const words =
+    name
+      .toLowerCase()
+      .replace(
+        /[^a-z0-9\s]/g,
+        ""
+      )
+      .split(/\s+/)
+      .filter(Boolean);
+
+
+  const keywordList = [
+    name.toLowerCase(),
+    ...words
+  ];
+
+
+  if(categoryName){
+
+    keywordList.push(
+      categoryName.toLowerCase()
+    );
+
+  }
+
+
+  const keywords =
+    [...new Set(keywordList)]
+      .slice(0,8)
+      .join(", ");
+
+
+  document.getElementById(
+    "productSeoTitle"
+  ).value =
+    seoTitle;
+
+
+  document.getElementById(
+    "productSeoDescription"
+  ).value =
+    seoDescription;
+
+
+  document.getElementById(
+    "productSeoKeywords"
+  ).value =
+    keywords;
+
+
+  updateSEOCounters();
+
+  updateSEOPreview();
+
+
+  showMessage(
+    "SEO berhasil dibuat otomatis."
   );
 
 }
+
+
+/* =====================================
+   SEO PREVIEW
+===================================== */
+
+function updateSEOCounters(){
+
+  const title =
+    document.getElementById(
+      "productSeoTitle"
+    ).value;
+
+
+  const description =
+    document.getElementById(
+      "productSeoDescription"
+    ).value;
+
+
+  document.getElementById(
+    "seoTitleCounter"
+  ).textContent =
+    `${title.length}/60`;
+
+
+  document.getElementById(
+    "seoDescriptionCounter"
+  ).textContent =
+    `${description.length}/160`;
+
+}
+
+
+function updateSEOPreview(){
+
+  const name =
+    document.getElementById(
+      "productName"
+    ).value.trim();
+
+
+  const title =
+    document.getElementById(
+      "productSeoTitle"
+    ).value.trim() ||
+    name ||
+    "Judul Produk";
+
+
+  const description =
+    document.getElementById(
+      "productSeoDescription"
+    ).value.trim() ||
+    "Deskripsi produk akan tampil di sini.";
+
+
+  const slug =
+    document.getElementById(
+      "productSlug"
+    ).value.trim() ||
+    "nama-produk";
+
+
+  document.getElementById(
+    "seoPreviewTitle"
+  ).textContent =
+    title;
+
+
+  document.getElementById(
+    "seoPreviewUrl"
+  ).textContent =
+    `affiliamart.com/produk/${slug}`;
+
+
+  document.getElementById(
+    "seoPreviewDescription"
+  ).textContent =
+    description;
+
+
+  updateSEOCounters();
+
+}
+
+
+document.getElementById(
+  "productSeoTitle"
+).addEventListener(
+  "input",
+  updateSEOPreview
+);
+
+
+document.getElementById(
+  "productSeoDescription"
+).addEventListener(
+  "input",
+  updateSEOPreview
+);
+
+
+document.getElementById(
+  "productSlug"
+).addEventListener(
+  "input",
+  updateSEOPreview
+);
+
+
+document.getElementById(
+  "productName"
+).addEventListener(
+  "input",
+  function(){
+
+    const id =
+      document.getElementById(
+        "productId"
+      ).value;
+
+
+    if(!id){
+
+      document.getElementById(
+        "productSlug"
+      ).value =
+        createSlug(this.value);
+
+    }
+
+
+    updateSEOPreview();
+
+  }
+);
 
 
 /* =====================================
@@ -3629,8 +3959,7 @@ function calculateProductPrice(){
     originalPrice < 0
   ){
 
-    priceInput.value =
-      "";
+    priceInput.value = "";
 
     return;
 
@@ -3690,9 +4019,7 @@ document.getElementById(
       [...this.files];
 
 
-    for(
-      const file of files
-    ){
+    for(const file of files){
 
       if(
         !file.type.startsWith("image/")
@@ -3717,15 +4044,12 @@ document.getElementById(
       }
 
 
-      await uploadProductImage(
-        file
-      );
+      await uploadProductImage(file);
 
     }
 
 
-    this.value =
-      "";
+    this.value = "";
 
   }
 );
@@ -3861,14 +4185,9 @@ function addImageFromUrl(){
   }
 
 
-  productImages.push(
-    url
-  );
+  productImages.push(url);
 
-
-  input.value =
-    "";
-
+  input.value = "";
 
   renderImagePreview();
 
@@ -4016,6 +4335,24 @@ function editProduct(id){
 
 
   document.getElementById(
+    "productSeoTitle"
+  ).value =
+    product.seo_title || "";
+
+
+  document.getElementById(
+    "productSeoDescription"
+  ).value =
+    product.seo_description || "";
+
+
+  document.getElementById(
+    "productSeoKeywords"
+  ).value =
+    product.seo_keywords || "";
+
+
+  document.getElementById(
     "productOriginalPrice"
   ).value =
     product.original_price ?? "";
@@ -4076,14 +4413,11 @@ function editProduct(id){
     !!product.is_active;
 
 
-  productImages =
-    [];
+  productImages = [];
 
 
   if(
-    Array.isArray(
-      product.gallery
-    )
+    Array.isArray(product.gallery)
   ){
 
     productImages =
@@ -4108,12 +4442,12 @@ function editProduct(id){
 
   renderImagePreview();
 
+  updateSEOPreview();
+
 
   document.getElementById(
     "productModal"
-  ).classList.add(
-    "show"
-  );
+  ).classList.add("show");
 
 }
 
@@ -4137,8 +4471,7 @@ document.getElementById(
       );
 
 
-    button.disabled =
-      true;
+    button.disabled = true;
 
     button.textContent =
       "Menyimpan...";
@@ -4177,8 +4510,7 @@ document.getElementById(
         "Rating harus antara 0 sampai 5."
       );
 
-      button.disabled =
-        false;
+      button.disabled = false;
 
       button.textContent =
         "Simpan Produk";
@@ -4217,8 +4549,7 @@ document.getElementById(
         "Harga Asli wajib diisi."
       );
 
-      button.disabled =
-        false;
+      button.disabled = false;
 
       button.textContent =
         "Simpan Produk";
@@ -4238,8 +4569,7 @@ document.getElementById(
         "Diskon harus antara 0 sampai 100%."
       );
 
-      button.disabled =
-        false;
+      button.disabled = false;
 
       button.textContent =
         "Simpan Produk";
@@ -4266,6 +4596,24 @@ document.getElementById(
         : null;
 
 
+    const seoTitle =
+      document.getElementById(
+        "productSeoTitle"
+      ).value.trim();
+
+
+    const seoDescription =
+      document.getElementById(
+        "productSeoDescription"
+      ).value.trim();
+
+
+    const seoKeywords =
+      document.getElementById(
+        "productSeoKeywords"
+      ).value.trim();
+
+
     const payload = {
 
       name:
@@ -4284,15 +4632,21 @@ document.getElementById(
           "productSlug"
         ).value.trim()
         .toLowerCase()
-        .replace(
-          /\s+/g,
-          "-"
-        ),
+        .replace(/\s+/g,"-"),
 
       description:
         document.getElementById(
           "productDescription"
         ).value.trim(),
+
+      seo_title:
+        seoTitle || null,
+
+      seo_description:
+        seoDescription || null,
+
+      seo_keywords:
+        seoKeywords || null,
 
       image_url:
         mainImage,
@@ -4371,6 +4725,12 @@ document.getElementById(
 
     if(result.error){
 
+      console.error(
+        "PRODUCT SAVE ERROR:",
+        result.error
+      );
+
+
       showMessage(
         "Gagal menyimpan produk: " +
         result.error.message
@@ -4382,6 +4742,7 @@ document.getElementById(
         "Produk berhasil disimpan."
       );
 
+
       closeProductModal();
 
       await loadProducts();
@@ -4389,8 +4750,7 @@ document.getElementById(
     }
 
 
-    button.disabled =
-      false;
+    button.disabled = false;
 
     button.textContent =
       "Simpan Produk";
@@ -4506,26 +4866,11 @@ function escapeHtml(value){
   return String(
     value ?? ""
   )
-  .replace(
-    /&/g,
-    "&amp;"
-  )
-  .replace(
-    /</g,
-    "&lt;"
-  )
-  .replace(
-    />/g,
-    "&gt;"
-  )
-  .replace(
-    /"/g,
-    "&quot;"
-  )
-  .replace(
-    /'/g,
-    "&#039;"
-  );
+  .replace(/&/g,"&amp;")
+  .replace(/</g,"&lt;")
+  .replace(/>/g,"&gt;")
+  .replace(/"/g,"&quot;")
+  .replace(/'/g,"&#039;");
 
 }
 
@@ -4570,45 +4915,6 @@ document.getElementById(
 
 
 /* =====================================
-   AUTO SLUG PRODUCT
-===================================== */
-
-document.getElementById(
-  "productName"
-).addEventListener(
-  "input",
-  function(){
-
-    const id =
-      document.getElementById(
-        "productId"
-      ).value;
-
-
-    if(id)
-      return;
-
-
-    document.getElementById(
-      "productSlug"
-    ).value =
-      this.value
-        .toLowerCase()
-        .trim()
-        .replace(
-          /[^a-z0-9\s-]/g,
-          ""
-        )
-        .replace(
-          /\s+/g,
-          "-"
-        );
-
-  }
-);
-
-
-/* =====================================
    CLOSE MODAL
 ===================================== */
 
@@ -4618,9 +4924,7 @@ document.getElementById(
   "click",
   function(event){
 
-    if(
-      event.target === this
-    ){
+    if(event.target === this){
 
       closeCategoryModal();
 
@@ -4636,9 +4940,7 @@ document.getElementById(
   "click",
   function(event){
 
-    if(
-      event.target === this
-    ){
+    if(event.target === this){
 
       closeProductModal();
 

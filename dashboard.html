@@ -6,20 +6,13 @@
 
   <title>Dashboard Admin - AffiliaMart</title>
 
-  <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  >
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-
     * {
       box-sizing: border-box;
       margin: 0;
@@ -43,23 +36,14 @@
       cursor: pointer;
     }
 
-    /* =========================
-       HEADER
-    ========================= */
-
     header {
       height: 70px;
-
       background: white;
-
       border-bottom: 1px solid #e5e7eb;
-
       display: flex;
       align-items: center;
       justify-content: space-between;
-
       padding: 0 5%;
-
       position: sticky;
       top: 0;
       z-index: 100;
@@ -77,9 +61,12 @@
       gap: 12px;
     }
 
-    .admin-name {
-      font-size: 13px;
+    .admin-email {
+      font-size: 12px;
       color: #6b7280;
+      max-width: 220px;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .logout-btn {
@@ -89,21 +76,17 @@
       padding: 9px 13px;
       border-radius: 9px;
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 700;
     }
 
-    /* =========================
-       LAYOUT
-    ========================= */
-
     .container {
-      width: 90%;
+      width: 92%;
       max-width: 1200px;
-      margin: 35px auto;
+      margin: 30px auto;
     }
 
     .welcome {
-      margin-bottom: 25px;
+      margin-bottom: 22px;
     }
 
     .welcome h1 {
@@ -117,15 +100,11 @@
       font-size: 14px;
     }
 
-    /* =========================
-       STAT
-    ========================= */
-
     .stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      margin-bottom: 25px;
+      gap: 16px;
+      margin-bottom: 22px;
     }
 
     .stat {
@@ -142,33 +121,26 @@
 
     .stat-value {
       margin-top: 7px;
-      font-size: 28px;
+      font-size: 27px;
       font-weight: 800;
       color: #16a34a;
     }
 
-    /* =========================
-       MENU
-    ========================= */
-
     .menu {
       display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
+      gap: 9px;
       flex-wrap: wrap;
+      margin-bottom: 18px;
     }
 
     .menu button {
       border: 1px solid #d1d5db;
       background: white;
       color: #374151;
-
       padding: 11px 17px;
-
       border-radius: 10px;
-
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .menu button.active {
@@ -177,23 +149,19 @@
       border-color: #16a34a;
     }
 
-    /* =========================
-       CARD
-    ========================= */
-
     .card {
       background: white;
       border: 1px solid #e5e7eb;
       border-radius: 18px;
-      padding: 22px;
+      padding: 20px;
     }
 
     .card-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 15px;
-      margin-bottom: 20px;
+      gap: 12px;
+      margin-bottom: 18px;
     }
 
     .card-header h2 {
@@ -205,11 +173,8 @@
       border: 0;
       background: #16a34a;
       color: white;
-
       padding: 10px 15px;
-
       border-radius: 9px;
-
       font-size: 13px;
       font-weight: 700;
     }
@@ -218,80 +183,85 @@
       background: #15803d;
     }
 
-    /* =========================
-       CATEGORY LIST
-    ========================= */
-
-    .category-list {
+    .category-list,
+    .product-list {
       display: grid;
       gap: 10px;
     }
 
-    .category-item {
+    .category-item,
+    .product-item {
       display: flex;
       align-items: center;
       justify-content: space-between;
-
-      gap: 15px;
-
-      padding: 15px;
-
+      gap: 14px;
+      padding: 14px;
       border: 1px solid #edf0ee;
-
       border-radius: 12px;
-
       background: #fafafa;
     }
 
-    .category-left {
+    .category-left,
+    .product-left {
       display: flex;
       align-items: center;
-      gap: 13px;
+      gap: 12px;
       min-width: 0;
     }
 
     .category-icon {
       width: 45px;
       height: 45px;
-
       flex-shrink: 0;
-
       display: flex;
       align-items: center;
       justify-content: center;
-
       border-radius: 12px;
-
       background: #f0fdf4;
-
-      font-size: 23px;
+      font-size: 22px;
     }
 
-    .category-info {
+    .product-image {
+      width: 58px;
+      height: 58px;
+      flex-shrink: 0;
+      border-radius: 10px;
+      object-fit: cover;
+      background: #e5e7eb;
+    }
+
+    .category-info,
+    .product-info {
       min-width: 0;
     }
 
-    .category-name {
+    .category-name,
+    .product-name {
       font-size: 14px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
-    .category-slug {
-      margin-top: 3px;
+    .category-slug,
+    .product-meta {
+      margin-top: 4px;
       color: #9ca3af;
-      font-size: 12px;
+      font-size: 11px;
+    }
+
+    .product-price {
+      margin-top: 5px;
+      font-size: 13px;
+      font-weight: 800;
+      color: #16a34a;
     }
 
     .status {
       display: inline-block;
       margin-top: 5px;
-
       padding: 3px 7px;
-
       border-radius: 6px;
-
       font-size: 10px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
     .status.active {
@@ -304,19 +274,23 @@
       color: #b91c1c;
     }
 
-    .category-actions {
+    .category-actions,
+    .product-actions {
       display: flex;
-      gap: 7px;
+      gap: 6px;
       flex-shrink: 0;
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
     .edit-btn,
-    .delete-btn {
+    .delete-btn,
+    .toggle-btn {
       border: 0;
-      padding: 8px 11px;
+      padding: 8px 10px;
       border-radius: 8px;
-      font-size: 12px;
-      font-weight: 600;
+      font-size: 11px;
+      font-weight: 700;
     }
 
     .edit-btn {
@@ -329,9 +303,10 @@
       color: #dc2626;
     }
 
-    /* =========================
-       EMPTY / LOADING
-    ========================= */
+    .toggle-btn {
+      background: #f3f4f6;
+      color: #374151;
+    }
 
     .loading,
     .empty {
@@ -341,23 +316,20 @@
       font-size: 14px;
     }
 
-    /* =========================
-       MODAL
-    ========================= */
+    .hidden {
+      display: none !important;
+    }
+
+    /* MODAL */
 
     .modal {
       position: fixed;
       inset: 0;
-
-      background: rgba(0,0,0,.45);
-
+      background: rgba(0,0,0,.5);
       display: none;
-
       align-items: center;
       justify-content: center;
-
-      padding: 20px;
-
+      padding: 15px;
       z-index: 999;
     }
 
@@ -367,23 +339,20 @@
 
     .modal-box {
       width: 100%;
-      max-width: 450px;
-
+      max-width: 520px;
+      max-height: 92vh;
+      overflow-y: auto;
       background: white;
-
       border-radius: 18px;
-
-      padding: 25px;
-
-      box-shadow: 0 20px 50px rgba(0,0,0,.18);
+      padding: 22px;
+      box-shadow: 0 20px 50px rgba(0,0,0,.2);
     }
 
     .modal-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
 
     .modal-header h3 {
@@ -401,19 +370,1978 @@
     }
 
     .form-group {
-      margin-bottom: 15px;
+      margin-bottom: 14px;
     }
 
     .form-group label {
       display: block;
-      margin-bottom: 7px;
+      margin-bottom: 6px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      border: 1px solid #d1d5db;
+      border-radius: 9px;
+      padding: 11px 12px;
       font-size: 13px;
+      outline: none;
+      background: white;
+    }
+
+    .form-group textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: #16a34a;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .checkbox-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin: 12px 0;
+    }
+
+    .check {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      padding: 10px;
+      border-radius: 9px;
+      font-size: 12px;
       font-weight: 600;
     }
 
-    .form-group input {
+    .check input {
+      width: auto;
+    }
+
+    .save-btn {
       width: 100%;
+      border: 0;
+      background: #16a34a;
+      color: white;
+      padding: 13px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 800;
+      margin-top: 5px;
+    }
 
+    .save-btn:disabled {
+      opacity: .6;
+    }
+
+    .form-message {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 12px;
+    }
+
+    .search-box {
+      margin-bottom: 15px;
+    }
+
+    .search-box input {
+      width: 100%;
       border: 1px solid #d1d5db;
+      border-radius: 10px;
+      padding: 11px 13px;
+      font-size: 13px;
+      outline: none;
+    }
 
-      border-radius: 
+    .search-box input:focus {
+      border-color: #16a34a;
+    }
+
+    @media (max-width: 700px) {
+      header {
+        padding: 0 4%;
+      }
+
+      .container {
+        width: 94%;
+        margin: 22px auto;
+      }
+
+      .admin-email {
+        display: none;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .welcome h1 {
+        font-size: 23px;
+      }
+
+      .card {
+        padding: 15px;
+      }
+
+      .category-item,
+      .product-item {
+        align-items: flex-start;
+      }
+
+      .category-actions,
+      .product-actions {
+        flex-direction: column;
+      }
+
+      .edit-btn,
+      .delete-btn,
+      .toggle-btn {
+        width: 100%;
+      }
+
+      .two-col {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .checkbox-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">AffiliaMart</div>
+
+  <div class="header-right">
+    <div class="admin-email" id="adminEmail">Memuat...</div>
+    <button class="logout-btn" id="logoutBtn">Keluar</button>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="welcome">
+    <h1>Dashboard Admin</h1>
+    <p>Kelola kategori dan produk AffiliaMart dari satu tempat.</p>
+  </section>
+
+  <section class="stats">
+
+    <div class="stat">
+      <div class="stat-label">Total Kategori</div>
+      <div class="stat-value" id="totalCategories">0</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-label">Total Produk</div>
+      <div class="stat-value" id="totalProducts">0</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-label">Produk Aktif</div>
+      <div class="stat-value" id="activeProducts">0</div>
+    </div>
+
+  </section>
+
+  <div class="menu">
+    <button class="menu-btn active" data-page="categories">
+      📁 Kategori
+    </button>
+
+    <button class="menu-btn" data-page="products">
+      🛍️ Produk
+    </button>
+  </div>
+
+
+  <!-- =========================
+       CATEGORIES
+  ========================== -->
+
+  <section id="categoriesPage" class="card">
+
+    <div class="card-header">
+      <h2>Kelola Kategori</h2>
+
+      <button class="add-btn" id="addCategoryBtn">
+        + Tambah
+      </button>
+    </div>
+
+    <div class="category-list" id="categoryList">
+      <div class="loading">Memuat kategori...</div>
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       PRODUCTS
+  ========================== -->
+
+  <section id="productsPage" class="card hidden">
+
+    <div class="card-header">
+      <h2>Kelola Produk</h2>
+
+      <button class="add-btn" id="addProductBtn">
+        + Tambah
+      </button>
+    </div>
+
+    <div class="search-box">
+      <input
+        type="search"
+        id="productSearch"
+        placeholder="Cari nama produk..."
+      >
+    </div>
+
+    <div class="product-list" id="productList">
+      <div class="loading">Memuat produk...</div>
+    </div>
+
+  </section>
+
+</main>
+
+
+<!-- =========================
+     CATEGORY MODAL
+========================== -->
+
+<div class="modal" id="categoryModal">
+
+  <div class="modal-box">
+
+    <div class="modal-header">
+      <h3 id="categoryModalTitle">Tambah Kategori</h3>
+
+      <button class="close-btn" id="closeCategoryModal">
+        ×
+      </button>
+    </div>
+
+    <form id="categoryForm">
+
+      <input type="hidden" id="categoryId">
+
+      <div class="form-group">
+        <label>Nama Kategori</label>
+
+        <input
+          type="text"
+          id="categoryName"
+          placeholder="Contoh: Elektronik"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Slug</label>
+
+        <input
+          type="text"
+          id="categorySlug"
+          placeholder="elektronik"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Icon</label>
+
+        <input
+          type="text"
+          id="categoryIcon"
+          placeholder="📱"
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Deskripsi</label>
+
+        <textarea
+          id="categoryDescription"
+          placeholder="Deskripsi kategori..."
+        ></textarea>
+      </div>
+
+      <label class="check">
+        <input type="checkbox" id="categoryActive" checked>
+        Kategori aktif
+      </label>
+
+      <button class="save-btn" type="submit" id="categorySaveBtn">
+        Simpan Kategori
+      </button>
+
+      <div class="form-message" id="categoryMessage"></div>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     PRODUCT MODAL
+========================== -->
+
+<div class="modal" id="productModal">
+
+  <div class="modal-box">
+
+    <div class="modal-header">
+      <h3 id="productModalTitle">Tambah Produk</h3>
+
+      <button class="close-btn" id="closeProductModal">
+        ×
+      </button>
+    </div>
+
+    <form id="productForm">
+
+      <input type="hidden" id="productId">
+
+      <div class="form-group">
+        <label>Nama Produk</label>
+
+        <input
+          type="text"
+          id="productName"
+          placeholder="Nama produk"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Slug</label>
+
+        <input
+          type="text"
+          id="productSlug"
+          placeholder="nama-produk"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Kategori</label>
+
+        <select id="productCategory">
+          <option value="">Pilih kategori</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Deskripsi</label>
+
+        <textarea
+          id="productDescription"
+          placeholder="Deskripsi produk..."
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>URL Gambar</label>
+
+        <input
+          type="url"
+          id="productImage"
+          placeholder="https://..."
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Affiliate URL</label>
+
+        <input
+          type="url"
+          id="productAffiliate"
+          placeholder="https://shopee.co.id/..."
+        >
+      </div>
+
+      <div class="two-col">
+
+        <div class="form-group">
+          <label>Harga</label>
+
+          <input
+            type="number"
+            id="productPrice"
+            min="0"
+            step="0.01"
+            placeholder="0"
+          >
+        </div>
+
+        <div class="form-group">
+          <label>Harga Asli</label>
+
+          <input
+            type="number"
+            id="productOriginalPrice"
+            min="0"
+            step="0.01"
+            placeholder="0"
+          >
+        </div>
+
+      </div>
+
+      <div class="two-col">
+
+        <div class="form-group">
+          <label>Diskon (%)</label>
+
+          <input
+            type="number"
+            id="productDiscount"
+            min="0"
+            max="100"
+            step="0.01"
+            placeholder="0"
+          >
+        </div>
+
+        <div class="form-group">
+          <label>Rating</label>
+
+          <input
+            type="number"
+            id="productRating"
+            min="0"
+            max="5"
+            step="0.1"
+            placeholder="0"
+          >
+        </div>
+
+      </div>
+
+      <div class="two-col">
+
+        <div class="form-group">
+          <label>Platform</label>
+
+          <select id="productPlatform">
+            <option value="">Pilih platform</option>
+            <option value="shopee">Shopee</option>
+            <option value="tiktok">TikTok Shop</option>
+            <option value="tokopedia">Tokopedia</option>
+            <option value="lazada">Lazada</option>
+            <option value="blibli">Blibli</option>
+            <option value="other">Lainnya</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Jumlah Terjual</label>
+
+          <input
+            type="number"
+            id="productSold"
+            min="0"
+            step="1"
+            placeholder="0"
+          >
+        </div>
+
+      </div>
+
+      <div class="form-group">
+        <label>ID Produk Eksternal</label>
+
+        <input
+          type="text"
+          id="productExternalId"
+          placeholder="Opsional"
+        >
+      </div>
+
+      <div class="checkbox-row">
+
+        <label class="check">
+          <input type="checkbox" id="productFeatured">
+          ⭐ Produk unggulan
+        </label>
+
+        <label class="check">
+          <input type="checkbox" id="productTrending">
+          🔥 Produk trending
+        </label>
+
+        <label class="check">
+          <input type="checkbox" id="productActive" checked>
+          ✅ Produk aktif
+        </label>
+
+      </div>
+
+      <button class="save-btn" type="submit" id="productSaveBtn">
+        Simpan Produk
+      </button>
+
+      <div class="form-message" id="productMessage"></div>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<script>
+
+  /* =========================================
+     SUPABASE
+  ========================================= */
+
+  const SUPABASE_URL =
+    "https://fmftcisigssgfjqqezqz.supabase.co";
+
+  const SUPABASE_KEY =
+    "sb_publishable_0YyKpZ3_HOED9iHlgfJldw_4ZrugD7C";
+
+  const supabaseClient =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
+
+
+  /* =========================================
+     GLOBAL DATA
+  ========================================= */
+
+  let currentUser = null;
+  let categories = [];
+  let products = [];
+
+  let editingCategoryId = null;
+  let editingProductId = null;
+
+
+  /* =========================================
+     ELEMENTS
+  ========================================= */
+
+  const adminEmail =
+    document.getElementById("adminEmail");
+
+  const logoutBtn =
+    document.getElementById("logoutBtn");
+
+  const totalCategories =
+    document.getElementById("totalCategories");
+
+  const totalProducts =
+    document.getElementById("totalProducts");
+
+  const activeProducts =
+    document.getElementById("activeProducts");
+
+  const categoryList =
+    document.getElementById("categoryList");
+
+  const productList =
+    document.getElementById("productList");
+
+  const productSearch =
+    document.getElementById("productSearch");
+
+
+  /* =========================================
+     START
+  ========================================= */
+
+  document.addEventListener("DOMContentLoaded", init);
+
+
+  async function init() {
+
+    const {
+      data: {
+        session
+      }
+    } = await supabaseClient.auth.getSession();
+
+    if (!session) {
+
+      window.location.href = "admin.html";
+
+      return;
+    }
+
+    currentUser = session.user;
+
+    adminEmail.textContent =
+      currentUser.email || "";
+
+    await checkAdmin();
+
+    await loadCategories();
+
+    await loadProducts();
+
+    updateStats();
+  }
+
+
+  /* =========================================
+     CHECK ADMIN
+  ========================================= */
+
+  async function checkAdmin() {
+
+    const {
+      data: profile,
+      error
+    } = await supabaseClient
+      .from("profiles")
+      .select("role")
+      .eq("id", currentUser.id)
+      .single();
+
+    if (
+      error ||
+      !profile ||
+      profile.role !== "admin"
+    ) {
+
+      await supabaseClient.auth.signOut();
+
+      alert("Akun ini bukan admin.");
+
+      window.location.href = "admin.html";
+
+      return;
+    }
+  }
+
+
+  /* =========================================
+     LOGOUT
+  ========================================= */
+
+  logoutBtn.addEventListener(
+    "click",
+    async function() {
+
+      const ok =
+        confirm("Yakin ingin keluar?");
+
+      if (!ok) return;
+
+      await supabaseClient.auth.signOut();
+
+      window.location.href =
+        "admin.html";
+    }
+  );
+
+
+  /* =========================================
+     MENU
+  ========================================= */
+
+  document.querySelectorAll(".menu-btn")
+    .forEach(button => {
+
+      button.addEventListener(
+        "click",
+        function() {
+
+          document
+            .querySelectorAll(".menu-btn")
+            .forEach(btn =>
+              btn.classList.remove("active")
+            );
+
+          this.classList.add("active");
+
+          const page =
+            this.dataset.page;
+
+          if (page === "categories") {
+
+            document
+              .getElementById("categoriesPage")
+              .classList.remove("hidden");
+
+            document
+              .getElementById("productsPage")
+              .classList.add("hidden");
+
+          } else {
+
+            document
+              .getElementById("categoriesPage")
+              .classList.add("hidden");
+
+            document
+              .getElementById("productsPage")
+              .classList.remove("hidden");
+
+          }
+        }
+      );
+
+    });
+
+
+  /* =========================================
+     LOAD CATEGORIES
+  ========================================= */
+
+  async function loadCategories() {
+
+    categoryList.innerHTML =
+      '<div class="loading">Memuat kategori...</div>';
+
+    const {
+      data,
+      error
+    } = await supabaseClient
+      .from("categories")
+      .select(
+        "id,name,slug,icon,description,is_active"
+      )
+      .order("name", {
+        ascending: true
+      });
+
+    if (error) {
+
+      categoryList.innerHTML =
+        '<div class="empty">Gagal memuat kategori.<br>' +
+        escapeHtml(error.message) +
+        '</div>';
+
+      return;
+    }
+
+    categories = data || [];
+
+    renderCategories();
+
+    fillCategorySelect();
+
+    updateStats();
+  }
+
+
+  /* =========================================
+     RENDER CATEGORIES
+  ========================================= */
+
+  function renderCategories() {
+
+    if (!categories.length) {
+
+      categoryList.innerHTML =
+        '<div class="empty">Belum ada kategori.</div>';
+
+      return;
+    }
+
+    categoryList.innerHTML =
+      categories.map(category => {
+
+        const icon =
+          category.icon || "📁";
+
+        const statusClass =
+          category.is_active
+            ? "active"
+            : "inactive";
+
+        const statusText =
+          category.is_active
+            ? "AKTIF"
+            : "NONAKTIF";
+
+        return `
+          <div class="category-item">
+
+            <div class="category-left">
+
+              <div class="category-icon">
+                ${escapeHtml(icon)}
+              </div>
+
+              <div class="category-info">
+
+                <div class="category-name">
+                  ${escapeHtml(category.name)}
+                </div>
+
+                <div class="category-slug">
+                  ${escapeHtml(category.slug || "")}
+                </div>
+
+                <span class="status ${statusClass}">
+                  ${statusText}
+                </span>
+
+              </div>
+
+            </div>
+
+            <div class="category-actions">
+
+              <button
+                class="edit-btn"
+                onclick="editCategory('${category.id}')"
+              >
+                Edit
+              </button>
+
+              <button
+                class="toggle-btn"
+                onclick="toggleCategory('${category.id}')"
+              >
+                ${category.is_active ? "Nonaktifkan" : "Aktifkan"}
+              </button>
+
+              <button
+                class="delete-btn"
+                onclick="deleteCategory('${category.id}')"
+              >
+                Hapus
+              </button>
+
+            </div>
+
+          </div>
+        `;
+
+      }).join("");
+  }
+
+
+  /* =========================================
+     CATEGORY SELECT
+  ========================================= */
+
+  function fillCategorySelect() {
+
+    const select =
+      document.getElementById("productCategory");
+
+    select.innerHTML =
+      '<option value="">Pilih kategori</option>';
+
+    categories
+      .filter(category => category.is_active)
+      .forEach(category => {
+
+        const option =
+          document.createElement("option");
+
+        option.value =
+          category.id;
+
+        option.textContent =
+          category.name;
+
+        select.appendChild(option);
+      });
+  }
+
+
+  /* =========================================
+     ADD CATEGORY
+  ========================================= */
+
+  document
+    .getElementById("addCategoryBtn")
+    .addEventListener(
+      "click",
+      function() {
+
+        editingCategoryId = null;
+
+        document
+          .getElementById("categoryModalTitle")
+          .textContent =
+          "Tambah Kategori";
+
+        document
+          .getElementById("categoryForm")
+          .reset();
+
+        document
+          .getElementById("categoryActive")
+          .checked = true;
+
+        document
+          .getElementById("categoryMessage")
+          .textContent = "";
+
+        document
+          .getElementById("categoryModal")
+          .classList.add("show");
+      }
+    );
+
+
+  /* =========================================
+     EDIT CATEGORY
+  ========================================= */
+
+  window.editCategory =
+    function(id) {
+
+      const category =
+        categories.find(
+          item => item.id === id
+        );
+
+      if (!category) return;
+
+      editingCategoryId = id;
+
+      document
+        .getElementById("categoryModalTitle")
+        .textContent =
+        "Edit Kategori";
+
+      document
+        .getElementById("categoryId")
+        .value =
+        category.id;
+
+      document
+        .getElementById("categoryName")
+        .value =
+        category.name || "";
+
+      document
+        .getElementById("categorySlug")
+        .value =
+        category.slug || "";
+
+      document
+        .getElementById("categoryIcon")
+        .value =
+        category.icon || "";
+
+      document
+        .getElementById("categoryDescription")
+        .value =
+        category.description || "";
+
+      document
+        .getElementById("categoryActive")
+        .checked =
+        category.is_active !== false;
+
+      document
+        .getElementById("categoryMessage")
+        .textContent = "";
+
+      document
+        .getElementById("categoryModal")
+        .classList.add("show");
+    };
+
+
+  /* =========================================
+     SAVE CATEGORY
+  ========================================= */
+
+  document
+    .getElementById("categoryForm")
+    .addEventListener(
+      "submit",
+      async function(event) {
+
+        event.preventDefault();
+
+        const button =
+          document.getElementById(
+            "categorySaveBtn"
+          );
+
+        const message =
+          document.getElementById(
+            "categoryMessage"
+          );
+
+        button.disabled = true;
+
+        button.textContent =
+          "Menyimpan...";
+
+        message.textContent = "";
+
+        const payload = {
+
+          name:
+            document
+              .getElementById("categoryName")
+              .value
+              .trim(),
+
+          slug:
+            document
+              .getElementById("categorySlug")
+              .value
+              .trim(),
+
+          icon:
+            document
+              .getElementById("categoryIcon")
+              .value
+              .trim(),
+
+          description:
+            document
+              .getElementById("categoryDescription")
+              .value
+              .trim(),
+
+          is_active:
+            document
+              .getElementById("categoryActive")
+              .checked
+        };
+
+        let result;
+
+        if (editingCategoryId) {
+
+          result =
+            await supabaseClient
+              .from("categories")
+              .update(payload)
+              .eq(
+                "id",
+                editingCategoryId
+              );
+
+        } else {
+
+          result =
+            await supabaseClient
+              .from("categories")
+              .insert(payload);
+        }
+
+        if (result.error) {
+
+          message.style.color =
+            "#dc2626";
+
+          message.textContent =
+            result.error.message;
+
+          button.disabled = false;
+
+          button.textContent =
+            "Simpan Kategori";
+
+          return;
+        }
+
+        closeCategoryModal();
+
+        await loadCategories();
+
+      }
+    );
+
+
+  /* =========================================
+     TOGGLE CATEGORY
+  ========================================= */
+
+  window.toggleCategory =
+    async function(id) {
+
+      const category =
+        categories.find(
+          item => item.id === id
+        );
+
+      if (!category) return;
+
+      const newStatus =
+        !category.is_active;
+
+      const {
+        error
+      } = await supabaseClient
+        .from("categories")
+        .update({
+          is_active: newStatus
+        })
+        .eq("id", id);
+
+      if (error) {
+
+        alert(
+          "Gagal mengubah status:\n" +
+          error.message
+        );
+
+        return;
+      }
+
+      await loadCategories();
+    };
+
+
+  /* =========================================
+     DELETE CATEGORY
+  ========================================= */
+
+  window.deleteCategory =
+    async function(id) {
+
+      const category =
+        categories.find(
+          item => item.id === id
+        );
+
+      if (!category) return;
+
+      const ok =
+        confirm(
+          "Hapus kategori \"" +
+          category.name +
+          "\"?"
+        );
+
+      if (!ok) return;
+
+      const {
+        error
+      } = await supabaseClient
+        .from("categories")
+        .delete()
+        .eq("id", id);
+
+      if (error) {
+
+        alert(
+          "Kategori tidak bisa dihapus.\n\n" +
+          error.message +
+          "\n\nJika kategori sudah dipakai produk, lebih aman gunakan Nonaktifkan."
+        );
+
+        return;
+      }
+
+      await loadCategories();
+
+      await loadProducts();
+    };
+
+
+  /* =========================================
+     CLOSE CATEGORY MODAL
+  ========================================= */
+
+  document
+    .getElementById("closeCategoryModal")
+    .addEventListener(
+      "click",
+      closeCategoryModal
+    );
+
+  function closeCategoryModal() {
+
+    document
+      .getElementById("categoryModal")
+      .classList.remove("show");
+  }
+
+
+  /* =========================================
+     LOAD PRODUCTS
+  ========================================= */
+
+  async function loadProducts() {
+
+    productList.innerHTML =
+      '<div class="loading">Memuat produk...</div>';
+
+    const {
+      data,
+      error
+    } = await supabaseClient
+      .from("products")
+      .select(`
+        id,
+        category_id,
+        name,
+        slug,
+        description,
+        image_url,
+        gallery,
+        price,
+        original_price,
+        discount_percent,
+        platform,
+        external_product_id,
+        rating,
+        sold_count,
+        is_featured,
+        is_trending,
+        is_active,
+        affiliate_url,
+        created_at,
+        updated_at
+      `)
+      .order("created_at", {
+        ascending: false
+      });
+
+    if (error) {
+
+      productList.innerHTML =
+        '<div class="empty">Gagal memuat produk.<br>' +
+        escapeHtml(error.message) +
+        '</div>';
+
+      return;
+    }
+
+    products = data || [];
+
+    renderProducts();
+
+    updateStats();
+  }
+
+
+  /* =========================================
+     RENDER PRODUCTS
+  ========================================= */
+
+  function renderProducts() {
+
+    const search =
+      productSearch.value
+        .trim()
+        .toLowerCase();
+
+    const filtered =
+      products.filter(product =>
+        (product.name || "")
+          .toLowerCase()
+          .includes(search)
+      );
+
+    if (!filtered.length) {
+
+      productList.innerHTML =
+        '<div class="empty">Produk tidak ditemukan.</div>';
+
+      return;
+    }
+
+    productList.innerHTML =
+      filtered.map(product => {
+
+        const category =
+          categories.find(
+            item =>
+              item.id ===
+              product.category_id
+          );
+
+        const categoryName =
+          category
+            ? category.name
+            : "Tanpa kategori";
+
+        const image =
+          product.image_url ||
+          "https://placehold.co/120x120?text=Produk";
+
+        const price =
+          formatPrice(product.price);
+
+        const statusClass =
+          product.is_active
+            ? "active"
+            : "inactive";
+
+        const statusText =
+          product.is_active
+            ? "AKTIF"
+            : "NONAKTIF";
+
+        let badges = "";
+
+        if (product.is_featured) {
+          badges += " ⭐";
+        }
+
+        if (product.is_trending) {
+          badges += " 🔥";
+        }
+
+        return `
+          <div class="product-item">
+
+            <div class="product-left">
+
+              <img
+                class="product-image"
+                src="${escapeAttribute(image)}"
+                alt=""
+                onerror="this.src='https://placehold.co/120x120?text=Produk'"
+              >
+
+              <div class="product-info">
+
+                <div class="product-name">
+                  ${escapeHtml(product.name || "Tanpa nama")}
+                  ${badges}
+                </div>
+
+                <div class="product-meta">
+                  ${escapeHtml(categoryName)}
+                  ${product.platform ? " • " + escapeHtml(product.platform) : ""}
+                </div>
+
+                <div class="product-price">
+                  ${price}
+                </div>
+
+                <span class="status ${statusClass}">
+                  ${statusText}
+                </span>
+
+              </div>
+
+            </div>
+
+            <div class="product-actions">
+
+              <button
+                class="edit-btn"
+                onclick="editProduct('${product.id}')"
+              >
+                Edit
+              </button>
+
+              <button
+                class="toggle-btn"
+                onclick="toggleProduct('${product.id}')"
+              >
+                ${product.is_active ? "Nonaktifkan" : "Aktifkan"}
+              </button>
+
+              <button
+                class="delete-btn"
+                onclick="deleteProduct('${product.id}')"
+              >
+                Hapus
+              </button>
+
+            </div>
+
+          </div>
+        `;
+
+      }).join("");
+  }
+
+
+  /* =========================================
+     PRODUCT SEARCH
+  ========================================= */
+
+  productSearch.addEventListener(
+    "input",
+    renderProducts
+  );
+
+
+  /* =========================================
+     ADD PRODUCT
+  ========================================= */
+
+  document
+    .getElementById("addProductBtn")
+    .addEventListener(
+      "click",
+      function() {
+
+        editingProductId = null;
+
+        document
+          .getElementById("productModalTitle")
+          .textContent =
+          "Tambah Produk";
+
+        document
+          .getElementById("productForm")
+          .reset();
+
+        document
+          .getElementById("productActive")
+          .checked = true;
+
+        document
+          .getElementById("productFeatured")
+          .checked = false;
+
+        document
+          .getElementById("productTrending")
+          .checked = false;
+
+        document
+          .getElementById("productMessage")
+          .textContent = "";
+
+        document
+          .getElementById("productModal")
+          .classList.add("show");
+      }
+    );
+
+
+  /* =========================================
+     EDIT PRODUCT
+  ========================================= */
+
+  window.editProduct =
+    function(id) {
+
+      const product =
+        products.find(
+          item => item.id === id
+        );
+
+      if (!product) return;
+
+      editingProductId = id;
+
+      document
+        .getElementById("productModalTitle")
+        .textContent =
+        "Edit Produk";
+
+      document
+        .getElementById("productId")
+        .value =
+        product.id;
+
+      document
+        .getElementById("productName")
+        .value =
+        product.name || "";
+
+      document
+        .getElementById("productSlug")
+        .value =
+        product.slug || "";
+
+      document
+        .getElementById("productCategory")
+        .value =
+        product.category_id || "";
+
+      document
+        .getElementById("productDescription")
+        .value =
+        product.description || "";
+
+      document
+        .getElementById("productImage")
+        .value =
+        product.image_url || "";
+
+      document
+        .getElementById("productAffiliate")
+        .value =
+        product.affiliate_url || "";
+
+      document
+        .getElementById("productPrice")
+        .value =
+        product.price ?? "";
+
+      document
+        .getElementById("productOriginalPrice")
+        .value =
+        product.original_price ?? "";
+
+      document
+        .getElementById("productDiscount")
+        .value =
+        product.discount_percent ?? "";
+
+      document
+        .getElementById("productPlatform")
+        .value =
+        product.platform || "";
+
+      document
+        .getElementById("productRating")
+        .value =
+        product.rating ?? "";
+
+      document
+        .getElementById("productSold")
+        .value =
+        product.sold_count ?? "";
+
+      document
+        .getElementById("productExternalId")
+        .value =
+        product.external_product_id || "";
+
+      document
+        .getElementById("productFeatured")
+        .checked =
+        product.is_featured === true;
+
+      document
+        .getElementById("productTrending")
+        .checked =
+        product.is_trending === true;
+
+      document
+        .getElementById("productActive")
+        .checked =
+        product.is_active !== false;
+
+      document
+        .getElementById("productMessage")
+        .textContent = "";
+
+      document
+        .getElementById("productModal")
+        .classList.add("show");
+    };
+
+
+  /* =========================================
+     SAVE PRODUCT
+  ========================================= */
+
+  document
+    .getElementById("productForm")
+    .addEventListener(
+      "submit",
+      async function(event) {
+
+        event.preventDefault();
+
+        const button =
+          document.getElementById(
+            "productSaveBtn"
+          );
+
+        const message =
+          document.getElementById(
+            "productMessage"
+          );
+
+        button.disabled = true;
+
+        button.textContent =
+          "Menyimpan...";
+
+        message.textContent = "";
+
+        const categoryValue =
+          document
+            .getElementById("productCategory")
+            .value;
+
+        const priceValue =
+          document
+            .getElementById("productPrice")
+            .value;
+
+        const originalPriceValue =
+          document
+            .getElementById("productOriginalPrice")
+            .value;
+
+        const discountValue =
+          document
+            .getElementById("productDiscount")
+            .value;
+
+        const ratingValue =
+          document
+            .getElementById("productRating")
+            .value;
+
+        const soldValue =
+          document
+            .getElementById("productSold")
+            .value;
+
+        const payload = {
+
+          name:
+            document
+              .getElementById("productName")
+              .value
+              .trim(),
+
+          slug:
+            document
+              .getElementById("productSlug")
+              .value
+              .trim(),
+
+          category_id:
+            categoryValue || null,
+
+          description:
+            document
+              .getElementById("productDescription")
+              .value
+              .trim(),
+
+          image_url:
+            document
+              .getElementById("productImage")
+              .value
+              .trim() || null,
+
+          price:
+            priceValue === ""
+              ? null
+              : Number(priceValue),
+
+          original_price:
+            originalPriceValue === ""
+              ? null
+              : Number(originalPriceValue),
+
+          discount_percent:
+            discountValue === ""
+              ? null
+              : Number(discountValue),
+
+          platform:
+            document
+              .getElementById("productPlatform")
+              .value || null,
+
+          external_product_id:
+            document
+              .getElementById("productExternalId")
+              .value
+              .trim() || null,
+
+          rating:
+            ratingValue === ""
+              ? null
+              : Number(ratingValue),
+
+          sold_count:
+            soldValue === ""
+              ? 0
+              : Number(soldValue),
+
+          is_featured:
+            document
+              .getElementById("productFeatured")
+              .checked,
+
+          is_trending:
+            document
+              .getElementById("productTrending")
+              .checked,
+
+          is_active:
+            document
+              .getElementById("productActive")
+              .checked,
+
+          affiliate_url:
+            document
+              .getElementById("productAffiliate")
+              .value
+              .trim() || null
+        };
+
+
+        let result;
+
+
+        if (editingProductId) {
+
+          result =
+            await supabaseClient
+              .from("products")
+              .update(payload)
+              .eq(
+                "id",
+                editingProductId
+              );
+
+        } else {
+
+          result =
+            await supabaseClient
+              .from("products")
+              .insert(payload);
+
+        }
+
+
+        if (result.error) {
+
+          message.style.color =
+            "#dc2626";
+
+          message.textContent =
+            result.error.message;
+
+          button.disabled = false;
+
+          button.textContent =
+            "Simpan Produk";
+
+          return;
+        }
+
+
+        closeProductModal();
+
+        await loadProducts();
+
+      }
+    );
+
+
+  /* =========================================
+     TOGGLE PRODUCT
+  ========================================= */
+
+  window.toggleProduct =
+    async function(id) {
+
+      const product =
+        products.find(
+          item => item.id === id
+        );
+
+      if (!product) return;
+
+      const {
+        error
+      } = await supabaseClient
+        .from("products")
+        .update({
+          is_active:
+            !product.is_active
+        })
+        .eq("id", id);
+
+      if (error) {
+
+        alert(
+          "Gagal mengubah status:\n" +
+          error.message
+        );
+
+        return;
+      }
+
+      await loadProducts();
+    };
+
+
+  /* =========================================
+     DELETE PRODUCT
+  ========================================= */
+
+  window.deleteProduct =
+    async function(id) {
+
+      const product =
+        products.find(
+          item => item.id === id
+        );
+
+      if (!product) return;
+
+      const ok =
+        confirm(
+          "Hapus produk \"" +
+          product.name +
+          "\"?"
+        );
+
+      if (!ok) return;
+
+      const {
+        error
+      } = await supabaseClient
+        .from("products")
+        .delete()
+        .eq("id", id);
+
+      if (error) {
+
+        alert(
+          "Gagal menghapus produk:\n" +
+          error.message
+        );
+
+        return;
+      }
+
+      await loadProducts();
+    };
+
+
+  /* =========================================
+     CLOSE PRODUCT MODAL
+  ========================================= */
+
+  document
+    .getElementById("closeProductModal")
+    .addEventListener(
+      "click",
+      closeProductModal
+    );
+
+  function closeProductModal() {
+
+    document
+      .getElementById("productModal")
+      .classList.remove("show");
+  }
+
+
+  /* =========================================
+     UPDATE STATS
+  ========================================= */
+
+  function updateStats() {
+
+    totalCategories.textContent =
+      categories.length;
+
+    totalProducts.textContent =
+      products.length;
+
+    activeProducts.textContent =
+      products.filter(
+        product =>
+          product.is_active === true
+      ).length;
+  }
+
+
+  /* =========================================
+     FORMAT PRICE
+  ========================================= */
+
+  function formatPrice(value) {
+
+    if (
+      value === null ||
+      value === undefined ||
+      value === ""
+    ) {
+      return "Harga belum diatur";
+    }
+
+    return new Intl.NumberFormat(
+      "id-ID",
+      {
+        style: "currency",
+        currency: "IDR",
+        maximumFractionDigits: 0
+      }
+    ).format(Number(value));
+  }
+
+
+  /* =========================================
+     ESCAPE HTML
+  ========================================= */
+
+  function escapeHtml(value) {
+
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+
+  function escapeAttribute(value) {
+
+    return String(value ?? "")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+
+  /* =========================================
+     CLOSE MODAL WHEN CLICK OUTSIDE
+  ========================================= */
+
+  document
+    .getElementById("categoryModal")
+    .addEventListener(
+      "click",
+      function(event) {
+
+        if (event.target === this) {
+          closeCategoryModal();
+        }
+
+      }
+    );
+
+
+  document
+    .getElementById("productModal")
+    .addEventListener(
+      "click",
+      function(event) {
+
+        if (event.target === this) {
+          closeProductModal();
+        }
+
+      }
+    );
+
+</script>
+
+</body>
+    </html>

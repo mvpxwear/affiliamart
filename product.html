@@ -136,7 +136,7 @@ function renderGallery(images,name){
 }
 function changeImage(src,el){const img=document.getElementById("mainImage");if(img){img.style.display="block";img.src=src}document.querySelectorAll(".thumb").forEach(x=>x.classList.remove("active"));el.classList.add("active");}
 
-function productUrl(product){return "/product/"+encodeURIComponent(makeSlug(product.slug||product.name));}
+function productUrl(product){return "/af/product/"+encodeURIComponent(makeSlug(product.slug||product.name));}
 
 async function loadProduct(){
   const slug=makeSlug(getSlug());

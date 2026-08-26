@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -10,9 +11,14 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+  rel="stylesheet"
+>
 
 <style>
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -20,529 +26,967 @@
 }
 
 :root {
+
   --bg: #0b0d0f;
+  --header: #111315;
   --card: #121518;
   --card2: #171b1f;
+
   --border: #272d32;
+
   --text: #f5f7f8;
   --muted: #8d969e;
+
   --accent: #ff8a00;
   --accent2: #ffb347;
+
   --danger: #ff4d4d;
   --success: #32d583;
+
 }
 
 body {
+
   font-family: "Inter", sans-serif;
+
   background: var(--bg);
+
   color: var(--text);
+
   min-height: 100vh;
+
 }
 
-/* HEADER */
+
+/* =========================================
+   HEADER
+========================================= */
 
 .header {
+
   height: 72px;
-  background: #111315;
+
+  background: var(--header);
+
   border-bottom: 1px solid var(--border);
+
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
+
   padding: 0 24px;
+
   position: sticky;
+
   top: 0;
+
   z-index: 100;
+
 }
 
 .logo {
+
   display: flex;
+
   align-items: center;
+
   gap: 12px;
+
 }
 
 .logo-icon {
+
   width: 42px;
+
   height: 42px;
+
   border-radius: 12px;
-  background: linear-gradient(135deg, #ff9b21, #ff6b00);
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff9b21,
+      #ff6b00
+    );
+
   display: flex;
+
   align-items: center;
+
   justify-content: center;
+
   font-size: 21px;
+
   font-weight: 800;
+
   color: white;
+
 }
 
 .logo-text {
+
   font-size: 20px;
+
   font-weight: 800;
+
 }
 
 .logo-text span {
+
   color: var(--accent);
+
 }
 
 .header-right {
+
   display: flex;
+
   align-items: center;
+
   gap: 10px;
+
 }
 
 .back-btn {
+
   border: 1px solid var(--border);
+
   background: #171a1d;
+
   color: white;
+
   padding: 10px 15px;
+
   border-radius: 10px;
+
   cursor: pointer;
+
   font-weight: 600;
+
+  font-family: inherit;
+
+  transition: .2s;
+
 }
 
 .back-btn:hover {
+
   background: #20252a;
+
 }
 
-/* MAIN */
+
+/* =========================================
+   MAIN
+========================================= */
 
 .main {
+
   max-width: 1100px;
+
   margin: 0 auto;
+
   padding: 30px 20px 60px;
+
 }
 
 .page-title {
+
   margin-bottom: 25px;
+
 }
 
 .page-title h1 {
+
   font-size: 28px;
+
   font-weight: 800;
+
   margin-bottom: 7px;
+
 }
 
 .page-title p {
+
   color: var(--muted);
+
   font-size: 14px;
+
 }
 
-/* FORM */
+
+/* =========================================
+   ALERT
+========================================= */
+
+.alert {
+
+  display: none;
+
+  padding: 13px 15px;
+
+  border-radius: 10px;
+
+  margin-bottom: 20px;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+
+}
+
+.alert.error {
+
+  display: block;
+
+  background: rgba(255,77,77,.10);
+
+  border: 1px solid rgba(255,77,77,.30);
+
+  color: #ff9a9a;
+
+}
+
+.alert.success {
+
+  display: block;
+
+  background: rgba(50,213,131,.10);
+
+  border: 1px solid rgba(50,213,131,.30);
+
+  color: #8df0bb;
+
+}
+
+
+/* =========================================
+   FORM GRID
+========================================= */
 
 .form-grid {
+
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
+
+  grid-template-columns:
+    1.4fr
+    1fr;
+
   gap: 20px;
+
 }
 
+
+/* =========================================
+   CARD
+========================================= */
+
 .card {
+
   background: var(--card);
+
   border: 1px solid var(--border);
+
   border-radius: 16px;
+
   padding: 22px;
+
   margin-bottom: 20px;
+
 }
 
 .card h2 {
+
   font-size: 17px;
+
   margin-bottom: 20px;
+
 }
 
+
+/* =========================================
+   FORM
+========================================= */
+
 .form-group {
+
   margin-bottom: 18px;
+
 }
 
 .form-group:last-child {
+
   margin-bottom: 0;
+
 }
 
 label {
+
   display: block;
+
   font-size: 13px;
+
   font-weight: 600;
+
   margin-bottom: 8px;
+
   color: #dce1e5;
+
 }
 
 .required {
+
   color: var(--accent);
+
 }
 
 input,
 textarea,
 select {
+
   width: 100%;
+
   border: 1px solid var(--border);
+
   background: #0d1012;
+
   color: white;
+
   border-radius: 10px;
+
   padding: 12px 13px;
+
   font-family: inherit;
+
   font-size: 14px;
+
   outline: none;
+
   transition: .2s;
+
 }
 
 input:focus,
 textarea:focus,
 select:focus {
+
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(255,138,0,.08);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(255,138,0,.08);
+
 }
 
 textarea {
+
   min-height: 130px;
+
   resize: vertical;
+
 }
 
 select option {
+
   background: #111315;
+
   color: white;
+
 }
 
 .row {
+
   display: grid;
-  grid-template-columns: 1fr 1fr;
+
+  grid-template-columns:
+    1fr
+    1fr;
+
   gap: 14px;
+
 }
 
-/* SLUG */
+
+/* =========================================
+   SLUG
+========================================= */
 
 .slug-box {
+
   background: #0c0f11;
+
   border: 1px dashed #3a4147;
+
   border-radius: 10px;
+
   padding: 13px;
+
 }
 
 .slug-preview {
-  margin-top: 8px;
+
+  margin-top: 10px;
+
   color: var(--accent2);
+
   font-size: 13px;
+
+  line-height: 1.6;
+
   word-break: break-all;
+
 }
 
 .slug-preview span {
+
   color: #8f989f;
+
 }
 
-/* IMAGE */
+.url-label {
+
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #8f989f;
+
+  font-size: 11px;
+
+}
+
+
+/* =========================================
+   IMAGE
+========================================= */
 
 .image-preview {
+
   width: 100%;
+
   height: 210px;
+
   border: 1px dashed #343b41;
+
   border-radius: 12px;
+
   background: #0c0f11;
+
   display: flex;
+
   align-items: center;
+
   justify-content: center;
+
   overflow: hidden;
+
   margin-top: 12px;
+
 }
 
 .image-preview img {
+
   width: 100%;
+
   height: 100%;
+
   object-fit: contain;
+
 }
 
 .image-placeholder {
+
   color: #687179;
+
   text-align: center;
+
   font-size: 13px;
+
+  padding: 20px;
+
 }
 
-/* SWITCH */
+
+/* =========================================
+   SWITCH
+========================================= */
 
 .switch-row {
+
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
+
   background: #0d1012;
+
   border: 1px solid var(--border);
+
   border-radius: 10px;
+
   padding: 13px;
+
   margin-bottom: 10px;
+
+}
+
+.switch-row:last-child {
+
+  margin-bottom: 0;
+
 }
 
 .switch-info strong {
+
   display: block;
+
   font-size: 13px;
+
   margin-bottom: 3px;
+
 }
 
 .switch-info small {
+
   color: var(--muted);
+
   font-size: 11px;
+
 }
 
 .switch {
+
   position: relative;
+
   width: 46px;
+
   height: 25px;
+
+  display: block;
+
+  margin: 0;
+
 }
 
 .switch input {
+
   opacity: 0;
+
   width: 0;
+
   height: 0;
+
 }
 
 .slider {
+
   position: absolute;
+
   inset: 0;
+
   background: #333a40;
+
   border-radius: 30px;
+
   cursor: pointer;
+
   transition: .2s;
+
 }
 
 .slider:before {
+
   content: "";
+
   position: absolute;
+
   width: 19px;
+
   height: 19px;
+
   left: 3px;
+
   top: 3px;
+
   background: white;
+
   border-radius: 50%;
+
   transition: .2s;
+
 }
 
 .switch input:checked + .slider {
+
   background: var(--accent);
+
 }
 
 .switch input:checked + .slider:before {
+
   transform: translateX(21px);
+
 }
 
-/* BUTTON */
+
+/* =========================================
+   ACTIONS
+========================================= */
 
 .actions {
+
   display: flex;
+
   gap: 12px;
+
   justify-content: flex-end;
+
   margin-top: 10px;
+
 }
 
 .btn {
+
   border: none;
+
   border-radius: 10px;
+
   padding: 13px 20px;
+
   font-family: inherit;
+
   font-size: 14px;
+
   font-weight: 700;
+
   cursor: pointer;
+
 }
 
 .btn-cancel {
+
   background: #20252a;
+
   color: white;
+
 }
 
 .btn-save {
-  background: linear-gradient(135deg, #ff9b21, #ff6b00);
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff9b21,
+      #ff6b00
+    );
+
   color: white;
+
   min-width: 150px;
+
 }
 
 .btn-save:hover {
+
   opacity: .9;
+
 }
 
 .btn-save:disabled {
+
   opacity: .5;
+
   cursor: not-allowed;
+
 }
 
-/* ALERT */
 
-.alert {
-  display: none;
-  padding: 13px 15px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  font-size: 13px;
-  line-height: 1.5;
-}
-
-.alert.error {
-  display: block;
-  background: rgba(255,77,77,.1);
-  border: 1px solid rgba(255,77,77,.3);
-  color: #ff9a9a;
-}
-
-.alert.success {
-  display: block;
-  background: rgba(50,213,131,.1);
-  border: 1px solid rgba(50,213,131,.3);
-  color: #8df0bb;
-}
-
-/* LOADING */
+/* =========================================
+   LOADING
+========================================= */
 
 .loading {
+
   display: none;
+
   position: fixed;
+
   inset: 0;
+
   background: rgba(0,0,0,.65);
+
   z-index: 999;
+
   align-items: center;
+
   justify-content: center;
+
 }
 
 .loading-box {
+
   background: #171b1f;
+
   border: 1px solid var(--border);
+
   padding: 25px;
+
   border-radius: 15px;
+
   text-align: center;
+
+  min-width: 220px;
+
 }
 
 .spinner {
+
   width: 35px;
+
   height: 35px;
+
   border: 3px solid #333;
+
   border-top-color: var(--accent);
+
   border-radius: 50%;
+
   animation: spin .8s linear infinite;
+
   margin: 0 auto 14px;
+
 }
 
 @keyframes spin {
+
   to {
+
     transform: rotate(360deg);
+
   }
+
 }
 
-/* MOBILE */
+
+/* =========================================
+   MOBILE
+========================================= */
 
 @media(max-width: 800px) {
 
   .header {
+
     padding: 0 15px;
+
   }
 
   .logo-text {
+
     font-size: 17px;
+
   }
 
   .form-grid {
+
     grid-template-columns: 1fr;
+
   }
 
   .main {
+
     padding: 22px 14px 50px;
+
   }
 
   .page-title h1 {
+
     font-size: 23px;
+
   }
 
   .card {
+
     padding: 17px;
+
   }
+
 }
 
 @media(max-width: 500px) {
 
   .row {
+
     grid-template-columns: 1fr;
+
     gap: 0;
+
   }
 
   .header {
+
     height: 64px;
+
   }
 
   .logo-icon {
+
     width: 36px;
+
     height: 36px;
+
   }
 
   .back-btn {
+
     padding: 8px 11px;
+
     font-size: 12px;
+
   }
 
   .actions {
+
     flex-direction: column-reverse;
+
   }
 
   .btn {
+
     width: 100%;
+
   }
+
 }
+
 </style>
+
 </head>
 
+
 <body>
+
+
+<!-- =========================================
+     HEADER
+========================================= -->
 
 <header class="header">
 
   <div class="logo">
-    <div class="logo-icon">A</div>
+
+    <div class="logo-icon">
+      A
+    </div>
 
     <div class="logo-text">
       Affilia<span>Mart</span>
     </div>
+
   </div>
 
+
   <div class="header-right">
-    <button class="back-btn" onclick="goDashboard()">
+
+    <button
+      type="button"
+      class="back-btn"
+      onclick="goDashboard()"
+    >
       ← Dashboard
     </button>
+
   </div>
 
 </header>
 
 
+
+<!-- =========================================
+     MAIN
+========================================= -->
+
 <main class="main">
 
+
   <div class="page-title">
-    <h1>Tambah Produk</h1>
-    <p>Tambahkan produk affiliate baru ke AffiliaMart.</p>
+
+    <h1>
+      Tambah Produk
+    </h1>
+
+    <p>
+      Tambahkan produk affiliate baru ke AffiliaMart.
+    </p>
+
   </div>
 
-  <div id="alert" class="alert"></div>
 
+  <div
+    id="alert"
+    class="alert"
+  ></div>
+
+
+
+  <!-- =========================================
+       FORM
+  ========================================= -->
 
   <form id="productForm">
 
+
     <div class="form-grid">
 
-      <!-- LEFT -->
+
+      <!-- =====================================
+           LEFT COLUMN
+      ====================================== -->
 
       <div>
 
+
+        <!-- INFORMASI PRODUK -->
+
         <div class="card">
 
-          <h2>Informasi Produk</h2>
+          <h2>
+            Informasi Produk
+          </h2>
+
 
           <div class="form-group">
 
             <label>
-              Nama Produk <span class="required">*</span>
+              Nama Produk
+              <span class="required">*</span>
             </label>
 
             <input
               type="text"
               id="name"
               placeholder="Contoh: Samsung Galaxy A55 5G"
+              autocomplete="off"
               required
             >
 
           </div>
 
 
+
           <div class="form-group">
 
             <label>
-              Kategori <span class="required">*</span>
+              Kategori
+              <span class="required">*</span>
             </label>
 
-            <select id="category" required>
+            <select
+              id="category"
+              required
+            >
 
               <option value="">
                 Memuat kategori...
@@ -553,23 +997,30 @@ select option {
           </div>
 
 
+
           <div class="form-group">
 
             <label>
               URL Produk
             </label>
 
+
             <div class="slug-box">
+
 
               <input
                 type="text"
                 id="slug"
                 placeholder="slug-produk"
+                autocomplete="off"
               >
+
 
               <div class="slug-preview">
 
-                <span>Preview:</span>
+                <span class="url-label">
+                  URL produk:
+                </span>
 
                 <strong id="urlPreview">
                   Pilih kategori dan masukkan nama produk
@@ -577,14 +1028,18 @@ select option {
 
               </div>
 
+
             </div>
 
           </div>
 
 
+
           <div class="form-group">
 
-            <label>Deskripsi</label>
+            <label>
+              Deskripsi
+            </label>
 
             <textarea
               id="description"
@@ -593,26 +1048,35 @@ select option {
 
           </div>
 
+
         </div>
 
 
+
+        <!-- HARGA -->
+
         <div class="card">
 
-          <h2>Harga</h2>
+          <h2>
+            Harga
+          </h2>
+
 
           <div class="row">
+
 
             <div class="form-group">
 
               <label>
-                Harga <span class="required">*</span>
+                Harga
+                <span class="required">*</span>
               </label>
 
               <input
                 type="number"
                 id="price"
                 min="0"
-                step="0.01"
+                step="1"
                 placeholder="0"
                 required
               >
@@ -620,26 +1084,33 @@ select option {
             </div>
 
 
+
             <div class="form-group">
 
-              <label>Harga Asli</label>
+              <label>
+                Harga Asli
+              </label>
 
               <input
                 type="number"
                 id="original_price"
                 min="0"
-                step="0.01"
+                step="1"
                 placeholder="0"
               >
 
             </div>
 
+
           </div>
+
 
 
           <div class="form-group">
 
-            <label>Diskon (%)</label>
+            <label>
+              Diskon (%)
+            </label>
 
             <input
               type="number"
@@ -652,16 +1123,26 @@ select option {
 
           </div>
 
+
         </div>
 
 
+
+        <!-- AFFILIATE -->
+
         <div class="card">
 
-          <h2>Affiliate</h2>
+          <h2>
+            Affiliate
+          </h2>
+
+
 
           <div class="form-group">
 
-            <label>Platform</label>
+            <label>
+              Platform
+            </label>
 
             <select id="platform">
 
@@ -694,9 +1175,12 @@ select option {
           </div>
 
 
+
           <div class="form-group">
 
-            <label>Link Affiliate</label>
+            <label>
+              Link Affiliate
+            </label>
 
             <input
               type="url"
@@ -707,9 +1191,12 @@ select option {
           </div>
 
 
+
           <div class="form-group">
 
-            <label>External Product ID</label>
+            <label>
+              External Product ID
+            </label>
 
             <input
               type="text"
@@ -719,22 +1206,35 @@ select option {
 
           </div>
 
+
         </div>
+
 
       </div>
 
 
-      <!-- RIGHT -->
+
+      <!-- =====================================
+           RIGHT COLUMN
+      ====================================== -->
 
       <div>
 
+
+        <!-- GAMBAR -->
+
         <div class="card">
 
-          <h2>Gambar Produk</h2>
+          <h2>
+            Gambar Produk
+          </h2>
+
 
           <div class="form-group">
 
-            <label>URL Gambar Utama</label>
+            <label>
+              URL Gambar Utama
+            </label>
 
             <input
               type="url"
@@ -744,26 +1244,42 @@ select option {
 
           </div>
 
-          <div class="image-preview" id="imagePreview">
+
+          <div
+            class="image-preview"
+            id="imagePreview"
+          >
 
             <div class="image-placeholder">
+
               Preview gambar akan muncul di sini
+
             </div>
 
           </div>
 
+
         </div>
 
 
+
+        <!-- DATA TAMBAHAN -->
+
         <div class="card">
 
-          <h2>Data Tambahan</h2>
+          <h2>
+            Data Tambahan
+          </h2>
+
 
           <div class="row">
 
+
             <div class="form-group">
 
-              <label>Rating</label>
+              <label>
+                Rating
+              </label>
 
               <input
                 type="number"
@@ -777,9 +1293,12 @@ select option {
             </div>
 
 
+
             <div class="form-group">
 
-              <label>Jumlah Terjual</label>
+              <label>
+                Jumlah Terjual
+              </label>
 
               <input
                 type="number"
@@ -791,27 +1310,39 @@ select option {
 
             </div>
 
+
           </div>
+
 
         </div>
 
 
+
+        <!-- STATUS -->
+
         <div class="card">
 
-          <h2>Status Produk</h2>
+          <h2>
+            Status Produk
+          </h2>
 
+
+          <!-- ACTIVE -->
 
           <div class="switch-row">
 
             <div class="switch-info">
 
-              <strong>Produk Aktif</strong>
+              <strong>
+                Produk Aktif
+              </strong>
 
               <small>
                 Tampilkan produk di website
               </small>
 
             </div>
+
 
             <label class="switch">
 
@@ -828,17 +1359,23 @@ select option {
           </div>
 
 
+
+          <!-- FEATURED -->
+
           <div class="switch-row">
 
             <div class="switch-info">
 
-              <strong>Produk Featured</strong>
+              <strong>
+                Produk Featured
+              </strong>
 
               <small>
                 Tampilkan sebagai produk unggulan
               </small>
 
             </div>
+
 
             <label class="switch">
 
@@ -854,17 +1391,23 @@ select option {
           </div>
 
 
+
+          <!-- TRENDING -->
+
           <div class="switch-row">
 
             <div class="switch-info">
 
-              <strong>Produk Trending</strong>
+              <strong>
+                Produk Trending
+              </strong>
 
               <small>
                 Tandai sebagai produk trending
               </small>
 
             </div>
+
 
             <label class="switch">
 
@@ -879,14 +1422,21 @@ select option {
 
           </div>
 
+
         </div>
 
+
       </div>
+
 
     </div>
 
 
+
+    <!-- ACTION -->
+
     <div class="actions">
+
 
       <button
         type="button"
@@ -896,6 +1446,7 @@ select option {
         Batal
       </button>
 
+
       <button
         type="submit"
         class="btn btn-save"
@@ -904,14 +1455,25 @@ select option {
         + Simpan Produk
       </button>
 
+
     </div>
 
+
   </form>
+
 
 </main>
 
 
-<div class="loading" id="loading">
+
+<!-- =========================================
+     LOADING
+========================================= -->
+
+<div
+  class="loading"
+  id="loading"
+>
 
   <div class="loading-box">
 
@@ -926,7 +1488,9 @@ select option {
 </div>
 
 
+
 <script>
+
 
 /* =========================================
    SUPABASE
@@ -935,8 +1499,10 @@ select option {
 const SUPABASE_URL =
   "https://fmftcisigssgfjqqezqz.supabase.co";
 
+
 const SUPABASE_ANON_KEY =
   "sb_publishable_0YyKpZ3_HOED9iHlgfJldw_4ZrugD7C";
+
 
 const supabaseClient =
   window.supabase.createClient(
@@ -945,50 +1511,85 @@ const supabaseClient =
   );
 
 
+
 /* =========================================
    ELEMENTS
 ========================================= */
 
 const form =
-  document.getElementById("productForm");
+  document.getElementById(
+    "productForm"
+  );
+
 
 const nameInput =
-  document.getElementById("name");
+  document.getElementById(
+    "name"
+  );
+
 
 const categoryInput =
-  document.getElementById("category");
+  document.getElementById(
+    "category"
+  );
+
 
 const slugInput =
-  document.getElementById("slug");
+  document.getElementById(
+    "slug"
+  );
+
 
 const urlPreview =
-  document.getElementById("urlPreview");
+  document.getElementById(
+    "urlPreview"
+  );
+
 
 const imageInput =
-  document.getElementById("image_url");
+  document.getElementById(
+    "image_url"
+  );
+
 
 const imagePreview =
-  document.getElementById("imagePreview");
+  document.getElementById(
+    "imagePreview"
+  );
+
 
 const alertBox =
-  document.getElementById("alert");
+  document.getElementById(
+    "alert"
+  );
+
 
 const loading =
-  document.getElementById("loading");
+  document.getElementById(
+    "loading"
+  );
+
 
 const saveBtn =
-  document.getElementById("saveBtn");
+  document.getElementById(
+    "saveBtn"
+  );
+
 
 
 /* =========================================
-   DOMAIN
+   BASE URL
 ========================================= */
 
 function getBaseUrl() {
 
-  return window.location.origin;
+  return (
+    window.location.origin
+    + "/affiliamart"
+  );
 
 }
+
 
 
 /* =========================================
@@ -1005,17 +1606,30 @@ function makeSlug(text) {
 
     .normalize("NFD")
 
-    .replace(/[\u0300-\u036f]/g, "")
+    .replace(
+      /[\u0300-\u036f]/g,
+      ""
+    )
 
-    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(
+      /[^a-z0-9\s-]/g,
+      ""
+    )
 
     .trim()
 
-    .replace(/\s+/g, "-")
+    .replace(
+      /\s+/g,
+      "-"
+    )
 
-    .replace(/-+/g, "-");
+    .replace(
+      /-+/g,
+      "-"
+    );
 
 }
+
 
 
 /* =========================================
@@ -1024,21 +1638,28 @@ function makeSlug(text) {
 
 function updateUrlPreview() {
 
-  const category =
+
+  const selectedOption =
     categoryInput.options[
       categoryInput.selectedIndex
     ];
 
+
   const categorySlug =
-    category &&
-    category.dataset.slug
-      ? category.dataset.slug
+    selectedOption &&
+    selectedOption.dataset
+      ? selectedOption.dataset.slug
       : "";
+
 
   const slug =
     slugInput.value.trim();
 
-  if (!categorySlug || !slug) {
+
+  if (
+    !categorySlug ||
+    !slug
+  ) {
 
     urlPreview.textContent =
       "Pilih kategori dan masukkan nama produk";
@@ -1046,6 +1667,7 @@ function updateUrlPreview() {
     return;
 
   }
+
 
   urlPreview.textContent =
     getBaseUrl()
@@ -1057,6 +1679,7 @@ function updateUrlPreview() {
 }
 
 
+
 /* =========================================
    NAME -> SLUG
 ========================================= */
@@ -1066,7 +1689,9 @@ nameInput.addEventListener(
   function() {
 
     slugInput.value =
-      makeSlug(this.value);
+      makeSlug(
+        this.value
+      );
 
     updateUrlPreview();
 
@@ -1074,8 +1699,9 @@ nameInput.addEventListener(
 );
 
 
+
 /* =========================================
-   SLUG MANUAL EDIT
+   SLUG MANUAL
 ========================================= */
 
 slugInput.addEventListener(
@@ -1083,12 +1709,15 @@ slugInput.addEventListener(
   function() {
 
     this.value =
-      makeSlug(this.value);
+      makeSlug(
+        this.value
+      );
 
     updateUrlPreview();
 
   }
 );
+
 
 
 /* =========================================
@@ -1097,8 +1726,13 @@ slugInput.addEventListener(
 
 categoryInput.addEventListener(
   "change",
-  updateUrlPreview
+  function() {
+
+    updateUrlPreview();
+
+  }
 );
+
 
 
 /* =========================================
@@ -1109,31 +1743,69 @@ imageInput.addEventListener(
   "input",
   function() {
 
+
     const url =
       this.value.trim();
+
 
     if (!url) {
 
       imagePreview.innerHTML = `
+
         <div class="image-placeholder">
+
           Preview gambar akan muncul di sini
+
         </div>
+
       `;
 
       return;
 
     }
 
+
     imagePreview.innerHTML = `
+
       <img
         src="${escapeHtml(url)}"
         alt="Preview Produk"
-        onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'image-placeholder\\'>Gambar tidak dapat dimuat</div>'"
+        onerror="imageLoadError(this)"
       >
+
     `;
 
   }
 );
+
+
+
+/* =========================================
+   IMAGE ERROR
+========================================= */
+
+function imageLoadError(img) {
+
+  img.style.display =
+    "none";
+
+
+  imagePreview.innerHTML = `
+
+    <div class="image-placeholder">
+
+      Gambar tidak dapat dimuat.
+
+      <br><br>
+
+      Periksa kembali URL gambar.
+
+    </div>
+
+  `;
+
+}
+
 
 
 /* =========================================
@@ -1143,13 +1815,19 @@ imageInput.addEventListener(
 function escapeHtml(text) {
 
   const div =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
 
-  div.textContent = text;
+
+  div.textContent =
+    text;
+
 
   return div.innerHTML;
 
 }
+
 
 
 /* =========================================
@@ -1158,35 +1836,50 @@ function escapeHtml(text) {
 
 async function loadCategories() {
 
+
   categoryInput.innerHTML = `
+
     <option value="">
       Memuat kategori...
     </option>
+
   `;
+
 
   const {
     data,
     error
-  } = await supabaseClient
+  } =
+    await supabaseClient
 
-    .from("categories")
+      .from("categories")
 
-    .select("*")
+      .select("*")
 
-    .order("name", {
-      ascending: true
-    });
+      .order(
+        "name",
+        {
+          ascending: true
+        }
+      );
 
 
   if (error) {
 
-    console.error(error);
+    console.error(
+      "Category error:",
+      error
+    );
+
 
     categoryInput.innerHTML = `
+
       <option value="">
         Gagal memuat kategori
       </option>
+
     `;
+
 
     showAlert(
       "Gagal memuat kategori: "
@@ -1194,84 +1887,166 @@ async function loadCategories() {
       "error"
     );
 
-    return;
+
+    return false;
 
   }
 
 
   categoryInput.innerHTML = `
+
     <option value="">
       Pilih kategori
     </option>
+
   `;
 
 
-  data.forEach(category => {
+  if (
+    !data ||
+    data.length === 0
+  ) {
 
-    const option =
-      document.createElement("option");
+    categoryInput.innerHTML = `
 
-    option.value =
-      category.id;
+      <option value="">
+        Belum ada kategori
+      </option>
 
-    option.textContent =
-      category.name;
-
-    /*
-      Kalau categories sudah memiliki
-      slug, gunakan slug tersebut.
-      Kalau belum, otomatis dibuat dari name.
-    */
-
-    option.dataset.slug =
-      category.slug
-      ? makeSlug(category.slug)
-      : makeSlug(category.name);
+    `;
 
 
-    categoryInput.appendChild(option);
+    showAlert(
+      "Belum ada kategori. Silakan buat kategori terlebih dahulu.",
+      "error"
+    );
 
-  });
+
+    return false;
+
+  }
+
+
+  data.forEach(
+    function(category) {
+
+
+      const option =
+        document.createElement(
+          "option"
+        );
+
+
+      option.value =
+        category.id;
+
+
+      option.textContent =
+        category.name;
+
+
+      /*
+        Jika tabel categories
+        mempunyai kolom slug,
+        gunakan slug tersebut.
+
+        Jika tidak ada,
+        otomatis dibuat dari nama.
+      */
+
+      option.dataset.slug =
+        category.slug
+        ? makeSlug(
+            category.slug
+          )
+        : makeSlug(
+            category.name
+          );
+
+
+      categoryInput.appendChild(
+        option
+      );
+
+
+    }
+  );
+
+
+  return true;
 
 }
 
 
+
 /* =========================================
-   CHECK LOGIN
+   CHECK AUTH
 ========================================= */
 
 async function checkAuth() {
 
+
   const {
     data,
     error
-  } = await supabaseClient
-    .auth
-    .getSession();
+  } =
+    await supabaseClient
+      .auth
+      .getSession();
 
 
   if (error) {
 
-    console.error(error);
+    console.error(
+      "Auth error:",
+      error
+    );
 
-    return;
+
+    showAlert(
+      "Gagal memeriksa login: "
+      + error.message,
+      "error"
+    );
+
+
+    return false;
+
+  }
+
+
+  if (
+    !data ||
+    !data.session
+  ) {
+
+
+    showAlert(
+      "Silakan login sebagai admin terlebih dahulu.",
+      "error"
+    );
+
+
+    setTimeout(
+      function() {
+
+        window.location.href =
+          "admin.html";
+
+      },
+      1200
+    );
+
+
+    return false;
 
   }
 
 
-  if (!data.session) {
-
-    /*
-      Sesuaikan dengan halaman login
-      admin yang sudah kita buat.
-    */
-
-    window.location.href =
-      "login.html";
-
-  }
+  return true;
 
 }
+
 
 
 /* =========================================
@@ -1283,21 +2058,29 @@ function showAlert(
   type
 ) {
 
+
   alertBox.className =
-    "alert " + type;
+    "alert "
+    + type;
+
 
   alertBox.textContent =
     message;
 
+
   alertBox.style.display =
     "block";
 
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
+
+  window.scrollTo(
+    {
+      top: 0,
+      behavior: "smooth"
+    }
+  );
 
 }
+
 
 
 /* =========================================
@@ -1312,74 +2095,162 @@ function hideAlert() {
 }
 
 
+
 /* =========================================
-   GET FORM DATA
+   GET VALUE
 ========================================= */
 
 function getValue(id) {
 
+
   const element =
-    document.getElementById(id);
+    document.getElementById(
+      id
+    );
+
 
   return element.value.trim();
 
 }
 
 
+
 /* =========================================
-   SUBMIT
+   NUMBER VALUE
+========================================= */
+
+function getNumberValue(id) {
+
+
+  const value =
+    getValue(id);
+
+
+  if (value === "") {
+
+    return null;
+
+  }
+
+
+  const number =
+    Number(value);
+
+
+  if (
+    Number.isNaN(number)
+  ) {
+
+    return null;
+
+  }
+
+
+  return number;
+
+}
+
+
+
+/* =========================================
+   SUBMIT FORM
 ========================================= */
 
 form.addEventListener(
   "submit",
   async function(event) {
 
+
     event.preventDefault();
+
 
     hideAlert();
 
 
+    /* ================================
+       VALUES
+    ================================= */
+
     const name =
-      getValue("name");
+      getValue(
+        "name"
+      );
+
 
     const categoryId =
       categoryInput.value;
 
+
     const slug =
-      getValue("slug");
+      getValue(
+        "slug"
+      );
+
 
     const description =
-      getValue("description");
+      getValue(
+        "description"
+      );
+
 
     const imageUrl =
-      getValue("image_url");
+      getValue(
+        "image_url"
+      );
+
 
     const price =
-      getValue("price");
+      getNumberValue(
+        "price"
+      );
+
 
     const originalPrice =
-      getValue("original_price");
+      getNumberValue(
+        "original_price"
+      );
+
 
     const discount =
-      getValue("discount_percent");
+      getNumberValue(
+        "discount_percent"
+      );
+
 
     const platform =
-      getValue("platform");
+      getValue(
+        "platform"
+      );
+
 
     const affiliateUrl =
-      getValue("affiliate_url");
+      getValue(
+        "affiliate_url"
+      );
+
 
     const externalProductId =
-      getValue("external_product_id");
+      getValue(
+        "external_product_id"
+      );
+
 
     const rating =
-      getValue("rating");
+      getNumberValue(
+        "rating"
+      );
+
 
     const soldCount =
-      getValue("sold_count");
+      getNumberValue(
+        "sold_count"
+      );
 
 
-    /* VALIDATION */
+
+    /* ================================
+       VALIDATION
+    ================================= */
 
     if (!name) {
 
@@ -1388,11 +2259,14 @@ form.addEventListener(
         "error"
       );
 
+
       nameInput.focus();
+
 
       return;
 
     }
+
 
 
     if (!categoryId) {
@@ -1402,11 +2276,14 @@ form.addEventListener(
         "error"
       );
 
+
       categoryInput.focus();
+
 
       return;
 
     }
+
 
 
     if (!slug) {
@@ -1416,58 +2293,140 @@ form.addEventListener(
         "error"
       );
 
+
+      slugInput.focus();
+
+
       return;
 
     }
 
 
-    if (!price) {
+
+    if (
+      price === null ||
+      price < 0
+    ) {
 
       showAlert(
-        "Harga produk wajib diisi.",
+        "Harga produk wajib diisi dengan benar.",
         "error"
       );
 
+
+      document
+        .getElementById(
+          "price"
+        )
+        .focus();
+
+
       return;
 
     }
 
 
-    /* LOADING */
+
+    if (
+      discount !== null &&
+      (
+        discount < 0 ||
+        discount > 100
+      )
+    ) {
+
+      showAlert(
+        "Diskon harus antara 0 sampai 100%.",
+        "error"
+      );
+
+
+      return;
+
+    }
+
+
+
+    if (
+      rating !== null &&
+      (
+        rating < 0 ||
+        rating > 5
+      )
+    ) {
+
+      showAlert(
+        "Rating harus antara 0 sampai 5.",
+        "error"
+      );
+
+
+      return;
+
+    }
+
+
+
+    /* ================================
+       LOADING
+    ================================= */
 
     loading.style.display =
       "flex";
+
 
     saveBtn.disabled =
       true;
 
 
-    /*
-      Cek slug supaya URL tidak
-      bentrok dengan produk lain.
-    */
+    saveBtn.textContent =
+      "Menyimpan...";
+
+
+
+    /* ================================
+       CHECK SLUG
+    ================================= */
 
     const {
       data: existingSlug,
       error: slugCheckError
-    } = await supabaseClient
+    } =
+      await supabaseClient
 
-      .from("products")
+        .from("products")
 
-      .select("id")
+        .select("id")
 
-      .eq("slug", slug)
+        .eq(
+          "slug",
+          slug
+        )
 
-      .limit(1);
+        .limit(1);
+
 
 
     if (slugCheckError) {
 
+
+      console.error(
+        "Slug check:",
+        slugCheckError
+      );
+
+
       loading.style.display =
         "none";
 
+
       saveBtn.disabled =
         false;
+
+
+      saveBtn.textContent =
+        "+ Simpan Produk";
+
 
       showAlert(
         "Gagal mengecek slug: "
@@ -1475,9 +2434,11 @@ form.addEventListener(
         "error"
       );
 
+
       return;
 
     }
+
 
 
     if (
@@ -1485,84 +2446,132 @@ form.addEventListener(
       existingSlug.length > 0
     ) {
 
+
       loading.style.display =
         "none";
+
 
       saveBtn.disabled =
         false;
 
+
+      saveBtn.textContent =
+        "+ Simpan Produk";
+
+
       showAlert(
-        "Slug produk sudah digunakan. Silakan gunakan nama/slug yang berbeda.",
+        "Slug produk sudah digunakan. Silakan gunakan nama produk yang berbeda.",
         "error"
       );
+
+
+      slugInput.focus();
+
 
       return;
 
     }
 
 
-    /* DATA */
+
+    /* ================================
+       GET CATEGORY SLUG
+    ================================= */
+
+    const selectedOption =
+      categoryInput.options[
+        categoryInput.selectedIndex
+      ];
+
+
+    const categorySlug =
+      selectedOption
+        ?.dataset
+        ?.slug
+        || makeSlug(
+          selectedOption.textContent
+        );
+
+
+
+    /* ================================
+       PRODUCT DATA
+    ================================= */
 
     const productData = {
+
 
       category_id:
         categoryId,
 
+
       name:
         name,
+
 
       slug:
         slug,
 
+
       description:
         description || null,
+
 
       image_url:
         imageUrl || null,
 
+
       price:
-        Number(price),
+        price,
+
 
       original_price:
-        originalPrice
-          ? Number(originalPrice)
-          : null,
+        originalPrice,
+
 
       discount_percent:
-        discount
-          ? Number(discount)
-          : null,
+        discount,
+
 
       platform:
         platform || null,
 
+
       external_product_id:
         externalProductId || null,
 
+
       rating:
-        rating
-          ? Number(rating)
-          : 0,
+        rating ?? 0,
+
 
       sold_count:
-        soldCount
-          ? Number(soldCount)
-          : 0,
+        soldCount ?? 0,
+
 
       is_featured:
-        document.getElementById(
-          "is_featured"
-        ).checked,
+        document
+          .getElementById(
+            "is_featured"
+          )
+          .checked,
+
 
       is_trending:
-        document.getElementById(
-          "is_trending"
-        ).checked,
+        document
+          .getElementById(
+            "is_trending"
+          )
+          .checked,
+
 
       is_active:
-        document.getElementById(
-          "is_active"
-        ).checked,
+        document
+          .getElementById(
+            "is_active"
+          )
+          .checked,
+
 
       affiliate_url:
         affiliateUrl || null
@@ -1570,32 +2579,57 @@ form.addEventListener(
     };
 
 
-    /* INSERT */
+
+    /* ================================
+       INSERT
+    ================================= */
 
     const {
       data,
       error
-    } = await supabaseClient
+    } =
+      await supabaseClient
 
-      .from("products")
+        .from("products")
 
-      .insert(productData)
+        .insert(
+          productData
+        )
 
-      .select()
+        .select()
+        .single();
 
-      .single();
 
+
+    /* ================================
+       STOP LOADING
+    ================================= */
 
     loading.style.display =
       "none";
+
 
     saveBtn.disabled =
       false;
 
 
+    saveBtn.textContent =
+      "+ Simpan Produk";
+
+
+
+    /* ================================
+       ERROR
+    ================================= */
+
     if (error) {
 
-      console.error(error);
+
+      console.error(
+        "Insert product:",
+        error
+      );
+
 
       showAlert(
         "Produk gagal disimpan: "
@@ -1603,21 +2637,16 @@ form.addEventListener(
         "error"
       );
 
+
       return;
 
     }
 
 
-    /* SUCCESS */
 
-    const categoryOption =
-      categoryInput.options[
-        categoryInput.selectedIndex
-      ];
-
-    const categorySlug =
-      categoryOption.dataset.slug;
-
+    /* ================================
+       PRODUCT URL
+    ================================= */
 
     const productUrl =
       getBaseUrl()
@@ -1627,6 +2656,11 @@ form.addEventListener(
       + slug;
 
 
+
+    /* ================================
+       SUCCESS
+    ================================= */
+
     showAlert(
       "Produk berhasil ditambahkan! URL: "
       + productUrl,
@@ -1634,51 +2668,89 @@ form.addEventListener(
     );
 
 
-    /*
-      Reset form setelah berhasil.
-    */
+
+    /* ================================
+       COPY URL
+    ================================= */
+
+    try {
+
+      await navigator.clipboard.writeText(
+        productUrl
+      );
+
+    } catch (copyError) {
+
+      console.log(
+        "Clipboard tidak tersedia."
+      );
+
+    }
+
+
+
+    /* ================================
+       RESET
+    ================================= */
 
     form.reset();
 
-    document.getElementById(
-      "is_active"
-    ).checked = true;
 
-    document.getElementById(
-      "rating"
-    ).value = 0;
+    document
+      .getElementById(
+        "is_active"
+      )
+      .checked = true;
 
-    document.getElementById(
-      "sold_count"
-    ).value = 0;
+
+    document
+      .getElementById(
+        "rating"
+      )
+      .value = 0;
+
+
+    document
+      .getElementById(
+        "sold_count"
+      )
+      .value = 0;
 
 
     imagePreview.innerHTML = `
+
       <div class="image-placeholder">
+
         Preview gambar akan muncul di sini
+
       </div>
+
     `;
+
 
     urlPreview.textContent =
       "Pilih kategori dan masukkan nama produk";
 
 
-    /*
-      Setelah 2 detik kembali ke dashboard.
-    */
+
+    /* ================================
+       RETURN DASHBOARD
+    ================================= */
 
     setTimeout(
       function() {
 
         window.location.href =
-          "admin-dashboard.html";
+          "dashboard.html";
 
       },
-      2000
+      2500
     );
+
 
   }
 );
+
 
 
 /* =========================================
@@ -1688,9 +2760,10 @@ form.addEventListener(
 function goDashboard() {
 
   window.location.href =
-    "admin-dashboard.html";
+    "dashboard.html";
 
 }
+
 
 
 /* =========================================
@@ -1699,13 +2772,25 @@ function goDashboard() {
 
 (async function init() {
 
-  await checkAuth();
+
+  const loggedIn =
+    await checkAuth();
+
+
+  if (!loggedIn) {
+
+    return;
+
+  }
+
 
   await loadCategories();
 
+
 })();
+
 
 </script>
 
 </body>
-</html>
+                </html>

@@ -12,6 +12,11 @@
 
 <title>AffiliaMart - Produk Affiliate Terbaik</title>
 
+<meta
+    name="description"
+    content="Temukan produk affiliate terbaik dari Shopee dan TikTok di AffiliaMart."
+>
+
 <!-- =====================================================
      SUPABASE
 ===================================================== -->
@@ -30,16 +35,20 @@
       href="https://fonts.gstatic.com"
       crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet">
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
 
 
 <!-- =====================================================
-     ICONS
+     FONT AWESOME
 ===================================================== -->
 
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+>
 
 
 <style>
@@ -59,6 +68,7 @@ html{
 }
 
 body{
+
     font-family:"Inter",Arial,sans-serif;
 
     background:#ffffff;
@@ -790,7 +800,7 @@ section{
 
     border-radius:6px;
 
-    background:#16A34A;
+    background:#DC2626;
 
     color:#FFFFFF;
 
@@ -824,6 +834,16 @@ section{
     font-size:9px;
 
     font-weight:700;
+}
+
+.platform.shopee{
+
+    background:#EE4D2D;
+}
+
+.platform.tiktok{
+
+    background:#111827;
 }
 
 .platform img{
@@ -1012,7 +1032,7 @@ section{
 
 
 /* =====================================================
-   ERROR / LOADING
+   LOADING / EMPTY
 ===================================================== */
 
 .loading{
@@ -1372,7 +1392,9 @@ footer p{
     }
 
 
-    /* CATEGORY 6 COLUMN */
+    /* =================================================
+       CATEGORY 6 COLUMN
+    ================================================= */
 
     .categories{
 
@@ -1423,7 +1445,9 @@ footer p{
     }
 
 
-    /* PRODUCT PILIHAN 3 COLUMN */
+    /* =================================================
+       PRODUK PILIHAN 3 COLUMN
+    ================================================= */
 
     .products{
 
@@ -1515,7 +1539,9 @@ footer p{
     }
 
 
-    /* CATEGORY PRODUCTS */
+    /* =================================================
+       CATEGORY PRODUCTS
+    ================================================= */
 
     .category-products-header{
 
@@ -1545,7 +1571,9 @@ footer p{
     }
 
 
-    /* BOTTOM */
+    /* =================================================
+       BOTTOM
+    ================================================= */
 
     .bottom-menu{
 
@@ -1567,6 +1595,7 @@ footer p{
 
         font-size:19px;
     }
+
 }
 
 
@@ -1646,6 +1675,7 @@ footer p{
 
         width:80px;
     }
+
 }
 
 </style>
@@ -1662,10 +1692,13 @@ footer p{
 
 <header>
 
-    <a href="index.html"
-       class="logo">
+    <a
+        href="index.html"
+        class="logo"
+    >
         AffiliaMart
     </a>
+
 
     <nav>
 
@@ -1681,8 +1714,10 @@ footer p{
             Produk
         </a>
 
-        <a href="admin.html"
-           class="admin-link">
+        <a
+            href="admin.html"
+            class="admin-link"
+        >
             🔐 Admin
         </a>
 
@@ -1714,8 +1749,11 @@ footer p{
         <div class="search">
 
             <div class="search-icon">
+
                 <i class="fa-solid fa-magnifying-glass"></i>
+
             </div>
+
 
             <input
                 type="text"
@@ -1724,9 +1762,11 @@ footer p{
                 autocomplete="off"
             >
 
+
             <button
                 type="button"
-                onclick="cariProduk()">
+                onclick="cariProduk()"
+            >
                 Cari
             </button>
 
@@ -1737,10 +1777,12 @@ footer p{
 
         <div class="popular-wrap">
 
+
             <button
                 type="button"
                 class="popular-item active"
-                onclick="searchPopular('')">
+                onclick="searchPopular('')"
+            >
 
                 <i class="fa-solid fa-fire"></i>
 
@@ -1752,7 +1794,8 @@ footer p{
             <button
                 type="button"
                 class="popular-item"
-                onclick="searchPopular('kaos')">
+                onclick="searchPopular('kaos')"
+            >
 
                 <i class="fa-solid fa-shirt"></i>
 
@@ -1764,7 +1807,8 @@ footer p{
             <button
                 type="button"
                 class="popular-item"
-                onclick="searchPopular('hijab')">
+                onclick="searchPopular('hijab')"
+            >
 
                 <i class="fa-solid fa-leaf"></i>
 
@@ -1776,7 +1820,8 @@ footer p{
             <button
                 type="button"
                 class="popular-item"
-                onclick="searchPopular('jam tangan')">
+                onclick="searchPopular('jam tangan')"
+            >
 
                 <i class="fa-regular fa-clock"></i>
 
@@ -1788,7 +1833,8 @@ footer p{
             <button
                 type="button"
                 class="popular-item"
-                onclick="searchPopular('tumbler')">
+                onclick="searchPopular('tumbler')"
+            >
 
                 <i class="fa-solid fa-bottle-water"></i>
 
@@ -1800,13 +1846,15 @@ footer p{
             <button
                 type="button"
                 class="popular-item"
-                onclick="searchPopular('tas')">
+                onclick="searchPopular('tas')"
+            >
 
                 <i class="fa-solid fa-bag-shopping"></i>
 
                 Tas Wanita
 
             </button>
+
 
         </div>
 
@@ -1820,8 +1868,10 @@ footer p{
      KATEGORI
 ===================================================== -->
 
-<section id="kategori"
-         class="category-section">
+<section
+    id="kategori"
+    class="category-section"
+>
 
     <div class="section-header">
 
@@ -1842,7 +1892,8 @@ footer p{
 
     <div
         class="categories"
-        id="categoryList">
+        id="categoryList"
+    >
 
         <div class="loading">
             ⏳ Memuat kategori...
@@ -1877,9 +1928,11 @@ footer p{
 
         <a
             href="#produk"
-            class="see-all">
+            class="see-all"
+        >
 
             Lihat semua
+
             <i class="fa-solid fa-arrow-right"></i>
 
         </a>
@@ -1889,7 +1942,8 @@ footer p{
 
     <div
         class="products"
-        id="productList">
+        id="productList"
+    >
 
         <div class="loading">
             ⏳ Memuat produk...
@@ -1971,7 +2025,8 @@ footer p{
     <div
         class="bottom-menu-item active"
         id="menuHome"
-        onclick="filterPlatform('all')">
+        onclick="filterPlatform('all')"
+    >
 
         <div class="bottom-menu-icon">
             🏠
@@ -1989,13 +2044,15 @@ footer p{
     <div
         class="bottom-menu-item"
         id="menuShopee"
-        onclick="filterPlatform('shopee')">
+        onclick="filterPlatform('shopee')"
+    >
 
         <div class="bottom-menu-icon">
 
             <img
                 src="https://cdn.simpleicons.org/shopee/EE4D2D"
-                alt="Shopee">
+                alt="Shopee"
+            >
 
         </div>
 
@@ -2011,13 +2068,15 @@ footer p{
     <div
         class="bottom-menu-item"
         id="menuTiktok"
-        onclick="filterPlatform('tiktok')">
+        onclick="filterPlatform('tiktok')"
+    >
 
         <div class="bottom-menu-icon">
 
             <img
                 src="https://cdn.simpleicons.org/tiktok/111827"
-                alt="TikTok">
+                alt="TikTok"
+            >
 
         </div>
 
@@ -2032,7 +2091,14 @@ footer p{
 
     <div
         class="bottom-menu-item"
-        onclick="document.getElementById('kategori').scrollIntoView({behavior:'smooth'})">
+        onclick="
+            document
+            .getElementById('kategori')
+            .scrollIntoView({
+                behavior:'smooth'
+            })
+        "
+    >
 
         <div class="bottom-menu-icon">
             ▦
@@ -2043,6 +2109,7 @@ footer p{
         </div>
 
     </div>
+
 
 </div>
 
@@ -2062,8 +2129,10 @@ footer p{
 const SUPABASE_URL =
     "https://fmftcisigssgfjqqezqz.supabase.co";
 
+
 const SUPABASE_KEY =
     "sb_publishable_0YyKpZ3_HOED9iHlgfJldw_4ZrugD7C";
+
 
 const supabaseClient =
     window.supabase.createClient(
@@ -2074,7 +2143,7 @@ const supabaseClient =
 
 
 /* =====================================================
-   DATA
+   GLOBAL DATA
 ===================================================== */
 
 let allProducts = [];
@@ -2082,18 +2151,6 @@ let allProducts = [];
 let allCategories = [];
 
 let categoryMap = {};
-
-
-
-/* =====================================================
-   BASE URL
-===================================================== */
-
-function getBaseUrl(){
-
-    return window.location.origin;
-
-}
 
 
 
@@ -2138,37 +2195,33 @@ function makeSlug(text){
    PRODUCT URL
 ===================================================== */
 
-function getProductUrl(
-    product
-){
+/*
+   PENTING:
 
-    const category =
-        categoryMap[
-            product.category_id
-        ];
+   Untuk GitHub Pages gunakan:
 
-    const categorySlug =
-        category &&
-        category.slug
-            ? makeSlug(category.slug)
-            : "produk";
+   product.html?slug=nama-produk
+
+   Jangan gunakan:
+
+   /kategori/nama-produk
+
+   karena GitHub Pages akan menganggapnya
+   sebagai folder/path dan menghasilkan 404.
+*/
+
+function getProductUrl(product){
 
     const productSlug =
         product.slug
             ? makeSlug(product.slug)
             : makeSlug(product.name);
 
-    return (
-        getBaseUrl()
-        + "/"
-        + categorySlug
-        + "/"
-        + productSlug
-        + "?product="
-        + encodeURIComponent(
+
+    return "product.html?slug=" +
+        encodeURIComponent(
             productSlug
-        )
-    );
+        );
 }
 
 
@@ -2183,6 +2236,7 @@ function getVisitorId(){
         localStorage.getItem(
             "affiliamart_visitor_id"
         );
+
 
     if(!visitorId){
 
@@ -2207,11 +2261,14 @@ function getVisitorId(){
 
         }
 
+
         localStorage.setItem(
             "affiliamart_visitor_id",
             visitorId
         );
+
     }
+
 
     return visitorId;
 }
@@ -2230,12 +2287,6 @@ async function trackEvent(
 
     try{
 
-        const visitorId =
-            getVisitorId();
-
-        const {
-            error
-        } =
         await supabaseClient
 
             .from(
@@ -2254,31 +2305,19 @@ async function trackEvent(
                     platform,
 
                 visitor_id:
-                    visitorId
+                    getVisitorId()
 
             });
-
-        if(error){
-
-            console.error(
-                "Analytics error:",
-                error
-            );
-
-            return false;
-        }
-
-        return true;
 
     }catch(error){
 
         console.error(
-            "Tracking error:",
+            "Analytics:",
             error
         );
 
-        return false;
     }
+
 }
 
 
@@ -2287,7 +2326,9 @@ async function trackEvent(
    PAGE VIEW
 ===================================================== */
 
-trackEvent("page_view");
+trackEvent(
+    "page_view"
+);
 
 
 
@@ -2304,7 +2345,9 @@ function formatRupiah(value){
     ){
 
         return "-";
+
     }
+
 
     return new Intl.NumberFormat(
         "id-ID",
@@ -2318,6 +2361,7 @@ function formatRupiah(value){
 
         }
     ).format(value);
+
 }
 
 
@@ -2334,7 +2378,9 @@ function escapeHTML(value){
     ){
 
         return "";
+
     }
+
 
     return String(value)
 
@@ -2362,6 +2408,7 @@ function escapeHTML(value){
             /'/g,
             "&#039;"
         );
+
 }
 
 
@@ -2386,6 +2433,7 @@ function getCategoryIcon(name){
     ){
 
         return "📱";
+
     }
 
 
@@ -2394,6 +2442,7 @@ function getCategoryIcon(name){
     ){
 
         return "🧥";
+
     }
 
 
@@ -2402,6 +2451,7 @@ function getCategoryIcon(name){
     ){
 
         return "👗";
+
     }
 
 
@@ -2412,6 +2462,7 @@ function getCategoryIcon(name){
     ){
 
         return "👕";
+
     }
 
 
@@ -2421,6 +2472,7 @@ function getCategoryIcon(name){
     ){
 
         return "🧕";
+
     }
 
 
@@ -2430,6 +2482,7 @@ function getCategoryIcon(name){
     ){
 
         return "👟";
+
     }
 
 
@@ -2438,6 +2491,7 @@ function getCategoryIcon(name){
     ){
 
         return "👜";
+
     }
 
 
@@ -2446,6 +2500,7 @@ function getCategoryIcon(name){
     ){
 
         return "⌚";
+
     }
 
 
@@ -2456,6 +2511,7 @@ function getCategoryIcon(name){
     ){
 
         return "💄";
+
     }
 
 
@@ -2466,6 +2522,7 @@ function getCategoryIcon(name){
     ){
 
         return "🏠";
+
     }
 
 
@@ -2476,6 +2533,7 @@ function getCategoryIcon(name){
     ){
 
         return "🚗";
+
     }
 
 
@@ -2485,6 +2543,7 @@ function getCategoryIcon(name){
     ){
 
         return "⚽";
+
     }
 
 
@@ -2494,6 +2553,7 @@ function getCategoryIcon(name){
     ){
 
         return "🍔";
+
     }
 
 
@@ -2503,6 +2563,7 @@ function getCategoryIcon(name){
     ){
 
         return "🥤";
+
     }
 
 
@@ -2512,6 +2573,7 @@ function getCategoryIcon(name){
     ){
 
         return "🎮";
+
     }
 
 
@@ -2521,6 +2583,7 @@ function getCategoryIcon(name){
     ){
 
         return "🧸";
+
     }
 
 
@@ -2530,58 +2593,70 @@ function getCategoryIcon(name){
     ){
 
         return "📚";
+
     }
 
 
     return "📦";
+
 }
 
 
 
 /* =====================================================
-   PLATFORM ICON
+   PLATFORM HTML
 ===================================================== */
 
-function getPlatformHTML(
-    platform
-){
+function getPlatformHTML(platform){
 
     const p =
         String(platform || "")
             .toLowerCase()
             .trim();
 
+
     if(p === "shopee"){
 
         return `
-            <div class="platform">
+
+            <div class="platform shopee">
 
                 <img
                     src="https://cdn.simpleicons.org/shopee/FFFFFF"
-                    alt="Shopee">
+                    alt="Shopee"
+                >
 
                 Shopee
 
             </div>
+
         `;
+
     }
+
 
     if(p === "tiktok"){
 
         return `
-            <div class="platform">
+
+            <div class="platform tiktok">
 
                 <img
                     src="https://cdn.simpleicons.org/tiktok/FFFFFF"
-                    alt="TikTok">
+                    alt="TikTok"
+                >
 
                 TikTok
 
             </div>
+
         `;
+
     }
 
+
     return "";
+
 }
 
 
@@ -2597,12 +2672,16 @@ async function loadCategories(){
             "categoryList"
         );
 
-    categoryList.innerHTML =
-        `
+
+    categoryList.innerHTML = `
+
         <div class="loading">
+
             ⏳ Memuat kategori...
+
         </div>
-        `;
+
+    `;
 
 
     const {
@@ -2653,7 +2732,9 @@ async function loadCategories(){
 
         `;
 
+
         return;
+
     }
 
 
@@ -2669,24 +2750,7 @@ async function loadCategories(){
 
             categoryMap[
                 category.id
-            ] = {
-
-                id:
-                    category.id,
-
-                name:
-                    category.name,
-
-                slug:
-                    category.slug
-                        ? makeSlug(
-                            category.slug
-                        )
-                        : makeSlug(
-                            category.name
-                        )
-
-            };
+            ] = category;
 
         }
     );
@@ -2695,6 +2759,7 @@ async function loadCategories(){
     renderCategories(
         allCategories
     );
+
 }
 
 
@@ -2703,9 +2768,7 @@ async function loadCategories(){
    RENDER CATEGORIES
 ===================================================== */
 
-function renderCategories(
-    data
-){
+function renderCategories(data){
 
     const categoryList =
         document.getElementById(
@@ -2727,15 +2790,16 @@ function renderCategories(
                 </h3>
 
                 <p>
-                    Tambahkan kategori
-                    melalui admin.
+                    Tambahkan kategori melalui admin.
                 </p>
 
             </div>
 
         `;
 
+
         return;
+
     }
 
 
@@ -2765,26 +2829,48 @@ function renderCategories(
                 return `
 
                     <div
+
                         class="category"
-                        data-category-id="${escapeHTML(category.id)}"
-                        onclick="filterKategori('${escapeHTML(category.id)}')"
+
+                        data-category-id="${escapeHTML(
+                            category.id
+                        )}"
+
+                        onclick="
+                            filterKategori(
+                                '${escapeHTML(
+                                    category.id
+                                )}'
+                            )
+                        "
                     >
 
                         <div
-                            class="category-icon">
+                            class="category-icon"
+                        >
+
                             ${icon}
+
                         </div>
 
+
                         <div
-                            class="category-name">
+                            class="category-name"
+                        >
+
                             ${escapeHTML(
                                 category.name
                             )}
+
                         </div>
 
+
                         <div
-                            class="category-count">
+                            class="category-count"
+                        >
+
                             ${count} Produk
+
                         </div>
 
                     </div>
@@ -2793,6 +2879,7 @@ function renderCategories(
 
             }
         ).join("");
+
 }
 
 
@@ -2809,12 +2896,15 @@ async function loadProducts(){
         );
 
 
-    productList.innerHTML =
-        `
+    productList.innerHTML = `
+
         <div class="loading">
+
             ⏳ Memuat produk...
+
         </div>
-        `;
+
+    `;
 
 
     const {
@@ -2886,7 +2976,9 @@ async function loadProducts(){
 
         `;
 
+
         return;
+
     }
 
 
@@ -2904,17 +2996,16 @@ async function loadProducts(){
     );
 
 
-    /*
-     * Update jumlah produk
-     * pada kartu kategori
-     */
-
-    if(allCategories.length){
+    if(
+        allCategories.length
+    ){
 
         renderCategories(
             allCategories
         );
+
     }
+
 }
 
 
@@ -2923,14 +3014,14 @@ async function loadProducts(){
    CREATE PRODUCT CARD
 ===================================================== */
 
-function createProductCard(
-    product
-){
+function createProductCard(product){
 
     let imageHTML = `
 
         <div class="product-placeholder">
+
             🛍️
+
         </div>
 
     `;
@@ -2946,12 +3037,15 @@ function createProductCard(
         imageHTML = `
 
             <img
+
                 src="${escapeHTML(
                     product.image_url
                 )}"
+
                 alt="${escapeHTML(
                     product.name
                 )}"
+
                 loading="lazy"
 
                 onerror="
@@ -2960,21 +3054,26 @@ function createProductCard(
                     if(
                         this.nextElementSibling
                     ){
+
                         this.nextElementSibling
                             .style.display='flex';
+
                     }
                 "
             >
 
+
             <div
                 class="product-placeholder"
-                style="display:none;">
+                style="display:none;"
+            >
 
                 🛍️
 
             </div>
 
         `;
+
     }
 
 
@@ -2991,12 +3090,15 @@ function createProductCard(
         discountHTML = `
 
             <div class="discount">
+
                 -${Number(
                     product.discount_percent
                 )}%
+
             </div>
 
         `;
+
     }
 
 
@@ -3038,6 +3140,7 @@ function createProductCard(
             </div>
 
         `;
+
     }
 
 
@@ -3053,12 +3156,15 @@ function createProductCard(
         metaHTML += `
 
             <span>
+
                 ⭐ ${Number(
                     product.rating
                 ).toFixed(1)}
+
             </span>
 
         `;
+
     }
 
 
@@ -3073,15 +3179,25 @@ function createProductCard(
         metaHTML += `
 
             <span>
+
                 ${Number(
                     product.sold_count
                 ).toLocaleString("id-ID")}
+
                 terjual
+
             </span>
 
         `;
+
     }
 
+
+    /*
+       LINK PRODUK YANG SUDAH DIPERBAIKI
+
+       product.html?slug=...
+    */
 
     const productURL =
         getProductUrl(
@@ -3092,6 +3208,7 @@ function createProductCard(
     return `
 
         <div
+
             class="product"
 
             data-name="${escapeHTML(
@@ -3106,9 +3223,6 @@ function createProductCard(
                 platform
             )}"
 
-            data-url="${escapeHTML(
-                productURL
-            )}"
         >
 
 
@@ -3125,10 +3239,13 @@ function createProductCard(
 
             <div class="product-info">
 
+
                 <h3>
+
                     ${escapeHTML(
                         product.name
                     )}
+
                 </h3>
 
 
@@ -3148,12 +3265,15 @@ function createProductCard(
                     metaHTML
                     ?
                     `
-                    <div
-                        class="product-meta">
 
-                        ${metaHTML}
+                        <div
+                            class="product-meta"
+                        >
 
-                    </div>
+                            ${metaHTML}
+
+                        </div>
+
                     `
                     :
                     ""
@@ -3161,6 +3281,7 @@ function createProductCard(
 
 
                 <a
+
                     href="${escapeHTML(
                         productURL
                     )}"
@@ -3170,9 +3291,15 @@ function createProductCard(
                     onclick="
                         handleProductClick(
                             event,
-                            '${escapeHTML(product.id)}',
-                            '${escapeHTML(platform)}',
-                            '${escapeHTML(productURL)}'
+                            '${escapeHTML(
+                                product.id
+                            )}',
+                            '${escapeHTML(
+                                platform
+                            )}',
+                            '${escapeHTML(
+                                productURL
+                            )}'
                         )
                     "
                 >
@@ -3181,11 +3308,13 @@ function createProductCard(
 
                 </a>
 
+
             </div>
 
         </div>
 
     `;
+
 }
 
 
@@ -3226,17 +3355,11 @@ function renderFeaturedProducts(
 
         `;
 
+
         return;
+
     }
 
-
-    /*
-     * Prioritas:
-     * is_featured = true
-     *
-     * Jika belum ada featured,
-     * ambil produk terbaru.
-     */
 
     let featured =
         products.filter(
@@ -3244,6 +3367,12 @@ function renderFeaturedProducts(
                 product.is_featured === true
         );
 
+
+    /*
+       Kalau belum ada produk
+       yang ditandai featured,
+       gunakan produk terbaru.
+    */
 
     if(
         featured.length === 0
@@ -3272,6 +3401,7 @@ function renderFeaturedProducts(
                 createProductCard
             )
             .join("");
+
 }
 
 
@@ -3306,7 +3436,9 @@ function renderProductsPerCategory(
 
         `;
 
+
         return;
+
     }
 
 
@@ -3328,17 +3460,12 @@ function renderProductsPerCategory(
                 );
 
 
-            /*
-             * Jangan tampilkan
-             * kategori yang belum
-             * mempunyai produk.
-             */
-
             if(
                 categoryProducts.length === 0
             ){
 
                 return;
+
             }
 
 
@@ -3352,19 +3479,27 @@ function renderProductsPerCategory(
 
                 <div
                     class="category-block"
-                    data-category-block="${escapeHTML(category.id)}"
+                    data-category-block="${escapeHTML(
+                        category.id
+                    )}"
                 >
 
 
                     <div
-                        class="category-products-header">
+                        class="category-products-header"
+                    >
+
 
                         <div
-                            class="category-products-title">
+                            class="category-products-title"
+                        >
 
                             <span>
+
                                 ${icon}
+
                             </span>
+
 
                             ${escapeHTML(
                                 category.name
@@ -3374,18 +3509,21 @@ function renderProductsPerCategory(
 
 
                         <div
-                            class="category-products-count">
+                            class="category-products-count"
+                        >
 
                             ${categoryProducts.length}
                             Produk
 
                         </div>
 
+
                     </div>
 
 
                     <div
-                        class="category-products-grid">
+                        class="category-products-grid"
+                    >
 
                         ${
                             categoryProducts
@@ -3398,6 +3536,7 @@ function renderProductsPerCategory(
 
                     </div>
 
+
                 </div>
 
             `;
@@ -3406,7 +3545,9 @@ function renderProductsPerCategory(
     );
 
 
-    if(html === ""){
+    if(
+        html === ""
+    ){
 
         html = `
 
@@ -3423,11 +3564,13 @@ function renderProductsPerCategory(
             </div>
 
         `;
+
     }
 
 
     container.innerHTML =
         html;
+
 }
 
 
@@ -3455,6 +3598,7 @@ async function handleProductClick(
 
     window.location.href =
         productURL;
+
 }
 
 
@@ -3481,7 +3625,9 @@ function cariProduk(){
         );
 
 
-    if(input === ""){
+    if(
+        input === ""
+    ){
 
         products.forEach(
             product => {
@@ -3503,6 +3649,7 @@ function cariProduk(){
 
 
         return;
+
     }
 
 
@@ -3523,7 +3670,9 @@ function cariProduk(){
 
 
             if(
-                nama.includes(input)
+                nama.includes(
+                    input
+                )
             ){
 
                 product.style.display =
@@ -3536,6 +3685,7 @@ function cariProduk(){
 
                 product.style.display =
                     "none";
+
             }
 
         }
@@ -3551,12 +3701,16 @@ function cariProduk(){
         });
 
 
-    if(!ditemukan){
+    if(
+        !ditemukan
+    ){
 
         alert(
             "Produk tidak ditemukan."
         );
+
     }
+
 }
 
 
@@ -3579,10 +3733,6 @@ function searchPopular(
         keyword;
 
 
-    /*
-     * Highlight button
-     */
-
     document
         .querySelectorAll(
             ".popular-item"
@@ -3595,22 +3745,24 @@ function searchPopular(
         );
 
 
-    event?.currentTarget
-        ?.classList
-        ?.add("active");
-
-
     if(
         keyword === ""
     ){
 
-        cariProduk();
+        document
+            .querySelector(
+                ".popular-item"
+            )
+            ?.classList
+            .add(
+                "active"
+            );
 
-        return;
     }
 
 
     cariProduk();
+
 }
 
 
@@ -3624,7 +3776,7 @@ document
         "searchInput"
     )
     .addEventListener(
-        "keypress",
+        "keydown",
         function(event){
 
             if(
@@ -3702,12 +3854,16 @@ function filterKategori(
         });
 
 
-    if(!ditemukan){
+    if(
+        !ditemukan
+    ){
 
         alert(
             "Belum ada produk di kategori ini."
         );
+
     }
+
 }
 
 
@@ -3765,10 +3921,6 @@ function filterPlatform(
     );
 
 
-    /*
-     * Reset active menu
-     */
-
     document
         .querySelectorAll(
             ".bottom-menu-item"
@@ -3792,6 +3944,7 @@ function filterPlatform(
             .classList.add(
                 "active"
             );
+
     }
 
 
@@ -3806,6 +3959,7 @@ function filterPlatform(
             .classList.add(
                 "active"
             );
+
     }
 
 
@@ -3820,6 +3974,7 @@ function filterPlatform(
             .classList.add(
                 "active"
             );
+
     }
 
 
@@ -3846,7 +4001,9 @@ function filterPlatform(
             ) +
             "."
         );
+
     }
+
 }
 
 
@@ -3858,14 +4015,19 @@ function filterPlatform(
 async function initializeApp(){
 
     /*
-     * Load kategori terlebih dahulu
-     * agar categoryMap tersedia
-     * ketika membuat URL produk.
-     */
+       Kategori harus dimuat dulu
+       agar categoryMap siap.
+    */
 
     await loadCategories();
 
+
+    /*
+       Setelah itu produk.
+    */
+
     await loadProducts();
+
 }
 
 
@@ -3876,4 +4038,4 @@ initializeApp();
 
 </body>
 
-      </html>
+                  </html>

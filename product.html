@@ -119,19 +119,7 @@ const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 function escapeHTML(value){return String(value??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");}
 function formatRupiah(value){if(value===null||value===undefined||value==="")return "-";return new Intl.NumberFormat("id-ID",{style:"currency",currency:"IDR",maximumFractionDigits:0}).format(value);}
 function makeSlug(text){return String(text||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9\s-]/g,"").trim().replace(/\s+/g,"-").replace(/-+/g,"-");}
-function getSlug(){
-  const params=new URLSearchParams(window.location.search);
-  const querySlug=params.get("slug");
-  if(querySlug) return querySlug;
-
-  // Dukungan URL GitHub Pages seperti /kategori/nama-produk
-  const parts=window.location.pathname.split("/").filter(Boolean);
-  if(parts.length){
-    const last=parts[parts.length-1];
-    if(last && last!=="product.html" && last!=="index.html") return decodeURIComponent(last);
-  }
-  return "";
-}
+function getSlug(){return new URLSearchParams(window.location.search).get("slug")||"";}
 function getVisitorId(){let id=localStorage.getItem("affiliamart_visitor_id");if(!id){id=window.crypto&&crypto.randomUUID?crypto.randomUUID():"visitor-"+Date.now()+"-"+Math.random().toString(36).slice(2);localStorage.setItem("affiliamart_visitor_id",id)}return id;}
 async function trackEvent(eventType,productId=null,platform=null){try{await supabaseClient.from("analytics_events").insert({event_type:eventType,product_id:productId,platform:platform,visitor_id:getVisitorId()})}catch(e){console.error("Analytics:",e)}}
 

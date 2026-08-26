@@ -3759,40 +3759,22 @@ function updateProductUrl(){
     ).value.trim();
 
 
-  const category =
-    categories.find(
-      function(item){
-        return item.id ===
-          categoryId;
-      }
-    );
-
-
   const preview =
     document.getElementById(
       "productUrlPreview"
     );
 
-
-  if(
-    !category ||
-    !slug
-  ){
-
+  if(!slug){
     preview.textContent =
       "URL produk akan muncul di sini.";
-
     return;
-
   }
 
-
   preview.textContent =
-    window.location.origin +
-    "/" +
-    category.slug +
-    "/" +
-    slug;
+    new URL(
+      "product.html?slug=" + encodeURIComponent(slug),
+      window.location.href
+    ).href;
 
 }
 

@@ -1,2311 +1,1766 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta charset="UTF-8">
+<title>Tambah Produk - AffiliaMart</title>
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <title>Tambah Produk - AffiliaMart</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- =========================
-       SUPABASE
-  ========================= -->
+<style>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
+:root{
+    --green:#16a34a;
+    --green-dark:#15803d;
+    --green-light:#ecfdf5;
+    --bg:#f4f7f6;
+    --card:#ffffff;
+    --text:#111827;
+    --muted:#6b7280;
+    --border:#dfe5e2;
+    --danger:#dc2626;
+}
 
-  <!-- =========================
-       FONT
-  ========================= -->
+body{
+    font-family:'Inter',Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+}
 
-  <link
-    rel="preconnect"
-    href="https://fonts.googleapis.com"
-  >
+/* ================= HEADER ================= */
 
-  <link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin
-  >
+header{
+    height:82px;
+    background:#fff;
+    border-bottom:1px solid #e5e7eb;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 36px;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  >
+.logo{
+    font-size:32px;
+    font-weight:800;
+    color:var(--green);
+    letter-spacing:-1.5px;
+}
 
+.header-right{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
 
-  <style>
+.back-btn{
+    text-decoration:none;
+    color:#374151;
+    background:#fff;
+    border:1px solid #d1d5db;
+    padding:12px 20px;
+    border-radius:16px;
+    font-size:16px;
+    font-weight:600;
+    transition:.2s;
+}
 
-    /* =========================
-       RESET
-    ========================= */
+.back-btn:hover{
+    background:#f9fafb;
+    border-color:#9ca3af;
+}
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+/* ================= MAIN ================= */
+
+main{
+    max-width:1050px;
+    margin:0 auto;
+    padding:50px 24px 100px;
+}
+
+.page-title{
+    margin-bottom:34px;
+}
+
+.page-title h1{
+    font-size:42px;
+    line-height:1.15;
+    font-weight:800;
+    letter-spacing:-1.5px;
+    margin-bottom:10px;
+}
+
+.page-title p{
+    color:var(--muted);
+    font-size:20px;
+}
+
+/* ================= ALERT ================= */
+
+.alert{
+    display:none;
+    padding:18px 20px;
+    border-radius:16px;
+    margin-bottom:24px;
+    font-size:16px;
+    line-height:1.6;
+}
+
+.alert.error{
+    display:block;
+    background:#fff1f2;
+    border:1px solid #fecdd3;
+    color:#b91c1c;
+}
+
+.alert.success{
+    display:block;
+    background:#ecfdf5;
+    border:1px solid #bbf7d0;
+    color:#166534;
+}
+
+/* ================= CARD ================= */
+
+.form-card{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:24px;
+    padding:34px;
+    box-shadow:0 8px 30px rgba(15,23,42,.04);
+    margin-bottom:24px;
+}
+
+.card-title{
+    font-size:24px;
+    font-weight:800;
+    margin-bottom:28px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+}
+
+.full{
+    grid-column:1 / -1;
+}
+
+/* ================= FORM ================= */
+
+.form-group{
+    margin-bottom:0;
+}
+
+label{
+    display:block;
+    margin-bottom:9px;
+    font-size:16px;
+    font-weight:700;
+    color:#374151;
+}
+
+.required{
+    color:var(--green);
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    border:1px solid #d5ddd9;
+    background:#fbfcfc;
+    border-radius:16px;
+    padding:16px 18px;
+    font-family:inherit;
+    font-size:16px;
+    color:#111827;
+    outline:none;
+    transition:.2s;
+}
+
+input,
+select{
+    height:58px;
+}
+
+textarea{
+    min-height:150px;
+    resize:vertical;
+    line-height:1.6;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:var(--green);
+    background:#fff;
+    box-shadow:0 0 0 4px rgba(22,163,74,.09);
+}
+
+input::placeholder,
+textarea::placeholder{
+    color:#9ca3af;
+}
+
+/* ================= SLUG ================= */
+
+.slug-preview{
+    margin-top:10px;
+    padding:14px 16px;
+    border-radius:14px;
+    background:var(--green-light);
+    color:#166534;
+    font-size:14px;
+    line-height:1.6;
+    word-break:break-word;
+}
+
+.slug-preview strong{
+    font-weight:800;
+}
+
+/* ================= PRICE ================= */
+
+.price-box{
+    background:#f8faf9;
+    border:1px solid #e1e8e4;
+    border-radius:18px;
+    padding:20px;
+}
+
+.price-result{
+    margin-top:18px;
+    background:var(--green-light);
+    border:1px solid #bbf7d0;
+    border-radius:15px;
+    padding:17px;
+}
+
+.price-result span{
+    display:block;
+    color:#6b7280;
+    font-size:14px;
+    margin-bottom:5px;
+}
+
+.price-result strong{
+    font-size:25px;
+    color:#15803d;
+}
+
+/* ================= PLATFORM ================= */
+
+.platform-wrapper{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.platform-option{
+    position:relative;
+}
+
+.platform-option input{
+    position:absolute;
+    opacity:0;
+    pointer-events:none;
+}
+
+.platform-label{
+    height:62px;
+    border:1px solid #d5ddd9;
+    border-radius:16px;
+    background:#fbfcfc;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.platform-label:hover{
+    border-color:#86efac;
+}
+
+.platform-option input:checked + .platform-label{
+    border-color:var(--green);
+    background:var(--green-light);
+    color:var(--green-dark);
+    box-shadow:0 0 0 3px rgba(22,163,74,.08);
+}
+
+.platform-icon{
+    width:28px;
+    height:28px;
+    object-fit:contain;
+}
+
+/* ================= SEO ================= */
+
+.seo-card{
+    background:#effcf4;
+    border:1px solid #c8f0d5;
+    border-radius:20px;
+    padding:24px;
+}
+
+.seo-title{
+    color:#166534;
+    font-size:22px;
+    font-weight:800;
+    margin-bottom:8px;
+}
+
+.seo-description{
+    color:#6b7280;
+    font-size:15px;
+    line-height:1.6;
+    margin-bottom:20px;
+}
+
+.counter{
+    margin-top:7px;
+    color:#6b7280;
+    font-size:13px;
+}
+
+/* ================= PREVIEW ================= */
+
+.preview{
+    margin-top:18px;
+    background:#fff;
+    border:1px solid #dfe7e2;
+    border-radius:16px;
+    padding:17px;
+}
+
+.preview-title{
+    color:#1d4ed8;
+    font-size:18px;
+    margin-bottom:5px;
+}
+
+.preview-url{
+    color:#15803d;
+    font-size:14px;
+    margin-bottom:7px;
+    word-break:break-all;
+}
+
+.preview-text{
+    color:#6b7280;
+    font-size:14px;
+}
+
+/* ================= BUTTON ================= */
+
+.actions{
+    display:flex;
+    gap:14px;
+    justify-content:flex-end;
+    margin-top:10px;
+}
+
+.btn{
+    border:0;
+    border-radius:16px;
+    padding:16px 25px;
+    font-family:inherit;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.btn-cancel{
+    background:#fff;
+    border:1px solid #d1d5db;
+    color:#374151;
+}
+
+.btn-save{
+    background:var(--green);
+    color:#fff;
+    min-width:180px;
+}
+
+.btn-save:hover{
+    background:var(--green-dark);
+}
+
+.btn:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+/* ================= LOADING ================= */
+
+.loading{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(15,23,42,.35);
+    z-index:999;
+    align-items:center;
+    justify-content:center;
+}
+
+.loading.active{
+    display:flex;
+}
+
+.loading-box{
+    background:#fff;
+    padding:28px 35px;
+    border-radius:20px;
+    box-shadow:0 15px 50px rgba(0,0,0,.15);
+    text-align:center;
+}
+
+.spinner{
+    width:42px;
+    height:42px;
+    border:4px solid #dcfce7;
+    border-top-color:var(--green);
+    border-radius:50%;
+    animation:spin .8s linear infinite;
+    margin:0 auto 15px;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:700px){
+
+    header{
+        height:72px;
+        padding:0 20px;
     }
 
-
-    html {
-      scroll-behavior: smooth;
+    .logo{
+        font-size:26px;
     }
 
-
-    body {
-
-      font-family:
-        "Inter",
-        Arial,
-        sans-serif;
-
-      background: #f5f7f6;
-
-      color: #17201a;
-
-      min-height: 100vh;
-
-      padding-bottom: 40px;
-
+    .back-btn{
+        padding:10px 14px;
+        border-radius:13px;
+        font-size:14px;
     }
 
-
-    button,
-    input,
-    textarea,
-    select {
-
-      font-family: inherit;
-
+    main{
+        padding:34px 16px 80px;
     }
 
-
-    /* =========================
-       HEADER
-    ========================= */
-
-    header {
-
-      height: 76px;
-
-      background:
-        rgba(255,255,255,0.97);
-
-      backdrop-filter:
-        blur(12px);
-
-      border-bottom:
-        1px solid #e5e7eb;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: space-between;
-
-      padding: 0 6%;
-
-      position: sticky;
-
-      top: 0;
-
-      z-index: 100;
-
+    .page-title{
+        margin-bottom:26px;
     }
 
-
-    .logo {
-
-      text-decoration: none;
-
-      color: #16a34a;
-
-      font-size: 25px;
-
-      font-weight: 800;
-
-      letter-spacing: -1px;
-
+    .page-title h1{
+        font-size:34px;
     }
 
-
-    .header-right {
-
-      display: flex;
-
-      align-items: center;
-
-      gap: 10px;
-
+    .page-title p{
+        font-size:17px;
+        line-height:1.5;
     }
 
-
-    .back-btn {
-
-      border: 1px solid #d1d5db;
-
-      background: #ffffff;
-
-      color: #374151;
-
-      padding: 10px 15px;
-
-      border-radius: 10px;
-
-      font-size: 13px;
-
-      font-weight: 600;
-
-      cursor: pointer;
-
-      transition: .2s;
-
+    .form-card{
+        padding:22px 18px;
+        border-radius:20px;
     }
 
-
-    .back-btn:hover {
-
-      border-color: #86efac;
-
-      color: #15803d;
-
-      background: #f0fdf4;
-
+    .card-title{
+        font-size:21px;
+        margin-bottom:22px;
     }
 
-
-    /* =========================
-       MAIN
-    ========================= */
-
-    .main {
-
-      max-width: 950px;
-
-      margin: 0 auto;
-
-      padding: 45px 20px 70px;
-
+    .form-grid{
+        grid-template-columns:1fr;
+        gap:20px;
     }
 
-
-    .page-header {
-
-      margin-bottom: 28px;
-
+    .full{
+        grid-column:auto;
     }
 
-
-    .page-header h1 {
-
-      font-size: 30px;
-
-      font-weight: 800;
-
-      letter-spacing: -.8px;
-
-      color: #111827;
-
-      margin-bottom: 8px;
-
+    .platform-wrapper{
+        grid-template-columns:1fr 1fr;
     }
 
-
-    .page-header p {
-
-      color: #6b7280;
-
-      font-size: 14px;
-
+    .platform-label{
+        font-size:14px;
+        height:58px;
     }
 
-
-    /* =========================
-       CARD
-    ========================= */
-
-    .card {
-
-      background: #ffffff;
-
-      border: 1px solid #e5e7eb;
-
-      border-radius: 18px;
-
-      padding: 25px;
-
-      margin-bottom: 20px;
-
-      box-shadow:
-        0 5px 20px rgba(0,0,0,.04);
-
+    .actions{
+        flex-direction:column-reverse;
     }
 
-
-    .card-title {
-
-      font-size: 18px;
-
-      font-weight: 800;
-
-      color: #111827;
-
-      margin-bottom: 22px;
-
+    .btn{
+        width:100%;
     }
+}
 
-
-    /* =========================
-       FORM
-    ========================= */
-
-    .form-group {
-
-      margin-bottom: 20px;
-
-    }
-
-
-    .form-group:last-child {
-
-      margin-bottom: 0;
-
-    }
-
-
-    label {
-
-      display: block;
-
-      margin-bottom: 8px;
-
-      font-size: 13px;
-
-      font-weight: 700;
-
-      color: #374151;
-
-    }
-
-
-    .required {
-
-      color: #16a34a;
-
-    }
-
-
-    input,
-    textarea,
-    select {
-
-      width: 100%;
-
-      border: 1px solid #dfe4e1;
-
-      background: #fafcfb;
-
-      color: #111827;
-
-      border-radius: 11px;
-
-      padding: 13px 14px;
-
-      outline: none;
-
-      font-size: 14px;
-
-      transition:
-        border-color .2s,
-        box-shadow .2s,
-        background .2s;
-
-    }
-
-
-    input {
-
-      height: 48px;
-
-    }
-
-
-    select {
-
-      height: 48px;
-
-      cursor: pointer;
-
-    }
-
-
-    textarea {
-
-      min-height: 170px;
-
-      resize: vertical;
-
-      line-height: 1.6;
-
-    }
-
-
-    input::placeholder,
-    textarea::placeholder {
-
-      color: #9ca3af;
-
-    }
-
-
-    input:focus,
-    textarea:focus,
-    select:focus {
-
-      background: #ffffff;
-
-      border-color: #22c55e;
-
-      box-shadow:
-        0 0 0 3px
-        rgba(34,197,94,.10);
-
-    }
-
-
-    /* =========================
-       SLUG
-    ========================= */
-
-    .slug-wrapper {
-
-      position: relative;
-
-    }
-
-
-    .slug-input {
-
-      padding-right: 120px;
-
-    }
-
-
-    .slug-auto {
-
-      position: absolute;
-
-      right: 12px;
-
-      top: 50%;
-
-      transform:
-        translateY(-50%);
-
-      font-size: 11px;
-
-      color: #16a34a;
-
-      background: #ecfdf3;
-
-      padding: 5px 8px;
-
-      border-radius: 6px;
-
-      font-weight: 700;
-
-      pointer-events: none;
-
-    }
-
-
-    .slug-preview {
-
-      margin-top: 9px;
-
-      padding: 11px 12px;
-
-      background: #f0fdf4;
-
-      border: 1px solid #dcfce7;
-
-      border-radius: 9px;
-
-      font-size: 12px;
-
-      color: #15803d;
-
-      word-break: break-all;
-
-      line-height: 1.5;
-
-    }
-
-
-    .slug-preview-label {
-
-      color: #6b7280;
-
-      margin-right: 5px;
-
-    }
-
-
-    /* =========================
-       SWITCH
-    ========================= */
-
-    .status-list {
-
-      display: grid;
-
-      gap: 10px;
-
-    }
-
-
-    .switch-row {
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: space-between;
-
-      gap: 15px;
-
-      padding: 15px;
-
-      background: #f9fafb;
-
-      border: 1px solid #e5e7eb;
-
-      border-radius: 12px;
-
-    }
-
-
-    .switch-text strong {
-
-      display: block;
-
-      font-size: 13px;
-
-      color: #1f2937;
-
-      margin-bottom: 3px;
-
-    }
-
-
-    .switch-text span {
-
-      display: block;
-
-      font-size: 11px;
-
-      color: #6b7280;
-
-      line-height: 1.4;
-
-    }
-
-
-    .switch {
-
-      position: relative;
-
-      width: 48px;
-
-      height: 27px;
-
-      flex-shrink: 0;
-
-    }
-
-
-    .switch input {
-
-      opacity: 0;
-
-      width: 0;
-
-      height: 0;
-
-      position: absolute;
-
-    }
-
-
-    .slider {
-
-      position: absolute;
-
-      inset: 0;
-
-      background: #d1d5db;
-
-      border-radius: 30px;
-
-      cursor: pointer;
-
-      transition: .2s;
-
-    }
-
-
-    .slider::before {
-
-      content: "";
-
-      position: absolute;
-
-      width: 21px;
-
-      height: 21px;
-
-      left: 3px;
-
-      top: 3px;
-
-      background: white;
-
-      border-radius: 50%;
-
-      box-shadow:
-        0 1px 4px rgba(0,0,0,.18);
-
-      transition: .2s;
-
-    }
-
-
-    .switch input:checked + .slider {
-
-      background: #16a34a;
-
-    }
-
-
-    .switch input:checked + .slider::before {
-
-      transform:
-        translateX(21px);
-
-    }
-
-
-    /* =========================
-       ALERT
-    ========================= */
-
-    .alert {
-
-      display: none;
-
-      padding: 14px 16px;
-
-      border-radius: 11px;
-
-      margin-bottom: 20px;
-
-      font-size: 13px;
-
-      line-height: 1.5;
-
-    }
-
-
-    .alert.error {
-
-      display: block;
-
-      color: #b91c1c;
-
-      background: #fef2f2;
-
-      border: 1px solid #fecaca;
-
-    }
-
-
-    .alert.success {
-
-      display: block;
-
-      color: #15803d;
-
-      background: #f0fdf4;
-
-      border: 1px solid #bbf7d0;
-
-    }
-
-
-    /* =========================
-       ACTIONS
-    ========================= */
-
-    .actions {
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: flex-end;
-
-      gap: 12px;
-
-      margin-top: 10px;
-
-    }
-
-
-    .btn {
-
-      min-height: 48px;
-
-      padding: 0 20px;
-
-      border: none;
-
-      border-radius: 11px;
-
-      font-size: 13px;
-
-      font-weight: 700;
-
-      cursor: pointer;
-
-      transition: .2s;
-
-    }
-
-
-    .btn-cancel {
-
-      background: #f3f4f6;
-
-      color: #374151;
-
-      border: 1px solid #e5e7eb;
-
-    }
-
-
-    .btn-cancel:hover {
-
-      background: #e5e7eb;
-
-    }
-
-
-    .btn-save {
-
-      min-width: 170px;
-
-      color: white;
-
-      background:
-        linear-gradient(
-          135deg,
-          #15803d,
-          #16a34a,
-          #22c55e
-        );
-
-      box-shadow:
-        0 7px 18px
-        rgba(22,163,74,.18);
-
-    }
-
-
-    .btn-save:hover {
-
-      transform:
-        translateY(-1px);
-
-      box-shadow:
-        0 10px 24px
-        rgba(22,163,74,.24);
-
-    }
-
-
-    .btn-save:disabled {
-
-      opacity: .6;
-
-      cursor: not-allowed;
-
-      transform: none;
-
-    }
-
-
-    /* =========================
-       LOADING
-    ========================= */
-
-    .loading-overlay {
-
-      display: none;
-
-      position: fixed;
-
-      inset: 0;
-
-      background:
-        rgba(17,24,39,.45);
-
-      backdrop-filter:
-        blur(4px);
-
-      z-index: 9999;
-
-      align-items: center;
-
-      justify-content: center;
-
-      padding: 20px;
-
-    }
-
-
-    .loading-box {
-
-      background: white;
-
-      border-radius: 16px;
-
-      padding: 25px 30px;
-
-      text-align: center;
-
-      box-shadow:
-        0 20px 50px
-        rgba(0,0,0,.15);
-
-    }
-
-
-    .spinner {
-
-      width: 35px;
-
-      height: 35px;
-
-      border: 3px solid #dcfce7;
-
-      border-top-color: #16a34a;
-
-      border-radius: 50%;
-
-      animation:
-        spin .8s linear infinite;
-
-      margin:
-        0 auto 13px;
-
-    }
-
-
-    .loading-text {
-
-      color: #374151;
-
-      font-size: 13px;
-
-      font-weight: 600;
-
-    }
-
-
-    @keyframes spin {
-
-      to {
-
-        transform:
-          rotate(360deg);
-
-      }
-
-    }
-
-
-    /* =========================
-       MOBILE
-    ========================= */
-
-    @media(max-width:700px) {
-
-      header {
-
-        height: 68px;
-
-        padding: 0 5%;
-
-      }
-
-
-      .logo {
-
-        font-size: 21px;
-
-      }
-
-
-      .back-btn {
-
-        padding: 8px 11px;
-
-        font-size: 12px;
-
-      }
-
-
-      .main {
-
-        padding:
-          30px 14px 50px;
-
-      }
-
-
-      .page-header h1 {
-
-        font-size: 25px;
-
-      }
-
-
-      .page-header p {
-
-        font-size: 13px;
-
-      }
-
-
-      .card {
-
-        padding: 18px;
-
-        border-radius: 15px;
-
-      }
-
-
-      .card-title {
-
-        font-size: 16px;
-
-        margin-bottom: 18px;
-
-      }
-
-
-      .actions {
-
-        flex-direction:
-          column-reverse;
-
-      }
-
-
-      .btn {
-
-        width: 100%;
-
-      }
-
-
-      .slug-input {
-
-        padding-right: 14px;
-
-      }
-
-
-      .slug-auto {
-
-        display: none;
-
-      }
-
-    }
-
-
-  </style>
-
+</style>
 </head>
-
 
 <body>
 
+<header>
 
-  <!-- =========================
-       HEADER
-  ========================= -->
-
-  <header>
-
-    <a
-      href="index.html"
-      class="logo"
-    >
-      AffiliaMart
-    </a>
-
+    <div class="logo">
+        AffiliaMart
+    </div>
 
     <div class="header-right">
-
-      <button
-        type="button"
-        class="back-btn"
-        onclick="goDashboard()"
-      >
-        ← Dashboard
-      </button>
-
+        <a href="dashboard.html" class="back-btn">
+            ← Dashboard
+        </a>
     </div>
 
-  </header>
+</header>
 
 
-  <!-- =========================
-       MAIN
-  ========================= -->
+<main>
 
-  <main class="main">
-
-
-    <div class="page-header">
-
-      <h1>
-        Tambah Produk
-      </h1>
-
-      <p>
-        Tambahkan produk baru ke katalog AffiliaMart.
-      </p>
-
+    <div class="page-title">
+        <h1>Tambah Produk</h1>
+        <p>Tambahkan produk baru ke katalog AffiliaMart.</p>
     </div>
 
-
-    <div
-      id="alert"
-      class="alert"
-    ></div>
+    <div id="alert" class="alert"></div>
 
 
-    <form
-      id="productForm"
-      autocomplete="off"
-    >
+    <!-- ================= INFORMASI PRODUK ================= -->
 
-
-      <!-- =========================
-           INFORMASI PRODUK
-      ========================= -->
-
-      <div class="card">
+    <div class="form-card">
 
         <div class="card-title">
-          Informasi Produk
+            Informasi Produk
         </div>
 
+        <div class="form-grid">
 
-        <!-- NAMA -->
+            <!-- NAMA -->
+            <div class="form-group full">
+
+                <label>
+                    Nama Produk <span class="required">*</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Contoh: Kaos Polos Premium"
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <!-- KATEGORI -->
+            <div class="form-group">
+
+                <label>
+                    Kategori <span class="required">*</span>
+                </label>
+
+                <select id="category">
+                    <option value="">Memuat kategori...</option>
+                </select>
+
+            </div>
+
+
+            <!-- PLATFORM -->
+            <div class="form-group">
+
+                <label>
+                    Platform <span class="required">*</span>
+                </label>
+
+                <div class="platform-wrapper">
+
+                    <div class="platform-option">
+
+                        <input
+                            type="radio"
+                            name="platform"
+                            id="platformShopee"
+                            value="Shopee"
+                        >
+
+                        <label
+                            for="platformShopee"
+                            class="platform-label"
+                        >
+                            <img
+                                class="platform-icon"
+                                src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Shopee.svg"
+                                alt="Shopee"
+                            >
+                            Shopee
+                        </label>
+
+                    </div>
+
+
+                    <div class="platform-option">
+
+                        <input
+                            type="radio"
+                            name="platform"
+                            id="platformTiktok"
+                            value="TikTok"
+                        >
+
+                        <label
+                            for="platformTiktok"
+                            class="platform-label"
+                        >
+                            <img
+                                class="platform-icon"
+                                src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Tiktok_icon.svg"
+                                alt="TikTok"
+                            >
+                            TikTok
+                        </label>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SLUG -->
+            <div class="form-group full">
+
+                <label>
+                    URL Produk <span class="required">*</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="slug"
+                    placeholder="nama-produk"
+                    autocomplete="off"
+                >
+
+                <div class="slug-preview">
+
+                    URL:
+                    <strong id="urlPreview">
+                        Pilih kategori dan isi nama produk
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- DESKRIPSI -->
+            <div class="form-group full">
+
+                <label>
+                    Deskripsi Produk <span class="required">*</span>
+                </label>
+
+                <textarea
+                    id="description"
+                    placeholder="Tuliskan deskripsi produk..."
+                ></textarea>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= HARGA ================= -->
+
+    <div class="form-card">
+
+        <div class="card-title">
+            Harga Produk
+        </div>
+
+        <div class="price-box">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+                        Harga Asli
+                    </label>
+
+                    <input
+                        type="number"
+                        id="originalPrice"
+                        min="0"
+                        placeholder="0"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Diskon (%)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="discount"
+                        min="0"
+                        max="100"
+                        value="0"
+                        placeholder="0"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="price-result">
+
+                <span>
+                    Harga Jual Otomatis
+                </span>
+
+                <strong id="pricePreview">
+                    Rp0
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= SEO ================= -->
+
+    <div class="form-card">
+
+        <div class="card-title">
+            SEO Produk
+        </div>
+
+        <div class="seo-card">
+
+            <div class="seo-title">
+                🔎 SEO Produk
+            </div>
+
+            <div class="seo-description">
+                Optimalkan judul dan deskripsi produk untuk mesin pencari.
+            </div>
+
+
+            <div class="form-group" style="margin-bottom:20px">
+
+                <label>
+                    SEO Title
+                </label>
+
+                <input
+                    type="text"
+                    id="seoTitle"
+                    maxlength="60"
+                    placeholder="Judul SEO produk"
+                >
+
+                <div class="counter">
+                    <span id="seoTitleCount">0</span>/60
+                </div>
+
+            </div>
+
+
+            <div class="form-group" style="margin-bottom:20px">
+
+                <label>
+                    SEO Description
+                </label>
+
+                <textarea
+                    id="seoDescription"
+                    maxlength="160"
+                    placeholder="Deskripsi SEO produk"
+                ></textarea>
+
+                <div class="counter">
+                    <span id="seoDescriptionCount">0</span>/160
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    SEO Keywords
+                </label>
+
+                <input
+                    type="text"
+                    id="seoKeywords"
+                    placeholder="keyword1, keyword2"
+                >
+
+            </div>
+
+
+            <div class="preview">
+
+                <div
+                    class="preview-title"
+                    id="seoPreviewTitle"
+                >
+                    Judul produk akan tampil di sini
+                </div>
+
+                <div
+                    class="preview-url"
+                    id="seoPreviewUrl"
+                >
+                    https://mvpxwear.github.io/
+                </div>
+
+                <div
+                    class="preview-text"
+                    id="seoPreviewDescription"
+                >
+                    Deskripsi produk akan tampil di sini.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= GAMBAR ================= -->
+
+    <div class="form-card">
+
+        <div class="card-title">
+            Gambar Produk
+        </div>
 
         <div class="form-group">
 
-          <label for="name">
-
-            Nama Produk
-
-            <span class="required">
-              *
-            </span>
-
-          </label>
-
-
-          <input
-            type="text"
-            id="name"
-            placeholder="Contoh: Samsung Galaxy A55 5G"
-            maxlength="200"
-            required
-          >
-
-        </div>
-
-
-        <!-- KATEGORI -->
-
-        <div class="form-group">
-
-          <label for="category">
-
-            Kategori
-
-            <span class="required">
-              *
-            </span>
-
-          </label>
-
-
-          <select
-            id="category"
-            required
-          >
-
-            <option value="">
-              Memuat kategori...
-            </option>
-
-          </select>
-
-        </div>
-
-
-        <!-- SLUG -->
-
-        <div class="form-group">
-
-          <label for="slug">
-
-            URL Produk
-
-            <span class="required">
-              *
-            </span>
-
-          </label>
-
-
-          <div class="slug-wrapper">
+            <label>
+                URL Gambar Utama
+            </label>
 
             <input
-              type="text"
-              id="slug"
-              class="slug-input"
-              placeholder="nama-produk"
-              maxlength="200"
-              required
+                type="url"
+                id="imageUrl"
+                placeholder="https://..."
             >
 
-
-            <div class="slug-auto">
-              OTOMATIS
+            <div style="
+                margin-top:8px;
+                color:#6b7280;
+                font-size:14px;
+                line-height:1.5;
+            ">
+                Gambar utama akan digunakan pada kartu produk dan halaman
+                detail produk.
             </div>
 
-          </div>
-
-
-          <div
-            class="slug-preview"
-            id="slugPreview"
-          >
-
-            <span class="slug-preview-label">
-              URL:
-            </span>
-
-            Pilih kategori dan masukkan nama produk.
-
-          </div>
-
         </div>
 
-
-        <!-- DESKRIPSI -->
-
-        <div class="form-group">
-
-          <label for="description">
-
-            Deskripsi Produk
-
-          </label>
+    </div>
 
 
-          <textarea
-            id="description"
-            placeholder="Tulis deskripsi singkat produk..."
-            maxlength="5000"
-          ></textarea>
+    <!-- ================= AFFILIATE ================= -->
 
-        </div>
-
-      </div>
-
-
-      <!-- =========================
-           STATUS
-      ========================= -->
-
-      <div class="card">
+    <div class="form-card">
 
         <div class="card-title">
-          Status Produk
+            Link Affiliate
         </div>
 
+        <div class="form-grid">
 
-        <div class="status-list">
+            <div class="form-group">
 
+                <label>
+                    Link Affiliate Shopee
+                </label>
 
-          <!-- ACTIVE -->
-
-          <div class="switch-row">
-
-            <div class="switch-text">
-
-              <strong>
-                Produk Aktif
-              </strong>
-
-              <span>
-                Produk akan ditampilkan di homepage.
-              </span>
+                <input
+                    type="url"
+                    id="shopeeUrl"
+                    placeholder="https://shopee.co.id/..."
+                >
 
             </div>
 
 
-            <label class="switch">
+            <div class="form-group">
 
-              <input
-                type="checkbox"
-                id="is_active"
-                checked
-              >
+                <label>
+                    Link Affiliate TikTok
+                </label>
 
-              <span class="slider"></span>
-
-            </label>
-
-          </div>
-
-
-          <!-- FEATURED -->
-
-          <div class="switch-row">
-
-            <div class="switch-text">
-
-              <strong>
-                Produk Pilihan
-              </strong>
-
-              <span>
-                Tampilkan produk pada bagian Produk Pilihan.
-              </span>
+                <input
+                    type="url"
+                    id="tiktokUrl"
+                    placeholder="https://www.tiktok.com/..."
+                >
 
             </div>
-
-
-            <label class="switch">
-
-              <input
-                type="checkbox"
-                id="is_featured"
-              >
-
-              <span class="slider"></span>
-
-            </label>
-
-          </div>
-
-
-          <!-- TRENDING -->
-
-          <div class="switch-row">
-
-            <div class="switch-text">
-
-              <strong>
-                Produk Trending
-              </strong>
-
-              <span>
-                Tandai produk sebagai produk trending.
-              </span>
-
-            </div>
-
-
-            <label class="switch">
-
-              <input
-                type="checkbox"
-                id="is_trending"
-              >
-
-              <span class="slider"></span>
-
-            </label>
-
-          </div>
-
 
         </div>
 
-      </div>
+    </div>
 
 
-      <!-- =========================
-           BUTTON
-      ========================= -->
+    <!-- ================= ACTION ================= -->
 
-      <div class="actions">
+    <div class="actions">
 
+        <a
+            href="dashboard.html"
+            class="btn btn-cancel"
+            style="text-decoration:none;text-align:center;"
+        >
+            Batal
+        </a>
 
         <button
-          type="button"
-          class="btn btn-cancel"
-          onclick="goDashboard()"
+            type="button"
+            id="saveBtn"
+            class="btn btn-save"
         >
-          Batal
+            + Simpan Produk
         </button>
 
+    </div>
 
-        <button
-          type="submit"
-          class="btn btn-save"
-          id="saveBtn"
-        >
-          + Simpan Produk
-        </button>
+</main>
 
 
-      </div>
+<!-- ================= LOADING ================= -->
 
-
-    </form>
-
-  </main>
-
-
-  <!-- =========================
-       LOADING
-  ========================= -->
-
-  <div
-    class="loading-overlay"
-    id="loadingOverlay"
-  >
+<div id="loading" class="loading">
 
     <div class="loading-box">
 
-      <div class="spinner"></div>
+        <div class="spinner"></div>
 
-      <div class="loading-text">
-        Menyimpan produk...
-      </div>
+        <div style="font-weight:700;">
+            Menyimpan produk...
+        </div>
 
     </div>
 
-  </div>
+</div>
 
 
-  <!-- =========================
-       JAVASCRIPT
-  ========================= -->
+<script>
 
-  <script>
+/* =========================================================
+   SUPABASE
+========================================================= */
 
+const SUPABASE_URL = "https://YOUR-PROJECT.supabase.co";
+const SUPABASE_ANON_KEY = "YOUR-ANON-KEY";
 
-    /* =========================
-       SUPABASE
-    ========================= */
-
-    const SUPABASE_URL =
-      "https://fmftcisigssgfjqqezqz.supabase.co";
-
-
-    const SUPABASE_KEY =
-      "sb_publishable_0YyKpZ3_HOED9iHlgfJldw_4ZrugD7C";
-
-
-    const supabaseClient =
-      window.supabase.createClient(
+const { createClient } =
+    supabase.createClient(
         SUPABASE_URL,
-        SUPABASE_KEY
-      );
-
-
-    /* =========================
-       ELEMENT
-    ========================= */
-
-    const form =
-      document.getElementById(
-        "productForm"
-      );
-
-
-    const nameInput =
-      document.getElementById(
-        "name"
-      );
-
-
-    const categoryInput =
-      document.getElementById(
-        "category"
-      );
-
-
-    const slugInput =
-      document.getElementById(
-        "slug"
-      );
-
-
-    const descriptionInput =
-      document.getElementById(
-        "description"
-      );
-
-
-    const slugPreview =
-      document.getElementById(
-        "slugPreview"
-      );
-
-
-    const alertBox =
-      document.getElementById(
-        "alert"
-      );
-
-
-    const saveBtn =
-      document.getElementById(
-        "saveBtn"
-      );
-
-
-    const loadingOverlay =
-      document.getElementById(
-        "loadingOverlay"
-      );
-
-
-    /* =========================
-       BASE URL
-    ========================= */
-
-    function getBaseUrl() {
-
-      /*
-       * Ketika website sudah online,
-       * menggunakan domain saat ini.
-       *
-       * Contoh:
-       * https://affiliamart.com
-       */
-
-      return window.location.origin;
-
-    }
-
-
-    /* =========================
-       SLUG
-    ========================= */
-
-    function makeSlug(text) {
-
-      return String(text || "")
-
-        .normalize("NFD")
-
-        .replace(
-          /[\u0300-\u036f]/g,
-          ""
-        )
-
-        .toLowerCase()
-
-        .replace(
-          /[^a-z0-9\s-]/g,
-          ""
-        )
-
-        .trim()
-
-        .replace(
-          /\s+/g,
-          "-"
-        )
-
-        .replace(
-          /-+/g,
-          "-"
-        );
-
-    }
-
-
-    /* =========================
-       ESCAPE HTML
-    ========================= */
-
-    function escapeHTML(value) {
-
-      return String(value || "")
-
-        .replace(
-          /&/g,
-          "&amp;"
-        )
-
-        .replace(
-          /</g,
-          "&lt;"
-        )
-
-        .replace(
-          />/g,
-          "&gt;"
-        )
-
-        .replace(
-          /"/g,
-          "&quot;"
-        )
-
-        .replace(
-          /'/g,
-          "&#039;"
-        );
-
-    }
-
-
-    /* =========================
-       CATEGORY SLUG
-    ========================= */
-
-    function getSelectedCategorySlug() {
-
-      const option =
-        categoryInput.options[
-          categoryInput.selectedIndex
-        ];
-
-
-      if (
-        !option ||
-        !option.value
-      ) {
-
-        return "";
-
-      }
-
-
-      return option.dataset.slug || "";
-
-    }
-
-
-    /* =========================
-       URL PREVIEW
-    ========================= */
-
-    function updateSlugPreview() {
-
-      const categorySlug =
-        getSelectedCategorySlug();
-
-
-      const slug =
-        slugInput.value.trim();
-
-
-      if (
-        !categorySlug ||
-        !slug
-      ) {
-
-        slugPreview.innerHTML = `
-
-          <span class="slug-preview-label">
-            URL:
-          </span>
-
-          Pilih kategori dan masukkan nama produk.
-
-        `;
-
-        return;
-
-      }
-
-
-      slugPreview.innerHTML = `
-
-        <span class="slug-preview-label">
-          URL:
-        </span>
-
-        <strong>
-          ${escapeHTML(
-            getBaseUrl()
-          )}/${escapeHTML(
-            categorySlug
-          )}/${escapeHTML(
-            slug
-          )}
-        </strong>
-
-      `;
-
-    }
-
-
-    /* =========================
-       NAME -> SLUG
-    ========================= */
-
-    nameInput.addEventListener(
-      "input",
-      function() {
-
-        slugInput.value =
-          makeSlug(
-            this.value
-          );
-
-
-        updateSlugPreview();
-
-      }
+        SUPABASE_ANON_KEY
     );
 
 
-    /* =========================
-       MANUAL SLUG
-    ========================= */
+/* =========================================================
+   ELEMENT
+========================================================= */
 
-    slugInput.addEventListener(
-      "input",
-      function() {
+const nameInput =
+    document.getElementById("name");
 
-        this.value =
-          makeSlug(
-            this.value
-          );
+const categoryInput =
+    document.getElementById("category");
 
+const slugInput =
+    document.getElementById("slug");
 
-        updateSlugPreview();
+const descriptionInput =
+    document.getElementById("description");
 
-      }
-    );
+const originalPriceInput =
+    document.getElementById("originalPrice");
 
+const discountInput =
+    document.getElementById("discount");
 
-    /* =========================
-       CATEGORY CHANGE
-    ========================= */
+const pricePreview =
+    document.getElementById("pricePreview");
 
-    categoryInput.addEventListener(
-      "change",
-      function() {
+const seoTitleInput =
+    document.getElementById("seoTitle");
 
-        updateSlugPreview();
+const seoDescriptionInput =
+    document.getElementById("seoDescription");
 
-      }
-    );
+const seoKeywordsInput =
+    document.getElementById("seoKeywords");
 
+const imageUrlInput =
+    document.getElementById("imageUrl");
 
-    /* =========================
-       LOAD CATEGORY
-    ========================= */
+const shopeeUrlInput =
+    document.getElementById("shopeeUrl");
 
-    async function loadCategories() {
+const tiktokUrlInput =
+    document.getElementById("tiktokUrl");
 
-      categoryInput.innerHTML = `
+const saveBtn =
+    document.getElementById("saveBtn");
 
-        <option value="">
-          Memuat kategori...
-        </option>
+const alertBox =
+    document.getElementById("alert");
 
-      `;
+const loading =
+    document.getElementById("loading");
 
 
-      const {
-        data,
-        error
-      } =
-      await supabaseClient
+/* =========================================================
+   BASE URL
+========================================================= */
 
-        .from("categories")
+const SITE_URL =
+    "https://mvpxwear.github.io/affiliamart";
 
-        .select(`
-          id,
-          name,
-          slug
-        `)
 
-        .order(
-          "name",
-          {
-            ascending: true
-          }
-        );
+/* =========================================================
+   ALERT
+========================================================= */
 
+function showAlert(message, type = "error") {
 
-      if (error) {
-
-        console.error(
-          "Category error:",
-          error
-        );
-
-
-        /*
-         * Jika tabel categories belum
-         * mempunyai kolom slug, coba
-         * ambil id + name saja.
-         */
-
-        const fallback =
-          await supabaseClient
-
-            .from("categories")
-
-            .select(`
-              id,
-              name
-            `)
-
-            .order(
-              "name",
-              {
-                ascending: true
-              }
-            );
-
-
-        if (
-          fallback.error
-        ) {
-
-          categoryInput.innerHTML = `
-
-            <option value="">
-              Gagal memuat kategori
-            </option>
-
-          `;
-
-
-          showAlert(
-            "Kategori gagal dimuat: " +
-            fallback.error.message,
-            "error"
-          );
-
-
-          return;
-
-        }
-
-
-        populateCategories(
-          fallback.data || []
-        );
-
-
-        return;
-
-      }
-
-
-      populateCategories(
-        data || []
-      );
-
-    }
-
-
-    /* =========================
-       POPULATE CATEGORY
-    ========================= */
-
-    function populateCategories(
-      categories
-    ) {
-
-      categoryInput.innerHTML = `
-
-        <option value="">
-          Pilih kategori
-        </option>
-
-      `;
-
-
-      if (
-        !categories ||
-        categories.length === 0
-      ) {
-
-        categoryInput.innerHTML = `
-
-          <option value="">
-            Belum ada kategori
-          </option>
-
-        `;
-
-
-        showAlert(
-          "Belum ada kategori. Tambahkan kategori terlebih dahulu melalui dashboard.",
-          "error"
-        );
-
-
-        return;
-
-      }
-
-
-      categories.forEach(
-        function(category) {
-
-          const option =
-            document.createElement(
-              "option"
-            );
-
-
-          option.value =
-            category.id;
-
-
-          option.textContent =
-            category.name;
-
-
-          option.dataset.slug =
-            category.slug
-              ? makeSlug(
-                  category.slug
-                )
-              : makeSlug(
-                  category.name
-                );
-
-
-          categoryInput.appendChild(
-            option
-          );
-
-        }
-      );
-
-    }
-
-
-    /* =========================
-       CHECK SESSION
-    ========================= */
-
-    async function checkAuth() {
-
-      const {
-        data,
-        error
-      } =
-      await supabaseClient
-        .auth
-        .getSession();
-
-
-      if (error) {
-
-        console.error(
-          "Session error:",
-          error
-        );
-
-        return false;
-
-      }
-
-
-      if (
-        !data ||
-        !data.session
-      ) {
-
-        window.location.href =
-          "login.html";
-
-
-        return false;
-
-      }
-
-
-      return true;
-
-    }
-
-
-    /* =========================
-       ALERT
-    ========================= */
-
-    function showAlert(
-      message,
-      type
-    ) {
-
-      alertBox.className =
+    alertBox.className =
         "alert " + type;
 
-
-      alertBox.textContent =
+    alertBox.textContent =
         message;
 
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+}
 
-      alertBox.style.display =
-        "block";
+
+function hideAlert() {
+
+    alertBox.className =
+        "alert";
+
+    alertBox.textContent =
+        "";
+
+}
 
 
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
+/* =========================================================
+   SLUG
+========================================================= */
 
+function makeSlug(text) {
+
+    return text
+        .toString()
+        .toLowerCase()
+        .trim()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g,"")
+        .replace(/[^a-z0-9\s-]/g,"")
+        .replace(/\s+/g,"-")
+        .replace(/-+/g,"-")
+        .replace(/^-|-$/g,"");
+}
+
+
+/* =========================================================
+   CATEGORY SLUG
+========================================================= */
+
+function getCategorySlug() {
+
+    const option =
+        categoryInput.options[
+            categoryInput.selectedIndex
+        ];
+
+    if (!option || !option.value) {
+        return "";
     }
 
+    return option.dataset.slug ||
+           makeSlug(option.textContent);
+}
 
-    function hideAlert() {
 
-      alertBox.style.display =
-        "none";
+/* =========================================================
+   URL PRODUCT
+========================================================= */
 
-      alertBox.textContent = "";
+function updateProductUrl() {
 
+    const categorySlug =
+        getCategorySlug();
+
+    const productSlug =
+        slugInput.value.trim();
+
+    const preview =
+        document.getElementById("urlPreview");
+
+    if (!categorySlug || !productSlug) {
+
+        preview.textContent =
+            "Pilih kategori dan isi nama produk";
+
+        return;
     }
 
-
-    /* =========================
-       LOADING
-    ========================= */
-
-    function setLoading(
-      status
-    ) {
-
-      loadingOverlay.style.display =
-        status
-          ? "flex"
-          : "none";
+    preview.textContent =
+        SITE_URL +
+        "/" +
+        categorySlug +
+        "/" +
+        productSlug;
+}
 
 
-      saveBtn.disabled =
-        status;
+/* =========================================================
+   NAME → SLUG
+========================================================= */
 
-    }
+nameInput.addEventListener(
+    "input",
+    function(){
 
+        slugInput.value =
+            makeSlug(this.value);
 
-    /* =========================
-       CHECK SLUG
-    ========================= */
+        if (!seoTitleInput.value.trim()) {
 
-    async function checkSlug(
-      slug
-    ) {
+            seoTitleInput.value =
+                this.value.substring(0,60);
 
-      const {
-        data,
-        error
-      } =
-      await supabaseClient
-
-        .from("products")
-
-        .select("id")
-
-        .eq(
-          "slug",
-          slug
-        )
-
-        .limit(1);
-
-
-      if (error) {
-
-        throw error;
-
-      }
-
-
-      return (
-        data &&
-        data.length > 0
-      );
-
-    }
-
-
-    /* =========================
-       SUBMIT
-    ========================= */
-
-    form.addEventListener(
-      "submit",
-      async function(event) {
-
-        event.preventDefault();
-
-
-        hideAlert();
-
-
-        const name =
-          nameInput.value.trim();
-
-
-        const categoryId =
-          categoryInput.value;
-
-
-        const slug =
-          slugInput.value.trim();
-
-
-        const description =
-          descriptionInput.value.trim();
-
-
-        const isActive =
-          document.getElementById(
-            "is_active"
-          ).checked;
-
-
-        const isFeatured =
-          document.getElementById(
-            "is_featured"
-          ).checked;
-
-
-        const isTrending =
-          document.getElementById(
-            "is_trending"
-          ).checked;
-
-
-        /* =====================
-           VALIDATION
-        ===================== */
-
-        if (!name) {
-
-          showAlert(
-            "Nama produk wajib diisi.",
-            "error"
-          );
-
-
-          nameInput.focus();
-
-          return;
-
+            updateSeoCounter();
         }
 
+        updateProductUrl();
+        updateSeoPreview();
 
-        if (!categoryId) {
+    }
+);
 
-          showAlert(
-            "Silakan pilih kategori produk.",
-            "error"
-          );
 
+/* =========================================================
+   SLUG
+========================================================= */
 
-          categoryInput.focus();
+slugInput.addEventListener(
+    "input",
+    function(){
 
-          return;
+        this.value =
+            makeSlug(this.value);
 
-        }
+        updateProductUrl();
+        updateSeoPreview();
 
+    }
+);
 
-        if (!slug) {
 
-          showAlert(
-            "Slug produk wajib diisi.",
-            "error"
-          );
+/* =========================================================
+   CATEGORY
+========================================================= */
 
+categoryInput.addEventListener(
+    "change",
+    function(){
 
-          slugInput.focus();
+        updateProductUrl();
+        updateSeoPreview();
 
-          return;
+    }
+);
 
-        }
 
+/* =========================================================
+   PRICE CALCULATION
+========================================================= */
 
-        setLoading(true);
+function calculatePrice(){
 
+    const original =
+        Number(originalPriceInput.value) || 0;
 
-        try {
+    let discount =
+        Number(discountInput.value) || 0;
 
+    if(discount < 0)
+        discount = 0;
 
-          /* =====================
-             CEK SLUG
-          ===================== */
+    if(discount > 100)
+        discount = 100;
 
-          const slugExists =
-            await checkSlug(
-              slug
-            );
+    discountInput.value =
+        discount;
 
+    const price =
+        Math.round(
+            original -
+            (original * discount / 100)
+        );
 
-          if (slugExists) {
+    pricePreview.textContent =
+        "Rp" +
+        price.toLocaleString("id-ID");
 
-            showAlert(
-              "Slug produk sudah digunakan. Silakan gunakan nama produk yang berbeda.",
-              "error"
-            );
+    return price;
+}
 
 
-            setLoading(false);
+originalPriceInput.addEventListener(
+    "input",
+    calculatePrice
+);
 
+discountInput.addEventListener(
+    "input",
+    calculatePrice
+);
 
-            slugInput.focus();
 
-            return;
+/* =========================================================
+   SEO COUNTER
+========================================================= */
 
-          }
+function updateSeoCounter(){
 
+    document.getElementById(
+        "seoTitleCount"
+    ).textContent =
+        seoTitleInput.value.length;
 
-          /* =====================
-             DATA PRODUK
-          ===================== */
+    document.getElementById(
+        "seoDescriptionCount"
+    ).textContent =
+        seoDescriptionInput.value.length;
 
-          const productData = {
+    updateSeoPreview();
+}
 
-            category_id:
-              categoryId,
 
-            name:
-              name,
+seoTitleInput.addEventListener(
+    "input",
+    updateSeoCounter
+);
 
-            slug:
-              slug,
+seoDescriptionInput.addEventListener(
+    "input",
+    updateSeoCounter
+);
 
-            description:
-              description || null,
 
-            is_active:
-              isActive,
+/* =========================================================
+   SEO PREVIEW
+========================================================= */
 
-            is_featured:
-              isFeatured,
+function updateSeoPreview(){
 
-            is_trending:
-              isTrending
+    const title =
+        seoTitleInput.value.trim();
 
-          };
+    const description =
+        seoDescriptionInput.value.trim();
 
+    const categorySlug =
+        getCategorySlug();
 
-          /* =====================
-             INSERT
-          ===================== */
+    const productSlug =
+        slugInput.value.trim();
 
-          const {
-            data,
-            error
-          } =
-          await supabaseClient
+    document.getElementById(
+        "seoPreviewTitle"
+    ).textContent =
+        title ||
+        nameInput.value ||
+        "Judul produk akan tampil di sini";
 
-            .from("products")
 
-            .insert(
-              productData
-            )
+    if(categorySlug && productSlug){
 
-            .select()
-            .single();
-
-
-          if (error) {
-
-            console.error(
-              "Insert product error:",
-              error
-            );
-
-
-            /*
-             * Pesan khusus RLS
-             */
-
-            if (
-              error.code ===
-              "42501"
-            ) {
-
-              showAlert(
-                "Produk tidak dapat disimpan karena RLS/izin database. Pastikan akun admin memiliki policy INSERT pada tabel products.",
-                "error"
-              );
-
-            } else {
-
-              showAlert(
-                "Produk gagal disimpan: " +
-                error.message,
-                "error"
-              );
-
-            }
-
-
-            setLoading(false);
-
-            return;
-
-          }
-
-
-          /* =====================
-             SUCCESS
-          ===================== */
-
-          const categorySlug =
-            getSelectedCategorySlug();
-
-
-          const productUrl =
-            getBaseUrl() +
+        document.getElementById(
+            "seoPreviewUrl"
+        ).textContent =
+            SITE_URL +
             "/" +
             categorySlug +
             "/" +
-            slug;
+            productSlug;
+
+    }else{
+
+        document.getElementById(
+            "seoPreviewUrl"
+        ).textContent =
+            SITE_URL;
+
+    }
 
 
-          setLoading(false);
+    document.getElementById(
+        "seoPreviewDescription"
+    ).textContent =
+        description ||
+        "Deskripsi produk akan tampil di sini.";
+
+}
 
 
-          showAlert(
-            "Produk berhasil ditambahkan. URL: " +
-            productUrl,
-            "success"
-          );
+/* =========================================================
+   LOAD CATEGORIES
+========================================================= */
+
+async function loadCategories(){
+
+    categoryInput.innerHTML =
+        `<option value="">Memuat kategori...</option>`;
+
+    const {
+        data,
+        error
+    } = await supabaseClient
+        .from("categories")
+        .select("*")
+        .order("name", {
+            ascending:true
+        });
 
 
-          /* =====================
-             RESET
-          ===================== */
+    if(error){
 
-          form.reset();
-
-
-          document.getElementById(
-            "is_active"
-          ).checked = true;
-
-
-          updateSlugPreview();
-
-
-          /*
-           * Kembali dashboard
-           * setelah 1.5 detik.
-           */
-
-          setTimeout(
-            function() {
-
-              window.location.href =
-                "dashboard.html";
-
-            },
-            1500
-          );
-
-
-        } catch (error) {
-
-          console.error(
+        console.error(
+            "CATEGORY ERROR:",
             error
-          );
+        );
+
+        categoryInput.innerHTML =
+            `<option value="">Gagal memuat kategori</option>`;
+
+        showAlert(
+            "Gagal memuat kategori: " +
+            error.message
+        );
+
+        return;
+    }
 
 
-          setLoading(false);
+    if(!data || data.length === 0){
+
+        categoryInput.innerHTML =
+            `<option value="">Belum ada kategori</option>`;
+
+        return;
+    }
 
 
-          showAlert(
-            "Terjadi kesalahan: " +
-            (
-              error.message ||
-              "Tidak diketahui"
-            ),
-            "error"
-          );
+    categoryInput.innerHTML =
+        `<option value="">Pilih kategori...</option>`;
 
-        }
 
-      }
+    data.forEach(category => {
+
+        const option =
+            document.createElement("option");
+
+        /*
+         * value menggunakan ID kategori
+         * agar kompatibel dengan struktur products
+         */
+        option.value =
+            category.id;
+
+        option.textContent =
+            category.name;
+
+        /*
+         * slug kategori untuk URL
+         */
+        option.dataset.slug =
+            category.slug ||
+            makeSlug(category.name);
+
+        categoryInput.appendChild(option);
+
+    });
+
+}
+
+
+/* =========================================================
+   SUPABASE CLIENT
+========================================================= */
+
+const supabaseClient =
+    supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
     );
 
 
-    /* =========================
-       DASHBOARD
-    ========================= */
+/* =========================================================
+   SAVE PRODUCT
+========================================================= */
 
-    function goDashboard() {
+async function saveProduct(){
 
-      window.location.href =
-        "dashboard.html";
-
-    }
+    hideAlert();
 
 
-    /* =========================
-       INITIALIZE
-    ========================= */
+    /* ================= BASIC ================= */
 
-    async function init() {
+    const name =
+        nameInput.value.trim();
 
-      const loggedIn =
-        await checkAuth();
+    const categoryId =
+        categoryInput.value;
+
+    const slug =
+        slugInput.value.trim();
+
+    const description =
+        descriptionInput.value.trim();
 
 
-      if (!loggedIn) {
+    /* ================= PLATFORM ================= */
+
+    const platformElement =
+        document.querySelector(
+            'input[name="platform"]:checked'
+        );
+
+    const platform =
+        platformElement
+            ? platformElement.value
+            : "";
+
+
+    /* ================= PRICE ================= */
+
+    const originalPrice =
+        Number(
+            originalPriceInput.value
+        ) || 0;
+
+    const discount =
+        Number(
+            discountInput.value
+        ) || 0;
+
+    const price =
+        calculatePrice();
+
+
+    /* ================= OTHER ================= */
+
+    const seoTitle =
+        seoTitleInput.value.trim();
+
+    const seoDescription =
+        seoDescriptionInput.value.trim();
+
+    const seoKeywords =
+        seoKeywordsInput.value.trim();
+
+    const imageUrl =
+        imageUrlInput.value.trim();
+
+    const shopeeUrl =
+        shopeeUrlInput.value.trim();
+
+    const tiktokUrl =
+        tiktokUrlInput.value.trim();
+
+
+    /* ================= VALIDATION ================= */
+
+    if(!name){
+
+        showAlert(
+            "Nama produk wajib diisi."
+        );
+
+        nameInput.focus();
 
         return;
-
-      }
-
-
-      await loadCategories();
-
     }
 
 
-    init();
+    if(!categoryId){
 
-  </script>
+        showAlert(
+            "Silakan pilih kategori."
+        );
+
+        categoryInput.focus();
+
+        return;
+    }
+
+
+    if(!platform){
+
+        showAlert(
+            "Silakan pilih platform Shopee atau TikTok."
+        );
+
+        return;
+    }
+
+
+    if(!slug){
+
+        showAlert(
+            "URL produk wajib diisi."
+        );
+
+        slugInput.focus();
+
+        return;
+    }
+
+
+    if(!description){
+
+        showAlert(
+            "Deskripsi produk wajib diisi."
+        );
+
+        descriptionInput.focus();
+
+        return;
+    }
+
+
+    /* ================= CATEGORY SLUG ================= */
+
+    const categorySlug =
+        getCategorySlug();
+
+
+    const productUrl =
+        SITE_URL +
+        "/" +
+        categorySlug +
+        "/" +
+        slug;
+
+
+    /* ================= PAYLOAD ================= */
+
+    /*
+     * PENTING:
+     * platform SELALU dikirim.
+     *
+     * Ini memperbaiki error:
+     *
+     * null value in column "platform"
+     */
+
+    const productData = {
+
+        name: name,
+
+        slug: slug,
+
+        category_id: categoryId,
+
+        description: description,
+
+        platform: platform,
+
+        price: price,
+
+        original_price: originalPrice,
+
+        discount: discount,
+
+        image_url: imageUrl || null,
+
+        shopee_url:
+            shopeeUrl || null,
+
+        tiktok_url:
+            tiktokUrl || null,
+
+        seo_title:
+            seoTitle ||
+            name.substring(0,60),
+
+        seo_description:
+            seoDescription ||
+            description.substring(0,160),
+
+        seo_keywords:
+            seoKeywords || null
+
+    };
+
+
+    console.log(
+        "PRODUCT DATA:",
+        productData
+    );
+
+
+    /* ================= SAVE ================= */
+
+    loading.classList.add("active");
+
+    saveBtn.disabled = true;
+
+
+    const {
+        data,
+        error
+    } = await supabaseClient
+        .from("products")
+        .insert(productData)
+        .select()
+        .single();
+
+
+    loading.classList.remove("active");
+
+    saveBtn.disabled = false;
+
+
+    /* ================= ERROR ================= */
+
+    if(error){
+
+        console.error(
+            "SAVE PRODUCT ERROR:",
+            error
+        );
+
+        showAlert(
+            "Produk gagal disimpan: " +
+            error.message
+        );
+
+        return;
+    }
+
+
+    /* ================= SUCCESS ================= */
+
+    showAlert(
+        "Produk berhasil ditambahkan.",
+        "success"
+    );
+
+
+    /*
+     * Beri waktu agar pesan sukses terlihat
+     * kemudian buka halaman produk.
+     */
+
+    setTimeout(function(){
+
+        if(data && data.id){
+
+            window.location.href =
+                "product.html?id=" +
+                encodeURIComponent(data.id);
+
+        }else{
+
+            window.location.href =
+                "dashboard.html";
+
+        }
+
+    },1000);
+
+}
+
+
+/* =========================================================
+   SAVE BUTTON
+========================================================= */
+
+saveBtn.addEventListener(
+    "click",
+    saveProduct
+);
+
+
+/* =========================================================
+   INITIAL LOAD
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async function(){
+
+        await loadCategories();
+
+        calculatePrice();
+
+        updateSeoCounter();
+
+        updateSeoPreview();
+
+    }
+);
+
+</script>
 
 </body>
-
-</html>
+  </html>

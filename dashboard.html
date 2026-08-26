@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
 <title>Dashboard Admin - AffiliaMart</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link
-href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+  rel="stylesheet"
 >
 
 <style>
@@ -41,8 +45,6 @@ textarea{
 button{
   cursor:pointer;
 }
-
-/* HEADER */
 
 header{
   height:70px;
@@ -84,8 +86,6 @@ header{
   font-weight:600;
 }
 
-/* CONTAINER */
-
 .container{
   width:90%;
   max-width:1200px;
@@ -106,8 +106,6 @@ header{
   color:#6b7280;
   font-size:14px;
 }
-
-/* STATS */
 
 .stats{
   display:grid;
@@ -135,8 +133,6 @@ header{
   color:#16a34a;
 }
 
-/* MENU */
-
 .menu{
   display:flex;
   gap:10px;
@@ -159,8 +155,6 @@ header{
   color:white;
   border-color:#16a34a;
 }
-
-/* CARD */
 
 .card{
   background:white;
@@ -198,8 +192,6 @@ header{
   background:#15803d;
 }
 
-/* ANALYTICS */
-
 .analytics-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -230,23 +222,21 @@ header{
   font-weight:800;
 }
 
-.analytics-card.green .analytics-number{
+.green{
   color:#16a34a;
 }
 
-.analytics-card.orange .analytics-number{
+.orange{
   color:#f97316;
 }
 
-.analytics-card.dark .analytics-number{
+.dark{
   color:#111827;
 }
 
-.analytics-card.blue .analytics-number{
+.blue{
   color:#2563eb;
 }
-
-/* PLATFORM */
 
 .platform-grid{
   display:grid;
@@ -281,8 +271,6 @@ header{
   color:#111827;
 }
 
-/* TABLE */
-
 .table-wrap{
   width:100%;
   overflow-x:auto;
@@ -309,10 +297,6 @@ header{
   font-size:13px;
 }
 
-.analytics-table tr:last-child td{
-  border-bottom:0;
-}
-
 .product-stat-name{
   font-weight:700;
 }
@@ -320,8 +304,6 @@ header{
 .number{
   font-weight:700;
 }
-
-/* PROGRESS */
 
 .progress{
   width:100%;
@@ -337,14 +319,14 @@ header{
   border-radius:20px;
 }
 
-/* CATEGORY */
-
-.category-list{
+.category-list,
+.product-list{
   display:grid;
   gap:10px;
 }
 
-.category-item{
+.category-item,
+.product-item{
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -355,7 +337,8 @@ header{
   background:#fafafa;
 }
 
-.category-left{
+.category-left,
+.product-left{
   display:flex;
   align-items:center;
   gap:13px;
@@ -374,11 +357,13 @@ header{
   font-size:32px;
 }
 
-.category-info{
+.category-info,
+.product-info{
   min-width:0;
 }
 
-.category-name{
+.category-name,
+.product-name{
   font-size:14px;
   font-weight:700;
 }
@@ -408,35 +393,11 @@ header{
   color:#b91c1c;
 }
 
-.category-actions{
+.category-actions,
+.product-actions{
   display:flex;
   gap:7px;
   flex-shrink:0;
-}
-
-/* PRODUCTS */
-
-.product-list{
-  display:grid;
-  gap:12px;
-}
-
-.product-item{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:15px;
-  padding:14px;
-  border:1px solid #edf0ee;
-  border-radius:13px;
-  background:#fafafa;
-}
-
-.product-left{
-  display:flex;
-  align-items:center;
-  gap:13px;
-  min-width:0;
 }
 
 .product-image{
@@ -448,13 +409,7 @@ header{
   background:#eeeeee;
 }
 
-.product-info{
-  min-width:0;
-}
-
 .product-name{
-  font-size:14px;
-  font-weight:700;
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
@@ -483,14 +438,6 @@ header{
   font-weight:700;
 }
 
-.product-actions{
-  display:flex;
-  gap:7px;
-  flex-shrink:0;
-}
-
-/* BUTTONS */
-
 .edit-btn,
 .delete-btn{
   border:0;
@@ -510,8 +457,6 @@ header{
   color:#dc2626;
 }
 
-/* LOADING */
-
 .loading,
 .empty{
   text-align:center;
@@ -519,8 +464,6 @@ header{
   color:#6b7280;
   font-size:14px;
 }
-
-/* MODAL */
 
 .modal{
   position:fixed;
@@ -539,7 +482,7 @@ header{
 
 .modal-box{
   width:100%;
-  max-width:600px;
+  max-width:650px;
   max-height:92vh;
   overflow-y:auto;
   background:white;
@@ -568,8 +511,6 @@ header{
   border-radius:10px;
   font-size:20px;
 }
-
-/* FORM */
 
 .form-group{
   margin-bottom:15px;
@@ -612,14 +553,12 @@ header{
   font-weight:700;
 }
 
-.price-help{
+.help{
   margin-top:5px;
   color:#6b7280;
   font-size:11px;
   line-height:1.4;
 }
-
-/* SEO */
 
 .seo-box{
   margin:20px 0;
@@ -629,47 +568,15 @@ header{
   border-radius:15px;
 }
 
-.seo-header{
-  display:flex;
-  align-items:center;
-  gap:8px;
+.seo-title{
+  color:#15803d;
+  font-size:15px;
+  font-weight:800;
   margin-bottom:5px;
 }
 
-.seo-header strong{
-  font-size:15px;
-  color:#15803d;
-}
-
-.seo-description{
+.seo-box small{
   color:#6b7280;
-  font-size:11px;
-  line-height:1.5;
-  margin-bottom:15px;
-}
-
-.seo-tools{
-  display:flex;
-  justify-content:flex-end;
-  margin-bottom:10px;
-}
-
-.seo-auto-btn{
-  border:0;
-  background:#dcfce7;
-  color:#15803d;
-  padding:8px 11px;
-  border-radius:8px;
-  font-size:11px;
-  font-weight:700;
-}
-
-.seo-counter{
-  display:flex;
-  justify-content:space-between;
-  margin-top:5px;
-  color:#9ca3af;
-  font-size:10px;
 }
 
 .seo-preview{
@@ -683,8 +590,6 @@ header{
 .seo-preview-title{
   color:#1a0dab;
   font-size:16px;
-  font-weight:500;
-  line-height:1.3;
 }
 
 .seo-preview-url{
@@ -696,119 +601,42 @@ header{
 .seo-preview-description{
   color:#4b5563;
   font-size:11px;
-  line-height:1.5;
   margin-top:4px;
 }
 
-/* ICON */
-
-.icon-preview{
-  width:70px;
-  height:70px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#f0fdf4;
-  border-radius:16px;
-  font-size:35px;
-  margin-top:10px;
-}
-
-.icon-select-row{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:10px;
-}
-
-.icon-custom{
-  margin-top:10px;
-}
-
-/* IMAGE */
-
-.image-tools{
-  display:grid;
-  gap:10px;
-  margin-top:8px;
-}
-
-.image-upload-label{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  min-height:48px;
-  border:2px dashed #d1d5db;
-  border-radius:12px;
-  color:#374151;
-  font-size:13px;
-  font-weight:600;
-  cursor:pointer;
-  background:#fafafa;
-}
-
-.image-upload-label:hover{
-  border-color:#16a34a;
-  background:#f0fdf4;
-}
-
-.image-upload-label input{
-  display:none;
-}
-
-.image-url-row{
-  display:flex;
-  gap:8px;
-}
-
-.image-url-row input{
-  flex:1;
-}
-
-.image-url-btn{
-  border:0;
-  background:#eff6ff;
-  color:#2563eb;
-  padding:0 13px;
-  border-radius:9px;
-  font-size:12px;
-  font-weight:700;
-}
-
-.image-preview-grid{
+.image-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:10px;
-  margin-top:12px;
+  margin-top:10px;
 }
 
-.preview-item{
+.image-item{
   position:relative;
   border:1px solid #e5e7eb;
-  border-radius:12px;
+  border-radius:10px;
   overflow:hidden;
-  background:#f9fafb;
 }
 
-.preview-item img{
-  display:block;
+.image-item img{
   width:100%;
-  aspect-ratio:1/1;
+  aspect-ratio:1;
   object-fit:cover;
+  display:block;
 }
 
-.preview-main{
+.image-main{
   position:absolute;
-  left:6px;
-  top:6px;
+  left:5px;
+  top:5px;
   background:#16a34a;
   color:white;
-  padding:3px 6px;
+  padding:3px 5px;
   border-radius:5px;
   font-size:9px;
-  font-weight:700;
 }
 
-.preview-remove{
+.image-remove{
   position:absolute;
   right:5px;
   top:5px;
@@ -816,12 +644,9 @@ header{
   height:27px;
   border:0;
   border-radius:50%;
-  background:rgba(220,38,38,.9);
+  background:#dc2626;
   color:white;
-  font-size:14px;
 }
-
-/* CHECKBOX */
 
 .checkbox-row{
   display:flex;
@@ -841,8 +666,6 @@ header{
   width:auto;
 }
 
-/* SAVE */
-
 .save-btn{
   width:100%;
   border:0;
@@ -857,8 +680,6 @@ header{
 .save-btn:disabled{
   opacity:.6;
 }
-
-/* MESSAGE */
 
 #message{
   position:fixed;
@@ -877,8 +698,6 @@ header{
 #message.show{
   display:block;
 }
-
-/* MOBILE */
 
 @media(max-width:900px){
 
@@ -912,25 +731,9 @@ header{
     gap:10px;
   }
 
-  .stat{
-    padding:16px;
-  }
-
-  .stat-value{
-    font-size:24px;
-  }
-
   .analytics-grid{
     grid-template-columns:1fr 1fr;
     gap:10px;
-  }
-
-  .analytics-card{
-    padding:15px;
-  }
-
-  .analytics-number{
-    font-size:23px;
   }
 
   .platform-grid{
@@ -939,14 +742,6 @@ header{
 
   .card{
     padding:16px;
-  }
-
-  .card-header{
-    align-items:flex-start;
-  }
-
-  .card-header h2{
-    font-size:17px;
   }
 
   .category-item,
@@ -975,11 +770,6 @@ header{
   .modal-box{
     max-height:94vh;
     padding:20px;
-    border-radius:18px;
-  }
-
-  .image-preview-grid{
-    grid-template-columns:repeat(3,1fr);
   }
 
 }
@@ -998,11 +788,17 @@ header{
 
   <div class="header-right">
 
-    <div class="admin-name" id="adminName">
+    <div
+      class="admin-name"
+      id="adminName"
+    >
       Memuat...
     </div>
 
-    <button class="logout-btn" onclick="logout()">
+    <button
+      class="logout-btn"
+      onclick="logout()"
+    >
       Keluar
     </button>
 
@@ -1026,8 +822,6 @@ header{
   </div>
 
 
-  <!-- STATISTIK UTAMA -->
-
   <div class="stats">
 
     <div class="stat">
@@ -1036,7 +830,10 @@ header{
         Total Kategori
       </div>
 
-      <div class="stat-value" id="categoryCount">
+      <div
+        class="stat-value"
+        id="categoryCount"
+      >
         0
       </div>
 
@@ -1049,7 +846,10 @@ header{
         Total Produk
       </div>
 
-      <div class="stat-value" id="productCount">
+      <div
+        class="stat-value"
+        id="productCount"
+      >
         0
       </div>
 
@@ -1062,7 +862,10 @@ header{
         Produk Aktif
       </div>
 
-      <div class="stat-value" id="activeProductCount">
+      <div
+        class="stat-value"
+        id="activeProductCount"
+      >
         0
       </div>
 
@@ -1070,8 +873,6 @@ header{
 
   </div>
 
-
-  <!-- MENU -->
 
   <div class="menu">
 
@@ -1083,14 +884,12 @@ header{
       📁 Kategori
     </button>
 
-
     <button
       id="productMenu"
       onclick="showSection('products')"
     >
       🛍️ Produk
     </button>
-
 
     <button
       id="statisticsMenu"
@@ -1102,7 +901,7 @@ header{
   </div>
 
 
-  <!-- CATEGORY -->
+  <!-- ================= CATEGORY ================= -->
 
   <section id="categoriesSection">
 
@@ -1139,7 +938,7 @@ header{
   </section>
 
 
-  <!-- PRODUCTS -->
+  <!-- ================= PRODUCTS ================= -->
 
   <section
     id="productsSection"
@@ -1156,7 +955,7 @@ header{
 
         <button
           class="add-btn"
-          onclick="openProductModal()"
+          onclick="goAddProduct()"
         >
           + Tambah Produk
         </button>
@@ -1179,7 +978,7 @@ header{
   </section>
 
 
-  <!-- STATISTICS -->
+  <!-- ================= STATISTICS ================= -->
 
   <section
     id="statisticsSection"
@@ -1220,7 +1019,7 @@ header{
 
       <div class="analytics-grid">
 
-        <div class="analytics-card green">
+        <div class="analytics-card">
 
           <div class="analytics-icon">
             👁️
@@ -1231,7 +1030,7 @@ header{
           </div>
 
           <div
-            class="analytics-number"
+            class="analytics-number green"
             id="visitorStat"
           >
             0
@@ -1240,7 +1039,7 @@ header{
         </div>
 
 
-        <div class="analytics-card blue">
+        <div class="analytics-card">
 
           <div class="analytics-icon">
             🖱️
@@ -1251,7 +1050,7 @@ header{
           </div>
 
           <div
-            class="analytics-number"
+            class="analytics-number blue"
             id="productClickStat"
           >
             0
@@ -1260,7 +1059,7 @@ header{
         </div>
 
 
-        <div class="analytics-card orange">
+        <div class="analytics-card">
 
           <div class="analytics-icon">
             🛒
@@ -1271,7 +1070,7 @@ header{
           </div>
 
           <div
-            class="analytics-number"
+            class="analytics-number orange"
             id="shopeeClickStat"
           >
             0
@@ -1280,7 +1079,7 @@ header{
         </div>
 
 
-        <div class="analytics-card dark">
+        <div class="analytics-card">
 
           <div class="analytics-icon">
             🎵
@@ -1291,7 +1090,7 @@ header{
           </div>
 
           <div
-            class="analytics-number"
+            class="analytics-number dark"
             id="tiktokClickStat"
           >
             0
@@ -1338,36 +1137,26 @@ header{
       </div>
 
 
-      <div
-        class="card"
-        style="
-          padding:0;
-          border:0;
-          box-shadow:none;
-        "
-      >
+      <div>
 
-        <div style="margin-bottom:15px;">
+        <h2
+          style="
+            font-size:18px;
+            font-weight:800;
+            margin-bottom:5px;
+          "
+        >
+          🛍️ Statistik Klik Per Produk
+        </h2>
 
-          <h2
-            style="
-              font-size:18px;
-              font-weight:800;
-            "
-          >
-            🛍️ Statistik Klik Per Produk
-          </h2>
-
-          <div
-            style="
-              margin-top:5px;
-              color:#6b7280;
-              font-size:12px;
-            "
-          >
-            Jumlah klik produk dan klik affiliate masing-masing produk.
-          </div>
-
+        <div
+          style="
+            margin-bottom:15px;
+            color:#6b7280;
+            font-size:12px;
+          "
+        >
+          Jumlah klik produk dan affiliate setiap produk.
         </div>
 
 
@@ -1379,17 +1168,33 @@ header{
 
               <tr>
 
-                <th>Produk</th>
-                <th>Total Klik</th>
-                <th>Shopee</th>
-                <th>TikTok</th>
-                <th>Popularitas</th>
+                <th>
+                  Produk
+                </th>
+
+                <th>
+                  Total Klik
+                </th>
+
+                <th>
+                  Shopee
+                </th>
+
+                <th>
+                  TikTok
+                </th>
+
+                <th>
+                  Popularitas
+                </th>
 
               </tr>
 
             </thead>
 
-            <tbody id="productStatisticsBody">
+            <tbody
+              id="productStatisticsBody"
+            >
 
               <tr>
 
@@ -1417,7 +1222,7 @@ header{
 </div>
 
 
-<!-- CATEGORY MODAL -->
+<!-- ================= CATEGORY MODAL ================= -->
 
 <div
   class="modal"
@@ -1479,6 +1284,10 @@ header{
           required
         >
 
+        <div class="help">
+          Slug digunakan untuk URL produk.
+        </div>
+
       </div>
 
 
@@ -1488,45 +1297,93 @@ header{
           Icon Kategori
         </label>
 
-        <div class="icon-select-row">
+        <select id="categoryIconSelect">
 
-          <select id="categoryIconSelect">
+          <option value="📱">
+            📱 Elektronik
+          </option>
 
-            <option value="📱">📱 Elektronik</option>
-            <option value="👗">👗 Fashion</option>
-            <option value="💄">💄 Kecantikan</option>
-            <option value="🏠">🏠 Rumah</option>
-            <option value="🍳">🍳 Dapur</option>
-            <option value="⚽">⚽ Olahraga</option>
-            <option value="🎮">🎮 Gaming</option>
-            <option value="📚">📚 Buku</option>
-            <option value="👜">👜 Tas</option>
-            <option value="👟">👟 Sepatu</option>
-            <option value="🚗">🚗 Otomotif</option>
-            <option value="💻">💻 Komputer</option>
-            <option value="🎧">🎧 Audio</option>
-            <option value="⌚">⌚ Aksesoris</option>
-            <option value="🎁">🎁 Lainnya</option>
+          <option value="👗">
+            👗 Fashion
+          </option>
 
-          </select>
+          <option value="💄">
+            💄 Kecantikan
+          </option>
 
+          <option value="🏠">
+            🏠 Rumah
+          </option>
 
-          <input
-            type="text"
-            id="categoryIconCustom"
-            class="icon-custom"
-            placeholder="Atau masukkan emoji sendiri"
-            maxlength="10"
-          >
+          <option value="🍳">
+            🍳 Dapur
+          </option>
 
+          <option value="⚽">
+            ⚽ Olahraga
+          </option>
 
-          <div
-            class="icon-preview"
-            id="categoryIconPreview"
-          >
-            📱
-          </div>
+          <option value="🎮">
+            🎮 Gaming
+          </option>
 
+          <option value="📚">
+            📚 Buku
+          </option>
+
+          <option value="👜">
+            👜 Tas
+          </option>
+
+          <option value="👟">
+            👟 Sepatu
+          </option>
+
+          <option value="🚗">
+            🚗 Otomotif
+          </option>
+
+          <option value="💻">
+            💻 Komputer
+          </option>
+
+          <option value="🎧">
+            🎧 Audio
+          </option>
+
+          <option value="⌚">
+            ⌚ Aksesoris
+          </option>
+
+          <option value="🎁">
+            🎁 Lainnya
+          </option>
+
+        </select>
+
+        <input
+          type="text"
+          id="categoryIconCustom"
+          placeholder="Atau emoji sendiri"
+          maxlength="10"
+          style="margin-top:10px;"
+        >
+
+        <div
+          id="categoryIconPreview"
+          style="
+            width:70px;
+            height:70px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            background:#f0fdf4;
+            border-radius:16px;
+            font-size:35px;
+            margin-top:10px;
+          "
+        >
+          📱
         </div>
 
       </div>
@@ -1578,7 +1435,7 @@ header{
 </div>
 
 
-<!-- PRODUCT MODAL -->
+<!-- ================= EDIT PRODUCT MODAL ================= -->
 
 <div
   class="modal"
@@ -1589,8 +1446,8 @@ header{
 
     <div class="modal-header">
 
-      <h3 id="productModalTitle">
-        Tambah Produk
+      <h3>
+        Edit Produk
       </h3>
 
       <button
@@ -1611,8 +1468,6 @@ header{
       >
 
 
-      <!-- NAMA -->
-
       <div class="form-group">
 
         <label>
@@ -1622,14 +1477,11 @@ header{
         <input
           type="text"
           id="productName"
-          placeholder="Nama produk"
           required
         >
 
       </div>
 
-
-      <!-- KATEGORI -->
 
       <div class="form-group">
 
@@ -1651,8 +1503,6 @@ header{
       </div>
 
 
-      <!-- SLUG -->
-
       <div class="form-group">
 
         <label>
@@ -1662,69 +1512,54 @@ header{
         <input
           type="text"
           id="productSlug"
-          placeholder="nama-produk"
           required
         >
 
-        <div class="price-help">
-          Contoh: sepatu-sneakers-pria-casual
+        <div
+          class="help"
+          id="productUrlPreview"
+        >
+          URL produk
         </div>
 
       </div>
 
 
-      <!-- DESKRIPSI -->
-
       <div class="form-group">
 
         <label>
-          Deskripsi Produk
+          Deskripsi
         </label>
 
         <textarea
           id="productDescription"
-          placeholder="Deskripsi produk"
         ></textarea>
 
       </div>
 
 
-      <!-- SEO -->
-
       <div class="seo-box">
 
-        <div class="seo-header">
-
-          <span>🔎</span>
-
-          <strong>
-            SEO Produk
-          </strong>
-
+        <div class="seo-title">
+          🔎 SEO Produk
         </div>
 
-        <div class="seo-description">
-
-          Isi informasi SEO agar halaman produk lebih mudah dipahami
-          mesin pencari seperti Google.
-
-        </div>
+        <small>
+          Optimalkan judul dan deskripsi produk untuk mesin pencari.
+        </small>
 
 
-        <div class="seo-tools">
-
-          <button
-            type="button"
-            class="seo-auto-btn"
-            onclick="generateSEO()"
-          >
-            ✨ Buat SEO Otomatis
-          </button>
-
-        </div>
+        <button
+          type="button"
+          class="add-btn"
+          style="margin-top:12px;"
+          onclick="generateSEO()"
+        >
+          ✨ Buat SEO Otomatis
+        </button>
 
 
-        <div class="form-group">
+        <div class="form-group" style="margin-top:15px;">
 
           <label>
             SEO Title
@@ -1734,19 +1569,13 @@ header{
             type="text"
             id="productSeoTitle"
             maxlength="60"
-            placeholder="Contoh: Sepatu Sneakers Pria Casual Murah"
           >
 
-          <div class="seo-counter">
-
-            <span>
-              Judul untuk Google
-            </span>
-
-            <span id="seoTitleCounter">
-              0/60
-            </span>
-
+          <div
+            class="help"
+            id="seoTitleCounter"
+          >
+            0/60
           </div>
 
         </div>
@@ -1761,19 +1590,13 @@ header{
           <textarea
             id="productSeoDescription"
             maxlength="160"
-            placeholder="Deskripsi singkat produk untuk hasil pencarian Google"
           ></textarea>
 
-          <div class="seo-counter">
-
-            <span>
-              Deskripsi untuk Google
-            </span>
-
-            <span id="seoDescriptionCounter">
-              0/160
-            </span>
-
+          <div
+            class="help"
+            id="seoDescriptionCounter"
+          >
+            0/160
           </div>
 
         </div>
@@ -1788,12 +1611,8 @@ header{
           <input
             type="text"
             id="productSeoKeywords"
-            placeholder="sepatu sneakers pria, sepatu casual, sneakers murah"
+            placeholder="keyword1, keyword2"
           >
-
-          <div class="price-help">
-            Pisahkan keyword dengan koma.
-          </div>
 
         </div>
 
@@ -1811,14 +1630,14 @@ header{
             class="seo-preview-url"
             id="seoPreviewUrl"
           >
-            affiliamart.com/produk/nama-produk
+            affiliamart.com/kategori/produk
           </div>
 
           <div
             class="seo-preview-description"
             id="seoPreviewDescription"
           >
-            Deskripsi produk akan tampil di sini.
+            Deskripsi produk.
           </div>
 
         </div>
@@ -1826,89 +1645,45 @@ header{
       </div>
 
 
-      <!-- GAMBAR -->
-
       <div class="form-group">
 
         <label>
-          Gambar Produk
+          URL Gambar Utama
         </label>
 
-        <div class="image-tools">
+        <input
+          type="url"
+          id="productImageUrl"
+          placeholder="https://..."
+        >
 
-          <label class="image-upload-label">
-
-            📷 Upload Gambar dari HP
-
-            <input
-              type="file"
-              id="productImageFiles"
-              accept="image/*"
-              multiple
-            >
-
-          </label>
-
-
-          <div class="image-url-row">
-
-            <input
-              type="url"
-              id="productImageUrl"
-              placeholder="Tempel URL gambar produk"
-            >
-
-            <button
-              type="button"
-              class="image-url-btn"
-              onclick="addImageFromUrl()"
-            >
-              Tambah
-            </button>
-
-          </div>
-
-
-          <div
-            style="
-              font-size:11px;
-              color:#6b7280;
-              line-height:1.5;
-            "
-          >
-            Upload gambar dari HP atau masukkan URL gambar.
-            Gambar pertama menjadi gambar utama.
-          </div>
-
-
-          <div
-            id="imagePreviewGrid"
-            class="image-preview-grid"
-          ></div>
-
+        <div class="help">
+          Gambar utama akan digunakan di halaman produk.
         </div>
 
       </div>
 
 
-      <!-- AFFILIATE -->
+      <div
+        id="imageGrid"
+        class="image-grid"
+      ></div>
+
 
       <div class="form-group">
 
         <label>
-          Link Produk / Affiliate URL
+          Link Affiliate
         </label>
 
         <input
           type="url"
           id="productAffiliate"
-          placeholder="https://shopee.co.id/..."
+          placeholder="https://..."
         >
 
       </div>
 
-
-      <!-- HARGA -->
 
       <div class="form-group">
 
@@ -1919,9 +1694,7 @@ header{
         <input
           type="number"
           id="productOriginalPrice"
-          placeholder="35000"
           min="0"
-          step="1"
           required
         >
 
@@ -1937,7 +1710,6 @@ header{
         <input
           type="number"
           id="productDiscount"
-          placeholder="60"
           min="0"
           max="100"
           step="0.01"
@@ -1955,22 +1727,13 @@ header{
         <input
           type="number"
           id="productPrice"
-          placeholder="14000"
-          min="0"
-          step="1"
           class="price-auto"
           readonly
           required
         >
 
-        <div class="price-help">
-          Harga dihitung otomatis.
-        </div>
-
       </div>
 
-
-      <!-- PLATFORM -->
 
       <div class="form-group">
 
@@ -1991,12 +1754,22 @@ header{
             TikTok
           </option>
 
+          <option value="tokopedia">
+            Tokopedia
+          </option>
+
+          <option value="lazada">
+            Lazada
+          </option>
+
+          <option value="other">
+            Lainnya
+          </option>
+
         </select>
 
       </div>
 
-
-      <!-- RATING -->
 
       <div class="form-group">
 
@@ -2005,16 +1778,15 @@ header{
         </label>
 
         <input
-          type="text"
+          type="number"
           id="productRating"
-          inputmode="decimal"
-          placeholder="4.8"
+          min="0"
+          max="5"
+          step="0.1"
         >
 
       </div>
 
-
-      <!-- SOLD -->
 
       <div class="form-group">
 
@@ -2025,14 +1797,11 @@ header{
         <input
           type="number"
           id="productSold"
-          placeholder="100"
           min="0"
         >
 
       </div>
 
-
-      <!-- STATUS -->
 
       <div class="checkbox-row">
 
@@ -2065,7 +1834,6 @@ header{
           <input
             type="checkbox"
             id="productActive"
-            checked
           >
 
           Aktif
@@ -2095,37 +1863,26 @@ header{
 
 <script>
 
-/* =====================================
+/* =====================================================
    SUPABASE
-===================================== */
+===================================================== */
 
 const SUPABASE_URL =
-"https://fmftcisigssgfjqqezqz.supabase.co";
+  "https://fmftcisigssgfjqqezqz.supabase.co";
 
 const SUPABASE_KEY =
-"sb_publishable_0YyKpZ3_HOED9iHlgfJldw_4ZrugD7C";
+  "sb_publishable_0YyKpZ3_HOED9iHlgfJldw_4ZrugD7C";
 
 const supabaseClient =
-window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
 
 
-/* =====================================
-   CONSTANT
-===================================== */
-
-const ANALYTICS_TABLE =
-"analytics_events";
-
-const IMAGE_BUCKET =
-"product-images";
-
-
-/* =====================================
+/* =====================================================
    GLOBAL
-===================================== */
+===================================================== */
 
 let currentUser = null;
 
@@ -2133,34 +1890,98 @@ let categories = [];
 
 let products = [];
 
-let productImages = [];
 
+/* =====================================================
+   HELPERS
+===================================================== */
 
-/* =====================================
-   MESSAGE
-===================================== */
+function escapeHtml(value){
 
-function showMessage(text){
+  if(
+    value === null ||
+    value === undefined
+  ){
+    return "";
+  }
 
-  const message =
-    document.getElementById("message");
-
-  message.textContent = text;
-
-  message.classList.add("show");
-
-  setTimeout(() => {
-
-    message.classList.remove("show");
-
-  },3500);
+  return String(value)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 
 }
 
 
-/* =====================================
-   INIT
-===================================== */
+function formatNumber(value){
+
+  return Number(value || 0)
+    .toLocaleString("id-ID");
+
+}
+
+
+function formatRupiah(value){
+
+  if(
+    value === null ||
+    value === undefined ||
+    value === ""
+  ){
+    return "-";
+  }
+
+  return new Intl.NumberFormat(
+    "id-ID",
+    {
+      style:"currency",
+      currency:"IDR",
+      maximumFractionDigits:0
+    }
+  ).format(value);
+
+}
+
+
+function createSlug(text){
+
+  return String(text || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g,"")
+    .replace(/[^a-z0-9\s-]/g,"")
+    .trim()
+    .replace(/\s+/g,"-")
+    .replace(/-+/g,"-");
+
+}
+
+
+function showMessage(text){
+
+  const box =
+    document.getElementById("message");
+
+  box.textContent = text;
+
+  box.classList.add("show");
+
+  setTimeout(
+    function(){
+
+      box.classList.remove("show");
+
+    },
+    3500
+  );
+
+}
+
+
+/* =====================================================
+   INIT / AUTH
+===================================================== */
 
 document.addEventListener(
   "DOMContentLoaded",
@@ -2174,7 +1995,9 @@ async function init(){
     data,
     error
   } =
-  await supabaseClient.auth.getUser();
+  await supabaseClient
+    .auth
+    .getUser();
 
 
   if(
@@ -2199,9 +2022,16 @@ async function init(){
     error:profileError
   } =
   await supabaseClient
+
     .from("profiles")
+
     .select("role")
-    .eq("id",currentUser.id)
+
+    .eq(
+      "id",
+      currentUser.id
+    )
+
     .single();
 
 
@@ -2211,7 +2041,9 @@ async function init(){
     profile.role !== "admin"
   ){
 
-    await supabaseClient.auth.signOut();
+    await supabaseClient
+      .auth
+      .signOut();
 
     window.location.href =
       "admin.html";
@@ -2234,13 +2066,15 @@ async function init(){
 }
 
 
-/* =====================================
+/* =====================================================
    LOGOUT
-===================================== */
+===================================================== */
 
 async function logout(){
 
-  await supabaseClient.auth.signOut();
+  await supabaseClient
+    .auth
+    .signOut();
 
   window.location.href =
     "admin.html";
@@ -2248,87 +2082,57 @@ async function logout(){
 }
 
 
-/* =====================================
-   SECTION
-===================================== */
+/* =====================================================
+   NAVIGATION
+===================================================== */
 
 function showSection(section){
 
-  const categoriesSection =
-    document.getElementById(
-      "categoriesSection"
-    );
-
-  const productsSection =
-    document.getElementById(
-      "productsSection"
-    );
-
-  const statisticsSection =
-    document.getElementById(
-      "statisticsSection"
-    );
+  const sections = [
+    "categories",
+    "products",
+    "statistics"
+  ];
 
 
-  const categoryMenu =
-    document.getElementById(
-      "categoryMenu"
-    );
+  sections.forEach(
+    function(item){
 
-  const productMenu =
-    document.getElementById(
-      "productMenu"
-    );
+      document.getElementById(
+        item + "Section"
+      ).style.display =
+        "none";
 
-  const statisticsMenu =
-    document.getElementById(
-      "statisticsMenu"
-    );
+      document.getElementById(
+        item === "categories"
+          ? "categoryMenu"
+          : item === "products"
+          ? "productMenu"
+          : "statisticsMenu"
+      ).classList.remove("active");
 
-
-  categoriesSection.style.display =
-    "none";
-
-  productsSection.style.display =
-    "none";
-
-  statisticsSection.style.display =
-    "none";
+    }
+  );
 
 
-  categoryMenu.classList.remove("active");
-
-  productMenu.classList.remove("active");
-
-  statisticsMenu.classList.remove("active");
-
-
-  if(section === "categories"){
-
-    categoriesSection.style.display =
-      "block";
-
-    categoryMenu.classList.add("active");
-
-  }
+  document.getElementById(
+    section + "Section"
+  ).style.display =
+    "block";
 
 
-  if(section === "products"){
+  document.getElementById(
+    section === "categories"
+      ? "categoryMenu"
+      : section === "products"
+      ? "productMenu"
+      : "statisticsMenu"
+  ).classList.add("active");
 
-    productsSection.style.display =
-      "block";
 
-    productMenu.classList.add("active");
-
-  }
-
-
-  if(section === "statistics"){
-
-    statisticsSection.style.display =
-      "block";
-
-    statisticsMenu.classList.add("active");
+  if(
+    section === "statistics"
+  ){
 
     loadStatistics();
 
@@ -2337,396 +2141,21 @@ function showSection(section){
 }
 
 
-/* =====================================
-   STATISTICS
-===================================== */
+/* =====================================================
+   ADD PRODUCT
+===================================================== */
 
-async function loadStatistics(){
+function goAddProduct(){
 
-  const visitorElement =
-    document.getElementById(
-      "visitorStat"
-    );
-
-  const productClickElement =
-    document.getElementById(
-      "productClickStat"
-    );
-
-  const shopeeElement =
-    document.getElementById(
-      "shopeeClickStat"
-    );
-
-  const tiktokElement =
-    document.getElementById(
-      "tiktokClickStat"
-    );
-
-
-  visitorElement.textContent = "...";
-  productClickElement.textContent = "...";
-  shopeeElement.textContent = "...";
-  tiktokElement.textContent = "...";
-
-
-  const {
-    data,
-    error
-  } =
-  await supabaseClient
-    .from(ANALYTICS_TABLE)
-    .select(
-      "id,event_type,product_id,platform"
-    );
-
-
-  if(error){
-
-    console.error(error);
-
-    visitorElement.textContent = "0";
-    productClickElement.textContent = "0";
-    shopeeElement.textContent = "0";
-    tiktokElement.textContent = "0";
-
-    document.getElementById(
-      "productStatisticsBody"
-    ).innerHTML = `
-
-      <tr>
-
-        <td colspan="5" class="empty">
-
-          Gagal membaca data statistik.
-
-          <br><br>
-
-          ${escapeHtml(error.message)}
-
-        </td>
-
-      </tr>
-
-    `;
-
-    return;
-
-  }
-
-
-  const events =
-    data || [];
-
-
-  let visitors = 0;
-  let productClicks = 0;
-  let shopeeClicks = 0;
-  let tiktokClicks = 0;
-
-
-  const productStats = {};
-
-
-  events.forEach(event => {
-
-    const type =
-      String(event.event_type || "")
-        .toLowerCase()
-        .trim();
-
-
-    const platform =
-      String(event.platform || "")
-        .toLowerCase()
-        .trim();
-
-
-    if([
-      "page_view",
-      "pageview",
-      "visit",
-      "visitor",
-      "website_visit"
-    ].includes(type)){
-
-      visitors++;
-
-    }
-
-
-    if([
-      "product_click",
-      "click_product",
-      "product_clicked"
-    ].includes(type)){
-
-      productClicks++;
-
-
-      if(event.product_id){
-
-        if(!productStats[event.product_id]){
-
-          productStats[event.product_id] = {
-            clicks:0,
-            shopee:0,
-            tiktok:0
-          };
-
-        }
-
-        productStats[event.product_id].clicks++;
-
-      }
-
-    }
-
-
-    if([
-      "affiliate_click",
-      "click_affiliate",
-      "affiliate_clicked"
-    ].includes(type)){
-
-      if(platform === "shopee"){
-        shopeeClicks++;
-      }
-
-
-      if(platform === "tiktok"){
-        tiktokClicks++;
-      }
-
-
-      if(event.product_id){
-
-        if(!productStats[event.product_id]){
-
-          productStats[event.product_id] = {
-            clicks:0,
-            shopee:0,
-            tiktok:0
-          };
-
-        }
-
-
-        if(platform === "shopee"){
-          productStats[event.product_id].shopee++;
-        }
-
-
-        if(platform === "tiktok"){
-          productStats[event.product_id].tiktok++;
-        }
-
-      }
-
-    }
-
-  });
-
-
-  visitorElement.textContent =
-    formatNumber(visitors);
-
-  productClickElement.textContent =
-    formatNumber(productClicks);
-
-  shopeeElement.textContent =
-    formatNumber(shopeeClicks);
-
-  tiktokElement.textContent =
-    formatNumber(tiktokClicks);
-
-
-  document.getElementById(
-    "shopeePlatformStat"
-  ).textContent =
-    formatNumber(shopeeClicks) +
-    " klik";
-
-
-  document.getElementById(
-    "tiktokPlatformStat"
-  ).textContent =
-    formatNumber(tiktokClicks) +
-    " klik";
-
-
-  renderProductStatistics(productStats);
+  window.location.href =
+    "add-product.html";
 
 }
 
 
-/* =====================================
-   PRODUCT STATISTICS
-===================================== */
-
-function renderProductStatistics(productStats){
-
-  const body =
-    document.getElementById(
-      "productStatisticsBody"
-    );
-
-
-  if(!products.length){
-
-    body.innerHTML = `
-
-      <tr>
-
-        <td colspan="5" class="empty">
-          Belum ada produk.
-        </td>
-
-      </tr>
-
-    `;
-
-    return;
-
-  }
-
-
-  const rows =
-    products
-      .map(product => {
-
-        const stats =
-          productStats[product.id] || {
-            clicks:0,
-            shopee:0,
-            tiktok:0
-          };
-
-
-        return {
-          product,
-          clicks:stats.clicks,
-          shopee:stats.shopee,
-          tiktok:stats.tiktok
-        };
-
-      })
-      .filter(item =>
-        item.clicks > 0 ||
-        item.shopee > 0 ||
-        item.tiktok > 0
-      )
-      .sort((a,b) =>
-        b.clicks - a.clicks
-      );
-
-
-  if(!rows.length){
-
-    body.innerHTML = `
-
-      <tr>
-
-        <td colspan="5" class="empty">
-          Belum ada klik produk.
-        </td>
-
-      </tr>
-
-    `;
-
-    return;
-
-  }
-
-
-  const maxClicks =
-    Math.max(
-      ...rows.map(item => item.clicks),
-      1
-    );
-
-
-  body.innerHTML =
-    rows.map(item => {
-
-      const percentage =
-        Math.round(
-          item.clicks /
-          maxClicks *
-          100
-        );
-
-
-      return `
-
-        <tr>
-
-          <td>
-
-            <div class="product-stat-name">
-
-              ${escapeHtml(
-                item.product.name
-              )}
-
-            </div>
-
-          </td>
-
-
-          <td class="number">
-
-            ${formatNumber(
-              item.clicks
-            )}
-
-          </td>
-
-
-          <td class="number shopee">
-
-            ${formatNumber(
-              item.shopee
-            )}
-
-          </td>
-
-
-          <td class="number tiktok">
-
-            ${formatNumber(
-              item.tiktok
-            )}
-
-          </td>
-
-
-          <td style="min-width:140px;">
-
-            <div class="progress">
-
-              <div
-                class="progress-bar"
-                style="width:${percentage}%"
-              ></div>
-
-            </div>
-
-          </td>
-
-        </tr>
-
-      `;
-
-    }).join("");
-
-}
-
-
-/* =====================================
+/* =====================================================
    LOAD CATEGORIES
-===================================== */
+===================================================== */
 
 async function loadCategories(){
 
@@ -2735,11 +2164,24 @@ async function loadCategories(){
     error
   } =
   await supabaseClient
+
     .from("categories")
-    .select(
-      "id,name,slug,icon,description,is_active"
-    )
-    .order("name");
+
+    .select(`
+      id,
+      name,
+      slug,
+      icon,
+      description,
+      is_active
+    `)
+
+    .order(
+      "name",
+      {
+        ascending:true
+      }
+    );
 
 
   if(error){
@@ -2748,10 +2190,12 @@ async function loadCategories(){
 
     document.getElementById(
       "categoryList"
-    ).innerHTML =
-      `<div class="empty">
-        Gagal memuat kategori.
-      </div>`;
+    ).innerHTML = `
+      <div class="empty">
+        Gagal memuat kategori.<br>
+        ${escapeHtml(error.message)}
+      </div>
+    `;
 
     return;
 
@@ -2775,9 +2219,9 @@ async function loadCategories(){
 }
 
 
-/* =====================================
-   RENDER CATEGORY
-===================================== */
+/* =====================================================
+   RENDER CATEGORIES
+===================================================== */
 
 function renderCategories(){
 
@@ -2789,10 +2233,11 @@ function renderCategories(){
 
   if(!categories.length){
 
-    list.innerHTML =
-      `<div class="empty">
+    list.innerHTML = `
+      <div class="empty">
         Belum ada kategori.
-      </div>`;
+      </div>
+    `;
 
     return;
 
@@ -2800,89 +2245,88 @@ function renderCategories(){
 
 
   list.innerHTML =
-    categories.map(category => `
 
-      <div class="category-item">
+    categories
+      .map(
+        function(category){
 
-        <div class="category-left">
+          return `
 
-          <div class="category-icon">
+            <div class="category-item">
 
-            ${escapeHtml(
-              category.icon || "📁"
-            )}
+              <div class="category-left">
 
-          </div>
+                <div class="category-icon">
+                  ${escapeHtml(
+                    category.icon || "📁"
+                  )}
+                </div>
+
+                <div class="category-info">
+
+                  <div class="category-name">
+                    ${escapeHtml(
+                      category.name
+                    )}
+                  </div>
+
+                  <div class="category-slug">
+                    /${escapeHtml(
+                      category.slug || ""
+                    )}
+                  </div>
+
+                  <span
+                    class="status ${
+                      category.is_active
+                        ? "active"
+                        : "inactive"
+                    }"
+                  >
+                    ${
+                      category.is_active
+                        ? "AKTIF"
+                        : "NONAKTIF"
+                    }
+                  </span>
+
+                </div>
+
+              </div>
 
 
-          <div class="category-info">
+              <div class="category-actions">
 
-            <div class="category-name">
+                <button
+                  class="edit-btn"
+                  onclick="editCategory('${category.id}')"
+                >
+                  Edit
+                </button>
 
-              ${escapeHtml(
-                category.name
-              )}
+                <button
+                  class="delete-btn"
+                  onclick="deleteCategory('${category.id}')"
+                >
+                  Hapus
+                </button>
+
+              </div>
 
             </div>
 
+          `;
 
-            <div class="category-slug">
-
-              ${escapeHtml(
-                category.slug || ""
-              )}
-
-            </div>
-
-
-            <span class="status ${
-              category.is_active
-                ? "active"
-                : "inactive"
-            }">
-
-              ${
-                category.is_active
-                  ? "AKTIF"
-                  : "NONAKTIF"
-              }
-
-            </span>
-
-          </div>
-
-        </div>
-
-
-        <div class="category-actions">
-
-          <button
-            class="edit-btn"
-            onclick="editCategory('${category.id}')"
-          >
-            Edit
-          </button>
-
-
-          <button
-            class="delete-btn"
-            onclick="deleteCategory('${category.id}')"
-          >
-            Hapus
-          </button>
-
-        </div>
-
-      </div>
-
-    `).join("");
+        }
+      )
+      .join("");
 
 }
 
 
-/* =====================================
+/* =====================================================
    CATEGORY SELECT
-===================================== */
+===================================================== */
 
 function populateCategorySelect(){
 
@@ -2892,35 +2336,46 @@ function populateCategorySelect(){
     );
 
 
-  select.innerHTML =
-    `<option value="">
+  select.innerHTML = `
+    <option value="">
       Pilih kategori
-    </option>`;
+    </option>
+  `;
 
 
   categories
-    .filter(c => c.is_active)
-    .forEach(category => {
+    .filter(
+      function(category){
+        return category.is_active;
+      }
+    )
+    .forEach(
+      function(category){
 
-      const option =
-        document.createElement("option");
+        const option =
+          document.createElement(
+            "option"
+          );
 
-      option.value =
-        category.id;
+        option.value =
+          category.id;
 
-      option.textContent =
-        category.name;
+        option.textContent =
+          category.name;
 
-      select.appendChild(option);
+        select.appendChild(
+          option
+        );
 
-    });
+      }
+    );
 
 }
 
 
-/* =====================================
+/* =====================================================
    CATEGORY MODAL
-===================================== */
+===================================================== */
 
 function openCategoryModal(){
 
@@ -2937,14 +2392,12 @@ function openCategoryModal(){
 
   document.getElementById(
     "categoryId"
-  ).value =
-    "";
+  ).value = "";
 
 
   document.getElementById(
     "categoryActive"
-  ).checked =
-    true;
+  ).checked = true;
 
 
   updateIconPreview();
@@ -2966,9 +2419,9 @@ function closeCategoryModal(){
 }
 
 
-/* =====================================
-   ICON
-===================================== */
+/* =====================================================
+   CATEGORY ICON
+===================================================== */
 
 function updateIconPreview(){
 
@@ -3018,20 +2471,23 @@ document.getElementById(
 );
 
 
-/* =====================================
+/* =====================================================
    EDIT CATEGORY
-===================================== */
+===================================================== */
 
 function editCategory(id){
 
   const category =
     categories.find(
-      c => c.id === id
+      function(item){
+        return item.id === id;
+      }
     );
 
 
-  if(!category)
+  if(!category){
     return;
+  }
 
 
   document.getElementById(
@@ -3089,20 +2545,27 @@ function editCategory(id){
   const exists =
     [...select.options]
       .some(
-        option =>
-          option.value === icon
+        function(option){
+          return option.value === icon;
+        }
       );
 
 
   if(exists){
 
-    select.value = icon;
-    custom.value = "";
+    select.value =
+      icon;
+
+    custom.value =
+      "";
 
   }else{
 
-    select.value = "📱";
-    custom.value = icon;
+    select.value =
+      "📱";
+
+    custom.value =
+      icon;
 
   }
 
@@ -3117,9 +2580,9 @@ function editCategory(id){
 }
 
 
-/* =====================================
+/* =====================================================
    SAVE CATEGORY
-===================================== */
+===================================================== */
 
 document.getElementById(
   "categoryForm"
@@ -3136,7 +2599,8 @@ document.getElementById(
       );
 
 
-    button.disabled = true;
+    button.disabled =
+      true;
 
     button.textContent =
       "Menyimpan...";
@@ -3146,6 +2610,20 @@ document.getElementById(
       document.getElementById(
         "categoryId"
       ).value;
+
+
+    const name =
+      document.getElementById(
+        "categoryName"
+      ).value.trim();
+
+
+    const slug =
+      createSlug(
+        document.getElementById(
+          "categorySlug"
+        ).value
+      );
 
 
     const customIcon =
@@ -3162,17 +2640,9 @@ document.getElementById(
 
     const payload = {
 
-      name:
-        document.getElementById(
-          "categoryName"
-        ).value.trim(),
+      name:name,
 
-      slug:
-        document.getElementById(
-          "categorySlug"
-        ).value.trim()
-        .toLowerCase()
-        .replace(/\s+/g,"-"),
+      slug:slug,
 
       icon:
         customIcon ||
@@ -3182,7 +2652,8 @@ document.getElementById(
       description:
         document.getElementById(
           "categoryDescription"
-        ).value.trim(),
+        ).value.trim() ||
+        null,
 
       is_active:
         document.getElementById(
@@ -3192,6 +2663,23 @@ document.getElementById(
     };
 
 
+    if(!name){
+
+      showMessage(
+        "Nama kategori wajib diisi."
+      );
+
+      button.disabled =
+        false;
+
+      button.textContent =
+        "Simpan Kategori";
+
+      return;
+
+    }
+
+
     let result;
 
 
@@ -3199,15 +2687,23 @@ document.getElementById(
 
       result =
         await supabaseClient
+
           .from("categories")
+
           .update(payload)
-          .eq("id",id);
+
+          .eq(
+            "id",
+            id
+          );
 
     }else{
 
       result =
         await supabaseClient
+
           .from("categories")
+
           .insert(payload);
 
     }
@@ -3230,10 +2726,13 @@ document.getElementById(
 
       await loadCategories();
 
+      await loadProducts();
+
     }
 
 
-    button.disabled = false;
+    button.disabled =
+      false;
 
     button.textContent =
       "Simpan Kategori";
@@ -3242,20 +2741,23 @@ document.getElementById(
 );
 
 
-/* =====================================
+/* =====================================================
    DELETE CATEGORY
-===================================== */
+===================================================== */
 
 async function deleteCategory(id){
 
   const category =
     categories.find(
-      c => c.id === id
+      function(item){
+        return item.id === id;
+      }
     );
 
 
-  if(!category)
+  if(!category){
     return;
+  }
 
 
   if(
@@ -3273,9 +2775,15 @@ async function deleteCategory(id){
     error
   } =
   await supabaseClient
+
     .from("categories")
+
     .delete()
-    .eq("id",id);
+
+    .eq(
+      "id",
+      id
+    );
 
 
   if(error){
@@ -3300,9 +2808,9 @@ async function deleteCategory(id){
 }
 
 
-/* =====================================
+/* =====================================================
    LOAD PRODUCTS
-===================================== */
+===================================================== */
 
 async function loadProducts(){
 
@@ -3311,7 +2819,9 @@ async function loadProducts(){
     error
   } =
   await supabaseClient
+
     .from("products")
+
     .select(`
       id,
       category_id,
@@ -3336,6 +2846,7 @@ async function loadProducts(){
       created_at,
       updated_at
     `)
+
     .order(
       "created_at",
       {
@@ -3350,10 +2861,12 @@ async function loadProducts(){
 
     document.getElementById(
       "productList"
-    ).innerHTML =
-      `<div class="empty">
-        Gagal memuat produk.
-      </div>`;
+    ).innerHTML = `
+      <div class="empty">
+        Gagal memuat produk.<br>
+        ${escapeHtml(error.message)}
+      </div>
+    `;
 
     return;
 
@@ -3374,7 +2887,9 @@ async function loadProducts(){
     "activeProductCount"
   ).textContent =
     products.filter(
-      p => p.is_active
+      function(product){
+        return product.is_active;
+      }
     ).length;
 
 
@@ -3383,9 +2898,9 @@ async function loadProducts(){
 }
 
 
-/* =====================================
+/* =====================================================
    RENDER PRODUCTS
-===================================== */
+===================================================== */
 
 function renderProducts(){
 
@@ -3397,833 +2912,10 @@ function renderProducts(){
 
   if(!products.length){
 
-    list.innerHTML =
-      `<div class="empty">
+    list.innerHTML = `
+      <div class="empty">
         Belum ada produk.
-      </div>`;
-
-    return;
-
-  }
-
-
-  list.innerHTML =
-    products.map(product => {
-
-      const category =
-        categories.find(
-          c =>
-            c.id ===
-            product.category_id
-        );
-
-
-      let image =
-        product.image_url;
-
-
-      if(
-        !image &&
-        Array.isArray(product.gallery) &&
-        product.gallery.length
-      ){
-
-        image =
-          product.gallery[0];
-
-      }
-
-
-      image =
-        image ||
-        "https://placehold.co/100x100?text=Produk";
-
-
-      return `
-
-        <div class="product-item">
-
-          <div class="product-left">
-
-            <img
-              class="product-image"
-              src="${escapeHtml(image)}"
-              onerror="this.src='https://placehold.co/100x100?text=Produk'"
-            >
-
-
-            <div class="product-info">
-
-              <div class="product-name">
-
-                ${escapeHtml(
-                  product.name
-                )}
-
-              </div>
-
-
-              <div class="product-category">
-
-                ${
-                  category
-                    ? escapeHtml(
-                        category.name
-                      )
-                    : "Tanpa kategori"
-                }
-
-              </div>
-
-
-              <div class="product-price">
-
-                ${formatRupiah(
-                  product.price
-                )}
-
-              </div>
-
-
-              <span class="product-platform">
-
-                ${escapeHtml(
-                  String(
-                    product.platform || "-"
-                  ).toUpperCase()
-                )}
-
-              </span>
-
-            </div>
-
-          </div>
-
-
-          <div class="product-actions">
-
-            <button
-              class="edit-btn"
-              onclick="editProduct('${product.id}')"
-            >
-              Edit
-            </button>
-
-
-            <button
-              class="delete-btn"
-              onclick="deleteProduct('${product.id}')"
-            >
-              Hapus
-            </button>
-
-          </div>
-
-        </div>
-
-      `;
-
-    }).join("");
-
-}
-
-
-/* =====================================
-   PRODUCT MODAL
-===================================== */
-
-function openProductModal(){
-
-  document.getElementById(
-    "productModalTitle"
-  ).textContent =
-    "Tambah Produk";
-
-
-  document.getElementById(
-    "productForm"
-  ).reset();
-
-
-  document.getElementById(
-    "productId"
-  ).value =
-    "";
-
-
-  document.getElementById(
-    "productActive"
-  ).checked =
-    true;
-
-
-  productImages = [];
-
-  renderImagePreview();
-
-
-  document.getElementById(
-    "productPlatform"
-  ).value =
-    "shopee";
-
-
-  document.getElementById(
-    "productPrice"
-  ).value =
-    "";
-
-
-  updateSEOCounters();
-
-  updateSEOPreview();
-
-
-  document.getElementById(
-    "productModal"
-  ).classList.add("show");
-
-}
-
-
-function closeProductModal(){
-
-  document.getElementById(
-    "productModal"
-  ).classList.remove("show");
-
-}
-
-
-/* =====================================
-   SEO AUTO GENERATOR
-===================================== */
-
-function createSlug(text){
-
-  return String(text || "")
-    .toLowerCase()
-    .trim()
-    .replace(
-      /[^a-z0-9\s-]/g,
-      ""
-    )
-    .replace(
-      /\s+/g,
-      "-"
-    )
-    .replace(
-      /-+/g,
-      "-"
-    );
-
-}
-
-
-function generateSEO(){
-
-  const name =
-    document.getElementById(
-      "productName"
-    ).value.trim();
-
-
-  const description =
-    document.getElementById(
-      "productDescription"
-    ).value.trim();
-
-
-  const categorySelect =
-    document.getElementById(
-      "productCategory"
-    );
-
-
-  const categoryName =
-    categorySelect.options[
-      categorySelect.selectedIndex
-    ]?.text || "";
-
-
-  if(!name){
-
-    showMessage(
-      "Isi nama produk terlebih dahulu."
-    );
-
-    return;
-
-  }
-
-
-  let seoTitle =
-    name;
-
-
-  if(categoryName){
-
-    seoTitle =
-      `${name} ${categoryName}`;
-
-  }
-
-
-  seoTitle =
-    seoTitle
-      .replace(/\s+/g," ")
-      .trim();
-
-
-  if(seoTitle.length > 60){
-
-    seoTitle =
-      seoTitle.substring(
-        0,
-        60
-      )
-      .trim();
-
-  }
-
-
-  let seoDescription =
-    description;
-
-
-  if(!seoDescription){
-
-    seoDescription =
-      `Temukan ${name} dengan harga terbaik dan pilihan menarik di AffiliaMart. Lihat detail produk dan penawaran terbaik.`;
-
-  }else{
-
-    seoDescription =
-      `Temukan ${name}. ${seoDescription}`;
-
-  }
-
-
-  seoDescription =
-    seoDescription
-      .replace(/\s+/g," ")
-      .trim();
-
-
-  if(seoDescription.length > 160){
-
-    seoDescription =
-      seoDescription.substring(
-        0,
-        157
-      )
-      .trim() +
-      "...";
-
-  }
-
-
-  const words =
-    name
-      .toLowerCase()
-      .replace(
-        /[^a-z0-9\s]/g,
-        ""
-      )
-      .split(/\s+/)
-      .filter(Boolean);
-
-
-  const keywordList = [
-    name.toLowerCase(),
-    ...words
-  ];
-
-
-  if(categoryName){
-
-    keywordList.push(
-      categoryName.toLowerCase()
-    );
-
-  }
-
-
-  const keywords =
-    [...new Set(keywordList)]
-      .slice(0,8)
-      .join(", ");
-
-
-  document.getElementById(
-    "productSeoTitle"
-  ).value =
-    seoTitle;
-
-
-  document.getElementById(
-    "productSeoDescription"
-  ).value =
-    seoDescription;
-
-
-  document.getElementById(
-    "productSeoKeywords"
-  ).value =
-    keywords;
-
-
-  updateSEOCounters();
-
-  updateSEOPreview();
-
-
-  showMessage(
-    "SEO berhasil dibuat otomatis."
-  );
-
-}
-
-
-/* =====================================
-   SEO PREVIEW
-===================================== */
-
-function updateSEOCounters(){
-
-  const title =
-    document.getElementById(
-      "productSeoTitle"
-    ).value;
-
-
-  const description =
-    document.getElementById(
-      "productSeoDescription"
-    ).value;
-
-
-  document.getElementById(
-    "seoTitleCounter"
-  ).textContent =
-    `${title.length}/60`;
-
-
-  document.getElementById(
-    "seoDescriptionCounter"
-  ).textContent =
-    `${description.length}/160`;
-
-}
-
-
-function updateSEOPreview(){
-
-  const name =
-    document.getElementById(
-      "productName"
-    ).value.trim();
-
-
-  const title =
-    document.getElementById(
-      "productSeoTitle"
-    ).value.trim() ||
-    name ||
-    "Judul Produk";
-
-
-  const description =
-    document.getElementById(
-      "productSeoDescription"
-    ).value.trim() ||
-    "Deskripsi produk akan tampil di sini.";
-
-
-  const slug =
-    document.getElementById(
-      "productSlug"
-    ).value.trim() ||
-    "nama-produk";
-
-
-  document.getElementById(
-    "seoPreviewTitle"
-  ).textContent =
-    title;
-
-
-  document.getElementById(
-    "seoPreviewUrl"
-  ).textContent =
-    `affiliamart.com/produk/${slug}`;
-
-
-  document.getElementById(
-    "seoPreviewDescription"
-  ).textContent =
-    description;
-
-
-  updateSEOCounters();
-
-}
-
-
-document.getElementById(
-  "productSeoTitle"
-).addEventListener(
-  "input",
-  updateSEOPreview
-);
-
-
-document.getElementById(
-  "productSeoDescription"
-).addEventListener(
-  "input",
-  updateSEOPreview
-);
-
-
-document.getElementById(
-  "productSlug"
-).addEventListener(
-  "input",
-  updateSEOPreview
-);
-
-
-document.getElementById(
-  "productName"
-).addEventListener(
-  "input",
-  function(){
-
-    const id =
-      document.getElementById(
-        "productId"
-      ).value;
-
-
-    if(!id){
-
-      document.getElementById(
-        "productSlug"
-      ).value =
-        createSlug(this.value);
-
-    }
-
-
-    updateSEOPreview();
-
-  }
-);
-
-
-/* =====================================
-   PRICE
-===================================== */
-
-function calculateProductPrice(){
-
-  const originalPrice =
-    Number(
-      document.getElementById(
-        "productOriginalPrice"
-      ).value
-    );
-
-
-  const discountText =
-    document.getElementById(
-      "productDiscount"
-    ).value;
-
-
-  const discount =
-    discountText === ""
-      ? 0
-      : Number(discountText);
-
-
-  const priceInput =
-    document.getElementById(
-      "productPrice"
-    );
-
-
-  if(
-    !originalPrice ||
-    originalPrice < 0
-  ){
-
-    priceInput.value = "";
-
-    return;
-
-  }
-
-
-  const safeDiscount =
-    Math.min(
-      Math.max(
-        discount || 0,
-        0
-      ),
-      100
-    );
-
-
-  priceInput.value =
-    Math.round(
-      originalPrice *
-      (
-        1 -
-        safeDiscount /
-        100
-      )
-    );
-
-}
-
-
-document.getElementById(
-  "productOriginalPrice"
-).addEventListener(
-  "input",
-  calculateProductPrice
-);
-
-
-document.getElementById(
-  "productDiscount"
-).addEventListener(
-  "input",
-  calculateProductPrice
-);
-
-
-/* =====================================
-   IMAGE UPLOAD
-===================================== */
-
-document.getElementById(
-  "productImageFiles"
-).addEventListener(
-  "change",
-  async function(){
-
-    const files =
-      [...this.files];
-
-
-    for(const file of files){
-
-      if(
-        !file.type.startsWith("image/")
-      ){
-
-        continue;
-
-      }
-
-
-      if(
-        file.size >
-        5 * 1024 * 1024
-      ){
-
-        showMessage(
-          `${file.name} terlalu besar. Maksimal 5MB.`
-        );
-
-        continue;
-
-      }
-
-
-      await uploadProductImage(file);
-
-    }
-
-
-    this.value = "";
-
-  }
-);
-
-
-/* =====================================
-   UPLOAD IMAGE
-===================================== */
-
-async function uploadProductImage(file){
-
-  showMessage(
-    "Mengupload " +
-    file.name +
-    "..."
-  );
-
-
-  const extension =
-    file.name
-      .split(".")
-      .pop()
-      .toLowerCase();
-
-
-  const filename =
-    `${Date.now()}-${Math.random()
-      .toString(36)
-      .substring(2,9)}.${extension}`;
-
-
-  const path =
-    `${currentUser.id}/${filename}`;
-
-
-  const {
-    error
-  } =
-  await supabaseClient
-    .storage
-    .from(IMAGE_BUCKET)
-    .upload(
-      path,
-      file,
-      {
-        cacheControl:"3600",
-        upsert:false,
-        contentType:file.type
-      }
-    );
-
-
-  if(error){
-
-    showMessage(
-      "Upload gagal: " +
-      error.message
-    );
-
-    return;
-
-  }
-
-
-  const {
-    data
-  } =
-  supabaseClient
-    .storage
-    .from(IMAGE_BUCKET)
-    .getPublicUrl(path);
-
-
-  if(
-    data &&
-    data.publicUrl
-  ){
-
-    productImages.push(
-      data.publicUrl
-    );
-
-    renderImagePreview();
-
-    showMessage(
-      "Gambar berhasil diupload."
-    );
-
-  }
-
-}
-
-
-/* =====================================
-   IMAGE URL
-===================================== */
-
-function addImageFromUrl(){
-
-  const input =
-    document.getElementById(
-      "productImageUrl"
-    );
-
-
-  const url =
-    input.value.trim();
-
-
-  if(!url){
-
-    showMessage(
-      "Masukkan URL gambar."
-    );
-
-    return;
-
-  }
-
-
-  try{
-
-    new URL(url);
-
-  }catch(error){
-
-    showMessage(
-      "URL gambar tidak valid."
-    );
-
-    return;
-
-  }
-
-
-  productImages.push(url);
-
-  input.value = "";
-
-  renderImagePreview();
-
-}
-
-
-/* =====================================
-   IMAGE PREVIEW
-===================================== */
-
-function renderImagePreview(){
-
-  const grid =
-    document.getElementById(
-      "imagePreviewGrid"
-    );
-
-
-  if(!productImages.length){
-
-    grid.innerHTML = `
-
-      <div
-        style="
-          grid-column:1/-1;
-          padding:20px;
-          text-align:center;
-          color:#9ca3af;
-          font-size:12px;
-          border:1px dashed #d1d5db;
-          border-radius:10px;
-        "
-      >
-        Belum ada gambar.
       </div>
-
     `;
 
     return;
@@ -4231,77 +2923,151 @@ function renderImagePreview(){
   }
 
 
-  grid.innerHTML =
-    productImages.map(
-      (url,index) => `
+  list.innerHTML =
 
-        <div class="preview-item">
+    products
+      .map(
+        function(product){
 
-          <img
-            src="${escapeHtml(url)}"
-            onerror="this.style.opacity='.3'"
-          >
+          const category =
+            categories.find(
+              function(item){
+                return item.id ===
+                  product.category_id;
+              }
+            );
 
 
-          ${
-            index === 0
-              ? `
-                <span class="preview-main">
-                  UTAMA
-                </span>
-              `
-              : ""
+          let image =
+            product.image_url;
+
+
+          if(
+            !image &&
+            Array.isArray(
+              product.gallery
+            ) &&
+            product.gallery.length
+          ){
+
+            image =
+              product.gallery[0];
+
           }
 
 
-          <button
-            type="button"
-            class="preview-remove"
-            onclick="removeProductImage(${index})"
-          >
-            ×
-          </button>
+          image =
+            image ||
+            "https://placehold.co/100x100?text=Produk";
 
-        </div>
 
-      `
-    ).join("");
+          return `
+
+            <div class="product-item">
+
+              <div class="product-left">
+
+                <img
+                  class="product-image"
+                  src="${escapeHtml(image)}"
+                  alt="${escapeHtml(product.name)}"
+                  onerror="
+                    this.src='https://placehold.co/100x100?text=Produk'
+                  "
+                >
+
+
+                <div class="product-info">
+
+                  <div class="product-name">
+                    ${escapeHtml(
+                      product.name
+                    )}
+                  </div>
+
+                  <div class="product-category">
+                    ${
+                      category
+                        ? escapeHtml(
+                            category.name
+                          )
+                        : "Tanpa kategori"
+                    }
+                  </div>
+
+                  <div class="product-price">
+                    ${formatRupiah(
+                      product.price
+                    )}
+                  </div>
+
+                  <span class="product-platform">
+                    ${escapeHtml(
+                      String(
+                        product.platform || "-"
+                      ).toUpperCase()
+                    )}
+                  </span>
+
+                  <div class="help">
+                    /${escapeHtml(
+                      category?.slug || "kategori"
+                    )}/${escapeHtml(
+                      product.slug || ""
+                    )}
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <div class="product-actions">
+
+                <button
+                  class="edit-btn"
+                  onclick="editProduct('${product.id}')"
+                >
+                  Edit
+                </button>
+
+                <button
+                  class="delete-btn"
+                  onclick="deleteProduct('${product.id}')"
+                >
+                  Hapus
+                </button>
+
+              </div>
+
+            </div>
+
+          `;
+
+        }
+      )
+      .join("");
 
 }
 
 
-function removeProductImage(index){
-
-  productImages.splice(
-    index,
-    1
-  );
-
-  renderImagePreview();
-
-}
-
-
-/* =====================================
+/* =====================================================
    EDIT PRODUCT
-===================================== */
+===================================================== */
 
 function editProduct(id){
 
   const product =
     products.find(
-      p => p.id === id
+      function(item){
+        return item.id === id;
+      }
     );
 
 
-  if(!product)
+  if(!product){
     return;
-
-
-  document.getElementById(
-    "productModalTitle"
-  ).textContent =
-    "Edit Produk";
+  }
 
 
   document.getElementById(
@@ -4353,6 +3119,18 @@ function editProduct(id){
 
 
   document.getElementById(
+    "productImageUrl"
+  ).value =
+    product.image_url || "";
+
+
+  document.getElementById(
+    "productAffiliate"
+  ).value =
+    product.affiliate_url || "";
+
+
+  document.getElementById(
     "productOriginalPrice"
   ).value =
     product.original_price ?? "";
@@ -4372,15 +3150,7 @@ function editProduct(id){
   ).value =
     String(
       product.platform || "shopee"
-    ).toLowerCase() === "tiktok"
-      ? "tiktok"
-      : "shopee";
-
-
-  document.getElementById(
-    "productAffiliate"
-  ).value =
-    product.affiliate_url || "";
+    ).toLowerCase();
 
 
   document.getElementById(
@@ -4413,34 +3183,7 @@ function editProduct(id){
     !!product.is_active;
 
 
-  productImages = [];
-
-
-  if(
-    Array.isArray(product.gallery)
-  ){
-
-    productImages =
-      [...product.gallery];
-
-  }
-
-
-  if(
-    product.image_url &&
-    !productImages.includes(
-      product.image_url
-    )
-  ){
-
-    productImages.unshift(
-      product.image_url
-    );
-
-  }
-
-
-  renderImagePreview();
+  updateProductUrl();
 
   updateSEOPreview();
 
@@ -4452,9 +3195,22 @@ function editProduct(id){
 }
 
 
-/* =====================================
+/* =====================================================
+   CLOSE PRODUCT
+===================================================== */
+
+function closeProductModal(){
+
+  document.getElementById(
+    "productModal"
+  ).classList.remove("show");
+
+}
+
+
+/* =====================================================
    SAVE PRODUCT
-===================================== */
+===================================================== */
 
 document.getElementById(
   "productForm"
@@ -4471,7 +3227,8 @@ document.getElementById(
       );
 
 
-    button.disabled = true;
+    button.disabled =
+      true;
 
     button.textContent =
       "Menyimpan...";
@@ -4483,41 +3240,24 @@ document.getElementById(
       ).value;
 
 
-    const ratingText =
+    const name =
       document.getElementById(
-        "productRating"
-      ).value
-      .trim()
-      .replace(",", ".");
+        "productName"
+      ).value.trim();
 
 
-    const rating =
-      ratingText
-        ? Number(ratingText)
-        : null;
+    const categoryId =
+      document.getElementById(
+        "productCategory"
+      ).value;
 
 
-    if(
-      rating !== null &&
-      (
-        isNaN(rating) ||
-        rating < 0 ||
-        rating > 5
-      )
-    ){
-
-      showMessage(
-        "Rating harus antara 0 sampai 5."
+    const slug =
+      createSlug(
+        document.getElementById(
+          "productSlug"
+        ).value
       );
-
-      button.disabled = false;
-
-      button.textContent =
-        "Simpan Produk";
-
-      return;
-
-    }
 
 
     const originalPrice =
@@ -4540,119 +3280,175 @@ document.getElementById(
         : Number(discountText);
 
 
-    if(
-      !originalPrice ||
-      originalPrice <= 0
-    ){
-
-      showMessage(
-        "Harga Asli wajib diisi."
-      );
-
-      button.disabled = false;
-
-      button.textContent =
-        "Simpan Produk";
-
-      return;
-
-    }
-
-
-    if(
-      isNaN(discount) ||
-      discount < 0 ||
-      discount > 100
-    ){
-
-      showMessage(
-        "Diskon harus antara 0 sampai 100%."
-      );
-
-      button.disabled = false;
-
-      button.textContent =
-        "Simpan Produk";
-
-      return;
-
-    }
-
-
     const price =
       Math.round(
         originalPrice *
         (
           1 -
-          discount /
-          100
+          Math.min(
+            Math.max(
+              discount,
+              0
+            ),
+            100
+          ) / 100
         )
       );
 
 
-    const mainImage =
-      productImages.length
-        ? productImages[0]
-        : null;
-
-
-    const seoTitle =
+    const ratingText =
       document.getElementById(
-        "productSeoTitle"
-      ).value.trim();
+        "productRating"
+      ).value
+      .trim();
 
 
-    const seoDescription =
-      document.getElementById(
-        "productSeoDescription"
-      ).value.trim();
+    const rating =
+      ratingText === ""
+        ? null
+        : Number(
+            ratingText
+              .replace(",",".")
+          );
 
 
-    const seoKeywords =
-      document.getElementById(
-        "productSeoKeywords"
-      ).value.trim();
+    if(!name){
+
+      showMessage(
+        "Nama produk wajib diisi."
+      );
+
+      button.disabled =
+        false;
+
+      button.textContent =
+        "Simpan Produk";
+
+      return;
+
+    }
+
+
+    if(!categoryId){
+
+      showMessage(
+        "Pilih kategori produk."
+      );
+
+      button.disabled =
+        false;
+
+      button.textContent =
+        "Simpan Produk";
+
+      return;
+
+    }
+
+
+    if(!slug){
+
+      showMessage(
+        "Slug produk wajib diisi."
+      );
+
+      button.disabled =
+        false;
+
+      button.textContent =
+        "Simpan Produk";
+
+      return;
+
+    }
+
+
+    if(
+      !originalPrice ||
+      originalPrice < 0
+    ){
+
+      showMessage(
+        "Harga asli tidak valid."
+      );
+
+      button.disabled =
+        false;
+
+      button.textContent =
+        "Simpan Produk";
+
+      return;
+
+    }
+
+
+    if(
+      rating !== null &&
+      (
+        isNaN(rating) ||
+        rating < 0 ||
+        rating > 5
+      )
+    ){
+
+      showMessage(
+        "Rating harus antara 0 sampai 5."
+      );
+
+      button.disabled =
+        false;
+
+      button.textContent =
+        "Simpan Produk";
+
+      return;
+
+    }
+
+
+    const selectedCategory =
+      categories.find(
+        function(category){
+          return category.id ===
+            categoryId;
+        }
+      );
 
 
     const payload = {
 
-      name:
-        document.getElementById(
-          "productName"
-        ).value.trim(),
-
       category_id:
-        document.getElementById(
-          "productCategory"
-        ).value ||
-        null,
+        categoryId,
+
+      name:
+        name,
 
       slug:
-        document.getElementById(
-          "productSlug"
-        ).value.trim()
-        .toLowerCase()
-        .replace(/\s+/g,"-"),
+        slug,
 
       description:
         document.getElementById(
           "productDescription"
-        ).value.trim(),
-
-      seo_title:
-        seoTitle || null,
-
-      seo_description:
-        seoDescription || null,
-
-      seo_keywords:
-        seoKeywords || null,
+        ).value.trim() ||
+        null,
 
       image_url:
-        mainImage,
+        document.getElementById(
+          "productImageUrl"
+        ).value.trim() ||
+        null,
 
       gallery:
-        productImages,
+        document.getElementById(
+          "productImageUrl"
+        ).value.trim()
+          ? [
+              document.getElementById(
+                "productImageUrl"
+              ).value.trim()
+            ]
+          : [],
 
       price:
         price,
@@ -4661,7 +3457,7 @@ document.getElementById(
         originalPrice,
 
       discount_percent:
-        discount,
+        discount || 0,
 
       platform:
         document.getElementById(
@@ -4675,8 +3471,8 @@ document.getElementById(
         Number(
           document.getElementById(
             "productSold"
-          ).value
-        ) || 0,
+          ).value || 0
+        ),
 
       is_featured:
         document.getElementById(
@@ -4697,9 +3493,98 @@ document.getElementById(
         document.getElementById(
           "productAffiliate"
         ).value.trim() ||
+        null,
+
+      seo_title:
+        document.getElementById(
+          "productSeoTitle"
+        ).value.trim() ||
+        null,
+
+      seo_description:
+        document.getElementById(
+          "productSeoDescription"
+        ).value.trim() ||
+        null,
+
+      seo_keywords:
+        document.getElementById(
+          "productSeoKeywords"
+        ).value.trim() ||
         null
 
     };
+
+
+    /*
+      Cek slug hanya jika membuat produk baru
+      atau slug berubah.
+    */
+
+    const slugQuery =
+      supabaseClient
+        .from("products")
+        .select("id")
+        .eq(
+          "slug",
+          slug
+        )
+        .limit(1);
+
+
+    if(id){
+
+      slugQuery.neq(
+        "id",
+        id
+      );
+
+    }
+
+
+    const {
+      data:existingSlug,
+      error:slugError
+    } =
+    await slugQuery;
+
+
+    if(slugError){
+
+      showMessage(
+        "Gagal mengecek URL produk: " +
+        slugError.message
+      );
+
+      button.disabled =
+        false;
+
+      button.textContent =
+        "Simpan Produk";
+
+      return;
+
+    }
+
+
+    if(
+      existingSlug &&
+      existingSlug.length
+    ){
+
+      showMessage(
+        "Slug produk sudah digunakan."
+      );
+
+      button.disabled =
+        false;
+
+      button.textContent =
+        "Simpan Produk";
+
+      return;
+
+    }
 
 
     let result;
@@ -4709,15 +3594,23 @@ document.getElementById(
 
       result =
         await supabaseClient
+
           .from("products")
+
           .update(payload)
-          .eq("id",id);
+
+          .eq(
+            "id",
+            id
+          );
 
     }else{
 
       result =
         await supabaseClient
+
           .from("products")
+
           .insert(payload);
 
     }
@@ -4726,31 +3619,53 @@ document.getElementById(
     if(result.error){
 
       console.error(
-        "PRODUCT SAVE ERROR:",
         result.error
       );
 
-
       showMessage(
-        "Gagal menyimpan produk: " +
+        "Produk gagal disimpan: " +
         result.error.message
       );
 
-    }else{
+      button.disabled =
+        false;
 
-      showMessage(
-        "Produk berhasil disimpan."
-      );
+      button.textContent =
+        "Simpan Produk";
 
-
-      closeProductModal();
-
-      await loadProducts();
+      return;
 
     }
 
 
-    button.disabled = false;
+    const categorySlug =
+      selectedCategory?.slug ||
+      "kategori";
+
+
+    const productUrl =
+      window.location.origin +
+      "/" +
+      categorySlug +
+      "/" +
+      slug;
+
+
+    showMessage(
+      id
+        ? "Produk berhasil diperbarui."
+        : "Produk berhasil ditambahkan. URL: " +
+          productUrl
+    );
+
+
+    closeProductModal();
+
+    await loadProducts();
+
+
+    button.disabled =
+      false;
 
     button.textContent =
       "Simpan Produk";
@@ -4759,20 +3674,23 @@ document.getElementById(
 );
 
 
-/* =====================================
+/* =====================================================
    DELETE PRODUCT
-===================================== */
+===================================================== */
 
 async function deleteProduct(id){
 
   const product =
     products.find(
-      p => p.id === id
+      function(item){
+        return item.id === id;
+      }
     );
 
 
-  if(!product)
+  if(!product){
     return;
+  }
 
 
   if(
@@ -4790,9 +3708,15 @@ async function deleteProduct(id){
     error
   } =
   await supabaseClient
+
     .from("products")
+
     .delete()
-    .eq("id",id);
+
+    .eq(
+      "id",
+      id
+    );
 
 
   if(error){
@@ -4817,122 +3741,942 @@ async function deleteProduct(id){
 }
 
 
-/* =====================================
-   FORMAT
-===================================== */
+/* =====================================================
+   PRODUCT URL
+===================================================== */
 
-function formatRupiah(value){
+function updateProductUrl(){
+
+  const categoryId =
+    document.getElementById(
+      "productCategory"
+    ).value;
+
+
+  const slug =
+    document.getElementById(
+      "productSlug"
+    ).value.trim();
+
+
+  const category =
+    categories.find(
+      function(item){
+        return item.id ===
+          categoryId;
+      }
+    );
+
+
+  const preview =
+    document.getElementById(
+      "productUrlPreview"
+    );
+
 
   if(
-    value === null ||
-    value === undefined ||
-    value === ""
+    !category ||
+    !slug
   ){
 
-    return "-";
+    preview.textContent =
+      "URL produk akan muncul di sini.";
+
+    return;
 
   }
 
 
-  return new Intl.NumberFormat(
-    "id-ID",
-    {
-      style:"currency",
-      currency:"IDR",
-      maximumFractionDigits:0
-    }
-  ).format(value);
+  preview.textContent =
+    window.location.origin +
+    "/" +
+    category.slug +
+    "/" +
+    slug;
 
 }
 
-
-function formatNumber(value){
-
-  return new Intl.NumberFormat(
-    "id-ID"
-  ).format(
-    Number(value) || 0
-  );
-
-}
-
-
-/* =====================================
-   ESCAPE
-===================================== */
-
-function escapeHtml(value){
-
-  return String(
-    value ?? ""
-  )
-  .replace(/&/g,"&amp;")
-  .replace(/</g,"&lt;")
-  .replace(/>/g,"&gt;")
-  .replace(/"/g,"&quot;")
-  .replace(/'/g,"&#039;");
-
-}
-
-
-/* =====================================
-   AUTO SLUG CATEGORY
-===================================== */
 
 document.getElementById(
-  "categoryName"
+  "productCategory"
+).addEventListener(
+  "change",
+  updateProductUrl
+);
+
+
+document.getElementById(
+  "productSlug"
+).addEventListener(
+  "input",
+  function(){
+
+    this.value =
+      createSlug(
+        this.value
+      );
+
+    updateProductUrl();
+
+    updateSEOPreview();
+
+  }
+);
+
+
+/* =====================================================
+   PRODUCT NAME -> SLUG
+===================================================== */
+
+document.getElementById(
+  "productName"
 ).addEventListener(
   "input",
   function(){
 
     const id =
       document.getElementById(
-        "categoryId"
+        "productId"
       ).value;
 
 
-    if(id)
-      return;
+    if(!id){
 
-
-    document.getElementById(
-      "categorySlug"
-    ).value =
-      this.value
-        .toLowerCase()
-        .trim()
-        .replace(
-          /[^a-z0-9\s-]/g,
-          ""
-        )
-        .replace(
-          /\s+/g,
-          "-"
+      document.getElementById(
+        "productSlug"
+      ).value =
+        createSlug(
+          this.value
         );
-
-  }
-);
-
-
-/* =====================================
-   CLOSE MODAL
-===================================== */
-
-document.getElementById(
-  "categoryModal"
-).addEventListener(
-  "click",
-  function(event){
-
-    if(event.target === this){
-
-      closeCategoryModal();
 
     }
 
+
+    updateProductUrl();
+
+    updateSEOPreview();
+
   }
 );
 
+
+/* =====================================================
+   PRICE
+===================================================== */
+
+function calculateProductPrice(){
+
+  const original =
+    Number(
+      document.getElementById(
+        "productOriginalPrice"
+      ).value
+    );
+
+
+  const discount =
+    Number(
+      document.getElementById(
+        "productDiscount"
+      ).value || 0
+    );
+
+
+  if(
+    !original ||
+    original < 0
+  ){
+
+    document.getElementById(
+      "productPrice"
+    ).value = "";
+
+    return;
+
+  }
+
+
+  const safeDiscount =
+    Math.min(
+      Math.max(
+        discount,
+        0
+      ),
+      100
+    );
+
+
+  document.getElementById(
+    "productPrice"
+  ).value =
+    Math.round(
+      original *
+      (
+        1 -
+        safeDiscount / 100
+      )
+    );
+
+}
+
+
+document.getElementById(
+  "productOriginalPrice"
+).addEventListener(
+  "input",
+  calculateProductPrice
+);
+
+
+document.getElementById(
+  "productDiscount"
+).addEventListener(
+  "input",
+  calculateProductPrice
+);
+
+
+/* =====================================================
+   SEO
+===================================================== */
+
+function generateSEO(){
+
+  const name =
+    document.getElementById(
+      "productName"
+    ).value.trim();
+
+
+  const description =
+    document.getElementById(
+      "productDescription"
+    ).value.trim();
+
+
+  const categorySelect =
+    document.getElementById(
+      "productCategory"
+    );
+
+
+  const categoryName =
+    categorySelect
+      .options[
+        categorySelect.selectedIndex
+      ]?.text || "";
+
+
+  if(!name){
+
+    showMessage(
+      "Isi nama produk terlebih dahulu."
+    );
+
+    return;
+
+  }
+
+
+  let title =
+    categoryName
+      ? `${name} ${categoryName}`
+      : name;
+
+
+  title =
+    title
+      .replace(/\s+/g," ")
+      .trim()
+      .substring(0,60);
+
+
+  let seoDescription =
+    description
+      ? `Temukan ${name}. ${description}`
+      : `Temukan ${name} dengan harga terbaik dan pilihan menarik di AffiliaMart.`;
+
+
+  seoDescription =
+    seoDescription
+      .replace(/\s+/g," ")
+      .trim();
+
+
+  if(
+    seoDescription.length > 160
+  ){
+
+    seoDescription =
+      seoDescription
+        .substring(
+          0,
+          157
+        )
+        .trim() +
+      "...";
+
+  }
+
+
+  const words =
+    name
+      .toLowerCase()
+      .replace(
+        /[^a-z0-9\s]/g,
+        ""
+      )
+      .split(/\s+/)
+      .filter(Boolean);
+
+
+  const keywords =
+    [
+      name.toLowerCase(),
+      ...words,
+      categoryName.toLowerCase()
+    ]
+    .filter(Boolean);
+
+
+  document.getElementById(
+    "productSeoTitle"
+  ).value =
+    title;
+
+
+  document.getElementById(
+    "productSeoDescription"
+  ).value =
+    seoDescription;
+
+
+  document.getElementById(
+    "productSeoKeywords"
+  ).value =
+    [...new Set(keywords)]
+      .slice(0,8)
+      .join(", ");
+
+
+  updateSEOPreview();
+
+}
+
+
+function updateSEOPreview(){
+
+  const title =
+    document.getElementById(
+      "productSeoTitle"
+    ).value.trim();
+
+
+  const description =
+    document.getElementById(
+      "productSeoDescription"
+    ).value.trim();
+
+
+  const name =
+    document.getElementById(
+      "productName"
+    ).value.trim();
+
+
+  const slug =
+    document.getElementById(
+      "productSlug"
+    ).value.trim();
+
+
+  const category =
+    categories.find(
+      function(item){
+        return item.id ===
+          document.getElementById(
+            "productCategory"
+          ).value;
+      }
+    );
+
+
+  document.getElementById(
+    "seoPreviewTitle"
+  ).textContent =
+    title ||
+    name ||
+    "Judul Produk";
+
+
+  document.getElementById(
+    "seoPreviewUrl"
+  ).textContent =
+    window.location.origin +
+    "/" +
+    (
+      category?.slug ||
+      "kategori"
+    ) +
+    "/" +
+    (
+      slug ||
+      "nama-produk"
+    );
+
+
+  document.getElementById(
+    "seoPreviewDescription"
+  ).textContent =
+    description ||
+    "Deskripsi produk akan tampil di sini.";
+
+
+  document.getElementById(
+    "seoTitleCounter"
+  ).textContent =
+    `${title.length}/60`;
+
+
+  document.getElementById(
+    "seoDescriptionCounter"
+  ).textContent =
+    `${description.length}/160`;
+
+}
+
+
+document.getElementById(
+  "productSeoTitle"
+).addEventListener(
+  "input",
+  updateSEOPreview
+);
+
+
+document.getElementById(
+  "productSeoDescription"
+).addEventListener(
+  "input",
+  updateSEOPreview
+);
+
+
+/* =====================================================
+   IMAGE
+===================================================== */
+
+document.getElementById(
+  "productImageUrl"
+).addEventListener(
+  "input",
+  function(){
+
+    renderImagePreview();
+
+  }
+);
+
+
+function renderImagePreview(){
+
+  const url =
+    document.getElementById(
+      "productImageUrl"
+    ).value.trim();
+
+
+  const grid =
+    document.getElementById(
+      "imageGrid"
+    );
+
+
+  if(!url){
+
+    grid.innerHTML =
+      "";
+
+    return;
+
+  }
+
+
+  grid.innerHTML = `
+
+    <div class="image-item">
+
+      <img
+        src="${escapeHtml(url)}"
+        alt="Produk"
+        onerror="this.style.opacity='.3'"
+      >
+
+      <span class="image-main">
+        UTAMA
+      </span>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   STATISTICS - RPC
+===================================================== */
+
+async function loadStatistics(){
+
+  const visitor =
+    document.getElementById(
+      "visitorStat"
+    );
+
+  const productClick =
+    document.getElementById(
+      "productClickStat"
+    );
+
+  const shopee =
+    document.getElementById(
+      "shopeeClickStat"
+    );
+
+  const tiktok =
+    document.getElementById(
+      "tiktokClickStat"
+    );
+
+
+  visitor.textContent =
+    "...";
+
+  productClick.textContent =
+    "...";
+
+  shopee.textContent =
+    "...";
+
+  tiktok.textContent =
+    "...";
+
+
+  /*
+    PENTING:
+    Dashboard TIDAK lagi melakukan:
+
+    .from("analytics_events").select(...)
+
+    sehingga tidak terkena RLS SELECT.
+  */
+
+  const {
+    data,
+    error
+  } =
+  await supabaseClient
+    .rpc(
+      "get_analytics_stats"
+    );
+
+
+  if(error){
+
+    console.error(
+      "Analytics RPC:",
+      error
+    );
+
+
+    visitor.textContent =
+      "0";
+
+    productClick.textContent =
+      "0";
+
+    shopee.textContent =
+      "0";
+
+    tiktok.textContent =
+      "0";
+
+
+    document.getElementById(
+      "productStatisticsBody"
+    ).innerHTML = `
+
+      <tr>
+
+        <td
+          colspan="5"
+          class="empty"
+        >
+
+          Gagal membaca statistik.
+
+          <br><br>
+
+          ${escapeHtml(
+            error.message
+          )}
+
+        </td>
+
+      </tr>
+
+    `;
+
+    return;
+
+  }
+
+
+  const stats =
+    data || {};
+
+
+  const visitors =
+    Number(
+      stats.total_visitors || 0
+    );
+
+
+  const productClicks =
+    Number(
+      stats.total_product_clicks || 0
+    );
+
+
+  const shopeeClicks =
+    Number(
+      stats.total_shopee || 0
+    );
+
+
+  const tiktokClicks =
+    Number(
+      stats.total_tiktok || 0
+    );
+
+
+  visitor.textContent =
+    formatNumber(
+      visitors
+    );
+
+
+  productClick.textContent =
+    formatNumber(
+      productClicks
+    );
+
+
+  shopee.textContent =
+    formatNumber(
+      shopeeClicks
+    );
+
+
+  tiktok.textContent =
+    formatNumber(
+      tiktokClicks
+    );
+
+
+  document.getElementById(
+    "shopeePlatformStat"
+  ).textContent =
+    formatNumber(
+      shopeeClicks
+    ) +
+    " klik";
+
+
+  document.getElementById(
+    "tiktokPlatformStat"
+  ).textContent =
+    formatNumber(
+      tiktokClicks
+    ) +
+    " klik";
+
+
+  await loadProductStatistics();
+
+}
+
+
+/* =====================================================
+   PRODUCT STATISTICS - RPC
+===================================================== */
+
+async function loadProductStatistics(){
+
+  const body =
+    document.getElementById(
+      "productStatisticsBody"
+    );
+
+
+  const {
+    data,
+    error
+  } =
+  await supabaseClient
+    .rpc(
+      "get_analytics_product_stats"
+    );
+
+
+  if(error){
+
+    console.error(
+      error
+    );
+
+
+    body.innerHTML = `
+
+      <tr>
+
+        <td
+          colspan="5"
+          class="empty"
+        >
+
+          Statistik per produk belum tersedia.
+
+          <br><br>
+
+          ${escapeHtml(
+            error.message
+          )}
+
+        </td>
+
+      </tr>
+
+    `;
+
+    return;
+
+  }
+
+
+  const statsMap = {};
+
+
+  (data || [])
+    .forEach(
+      function(item){
+
+        statsMap[
+          item.product_id
+        ] = {
+
+          clicks:
+            Number(
+              item.product_clicks || 0
+            ),
+
+          shopee:
+            Number(
+              item.shopee_clicks || 0
+            ),
+
+          tiktok:
+            Number(
+              item.tiktok_clicks || 0
+            )
+
+        };
+
+      }
+    );
+
+
+  const rows =
+    products
+
+      .map(
+        function(product){
+
+          const stat =
+            statsMap[
+              product.id
+            ] || {
+
+              clicks:0,
+
+              shopee:0,
+
+              tiktok:0
+
+            };
+
+
+          return {
+
+            product:product,
+
+            clicks:
+              stat.clicks,
+
+            shopee:
+              stat.shopee,
+
+            tiktok:
+              stat.tiktok
+
+          };
+
+        }
+      )
+
+      .filter(
+        function(item){
+
+          return (
+            item.clicks > 0 ||
+            item.shopee > 0 ||
+            item.tiktok > 0
+          );
+
+        }
+      )
+
+      .sort(
+        function(a,b){
+
+          return b.clicks -
+            a.clicks;
+
+        }
+      );
+
+
+  if(!rows.length){
+
+    body.innerHTML = `
+
+      <tr>
+
+        <td
+          colspan="5"
+          class="empty"
+        >
+          Belum ada klik produk.
+        </td>
+
+      </tr>
+
+    `;
+
+    return;
+
+  }
+
+
+  const maxClicks =
+    Math.max(
+      ...rows.map(
+        function(item){
+          return item.clicks;
+        }
+      ),
+      1
+    );
+
+
+  body.innerHTML =
+
+    rows
+      .map(
+        function(item){
+
+          const percentage =
+            Math.round(
+              item.clicks /
+              maxClicks *
+              100
+            );
+
+
+          return `
+
+            <tr>
+
+              <td>
+
+                <div class="product-stat-name">
+
+                  ${escapeHtml(
+                    item.product.name
+                  )}
+
+                </div>
+
+              </td>
+
+
+              <td class="number">
+
+                ${formatNumber(
+                  item.clicks
+                )}
+
+              </td>
+
+
+              <td class="number shopee">
+
+                ${formatNumber(
+                  item.shopee
+                )}
+
+              </td>
+
+
+              <td class="number tiktok">
+
+                ${formatNumber(
+                  item.tiktok
+                )}
+
+              </td>
+
+
+              <td>
+
+                <div class="progress">
+
+                  <div
+                    class="progress-bar"
+                    style="
+                      width:${percentage}%;
+                    "
+                  ></div>
+
+                </div>
+
+              </td>
+
+            </tr>
+
+          `;
+
+        }
+      )
+      .join("");
+
+}
+
+
+/* =====================================================
+   PRODUCT MODAL RESET
+===================================================== */
 
 document.getElementById(
   "productModal"
@@ -4940,9 +4684,29 @@ document.getElementById(
   "click",
   function(event){
 
-    if(event.target === this){
+    if(
+      event.target === this
+    ){
 
       closeProductModal();
+
+    }
+
+  }
+);
+
+
+document.getElementById(
+  "categoryModal"
+).addEventListener(
+  "click",
+  function(event){
+
+    if(
+      event.target === this
+    ){
+
+      closeCategoryModal();
 
     }
 
@@ -4952,4 +4716,5 @@ document.getElementById(
 </script>
 
 </body>
-  </html>
+
+</html>

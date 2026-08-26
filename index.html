@@ -1,2550 +1,3940 @@
-<!DOCTYPE html>
-<html lang="id">
-
-<head>
-
-<meta charset="UTF-8">
-
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
-
-<title>AffiliaMart - Produk Affiliate Terbaik</title>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-
-<link
-  rel="preconnect"
-  href="https://fonts.gstatic.com"
-  crossorigin
->
-
-<link
-  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-  rel="stylesheet"
->
-
-<style>
-
-/* =====================================================
-   RESET
-===================================================== */
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: "Inter", Arial, sans-serif;
-  background: #f5f7f6;
-  color: #17201a;
-  line-height: 1.5;
-  padding-bottom: 75px;
-}
-
-a {
-  text-decoration: none;
-}
-
-
-/* =====================================================
-   HEADER
-===================================================== */
-
-header {
-
-  height: 76px;
-
-  background: rgba(255,255,255,0.96);
-
-  backdrop-filter: blur(12px);
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  padding: 0 6%;
-
-  position: sticky;
-
-  top: 0;
-
-  z-index: 100;
-
-  border-bottom: 1px solid #edf0ee;
-}
-
-.logo {
-
-  font-size: 25px;
-
-  font-weight: 800;
-
-  letter-spacing: -1px;
-
-  color: #16a34a;
-
-  white-space: nowrap;
-}
-
-nav {
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 28px;
-}
-
-nav a {
-
-  color: #374151;
-
-  font-size: 14px;
-
-  font-weight: 600;
-
-  transition: 0.2s ease;
-}
-
-nav a:hover {
-  color: #16a34a;
-}
-
-.admin-link {
-
-  background: #ecfdf3;
-
-  color: #15803d !important;
-
-  padding: 9px 14px;
-
-  border-radius: 10px;
-}
-
-.admin-link:hover {
-  background: #dcfce7;
-}
-
-
-/* =====================================================
-   HERO
-===================================================== */
-
-.hero {
-
-  padding: 90px 6% 100px;
-
-  text-align: center;
-
-  color: white;
-
-  background:
-
-    radial-gradient(
-      circle at top right,
-      rgba(255,255,255,0.15),
-      transparent 35%
-    ),
-
-    linear-gradient(
-      135deg,
-      #15803d,
-      #16a34a,
-      #22c55e
-    );
-}
-
-.hero-content {
-
-  max-width: 850px;
-
-  margin: auto;
-}
-
-.hero-badge {
-
-  display: inline-block;
-
-  padding: 7px 14px;
-
-  margin-bottom: 20px;
-
-  border-radius: 50px;
-
-  background: rgba(255,255,255,0.15);
-
-  border: 1px solid rgba(255,255,255,0.25);
-
-  font-size: 13px;
-
-  font-weight: 600;
-}
-
-.hero h1 {
-
-  font-size: clamp(36px, 6vw, 58px);
-
-  line-height: 1.08;
-
-  letter-spacing: -2px;
-
-  font-weight: 800;
-
-  margin-bottom: 20px;
-}
-
-.hero p {
-
-  max-width: 620px;
-
-  margin: auto auto 32px;
-
-  font-size: 17px;
-
-  line-height: 1.7;
-
-  color: rgba(255,255,255,0.92);
-}
-
-
-/* =====================================================
-   SEARCH
-===================================================== */
-
-.search {
-
-  max-width: 650px;
-
-  height: 58px;
-
-  margin: auto;
-
-  display: flex;
-
-  background: white;
-
-  border-radius: 16px;
-
-  padding: 5px;
-
-  box-shadow:
-    0 15px 35px rgba(0,0,0,0.15);
-}
-
-.search input {
-
-  flex: 1;
-
-  min-width: 0;
-
-  border: none;
-
-  outline: none;
-
-  padding: 0 18px;
-
-  font-family: inherit;
-
-  font-size: 15px;
-
-  color: #111827;
-}
-
-.search input::placeholder {
-  color: #9ca3af;
-}
-
-.search button {
-
-  border: none;
-
-  padding: 0 25px;
-
-  border-radius: 12px;
-
-  background: #111827;
-
-  color: white;
-
-  font-family: inherit;
-
-  font-size: 14px;
-
-  font-weight: 600;
-
-  cursor: pointer;
-
-  transition: 0.2s ease;
-}
-
-.search button:hover {
-
-  background: #1f2937;
-
-  transform: translateY(-1px);
-}
-
-
-/* =====================================================
-   SECTION
-===================================================== */
-
-section {
-  padding: 70px 6%;
-}
-
-.section-header {
-
-  display: flex;
-
-  align-items: end;
-
-  justify-content: space-between;
-
-  margin-bottom: 30px;
-}
-
-.title {
-
-  font-size: 30px;
-
-  line-height: 1.2;
-
-  font-weight: 800;
-
-  letter-spacing: -0.8px;
-}
-
-.subtitle {
-
-  margin-top: 8px;
-
-  color: #6b7280;
-
-  font-size: 14px;
-}
-
-
-/* =====================================================
-   CATEGORY
-===================================================== */
-
-.categories {
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(auto-fit, minmax(170px, 1fr));
-
-  gap: 18px;
-}
-
-.category {
-
-  min-height: 150px;
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  justify-content: center;
-
-  background: white;
-
-  border: 1px solid #edf0ee;
-
-  border-radius: 18px;
-
-  padding: 25px;
-
-  box-shadow:
-    0 5px 20px rgba(0,0,0,0.04);
-
-  cursor: pointer;
-
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease;
-}
-
-.category:hover {
-
-  transform: translateY(-5px);
-
-  border-color: #bbf7d0;
-
-  box-shadow:
-    0 12px 30px rgba(22,163,74,0.10);
-}
-
-.category-icon {
-
-  width: 58px;
-
-  height: 58px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  border-radius: 16px;
-
-  background: #f0fdf4;
-
-  font-size: 30px;
-
-  margin-bottom: 14px;
-}
-
-.category-name {
-
-  font-size: 15px;
-
-  font-weight: 600;
-
-  color: #1f2937;
-
-  text-align: center;
-}
-
-
-/* =====================================================
-   PRODUCTS
-===================================================== */
-
-.products {
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(auto-fill, minmax(220px, 1fr));
-
-  gap: 22px;
-}
-
-.product {
-
-  background: white;
-
-  border: 1px solid #edf0ee;
-
-  border-radius: 18px;
-
-  overflow: hidden;
-
-  box-shadow:
-    0 5px 20px rgba(0,0,0,0.04);
-
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.product:hover {
-
-  transform: translateY(-5px);
-
-  box-shadow:
-    0 15px 35px rgba(0,0,0,0.08);
-}
-
-.product-img {
-
-  height: 220px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  background:
-    linear-gradient(
-      135deg,
-      #f0fdf4,
-      #ecfdf5
-    );
-
-  overflow: hidden;
-
-  position: relative;
-}
-
-.product-img img {
-
-  width: 100%;
-
-  height: 100%;
-
-  object-fit: cover;
-}
-
-.product-placeholder {
-
-  font-size: 65px;
-}
-
-.discount {
-
-  position: absolute;
-
-  top: 12px;
-
-  left: 12px;
-
-  background: #dc2626;
-
-  color: white;
-
-  padding: 5px 8px;
-
-  border-radius: 7px;
-
-  font-size: 11px;
-
-  font-weight: 700;
-}
-
-.platform {
-
-  position: absolute;
-
-  top: 12px;
-
-  right: 12px;
-
-  background: rgba(17,24,39,0.85);
-
-  color: white;
-
-  padding: 5px 8px;
-
-  border-radius: 7px;
-
-  font-size: 10px;
-
-  font-weight: 600;
-
-  text-transform: capitalize;
-}
-
-.product-info {
-  padding: 20px;
-}
-
-.product h3 {
-
-  font-size: 16px;
-
-  font-weight: 700;
-
-  margin-bottom: 8px;
-
-  color: #111827;
-}
-
-.product-price {
-
-  color: #16a34a;
-
-  font-size: 17px;
-
-  font-weight: 800;
-}
-
-.original-price {
-
-  color: #9ca3af;
-
-  font-size: 12px;
-
-  text-decoration: line-through;
-
-  margin-top: 2px;
-}
-
-.product-meta {
-
-  display: flex;
-
-  align-items: center;
-
-  flex-wrap: wrap;
-
-  gap: 10px;
-
-  margin-top: 9px;
-
-  font-size: 12px;
-
-  color: #6b7280;
-}
-
-.product-description {
-
-  color: #6b7280;
-
-  font-size: 13px;
-
-  margin-top: 8px;
-
-  display: -webkit-box;
-
-  -webkit-line-clamp: 2;
-
-  -webkit-box-orient: vertical;
-
-  overflow: hidden;
-}
-
-.btn {
-
-  display: block;
-
-  text-align: center;
-
-  background: #16a34a;
-
-  color: white;
-
-  padding: 11px;
-
-  border-radius: 10px;
-
-  margin-top: 16px;
-
-  font-size: 13px;
-
-  font-weight: 600;
-
-  transition: 0.2s ease;
-}
-
-.btn:hover {
-  background: #15803d;
-}
-
-.empty {
-
-  grid-column: 1 / -1;
-
-  text-align: center;
-
-  padding: 60px 20px;
-
-  color: #6b7280;
-}
-
-.loading {
-
-  grid-column: 1 / -1;
-
-  text-align: center;
-
-  padding: 60px 20px;
-
-  color: #6b7280;
-}
-
-
-/* =====================================================
-   BOTTOM MENU
-===================================================== */
-
-.bottom-menu {
-
-  position: fixed;
-
-  bottom: 0;
-
-  left: 0;
-
-  right: 0;
-
-  height: 72px;
-
-  background: rgba(255,255,255,0.97);
-
-  backdrop-filter: blur(15px);
-
-  border-top: 1px solid #e5e7eb;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  gap: 10px;
-
-  z-index: 9999;
-
-  box-shadow:
-    0 -5px 25px rgba(0,0,0,0.08);
-}
-
-.bottom-menu-item {
-
-  width: 110px;
-
-  height: 58px;
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  justify-content: center;
-
-  border-radius: 14px;
-
-  color: #6b7280;
-
-  font-size: 11px;
-
-  font-weight: 600;
-
-  cursor: pointer;
-
-  transition: 0.2s ease;
-
-  user-select: none;
-}
-
-.bottom-menu-icon {
-
-  font-size: 22px;
-
-  line-height: 1;
-
-  margin-bottom: 4px;
-}
-
-.bottom-menu-item:hover {
-
-  background: #f0fdf4;
-
-  color: #16a34a;
-}
-
-.bottom-menu-item.active {
-
-  background: #ecfdf3;
-
-  color: #16a34a;
-}
-
-
-/* =====================================================
-   FOOTER
-===================================================== */
-
-footer {
-
-  background: #111827;
-
-  color: white;
-
-  text-align: center;
-
-  padding: 40px 6% 100px;
-
-  margin-top: 20px;
-}
-
-.footer-logo {
-
-  font-size: 20px;
-
-  font-weight: 800;
-
-  color: #4ade80;
-
-  margin-bottom: 8px;
-}
-
-footer p {
-
-  color: #9ca3af;
-
-  font-size: 13px;
-}
-
-.copyright {
-
-  margin-top: 18px;
-
-  font-size: 12px;
-
-  color: #6b7280;
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media (max-width: 700px) {
-
-  header {
-
-    height: 68px;
-
-    padding: 0 5%;
-  }
-
-  .logo {
-    font-size: 21px;
-  }
-
-  nav {
-    gap: 13px;
-  }
-
-  nav a {
-    font-size: 12px;
-  }
-
-  .admin-link {
-    padding: 7px 9px;
-  }
-
-  .hero {
-    padding: 65px 5% 70px;
-  }
-
-  .hero h1 {
-    letter-spacing: -1.5px;
-  }
-
-  .hero p {
-    font-size: 15px;
-  }
-
-  .search {
-    height: 54px;
-  }
-
-  .search input {
-    font-size: 14px;
-  }
-
-  .search button {
-    padding: 0 18px;
-  }
-
-  section {
-    padding: 50px 5%;
-  }
-
-  .title {
-    font-size: 26px;
-  }
-
-  .categories {
-
-    grid-template-columns:
-      repeat(2, 1fr);
-
-    gap: 14px;
-  }
-
-  .category {
-
-    min-height: 135px;
-
-    padding: 18px;
-  }
-
-  .category-icon {
-
-    width: 52px;
-
-    height: 52px;
-
-    font-size: 26px;
-  }
-
-  .products {
-
-    grid-template-columns:
-      repeat(2, 1fr);
-
-    gap: 14px;
-  }
-
-  .product-img {
-    height: 170px;
-  }
-
-  .product-info {
-    padding: 14px;
-  }
-
-  .product h3 {
-    font-size: 14px;
-  }
-
-  .product-price {
-    font-size: 15px;
-  }
-
-  .product-description {
-    font-size: 12px;
-  }
-
-  .bottom-menu {
-
-    height: 68px;
-
-    gap: 5px;
-  }
-
-  .bottom-menu-item {
-
-    width: 90px;
-
-    height: 56px;
-  }
-}
-
-
-@media (max-width: 430px) {
-
-  nav {
-    gap: 9px;
-  }
-
-  nav a:nth-child(1) {
-    display: none;
-  }
-
-  .hero h1 {
-    font-size: 35px;
-  }
-
-  .hero p {
-    font-size: 14px;
-  }
-
-  .categories {
-
-    grid-template-columns:
-      repeat(2, 1fr);
-  }
-
-  .category-name {
-    font-size: 14px;
-  }
-
-  .products {
-    grid-template-columns: 1fr;
-  }
-
-  .product-img {
-    height: 210px;
-  }
-}
-
-</style>
-
-</head>
-
-
-<body>
-
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
-<header>
-
-  <a href="index.html" class="logo">
-    AffiliaMart
-  </a>
-
-  <nav>
-
-    <a href="index.html">
-      Home
-    </a>
-
-    <a href="#kategori">
-      Kategori
-    </a>
-
-    <a href="#produk">
-      Produk
-    </a>
-
-    <a
-      href="admin.html"
-      class="admin-link"
-    >
-      🔐 Admin
-    </a>
-
-  </nav>
-
-</header>
-
-
-<!-- =====================================================
-     HERO
-===================================================== -->
-
-<section class="hero">
-
-  <div class="hero-content">
-
-    <div class="hero-badge">
-      ✨ Rekomendasi Produk Pilihan
-    </div>
-
-    <h1>
-      Temukan Produk Terbaik
-    </h1>
-
-    <p>
-      Belanja lebih mudah melalui rekomendasi
-      produk affiliate pilihan kami.
-    </p>
-
-    <div class="search">
-
-      <input
-        type="text"
-        id="searchInput"
-        placeholder="Cari produk..."
-        autocomplete="off"
-      >
-
-      <button
-        type="button"
-        onclick="cariProduk()"
-      >
-        Cari
-      </button>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     KATEGORI
-===================================================== -->
-
-<section id="kategori">
-
-  <div class="section-header">
-
-    <div>
-
-      <h2 class="title">
-        Kategori
-      </h2>
-
-      <p class="subtitle">
-        Temukan produk berdasarkan kategori
-      </p>
-
-    </div>
-
-  </div>
-
-  <div
-    class="categories"
-    id="categoryList"
-  >
-
-    <div class="loading">
-      ⏳ Memuat kategori...
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     PRODUK
-===================================================== -->
-
-<section id="produk">
-
-  <div class="section-header">
-
-    <div>
-
-      <h2 class="title">
-        Produk Pilihan
-      </h2>
-
-      <p class="subtitle">
-        Produk terbaru dari AffiliaMart
-      </p>
-
-    </div>
-
-  </div>
-
-  <div
-    class="products"
-    id="productList"
-  >
-
-    <div class="loading">
-      ⏳ Memuat produk...
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
-<footer>
-
-  <div class="footer-logo">
-    AffiliaMart
-  </div>
-
-  <p>
-    Platform rekomendasi produk affiliate
-    Shopee & TikTok.
-  </p>
-
-  <div class="copyright">
-    © 2026 AffiliaMart. All rights reserved.
-  </div>
-
-</footer>
-
-
-<!-- =====================================================
-     BOTTOM MENU
-===================================================== -->
-
-<div class="bottom-menu">
-
-  <div
-    class="bottom-menu-item active"
-    id="menuHome"
-    onclick="filterPlatform('all')"
-  >
-
-    <div class="bottom-menu-icon">
-      🏠
-    </div>
-
-    <div>
-      Home
-    </div>
-
-  </div>
-
-
-  <div
-    class="bottom-menu-item"
-    id="menuShopee"
-    onclick="filterPlatform('shopee')"
-  >
-
-    <div class="bottom-menu-icon">
-      🛍️
-    </div>
-
-    <div>
-      Shopee
-    </div>
-
-  </div>
-
-
-  <div
-    class="bottom-menu-item"
-    id="menuTiktok"
-    onclick="filterPlatform('tiktok')"
-  >
-
-    <div class="bottom-menu-icon">
-      🎵
-    </div>
-
-    <div>
-      TikTok
-    </div>
-
-  </div>
+<!DOCTYPE html>  <html lang="id">  <head>  <meta charset="UTF-8">  <meta name="viewport"  
+content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color" content="#16A34A">  <title>AffiliaMart - Produk Affiliate Terbaik</title>  <meta
+name="description"
+content="Temukan produk affiliate terbaik dari Shopee dan TikTok di AffiliaMart."
+
+> 
+
+<!-- =====================================================  
+     SUPABASE  
+===================================================== -->  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>  <!-- =====================================================  
+     FONT  
+===================================================== -->  <link rel="preconnect"  
+      href="https://fonts.googleapis.com">  <link rel="preconnect"  
+      href="https://fonts.gstatic.com"  
+      crossorigin>  <link  
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"  
+    rel="stylesheet"  
+>  <!-- =====================================================  
+     FONT AWESOME  
+===================================================== -->  <link  
+    rel="stylesheet"  
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"  
+>  <style>  
+  
+/* =====================================================  
+   RESET  
+===================================================== */  
+  
+*{  
+    box-sizing:border-box;  
+    margin:0;  
+    padding:0;  
+}  
+  
+html{  
+    scroll-behavior:smooth;  
+}  
+  
+body{  
+  
+    font-family:"Inter",Arial,sans-serif;  
+  
+    background:#ffffff;  
+  
+    color:#101828;  
+  
+    line-height:1.5;  
+  
+    padding-bottom:82px;  
+}  
+  
+a{  
+    text-decoration:none;  
+    color:inherit;  
+}  
+  
+button,  
+input{  
+    font-family:inherit;  
+}  
+  
+  
+/* =====================================================  
+   HEADER  
+===================================================== */  
+  
+header{  
+  
+    height:72px;  
+  
+    position:sticky;  
+  
+    top:0;  
+  
+    z-index:1000;  
+  
+    display:flex;  
+  
+    align-items:center;  
+  
+    justify-content:space-between;  
+  
+    padding:0 5%;  
+  
+    background:rgba(255,255,255,.96);  
+  
+    backdrop-filter:blur(15px);  
+  
+    border-bottom:1px solid #e9eeeb;  
+}  
+  
+.logo{  
+  
+    color:#16A34A;  
+  
+    font-size:25px;  
+  
+    font-weight:800;  
+  
+    letter-spacing:-1.3px;  
+  
+    white-space:nowrap;  
+}  
+  
+nav{  
+  
+    display:flex;  
+  
+    align-items:center;  
+  
+    gap:27px;  
+}  
+  
+nav a{  
+  
+    color:#344054;  
+  
+    font-size:14px;  
+  
+    font-weight:600;  
+  
+    transition:.2s;  
+}  
+  
+nav a:hover{  
+  
+    color:#16A34A;  
+}  
+  
+.admin-link{  
+  
+    display:flex;  
+  
+    align-items:center;  
+  
+    gap:6px;  
+  
+    padding:9px 14px;  
+  
+    border-radius:12px;  
+  
+    background:#ECFDF3;  
+  
+    color:#15803D !important;  
+}  
+  
+.admin-link:hover{  
+  
+    background:#DCFCE7;  
+}  
+  
+  
+/* =====================================================  
+   HERO  
+===================================================== */  
+  
+.hero{  
+  
+    position:relative;  
+  
+    overflow:hidden;  
+  
+    padding:78px 5% 36px;  
+  
+    text-align:center;  
+  
+    background:  
+  
+        radial-gradient(  
+            circle at 95% 5%,  
+            rgba(34,197,94,.12),  
+            transparent 30%  
+        ),  
+  
+        radial-gradient(  
+            circle at 5% 45%,  
+            rgba(34,197,94,.07),  
+            transparent 25%  
+        ),  
+  
+        linear-gradient(  
+            180deg,  
+            #FFFFFF 0%,  
+            #F5FAF7 100%  
+        );  
+}  
+  
+  
+/* dekorasi kiri */  
+  
+.hero:before{  
+  
+    content:"";  
+  
+    position:absolute;  
+  
+    left:0;  
+  
+    top:90px;  
+  
+    width:75px;  
+  
+    height:135px;  
+  
+    opacity:.45;  
+  
+    background-image:  
+        radial-gradient(  
+            #D1FAE5 1.5px,  
+            transparent 1.5px  
+        );  
+  
+    background-size:12px 12px;  
+}  
+  
+  
+/* dekorasi kanan */  
+  
+.hero:after{  
+  
+    content:"";  
+  
+    position:absolute;  
+  
+    right:-60px;  
+  
+    top:-55px;  
+  
+    width:190px;  
+  
+    height:190px;  
+  
+    border:1px solid #D1FAE5;  
+  
+    border-radius:50%;  
+  
+    opacity:.7;  
+}  
+  
+.hero-content{  
+  
+    position:relative;  
+  
+    z-index:2;  
+  
+    max-width:900px;  
+  
+    margin:auto;  
+}  
+  
+.hero h1{  
+  
+    font-size:clamp(  
+        34px,  
+        5vw,  
+        56px  
+    );  
+  
+    line-height:1.08;  
+  
+    letter-spacing:-2.2px;  
+  
+    font-weight:800;  
+  
+    color:#101828;  
+  
+    margin-bottom:14px;  
+  
+    white-space:nowrap;  
+}  
+  
+.hero h1 span{  
+  
+    color:#16A34A;  
+}  
+  
+.hero p{  
+  
+    color:#667085;  
+  
+    font-size:17px;  
+  
+    margin-bottom:28px;  
+}  
+  
+  
+/* =====================================================  
+   SEARCH  
+===================================================== */  
+  
+.search{  
+  
+    width:100%;  
+  
+    max-width:750px;  
+  
+    height:78px;  
+  
+    margin:0 auto;  
+  
+    padding:8px;  
+  
+    display:flex;  
+  
+    align-items:center;  
+  
+    gap:8px;  
+  
+    background:#FFFFFF;  
+  
+    border:1px solid #E5E7EB;  
+  
+    border-radius:20px;  
+  
+    box-shadow:  
+        0 15px 35px rgba(16,24,40,.07);  
+}  
+  
+.search-icon{  
+  
+    width:58px;  
+  
+    height:58px;  
+  
+    flex:0 0 58px;  
+  
+    display:flex;  
+  
+    align-items:center;  
+  
+    justify-content:center;  
+  
+    border-radius:50%;  
+  
+    background:#ECFDF3;  
+  
+    color:#16A34A;  
+  
+    font-size:24px;  
+}  
+  
+.search input{  
+  
+    flex:1;  
+  
+    min-width:0;  
+  
+    height:100%;  
+  
+    border:0;  
+  
+    outline:0;  
+  
+    color:#101828;  
+  
+    font-size:15px;  
+  
+    background:transparent;  
+}  
+  
+.search input::placeholder{  
+  
+    color:#98A2B3;  
+}  
+  
+.search button{  
+  
+    height:60px;  
+  
+    min-width:135px;  
+  
+    padding:0 28px;  
+  
+    border:0;  
+  
+    border-radius:15px;  
+  
+    background:#16A34A;  
+  
+    color:#FFFFFF;  
+  
+    font-size:16px;  
+  
+    font-weight:700;  
+  
+    cursor:pointer;  
+  
+    transition:.2s;  
+}  
+  
+.search button:hover{  
+  
+    background:#15803D;  
+  
+    transform:translateY(-1px);  
+}  
+  
+  
+/* =====================================================  
+   POPULAR  
+===================================================== */  
+  
+.popular-wrap{  
+  
+    width:100%;  
+  
+    max-width:750px;  
+  
+    margin:28px auto 0;  
+  
+    display:flex;  
+  
+    align-items:center;  
+  
+    justify-content:center;  
+  
+    gap:9px;  
+  
+    overflow-x:auto;  
+  
+    scrollbar-width:none;  
+  
+    padding:2px 0 5px;  
+}  
+  
+.popular-wrap::-webkit-scrollbar{  
+  
+    display:none;  
+}  
+  
+.popular-item{  
+  
+    flex:0 0 auto;  
+  
+    display:flex;  
+  
+    align-items:center;  
+  
+    gap:7px;  
+  
+    min-height:38px;  
+  
+    padding:8px 14px;  
+  
+    border:1px solid #EAECF0;  
+  
+    background:#FFFFFF;  
+  
+    border-radius:999px;  
+  
+    color:#475467;  
+  
+    font-size:12px;  
+  
+    font-weight:600;  
+  
+    cursor:pointer;  
+  
+    box-shadow:  
+        0 3px 10px rgba(16,24,40,.03);  
+  
+    transition:.2s;  
+}  
+  
+.popular-item:hover{  
+  
+    border-color:#BBF7D0;  
+  
+    background:#F0FDF4;  
+  
+    color:#15803D;  
+}  
+  
+.popular-item.active{  
+  
+    border-color:#D1FAE5;  
+  
+    background:#F0FDF4;  
+  
+    color:#15803D;  
+}  
+  
+.popular-item i{  
+  
+    color:#16A34A;  
+  
+    font-size:13px;  
+}  
+  
+  
+/* =====================================================  
+   SECTION  
+===================================================== */  
+  
+section{  
+  
+    padding:42px 4%;  
+}  
+  
+.section-header{  
+  
+    display:flex;  
+  
+    align-items:flex-end;  
+  
+    justify-content:space-between;  
+  
+    margin-bottom:24px;  
+}  
+  
+.title{  
+  
+    position:relative;  
+  
+    display:inline-block;  
+  
+    font-size:26px;  
+  
+    line-height:1.2;  
+  
+    font-weight:800;  
+  
+    letter-spacing:-.9px;  
+  
+    color:#101828;  
+}  
+  
+.title:after{  
+  
+    content:"";  
+  
+    display:block;  
+  
+    width:30px;  
+  
+    height:3px;  
+  
+    margin-top:8px;  
+  
+    border-radius:99px;  
+  
+    background:#16A34A;  
+}  
+  
+.subtitle{  
+  
+    margin-top:8px;  
+  
+    color:#667085;  
+  
+    font-size:13px;  
+}  
+  
+.see-all{  
+  
+    display:flex;  
+  
+    align-items:center;  
+  
+    gap:7px;  
+  
+    color:#16A34A;  
+  
+    font-size:13px;  
+  
+    font-weight:700;  
+  
+    white-space:nowrap;  
+}  
+  
+.see-all:hover{  
+  
+    color:#15803D;  
+}  
+  
+  
+/* =====================================================  
+   CATEGORY  
+===================================================== */  
+  
+.category-section{  
+  
+    background:#FFFFFF;  
+}  
+  
+.categories{  
+  
+    display:grid;  
+  
+    grid-template-columns:  
+        repeat(5,minmax(0,1fr));  
+  
+    gap:16px;  
+}  
+  
+.category{  
+  
+    min-height:150px;  
+  
+    display:flex;  
+  
+    flex-direction:column;  
+  
+    align-items:center;  
+  
+    justify-content:center;  
+  
+    padding:18px 10px;  
+  
+    background:#FFFFFF;  
+  
+    border:1px solid #EAECF0;  
+  
+    border-radius:17px;  
+  
+    box-shadow:  
+        0 4px 15px rgba(16,24,40,.04);  
+  
+    cursor:pointer;  
+  
+    transition:.2s;  
+}  
+  
+.category:hover{  
+  
+    transform:translateY(-3px);  
+  
+    border-color:#BBF7D0;  
+  
+    box-shadow:  
+        0 10px 25px rgba(22,163,74,.08);  
+}  
+  
+.category-icon{  
+  
+    width:62px;  
+  
+    height:62px;  
+  
+    display:flex;  
+  
+    align-items:center;  
+  
+    justify-content:center;  
+  
+    margin-bottom:12px;  
+  
+    border-radius:50%;  
+  
+    background:#ECFDF3;  
+  
+    font-size:30px;  
+}  
+  
+.category-name{  
+  
+    color:#101828;  
+  
+    font-size:14px;  
+  
+    font-weight:700;  
+  
+    text-align:center;  
+}  
+  
+.category-count{  
+  
+    margin-top:5px;  
+  
+    color:#667085;  
+  
+    font-size:11px;  
+}  
+  
+  
+/* =====================================================  
+   PRODUCTS  
+===================================================== */  
+  
+.products{  
+  
+    display:grid;  
+  
+    grid-template-columns:  
+        repeat(6,minmax(0,1fr));  
+  
+    gap:14px;  
+}  
+  
+.product{  
+  
+    min-width:0;  
+  
+    overflow:hidden;  
+  
+    background:#FFFFFF;  
+  
+    border:1px solid #EAECF0;  
+  
+    border-radius:15px;  
+  
+    box-shadow:  
+        0 4px 14px rgba(16,24,40,.04);  
+  
+    transition:.2s;  
+}  
+  
+.product:hover{  
+  
+    transform:translateY(-3px);  
+  
+    box-shadow:  
+        0 12px 28px rgba(16,24,40,.08);  
+}  
+  
+.product-img{  
+  
+    position:relative;  
+  
+    height:205px;  
+  
+    overflow:hidden;  
+  
+    background:#F2F4F7;  
+}  
+  
+.product-img img{  
+  
+    width:100%;  
+  
+    height:100%;  
+  
+    display:block;  
+  
+    object-fit:cover;  
+}  
+  
+.product-placeholder{  
+  
+    width:100%;  
+  
+    height:100%;  
+  
+    display:flex;  
+  
+    align-items:center;  
+  
+    justify-content:center;  
+  
+    background:  
+        linear-gradient(  
+            135deg,  
+            #ECFDF3,  
+            #F8FAFC  
+        );  
+  
+    font-size:55px;  
+}  
+  
+.discount{  
+  
+    position:absolute;  
+  
+    left:9px;  
+  
+    top:9px;  
+  
+    padding:4px 7px;  
+  
+    border-radius:6px;  
+  
+    background:#DC2626;  
+  
+    color:#FFFFFF;  
+  
+    font-size:9px;  
+  
+    font-weight:800;  
+}  
+  
+.platform{  
+  
+    position:absolute;  
+  
+    right:8px;  
+  
+    top:8px;  
+  
+    display:flex;  
+  
+    align-items:center;  
+  
+    gap:5px;  
+  
+    padding:5px 8px;  
+  
+    border-radius:8px;  
+  
+    background:#101828;  
+  
+    color:#FFFFFF;  
+  
+    font-size:9px;  
+  
+    font-weight:700;  
+}  
+  
+.platform.shopee{  
+  
+    background:#EE4D2D;  
+}  
+  
+.platform.tiktok{  
+  
+    background:#111827;  
+}  
+  
+.platform img{  
+  
+    width:13px;  
+  
+    height:13px;  
+  
+    object-fit:contain;  
+}  
+  
+.product-info{  
+  
+    padding:11px;  
+}  
+  
+.product h3{  
+  
+    min-height:36px;  
+  
+    color:#101828;  
+  
+    font-size:12px;  
+  
+    line-height:1.4;  
+  
+    font-weight:700;  
+  
+    display:-webkit-box;  
+  
+    -webkit-line-clamp:2;  
+  
+    -webkit-box-orient:vertical;  
+  
+    overflow:hidden;  
+}  
+  
+.product-price{  
+  
+    margin-top:8px;  
+  
+    color:#16A34A;  
+  
+    font-size:13px;  
+  
+    font-weight:800;  
+}  
+  
+.original-price{  
+  
+    margin-top:1px;  
+  
+    color:#98A2B3;  
+  
+    font-size:10px;  
+  
+    text-decoration:line-through;  
+}  
+  
+.product-meta{  
+  
+    display:flex;  
+  
+    align-items:center;  
+  
+    gap:7px;  
+  
+    margin-top:5px;  
+  
+    color:#667085;  
+  
+    font-size:9px;  
+}  
+  
+.product-description{  
+  
+    display:none;  
+}  
+  
+.btn{  
+  
+    display:block;  
+  
+    width:100%;  
+  
+    margin-top:9px;  
+  
+    padding:8px;  
+  
+    border-radius:8px;  
+  
+    background:#16A34A;  
+  
+    color:#FFFFFF;  
+  
+    text-align:center;  
+  
+    font-size:10px;  
+  
+    font-weight:700;  
+  
+    transition:.2s;  
+}  
+  
+.btn:hover{  
+  
+    background:#15803D;  
+}  
+  
+  
+/* =====================================================  
+   PRODUCT PER CATEGORY  
+===================================================== */  
+  
+.category-products-section{  
+  
+    background:#F8FAFC;  
+}  
+  
+.category-block{  
+  
+    margin-bottom:34px;  
+}  
+  
+.category-products-header{  
+  
+    display:flex;  
+  
+    align-items:center;  
+  
+    justify-content:space-between;  
+  
+    margin-bottom:14px;  
+}  
+  
+.category-products-title{  
+  
+    display:flex;  
+  
+    align-items:center;  
+  
+    gap:9px;  
+  
+    color:#101828;  
+  
+    font-size:18px;  
+  
+    font-weight:800;  
+}  
+  
+.category-products-title span{  
+  
+    width:36px;  
+  
+    height:36px;  
+  
+    display:flex;  
+  
+    align-items:center;  
+  
+    justify-content:center;  
+  
+    border-radius:10px;  
+  
+    background:#ECFDF3;  
+  
+    font-size:18px;  
+}  
+  
+.category-products-count{  
+  
+    color:#667085;  
+  
+    font-size:11px;  
+}  
+  
+.category-products-grid{  
+  
+    display:grid;  
+  
+    grid-template-columns:  
+        repeat(5,minmax(0,1fr));  
+  
+    gap:14px;  
+}  
+  
+  
+/* =====================================================  
+   LOADING / EMPTY  
+===================================================== */  
+  
+.loading{  
+  
+    grid-column:1 / -1;  
+  
+    padding:45px 20px;  
+  
+    text-align:center;  
+  
+    color:#667085;  
+  
+    font-size:13px;  
+}  
+  
+.empty{  
+  
+    grid-column:1 / -1;  
+  
+    padding:45px 20px;  
+  
+    text-align:center;  
+  
+    border:1px solid #EAECF0;  
+  
+    border-radius:18px;  
+  
+    background:#FFFFFF;  
+  
+    color:#667085;  
+}  
+  
+.empty h3{  
+  
+    color:#344054;  
+  
+    font-size:18px;  
+  
+    font-weight:800;  
+}  
+  
+.empty p{  
+  
+    margin-top:7px;  
+  
+    font-size:13px;  
+}  
+  
+  
+/* =====================================================  
+   FOOTER  
+===================================================== */  
+  
+footer{  
+  
+    padding:45px 5% 100px;  
+  
+    background:#101828;  
+  
+    color:#FFFFFF;  
+  
+    text-align:center;  
+}  
+  
+.footer-logo{  
+  
+    color:#4ADE80;  
+  
+    font-size:21px;  
+  
+    font-weight:800;  
+}  
+  
+footer p{  
+  
+    margin-top:7px;  
+  
+    color:#98A2B3;  
+  
+    font-size:12px;  
+}  
+  
+.copyright{  
+  
+    margin-top:17px;  
+  
+    color:#667085;  
+  
+    font-size:11px;  
+}  
+  
+  
+/* =====================================================  
+   BOTTOM MENU  
+===================================================== */  
+  
+.bottom-menu{  
+  
+    position:fixed;  
+  
+    left:0;  
+  
+    right:0;  
+  
+    bottom:0;  
+  
+    z-index:9999;  
+  
+    height:76px;  
+  
+    display:flex;  
+  
+    align-items:center;  
+  
+    justify-content:center;  
+  
+    gap:5px;  
+  
+    background:rgba(255,255,255,.97);  
+  
+    backdrop-filter:blur(15px);  
+  
+    border-top:1px solid #EAECF0;  
+  
+    box-shadow:  
+        0 -5px 25px rgba(16,24,40,.07);  
+}  
+  
+.bottom-menu-item{  
+  
+    width:100px;  
+  
+    height:60px;  
+  
+    display:flex;  
+  
+    flex-direction:column;  
+  
+    align-items:center;  
+  
+    justify-content:center;  
+  
+    border-radius:18px;  
+  
+    color:#667085;  
+  
+    font-size:11px;  
+  
+    font-weight:700;  
+  
+    cursor:pointer;  
+  
+    transition:.2s;  
+}  
+  
+.bottom-menu-item:hover{  
+  
+    background:#F0FDF4;  
+  
+    color:#16A34A;  
+}  
+  
+.bottom-menu-item.active{  
+  
+    background:#ECFDF3;  
+  
+    color:#16A34A;  
+}  
+  
+.bottom-menu-icon{  
+  
+    height:25px;  
+  
+    margin-bottom:4px;  
+  
+    display:flex;  
+  
+    align-items:center;  
+  
+    justify-content:center;  
+  
+    font-size:21px;  
+}  
+  
+.bottom-menu-icon img{  
+  
+    width:22px;  
+  
+    height:22px;  
+  
+    object-fit:contain;  
+}  
+  
+  
+/* =====================================================  
+   MOBILE  
+===================================================== */  
+  
+@media(max-width:700px){  
+  
+    header{  
+  
+        height:68px;  
+  
+        padding:0 5%;  
+    }  
+  
+    .logo{  
+  
+        font-size:21px;  
+    }  
+  
+    nav{  
+  
+        gap:10px;  
+    }  
+  
+    nav a{  
+  
+        font-size:12px;  
+    }  
+  
+    nav a:first-child{  
+  
+        display:none;  
+    }  
+  
+    .admin-link{  
+  
+        padding:7px 10px;  
+    }  
+  
+  
+    /* HERO */  
+  
+    .hero{  
+  
+        padding:50px 5% 28px;  
+    }  
+  
+    .hero:before{  
+  
+        display:none;  
+    }  
+  
+    .hero h1{  
+  
+        font-size:31px;  
+  
+        letter-spacing:-1.5px;  
+    }  
+  
+    .hero p{  
+  
+        font-size:14px;  
+  
+        margin-bottom:22px;  
+    }  
+  
+  
+    /* SEARCH */  
+  
+    .search{  
+  
+        height:62px;  
+  
+        padding:5px;  
+  
+        border-radius:17px;  
+    }  
+  
+    .search-icon{  
+  
+        width:45px;  
+  
+        height:50px;  
+  
+        flex:0 0 45px;  
+  
+        font-size:19px;  
+    }  
+  
+    .search input{  
+  
+        padding:0 5px;  
+  
+        font-size:13px;  
+    }  
+  
+    .search button{  
+  
+        height:52px;  
+  
+        min-width:92px;  
+  
+        padding:0 15px;  
+  
+        border-radius:13px;  
+  
+        font-size:14px;  
+    }  
+  
+  
+    /* POPULAR */  
+  
+    .popular-wrap{  
+  
+        justify-content:flex-start;  
+  
+        margin-top:16px;  
+  
+        gap:6px;  
+    }  
+  
+    .popular-item{  
+  
+        min-height:34px;  
+  
+        padding:7px 10px;  
+  
+        font-size:9px;  
+  
+        gap:5px;  
+    }  
+  
+    .popular-item i{  
+  
+        font-size:11px;  
+    }  
+  
+  
+    /* SECTION */  
+  
+    section{  
+  
+        padding:35px 5%;  
+    }  
+  
+    .section-header{  
+  
+        margin-bottom:18px;  
+    }  
+  
+    .title{  
+  
+        font-size:25px;  
+    }  
+  
+    .subtitle{  
+  
+        font-size:12px;  
+    }  
+  
+    .see-all{  
+  
+        font-size:11px;  
+    }  
+  
+  
+    /* =================================================  
+       CATEGORY 6 COLUMN  
+    ================================================= */  
+  
+    .categories{  
+  
+        grid-template-columns:  
+            repeat(6,minmax(0,1fr));  
+  
+        gap:6px;  
+    }  
+  
+    .category{  
+  
+        min-height:76px;  
+  
+        padding:7px 2px;  
+  
+        border-radius:13px;  
+    }  
+  
+    .category-icon{  
+  
+        width:36px;  
+  
+        height:36px;  
+  
+        margin-bottom:5px;  
+  
+        font-size:18px;  
+  
+        border-radius:11px;  
+    }  
+  
+    .category-name{  
+  
+        width:100%;  
+  
+        overflow:hidden;  
+  
+        text-overflow:ellipsis;  
+  
+        white-space:nowrap;  
+  
+        font-size:8px;  
+    }  
+  
+    .category-count{  
+  
+        display:none;  
+    }  
+  
+  
+    /* =================================================  
+       PRODUK PILIHAN 3 COLUMN  
+    ================================================= */  
+  
+    .products{  
+  
+        grid-template-columns:  
+            repeat(3,minmax(0,1fr));  
+  
+        gap:8px;  
+    }  
+  
+    .product{  
+  
+        border-radius:12px;  
+    }  
+  
+    .product-img{  
+  
+        height:125px;  
+    }  
+  
+    .product-info{  
+  
+        padding:8px;  
+    }  
+  
+    .product h3{  
+  
+        min-height:30px;  
+  
+        font-size:10px;  
+    }  
+  
+    .product-price{  
+  
+        margin-top:5px;  
+  
+        font-size:11px;  
+    }  
+  
+    .original-price{  
+  
+        font-size:8px;  
+    }  
+  
+    .product-meta{  
+  
+        font-size:8px;  
+  
+        gap:4px;  
+    }  
+  
+    .discount{  
+  
+        top:6px;  
+  
+        left:6px;  
+  
+        padding:3px 5px;  
+  
+        font-size:7px;  
+    }  
+  
+    .platform{  
+  
+        top:6px;  
+  
+        right:6px;  
+  
+        padding:4px 5px;  
+  
+        font-size:7px;  
+    }  
+  
+    .platform img{  
+  
+        width:10px;  
+  
+        height:10px;  
+    }  
+  
+    .btn{  
+  
+        margin-top:7px;  
+  
+        padding:7px 4px;  
+  
+        font-size:8px;  
+  
+        border-radius:7px;  
+    }  
+  
+  
+    /* =================================================  
+       CATEGORY PRODUCTS  
+    ================================================= */  
+  
+    .category-products-header{  
+  
+        margin-bottom:10px;  
+    }  
+  
+    .category-products-title{  
+  
+        font-size:15px;  
+    }  
+  
+    .category-products-title span{  
+  
+        width:30px;  
+  
+        height:30px;  
+  
+        font-size:15px;  
+    }  
+  
+    .category-products-grid{  
+  
+        grid-template-columns:  
+            repeat(3,minmax(0,1fr));  
+  
+        gap:8px;  
+    }  
+  
+  
+    /* =================================================  
+       BOTTOM  
+    ================================================= */  
+  
+    .bottom-menu{  
+  
+        height:70px;  
+    }  
+  
+    .bottom-menu-item{  
+  
+        width:85px;  
+  
+        height:56px;  
+  
+        border-radius:17px;  
+  
+        font-size:10px;  
+    }  
+  
+    .bottom-menu-icon{  
+  
+        font-size:19px;  
+    }  
+  
+}  
+  
+  
+/* =====================================================  
+   SMALL PHONE  
+===================================================== */  
+  
+@media(max-width:430px){  
+  
+    .hero h1{  
+  
+        font-size:29px;  
+    }  
+  
+    .hero p{  
+  
+        font-size:13px;  
+    }  
+  
+    .search button{  
+  
+        min-width:85px;  
+  
+        padding:0 12px;  
+    }  
+  
+    .categories{  
+  
+        gap:5px;  
+    }  
+  
+    .category{  
+  
+        min-height:73px;  
+    }  
+  
+    .category-icon{  
+  
+        width:33px;  
+  
+        height:33px;  
+  
+        font-size:17px;  
+    }  
+  
+    .category-name{  
+  
+        font-size:7px;  
+    }  
+  
+    .products{  
+  
+        gap:7px;  
+    }  
+  
+    .product-img{  
+  
+        height:115px;  
+    }  
+  
+    .product-info{  
+  
+        padding:7px;  
+    }  
+  
+    .product h3{  
+  
+        font-size:9px;  
+    }  
+  
+    .product-price{  
+  
+        font-size:10px;  
+    }  
+  
+    .bottom-menu-item{  
+  
+        width:80px;  
+    }  
+  
+}  
+  
+</style>  </head>  <body>  <!-- =====================================================  
+     HEADER  
+===================================================== -->  <header>  <a  
+    href="index.html"  
+    class="logo"  
+>  
+    AffiliaMart  
+</a>  
+
+
+<nav>  
+
+    <a href="index.html">  
+        Home  
+    </a>  
+
+    <a href="#kategori">  
+        Kategori  
+    </a>  
+
+    <a href="#produk">  
+        Produk  
+    </a>  
+
+    <a  
+        href="admin.html"  
+        class="admin-link"  
+    >  
+        🔐 Admin  
+    </a>  
+
+</nav>
+
+</header>  <!-- =====================================================  
+     HERO  
+===================================================== -->  <section class="hero">  <div class="hero-content">  
+
+    <h1>  
+        Temukan <span>Produk</span> Terbaik  
+    </h1>  
+
+    <p>  
+        Rekomendasi produk pilihan dari Shopee & TikTok.  
+    </p>  
+
+
+    <!-- SEARCH -->  
+
+    <div class="search">  
+
+        <div class="search-icon">  
+
+            <i class="fa-solid fa-magnifying-glass"></i>  
+
+        </div>  
+
+
+        <input  
+            type="text"  
+            id="searchInput"  
+            placeholder="Cari produk favorit kamu..."  
+            autocomplete="off"  
+        >  
+
+
+        <button  
+            type="button"  
+            onclick="cariProduk()"  
+        >  
+            Cari  
+        </button>  
+
+    </div>  
+
+
+    <!-- POPULAR -->  
+
+    <div class="popular-wrap">  
+
+
+        <button  
+            type="button"  
+            class="popular-item active"  
+            onclick="searchPopular('')"  
+        >  
+
+            <i class="fa-solid fa-fire"></i>  
+
+            Populer  
+
+        </button>  
+
+
+        <button  
+            type="button"  
+            class="popular-item"  
+            onclick="searchPopular('kaos')"  
+        >  
+
+            <i class="fa-solid fa-shirt"></i>  
+
+            Kaos Polos  
+
+        </button>  
+
+
+        <button  
+            type="button"  
+            class="popular-item"  
+            onclick="searchPopular('hijab')"  
+        >  
+
+            <i class="fa-solid fa-leaf"></i>  
+
+            Hijab Instan  
+
+        </button>  
+
+
+        <button  
+            type="button"  
+            class="popular-item"  
+            onclick="searchPopular('jam tangan')"  
+        >  
+
+            <i class="fa-regular fa-clock"></i>  
+
+            Jam Tangan  
+
+        </button>  
+
+
+        <button  
+            type="button"  
+            class="popular-item"  
+            onclick="searchPopular('tumbler')"  
+        >  
+
+            <i class="fa-solid fa-bottle-water"></i>  
+
+            Tumbler  
+
+        </button>  
+
+
+        <button  
+            type="button"  
+            class="popular-item"  
+            onclick="searchPopular('tas')"  
+        >  
+
+            <i class="fa-solid fa-bag-shopping"></i>  
+
+            Tas Wanita  
+
+        </button>  
+
+
+    </div>  
 
 </div>
 
+</section>  <!-- =====================================================  
+     KATEGORI  
+===================================================== -->  <section  
+    id="kategori"  
+    class="category-section"  
+>  <div class="section-header">  
 
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
+    <div>  
 
-<script>
+        <h2 class="title">  
+            Kategori  
+        </h2>  
 
-/* =====================================================
-   SUPABASE
-===================================================== */
+        <p class="subtitle">  
+            Temukan produk berdasarkan kategori  
+        </p>  
 
-const SUPABASE_URL =
-  "https://fmftcisigssgfjqqezqz.supabase.co";
+    </div>  
 
-const SUPABASE_KEY =
-  "sb_publishable_0YyKpZ3_HOED9iHlgfJldw_4ZrugD7C";
+</div>  
 
-const supabaseClient =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-  );
 
+<div  
+    class="categories"  
+    id="categoryList"  
+>  
 
-/* =====================================================
-   BASE URL
-===================================================== */
+    <div class="loading">  
+        ⏳ Memuat kategori...  
+    </div>  
 
-function getBaseUrl() {
+</div>
 
-  return window.location.origin;
+</section>  <!-- =====================================================  
+     PRODUK PILIHAN  
+===================================================== -->  <section id="produk">  <div class="section-header">  
 
-}
+    <div>  
 
+        <h2 class="title">  
+            Produk Pilihan  
+        </h2>  
 
-/* =====================================================
-   SLUG
-===================================================== */
+        <p class="subtitle">  
+            Produk terbaik pilihan AffiliaMart  
+        </p>  
 
-function makeSlug(text) {
+    </div>  
 
-  return String(text || "")
 
-    .toLowerCase()
+    <a  
+        href="#produk"  
+        class="see-all"  
+    >  
 
-    .normalize("NFD")
+        Lihat semua  
 
-    .replace(/[\u0300-\u036f]/g, "")
+        <i class="fa-solid fa-arrow-right"></i>  
 
-    .replace(/[^a-z0-9\s-]/g, "")
+    </a>  
 
-    .trim()
+</div>  
 
-    .replace(/\s+/g, "-")
 
-    .replace(/-+/g, "-");
+<div  
+    class="products"  
+    id="productList"  
+>  
 
-}
+    <div class="loading">  
+        ⏳ Memuat produk...  
+    </div>  
 
+</div>
 
-/* =====================================================
-   PRODUCT URL
-===================================================== */
+</section>  <!-- =====================================================  
+     PRODUK PER KATEGORI  
+===================================================== -->  <section class="category-products-section">  <div class="section-header">  
 
-function getProductUrl(product, categoryMap) {
+    <div>  
 
-  // Canonical product URL. Semua halaman memakai slug produk
-  // yang tersimpan di tabel products.slug.
-  const productSlug =
-    product.slug
-      ? makeSlug(product.slug)
-      : makeSlug(product.name);
+        <h2 class="title">  
+            Produk per Kategori  
+        </h2>  
 
-  return (
-    "product.html?slug=" +
-    encodeURIComponent(productSlug)
-  );
+        <p class="subtitle">  
+            Jelajahi produk berdasarkan kategori  
+        </p>  
 
-}
+    </div>  
 
+</div>  
 
-/* =====================================================
-   VISITOR ID
-===================================================== */
 
-function getVisitorId() {
+<div id="categoryProducts">  
 
-  let visitorId =
-    localStorage.getItem(
-      "affiliamart_visitor_id"
-    );
+    <div class="loading">  
+        ⏳ Memuat produk kategori...  
+    </div>  
 
-  if (!visitorId) {
+</div>
 
-    if (
-      window.crypto &&
-      typeof window.crypto.randomUUID === "function"
-    ) {
+</section>  <!-- =====================================================  
+     FOOTER  
+===================================================== -->  <footer>  <div class="footer-logo">  
+    AffiliaMart  
+</div>  
 
-      visitorId =
-        window.crypto.randomUUID();
+<p>  
+    Platform rekomendasi produk affiliate  
+    Shopee & TikTok.  
+</p>  
 
-    } else {
+<div class="copyright">  
+    © 2026 AffiliaMart. All rights reserved.  
+</div>
 
-      visitorId =
-        "visitor-" +
-        Date.now() +
-        "-" +
-        Math.random()
-          .toString(36)
-          .substring(2, 12);
+</footer>  <!-- =====================================================  
+     BOTTOM MENU  
+===================================================== -->  <div class="bottom-menu">  <!-- HOME -->  
 
-    }
-
-    localStorage.setItem(
-      "affiliamart_visitor_id",
-      visitorId
-    );
-
-  }
-
-  return visitorId;
-
-}
-
-
-/* =====================================================
-   ANALYTICS
-===================================================== */
-
-async function trackEvent(
-  eventType,
-  productId = null,
-  platform = null
-) {
-
-  try {
-
-    const visitorId =
-      getVisitorId();
-
-    const {
-      error
-    } =
-    await supabaseClient
-
-      .from("analytics_events")
-
-      .insert({
-
-        event_type:
-          eventType,
-
-        product_id:
-          productId,
-
-        platform:
-          platform,
-
-        visitor_id:
-          visitorId
-
-      });
-
-    if (error) {
-
-      console.error(
-        "Analytics error:",
-        error
-      );
-
-      return false;
-
-    }
-
-    return true;
-
-  } catch (error) {
-
-    console.error(
-      "Tracking error:",
-      error
-    );
-
-    return false;
-
-  }
-
-}
-
-
-/* =====================================================
-   PAGE VIEW
-===================================================== */
-
-trackEvent("page_view");
-
-
-/* =====================================================
-   FORMAT RUPIAH
-===================================================== */
-
-function formatRupiah(value) {
-
-  if (
-    value === null ||
-    value === undefined ||
-    value === ""
-  ) {
-
-    return "-";
-
-  }
-
-  return new Intl.NumberFormat(
-    "id-ID",
-    {
-      style: "currency",
-      currency: "IDR",
-      maximumFractionDigits: 0
-    }
-  ).format(value);
-
-}
-
-
-/* =====================================================
-   ESCAPE HTML
-===================================================== */
-
-function escapeHTML(value) {
-
-  if (
-    value === null ||
-    value === undefined
-  ) {
-
-    return "";
-
-  }
-
-  return String(value)
-
-    .replace(/&/g, "&amp;")
-
-    .replace(/</g, "&lt;")
-
-    .replace(/>/g, "&gt;")
-
-    .replace(/"/g, "&quot;")
-
-    .replace(/'/g, "&#039;");
-
-}
-
-
-/* =====================================================
-   CATEGORY ICON
-===================================================== */
-
-function getCategoryIcon(name) {
-
-  const category =
-    String(name || "")
-      .toLowerCase()
-      .trim();
-
-  if (
-    category.includes("elektronik") ||
-    category.includes("hp") ||
-    category.includes("handphone") ||
-    category.includes("gadget")
-  ) {
-    return "📱";
-  }
-
-  if (
-    category.includes("fashion") ||
-    category.includes("pakaian") ||
-    category.includes("baju")
-  ) {
-    return "👕";
-  }
-
-  if (
-    category.includes("kecantikan") ||
-    category.includes("beauty") ||
-    category.includes("kosmetik")
-  ) {
-    return "💄";
-  }
-
-  if (
-    category.includes("rumah") ||
-    category.includes("home") ||
-    category.includes("dapur")
-  ) {
-    return "🏠";
-  }
-
-  if (
-    category.includes("otomotif") ||
-    category.includes("motor") ||
-    category.includes("mobil")
-  ) {
-    return "🚗";
-  }
-
-  if (
-    category.includes("olahraga") ||
-    category.includes("sport")
-  ) {
-    return "⚽";
-  }
-
-  if (
-    category.includes("makanan") ||
-    category.includes("food") ||
-    category.includes("minuman")
-  ) {
-    return "🍔";
-  }
-
-  if (
-    category.includes("gaming") ||
-    category.includes("game")
-  ) {
-    return "🎮";
-  }
-
-  if (
-    category.includes("anak") ||
-    category.includes("bayi")
-  ) {
-    return "🧸";
-  }
-
-  if (
-    category.includes("buku") ||
-    category.includes("pendidikan")
-  ) {
-    return "📚";
-  }
-
-  return "📦";
-
-}
-
-
-/* =====================================================
-   CATEGORY DATA
-===================================================== */
-
-let categoryMap = {};
-
-
-/* =====================================================
-   LOAD CATEGORIES
-===================================================== */
-
-async function loadCategories() {
-
-  const categoryList =
-    document.getElementById(
-      "categoryList"
-    );
-
-  categoryList.innerHTML =
-    '<div class="loading">⏳ Memuat kategori...</div>';
-
-  const {
-    data,
-    error
-  } =
-  await supabaseClient
-
-    .from("categories")
-
-    .select(`
-      id,
-      name,
-      slug
-    `)
-
-    .order(
-      "name",
-      {
-        ascending: true
-      }
-    );
-
-  if (error) {
-
-    console.error(
-      "Category error:",
-      error
-    );
-
-    /*
-      Fallback apabila kolom slug
-      belum ada di tabel categories.
-    */
-
-    const fallback =
-      await supabaseClient
-
-        .from("categories")
-
-        .select(`
-          id,
-          name
-        `)
-
-        .order(
-          "name",
-          {
-            ascending: true
-          }
-        );
-
-    if (fallback.error) {
-
-      categoryList.innerHTML = `
-
-        <div class="empty">
-
-          <h3>
-            Gagal memuat kategori
-          </h3>
-
-          <p style="margin-top:8px;">
-            ${escapeHTML(error.message)}
-          </p>
-
-        </div>
-
-      `;
-
-      return;
-
-    }
-
-    categoryMap = {};
-
-    fallback.data.forEach(
-      function(category) {
-
-        categoryMap[category.id] = {
-
-          id:
-            category.id,
-
-          name:
-            category.name,
-
-          slug:
-            makeSlug(category.name)
-
-        };
-
-      }
-    );
-
-    renderCategories(
-      fallback.data
-    );
-
-    return;
-
-  }
-
-
-  categoryMap = {};
-
-  data.forEach(
-    function(category) {
-
-      categoryMap[category.id] = {
-
-        id:
-          category.id,
-
-        name:
-          category.name,
-
-        slug:
-          category.slug
-            ? makeSlug(category.slug)
-            : makeSlug(category.name)
-
-      };
-
-    }
-  );
-
-
-  renderCategories(data);
-
-}
-
-
-/* =====================================================
-   RENDER CATEGORIES
-===================================================== */
-
-function renderCategories(data) {
-
-  const categoryList =
-    document.getElementById(
-      "categoryList"
-    );
-
-  if (
-    !data ||
-    data.length === 0
-  ) {
-
-    categoryList.innerHTML = `
-
-      <div class="empty">
-
-        <h3>
-          Belum ada kategori
-        </h3>
-
-        <p style="margin-top:8px;">
-          Tambahkan kategori melalui admin.
-        </p>
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-  categoryList.innerHTML =
-
-    data
-
-      .map(
-        function(category) {
-
-          const icon =
-            getCategoryIcon(
-              category.name
-            );
-
-          return `
-
-            <div
-              class="category"
-              data-category-id="${escapeHTML(category.id)}"
-              onclick="filterKategori('${escapeHTML(category.id)}')"
-            >
-
-              <div class="category-icon">
-                ${icon}
-              </div>
-
-              <div class="category-name">
-                ${escapeHTML(category.name)}
-              </div>
-
-            </div>
-
-          `;
-
-        }
-      )
-
-      .join("");
-
-}
-
-
-/* =====================================================
-   LOAD PRODUCTS
-===================================================== */
-
-async function loadProducts() {
-
-  const productList =
-    document.getElementById(
-      "productList"
-    );
-
-  productList.innerHTML =
-    '<div class="loading">⏳ Memuat produk...</div>';
-
-
-  const {
-    data,
-    error
-  } =
-  await supabaseClient
-
-    .from("products")
-
-    .select(`
-      id,
-      category_id,
-      name,
-      slug,
-      description,
-      image_url,
-      gallery,
-      price,
-      original_price,
-      discount_percent,
-      platform,
-      external_product_id,
-      affiliate_url,
-      rating,
-      sold_count,
-      is_featured,
-      is_trending,
-      is_active,
-      created_at
-    `)
-
-    .eq(
-      "is_active",
-      true
-    )
-
-    .order(
-      "created_at",
-      {
-        ascending: false
-      }
-    );
-
-
-  if (error) {
-
-    console.error(
-      "Product error:",
-      error
-    );
-
-    productList.innerHTML = `
-
-      <div class="empty">
-
-        <h3>
-          Gagal memuat produk
-        </h3>
-
-        <p style="margin-top:8px;">
-          ${escapeHTML(error.message)}
-        </p>
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-  if (
-    !data ||
-    data.length === 0
-  ) {
-
-    productList.innerHTML = `
-
-      <div class="empty">
-
-        <h3>
-          Belum ada produk
-        </h3>
-
-        <p style="margin-top:8px;">
-          Produk akan tampil di sini setelah
-          ditambahkan dari admin.
-        </p>
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-  renderProducts(data);
-
-}
-
-
-/* =====================================================
-   RENDER PRODUCTS
-===================================================== */
-
-function renderProducts(products) {
-
-  const productList =
-    document.getElementById(
-      "productList"
-    );
-
-
-  productList.innerHTML =
-
-    products
-
-      .map(
-        function(product) {
-
-          /* IMAGE */
-
-          let imageHTML =
-            '<div class="product-placeholder">🛍️</div>';
-
-
-          if (
-            product.image_url &&
-            String(product.image_url).trim() !== ""
-          ) {
-
-            imageHTML = `
-
-              <img
-                src="${escapeHTML(product.image_url)}"
-                alt="${escapeHTML(product.name)}"
-                loading="lazy"
-                onerror="
-                  this.style.display='none';
-                  if(this.nextElementSibling){
-                    this.nextElementSibling.style.display='block';
-                  }
-                "
-              >
-
-              <div
-                class="product-placeholder"
-                style="display:none;"
-              >
-                🛍️
-              </div>
-
-            `;
-
-          }
-
-
-          /* DISCOUNT */
-
-          let discountHTML = "";
-
-          if (
-            product.discount_percent !== null &&
-            Number(product.discount_percent) > 0
-          ) {
-
-            discountHTML = `
-
-              <div class="discount">
-                -${Number(product.discount_percent)}%
-              </div>
-
-            `;
-
-          }
-
-
-          /* PLATFORM */
-
-          const platform =
-            String(product.platform || "")
-              .toLowerCase()
-              .trim();
-
-
-          let platformHTML = "";
-
-          if (product.platform) {
-
-            platformHTML = `
-
-              <div class="platform">
-                ${escapeHTML(product.platform)}
-              </div>
-
-            `;
-
-          }
-
-
-          /* ORIGINAL PRICE */
-
-          let originalPriceHTML = "";
-
-          if (
-            product.original_price &&
-            Number(product.original_price) >
-            Number(product.price)
-          ) {
-
-            originalPriceHTML = `
-
-              <div class="original-price">
-                ${formatRupiah(
-                  product.original_price
-                )}
-              </div>
-
-            `;
-
-          }
-
-
-          /* RATING */
-
-          let metaHTML = "";
-
-          if (
-            product.rating !== null &&
-            product.rating !== undefined &&
-            product.rating !== ""
-          ) {
-
-            metaHTML += `
-
-              <span>
-                ⭐ ${Number(product.rating).toFixed(1)}
-              </span>
-
-            `;
-
-          }
-
-
-          /* SOLD */
-
-          if (
-            product.sold_count !== null &&
-            product.sold_count !== undefined &&
-            Number(product.sold_count) > 0
-          ) {
-
-            metaHTML += `
-
-              <span>
-                ${Number(
-                  product.sold_count
-                ).toLocaleString("id-ID")}
-                terjual
-              </span>
-
-            `;
-
-          }
-
-
-          /* DESCRIPTION */
-
-          const description =
-            product.description ||
-            "Produk pilihan AffiliaMart.";
-
-
-          /* PRODUCT URL */
-
-          const productURL =
-            getProductUrl(
-              product,
-              categoryMap
-            );
-
-
-          /* BUTTON */
-
-          const buttonHTML = `
-
-            <a
-              href="${escapeHTML(productURL)}"
-              class="btn"
-              onclick="handleProductClick(event, '${escapeHTML(product.id)}', '${escapeHTML(platform)}', '${escapeHTML(productURL)}')"
-            >
-              Lihat Produk
-            </a>
-
-          `;
-
-
-          return `
-
-            <div
-              class="product"
-
-              data-name="${escapeHTML(
-                product.name
-              )}"
-
-              data-category="${escapeHTML(
-                product.category_id || ""
-              )}"
-
-              data-platform="${escapeHTML(
-                platform
-              )}"
-
-              data-url="${escapeHTML(
-                productURL
-              )}"
-            >
-
-              <div class="product-img">
-
-                ${imageHTML}
-
-                ${discountHTML}
-
-                ${platformHTML}
-
-              </div>
-
-
-              <div class="product-info">
-
-                <h3>
-                  ${escapeHTML(
-                    product.name
-                  )}
-                </h3>
-
-
-                <div class="product-price">
-                  ${formatRupiah(
-                    product.price
-                  )}
-                </div>
-
-
-                ${originalPriceHTML}
-
-
-                <div class="product-meta">
-                  ${metaHTML}
-                </div>
-
-
-                <p class="product-description">
-                  ${escapeHTML(
-                    description
-                  )}
-                </p>
-
-
-                ${buttonHTML}
-
-              </div>
-
-            </div>
-
-          `;
-
-        }
-      )
-
-      .join("");
-
-}
-
-
-/* =====================================================
-   PRODUCT CLICK
-===================================================== */
-
-async function handleProductClick(
-  event,
-  productId,
-  platform,
-  productURL
-) {
-
-  event.preventDefault();
-
-
-  await trackEvent(
-    "product_click",
-    productId,
-    platform || null
-  );
-
-
-  window.location.href =
-    productURL;
-
-}
-
-
-/* =====================================================
-   SEARCH
-===================================================== */
-
-function cariProduk() {
-
-  const input =
-    document
-      .getElementById(
-        "searchInput"
-      )
-      .value
-      .toLowerCase()
-      .trim();
-
-
-  const products =
-    document.querySelectorAll(
-      ".product"
-    );
-
-
-  if (input === "") {
-
-    products.forEach(
-      function(product) {
-
-        product.style.display =
-          "";
-
-      }
-    );
-
-
-    document
-      .getElementById("produk")
-      .scrollIntoView({
-        behavior: "smooth"
-      });
-
-    return;
-
-  }
-
-
-  let ditemukan = false;
-
-
-  products.forEach(
-    function(product) {
-
-      const nama =
-        (
-          product.getAttribute(
-            "data-name"
-          ) || ""
-        )
-        .toLowerCase();
-
-
-      if (
-        nama.includes(input)
-      ) {
-
-        product.style.display =
-          "";
-
-        ditemukan = true;
-
-      } else {
-
-        product.style.display =
-          "none";
-
-      }
-
-    }
-  );
-
-
-  document
-    .getElementById("produk")
-    .scrollIntoView({
-      behavior: "smooth"
-    });
-
-
-  if (!ditemukan) {
-
-    alert(
-      "Produk tidak ditemukan."
-    );
-
-  }
-
-}
-
-
-/* =====================================================
-   ENTER SEARCH
-===================================================== */
-
-document
-  .getElementById(
-    "searchInput"
-  )
-  .addEventListener(
-    "keypress",
-    function(event) {
-
-      if (
-        event.key === "Enter"
-      ) {
-
-        cariProduk();
-
-      }
-
-    }
-  );
-
-
-/* =====================================================
-   CATEGORY FILTER
-===================================================== */
-
-function filterKategori(categoryId) {
-
-  const products =
-    document.querySelectorAll(
-      ".product"
-    );
-
-
-  let ditemukan = false;
-
-
-  products.forEach(
-    function(product) {
-
-      const productCategory =
-        product.getAttribute(
-          "data-category"
-        );
-
-
-      if (
-        String(productCategory) ===
-        String(categoryId)
-      ) {
-
-        product.style.display =
-          "";
-
-        ditemukan = true;
-
-      } else {
-
-        product.style.display =
-          "none";
-
-      }
-
-    }
-  );
-
-
-  document
-    .getElementById("produk")
-    .scrollIntoView({
-      behavior: "smooth"
-    });
-
-
-  if (!ditemukan) {
-
-    alert(
-      "Belum ada produk di kategori ini."
-    );
-
-  }
-
-}
-
-
-/* =====================================================
-   PLATFORM FILTER
-===================================================== */
-
-function filterPlatform(platform) {
-
-  const products =
-    document.querySelectorAll(
-      ".product"
-    );
-
-
-  let ditemukan = false;
-
-
-  products.forEach(
-    function(product) {
-
-      const productPlatform =
-
-        (
-          product.getAttribute(
-            "data-platform"
-          ) || ""
-        )
-        .toLowerCase()
-        .trim();
-
-
-      if (
-        platform === "all" ||
-        productPlatform === platform
-      ) {
-
-        product.style.display =
-          "";
-
-        ditemukan = true;
-
-      } else {
-
-        product.style.display =
-          "none";
-
-      }
-
-    }
-  );
-
-
-  document
-    .querySelectorAll(
-      ".bottom-menu-item"
-    )
-    .forEach(
-      function(menu) {
-
-        menu.classList.remove(
-          "active"
-        );
-
-      }
-    );
-
-
-  if (
-    platform === "all"
-  ) {
-
-    document
-      .getElementById(
-        "menuHome"
-      )
-      .classList.add(
-        "active"
-      );
-
-  }
-
-
-  if (
-    platform === "shopee"
-  ) {
-
-    document
-      .getElementById(
-        "menuShopee"
-      )
-      .classList.add(
-        "active"
-      );
-
-  }
-
-
-  if (
-    platform === "tiktok"
-  ) {
-
-    document
-      .getElementById(
-        "menuTiktok"
-      )
-      .classList.add(
-        "active"
-      );
-
-  }
-
-
-  document
-    .getElementById(
-      "produk"
-    )
-    .scrollIntoView({
-      behavior: "smooth"
-    });
-
-
-  if (
-    platform !== "all" &&
-    !ditemukan
-  ) {
-
-    alert(
-      "Belum ada produk " +
-      (
-        platform === "shopee"
-          ? "Shopee"
-          : "TikTok"
-      ) +
-      "."
-    );
-
-  }
-
-}
-
-
-/* =====================================================
-   INITIALIZE
-===================================================== */
-
-async function initializeApp() {
-
-  await loadCategories();
-
-  await loadProducts();
-
-}
-
-
-initializeApp();
-
-</script>
-
-
-</body>
-
-</html>
+<div  
+    class="bottom-menu-item active"  
+    id="menuHome"  
+    onclick="filterPlatform('all')"  
+>  
+
+    <div class="bottom-menu-icon">  
+        🏠  
+    </div>  
+
+    <div>  
+        Home  
+    </div>  
+
+</div>  
+
+
+<!-- SHOPEE -->  
+
+<div  
+    class="bottom-menu-item"  
+    id="menuShopee"  
+    onclick="filterPlatform('shopee')"  
+>  
+
+    <div class="bottom-menu-icon">  
+
+        <img  
+            src="https://cdn.simpleicons.org/shopee/EE4D2D"  
+            alt="Shopee"  
+        >  
+
+    </div>  
+
+    <div>  
+        Shopee  
+    </div>  
+
+</div>  
+
+
+<!-- TIKTOK -->  
+
+<div  
+    class="bottom-menu-item"  
+    id="menuTiktok"  
+    onclick="filterPlatform('tiktok')"  
+>  
+
+    <div class="bottom-menu-icon">  
+
+        <img  
+            src="https://cdn.simpleicons.org/tiktok/111827"  
+            alt="TikTok"  
+        >  
+
+    </div>  
+
+    <div>  
+        TikTok  
+    </div>  
+
+</div>  
+
+
+<!-- KATEGORI -->  
+
+<div  
+    class="bottom-menu-item"  
+    onclick="  
+        document  
+        .getElementById('kategori')  
+        .scrollIntoView({  
+            behavior:'smooth'  
+        })  
+    "  
+>  
+
+    <div class="bottom-menu-icon">  
+        ▦  
+    </div>  
+
+    <div>  
+        Kategori  
+    </div>  
+
+</div>
+
+</div>  <!-- =====================================================  
+     JAVASCRIPT  
+===================================================== -->  <script>  
+  
+  
+/* =====================================================  
+   SUPABASE  
+===================================================== */  
+  
+const SUPABASE_URL =  
+    "https://fmftcisigssgfjqqezqz.supabase.co";  
+  
+  
+const SUPABASE_KEY =  
+    "sb_publishable_0YyKpZ3_HOED9iHlgfJldw_4ZrugD7C";  
+  
+  
+const supabaseClient =  
+    window.supabase.createClient(  
+        SUPABASE_URL,  
+        SUPABASE_KEY  
+    );  
+  
+  
+  
+/* =====================================================  
+   GLOBAL DATA  
+===================================================== */  
+  
+let allProducts = [];  
+  
+let allCategories = [];  
+  
+let categoryMap = {};  
+  
+  
+  
+/* =====================================================  
+   SLUG  
+===================================================== */  
+  
+function makeSlug(text){  
+  
+    return String(text || "")  
+  
+        .toLowerCase()  
+  
+        .normalize("NFD")  
+  
+        .replace(  
+            /[\u0300-\u036f]/g,  
+            ""  
+        )  
+  
+        .replace(  
+            /[^a-z0-9\s-]/g,  
+            ""  
+        )  
+  
+        .trim()  
+  
+        .replace(  
+            /\s+/g,  
+            "-"  
+        )  
+  
+        .replace(  
+            /-+/g,  
+            "-"  
+        );  
+}  
+  
+  
+  
+/* =====================================================  
+   PRODUCT URL  
+===================================================== */  
+  
+/*  
+   PENTING:  
+  
+   Untuk GitHub Pages gunakan:  
+  
+   product.html?slug=nama-produk  
+  
+   Jangan gunakan:  
+  
+   /kategori/nama-produk  
+  
+   karena GitHub Pages akan menganggapnya  
+   sebagai folder/path dan menghasilkan 404.  
+*/  
+  
+function getProductUrl(product){  
+  
+    const productSlug =  
+        product.slug  
+            ? makeSlug(product.slug)  
+            : makeSlug(product.name);  
+  
+  
+    return "product.html?slug=" +  
+        encodeURIComponent(  
+            productSlug  
+        );  
+}  
+  
+  
+  
+/* =====================================================  
+   VISITOR ID  
+===================================================== */  
+  
+function getVisitorId(){  
+  
+    let visitorId =  
+        localStorage.getItem(  
+            "affiliamart_visitor_id"  
+        );  
+  
+  
+    if(!visitorId){  
+  
+        if(  
+            window.crypto &&  
+            typeof window.crypto.randomUUID ===  
+            "function"  
+        ){  
+  
+            visitorId =  
+                window.crypto.randomUUID();  
+  
+        }else{  
+  
+            visitorId =  
+                "visitor-"  
+                + Date.now()  
+                + "-"  
+                + Math.random()  
+                    .toString(36)  
+                    .substring(2,12);  
+  
+        }  
+  
+  
+        localStorage.setItem(  
+            "affiliamart_visitor_id",  
+            visitorId  
+        );  
+  
+    }  
+  
+  
+    return visitorId;  
+}  
+  
+  
+  
+/* =====================================================  
+   ANALYTICS  
+===================================================== */  
+  
+async function trackEvent(  
+    eventType,  
+    productId = null,  
+    platform = null  
+){  
+  
+    try{  
+  
+        await supabaseClient  
+  
+            .from(  
+                "analytics_events"  
+            )  
+  
+            .insert({  
+  
+                event_type:  
+                    eventType,  
+  
+                product_id:  
+                    productId,  
+  
+                platform:  
+                    platform,  
+  
+                visitor_id:  
+                    getVisitorId()  
+  
+            });  
+  
+    }catch(error){  
+  
+        console.error(  
+            "Analytics:",  
+            error  
+        );  
+  
+    }  
+  
+}  
+  
+  
+  
+/* =====================================================  
+   PAGE VIEW  
+===================================================== */  
+  
+trackEvent(  
+    "page_view"  
+);  
+  
+  
+  
+/* =====================================================  
+   FORMAT RUPIAH  
+===================================================== */  
+  
+function formatRupiah(value){  
+  
+    if(  
+        value === null ||  
+        value === undefined ||  
+        value === ""  
+    ){  
+  
+        return "-";  
+  
+    }  
+  
+  
+    return new Intl.NumberFormat(  
+        "id-ID",  
+        {  
+  
+            style:"currency",  
+  
+            currency:"IDR",  
+  
+            maximumFractionDigits:0  
+  
+        }  
+    ).format(value);  
+  
+}  
+  
+  
+  
+/* =====================================================  
+   ESCAPE HTML  
+===================================================== */  
+  
+function escapeHTML(value){  
+  
+    if(  
+        value === null ||  
+        value === undefined  
+    ){  
+  
+        return "";  
+  
+    }  
+  
+  
+    return String(value)  
+  
+        .replace(  
+            /&/g,  
+            "&amp;"  
+        )  
+  
+        .replace(  
+            /</g,  
+            "&lt;"  
+        )  
+  
+        .replace(  
+            />/g,  
+            "&gt;"  
+        )  
+  
+        .replace(  
+            /"/g,  
+            "&quot;"  
+        )  
+  
+        .replace(  
+            /'/g,  
+            "&#039;"  
+        );  
+  
+}  
+  
+  
+  
+/* =====================================================  
+   CATEGORY ICON  
+===================================================== */  
+  
+function getCategoryIcon(name){  
+  
+    const category =  
+        String(name || "")  
+            .toLowerCase()  
+            .trim();  
+  
+  
+    if(  
+        category.includes("elektronik") ||  
+        category.includes("hp") ||  
+        category.includes("handphone") ||  
+        category.includes("gadget")  
+    ){  
+  
+        return "📱";  
+  
+    }  
+  
+  
+    if(  
+        category.includes("fashion pria")  
+    ){  
+  
+        return "🧥";  
+  
+    }  
+  
+  
+    if(  
+        category.includes("fashion wanita")  
+    ){  
+  
+        return "👗";  
+  
+    }  
+  
+  
+    if(  
+        category.includes("fashion") ||  
+        category.includes("pakaian") ||  
+        category.includes("baju")  
+    ){  
+  
+        return "👕";  
+  
+    }  
+  
+  
+    if(  
+        category.includes("hijab") ||  
+        category.includes("kerudung")  
+    ){  
+  
+        return "🧕";  
+  
+    }  
+  
+  
+    if(  
+        category.includes("sepatu") ||  
+        category.includes("sandal")  
+    ){  
+  
+        return "👟";  
+  
+    }  
+  
+  
+    if(  
+        category.includes("tas")  
+    ){  
+  
+        return "👜";  
+  
+    }  
+  
+  
+    if(  
+        category.includes("jam")  
+    ){  
+  
+        return "⌚";  
+  
+    }  
+  
+  
+    if(  
+        category.includes("kecantikan") ||  
+        category.includes("beauty") ||  
+        category.includes("kosmetik")  
+    ){  
+  
+        return "💄";  
+  
+    }  
+  
+  
+    if(  
+        category.includes("rumah") ||  
+        category.includes("home") ||  
+        category.includes("dapur")  
+    ){  
+  
+        return "🏠";  
+  
+    }  
+  
+  
+    if(  
+        category.includes("otomotif") ||  
+        category.includes("motor") ||  
+        category.includes("mobil")  
+    ){  
+  
+        return "🚗";  
+  
+    }  
+  
+  
+    if(  
+        category.includes("olahraga") ||  
+        category.includes("sport")  
+    ){  
+  
+        return "⚽";  
+  
+    }  
+  
+  
+    if(  
+        category.includes("makanan") ||  
+        category.includes("food")  
+    ){  
+  
+        return "🍔";  
+  
+    }  
+  
+  
+    if(  
+        category.includes("minuman") ||  
+        category.includes("tumbler")  
+    ){  
+  
+        return "🥤";  
+  
+    }  
+  
+  
+    if(  
+        category.includes("gaming") ||  
+        category.includes("game")  
+    ){  
+  
+        return "🎮";  
+  
+    }  
+  
+  
+    if(  
+        category.includes("anak") ||  
+        category.includes("bayi")  
+    ){  
+  
+        return "🧸";  
+  
+    }  
+  
+  
+    if(  
+        category.includes("buku") ||  
+        category.includes("pendidikan")  
+    ){  
+  
+        return "📚";  
+  
+    }  
+  
+  
+    return "📦";  
+  
+}  
+  
+  
+  
+/* =====================================================  
+   PLATFORM HTML  
+===================================================== */  
+  
+function getPlatformHTML(platform){  
+  
+    const p =  
+        String(platform || "")  
+            .toLowerCase()  
+            .trim();  
+  
+  
+    if(p === "shopee"){  
+  
+        return `  
+  
+            <div class="platform shopee">  
+  
+                <img  
+                    src="https://cdn.simpleicons.org/shopee/FFFFFF"  
+                    alt="Shopee"  
+                >  
+  
+                Shopee  
+  
+            </div>  
+  
+        `;  
+  
+    }  
+  
+  
+    if(p === "tiktok"){  
+  
+        return `  
+  
+            <div class="platform tiktok">  
+  
+                <img  
+                    src="https://cdn.simpleicons.org/tiktok/FFFFFF"  
+                    alt="TikTok"  
+                >  
+  
+                TikTok  
+  
+            </div>  
+  
+        `;  
+  
+    }  
+  
+  
+    return "";  
+  
+}  
+  
+  
+  
+/* =====================================================  
+   LOAD CATEGORIES  
+===================================================== */  
+  
+async function loadCategories(){  
+  
+    const categoryList =  
+        document.getElementById(  
+            "categoryList"  
+        );  
+  
+  
+    categoryList.innerHTML = `  
+  
+        <div class="loading">  
+  
+            ⏳ Memuat kategori...  
+  
+        </div>  
+  
+    `;  
+  
+  
+    const {  
+        data,  
+        error  
+    } =  
+    await supabaseClient  
+  
+        .from("categories")  
+  
+        .select(`  
+            id,  
+            name,  
+            slug  
+        `)  
+  
+        .order(  
+            "name",  
+            {  
+                ascending:true  
+            }  
+        );  
+  
+  
+    if(error){  
+  
+        console.error(  
+            "Category error:",  
+            error  
+        );  
+  
+  
+        categoryList.innerHTML = `  
+  
+            <div class="empty">  
+  
+                <h3>  
+                    ⚠️ Gagal memuat kategori  
+                </h3>  
+  
+                <p>  
+                    ${escapeHTML(  
+                        error.message  
+                    )}  
+                </p>  
+  
+            </div>  
+  
+        `;  
+  
+  
+        return;  
+  
+    }  
+  
+  
+    allCategories =  
+        data || [];  
+  
+  
+    categoryMap = {};  
+  
+  
+    allCategories.forEach(  
+        category => {  
+  
+            categoryMap[  
+                category.id  
+            ] = category;  
+  
+        }  
+    );  
+  
+  
+    renderCategories(  
+        allCategories  
+    );  
+  
+}  
+  
+  
+  
+/* =====================================================  
+   RENDER CATEGORIES  
+===================================================== */  
+  
+function renderCategories(data){  
+  
+    const categoryList =  
+        document.getElementById(  
+            "categoryList"  
+        );  
+  
+  
+    if(  
+        !data ||  
+        data.length === 0  
+    ){  
+  
+        categoryList.innerHTML = `  
+  
+            <div class="empty">  
+  
+                <h3>  
+                    Belum ada kategori  
+                </h3>  
+  
+                <p>  
+                    Tambahkan kategori melalui admin.  
+                </p>  
+  
+            </div>  
+  
+        `;  
+  
+  
+        return;  
+  
+    }  
+  
+  
+    categoryList.innerHTML =  
+  
+        data.map(  
+            category => {  
+  
+                const icon =  
+                    getCategoryIcon(  
+                        category.name  
+                    );  
+  
+  
+                const count =  
+                    allProducts.filter(  
+                        product =>  
+                            String(  
+                                product.category_id  
+                            ) ===  
+                            String(  
+                                category.id  
+                            )  
+                    ).length;  
+  
+  
+                return `  
+  
+                    <div  
+  
+                        class="category"  
+  
+                        data-category-id="${escapeHTML(  
+                            category.id  
+                        )}"  
+  
+                        onclick="  
+                            filterKategori(  
+                                '${escapeHTML(  
+                                    category.id  
+                                )}'  
+                            )  
+                        "  
+                    >  
+  
+                        <div  
+                            class="category-icon"  
+                        >  
+  
+                            ${icon}  
+  
+                        </div>  
+  
+  
+                        <div  
+                            class="category-name"  
+                        >  
+  
+                            ${escapeHTML(  
+                                category.name  
+                            )}  
+  
+                        </div>  
+  
+  
+                        <div  
+                            class="category-count"  
+                        >  
+  
+                            ${count} Produk  
+  
+                        </div>  
+  
+                    </div>  
+  
+                `;  
+  
+            }  
+        ).join("");  
+  
+}  
+  
+  
+  
+/* =====================================================  
+   LOAD PRODUCTS  
+===================================================== */  
+  
+async function loadProducts(){  
+  
+    const productList =  
+        document.getElementById(  
+            "productList"  
+        );  
+  
+  
+    productList.innerHTML = `  
+  
+        <div class="loading">  
+  
+            ⏳ Memuat produk...  
+  
+        </div>  
+  
+    `;  
+  
+  
+    const {  
+        data,  
+        error  
+    } =  
+    await supabaseClient  
+  
+        .from("products")  
+  
+        .select(`  
+            id,  
+            category_id,  
+            name,  
+            slug,  
+            description,  
+            image_url,  
+            gallery,  
+            price,  
+            original_price,  
+            discount_percent,  
+            platform,  
+            external_product_id,  
+            affiliate_url,  
+            rating,  
+            sold_count,  
+            is_featured,  
+            is_trending,  
+            is_active,  
+            created_at  
+        `)  
+  
+        .eq(  
+            "is_active",  
+            true  
+        )  
+  
+        .order(  
+            "created_at",  
+            {  
+                ascending:false  
+            }  
+        );  
+  
+  
+    if(error){  
+  
+        console.error(  
+            "Product error:",  
+            error  
+        );  
+  
+  
+        productList.innerHTML = `  
+  
+            <div class="empty">  
+  
+                <h3>  
+                    ⚠️ Gagal memuat produk  
+                </h3>  
+  
+                <p>  
+                    ${escapeHTML(  
+                        error.message  
+                    )}  
+                </p>  
+  
+            </div>  
+  
+        `;  
+  
+  
+        return;  
+  
+    }  
+  
+  
+    allProducts =  
+        data || [];  
+  
+  
+    renderFeaturedProducts(  
+        allProducts  
+    );  
+  
+  
+    renderProductsPerCategory(  
+        allProducts  
+    );  
+  
+  
+    if(  
+        allCategories.length  
+    ){  
+  
+        renderCategories(  
+            allCategories  
+        );  
+  
+    }  
+  
+}  
+  
+  
+  
+/* =====================================================  
+   CREATE PRODUCT CARD  
+===================================================== */  
+  
+function createProductCard(product){  
+  
+    let imageHTML = `  
+  
+        <div class="product-placeholder">  
+  
+            🛍️  
+  
+        </div>  
+  
+    `;  
+  
+  
+    if(  
+        product.image_url &&  
+        String(  
+            product.image_url  
+        ).trim() !== ""  
+    ){  
+  
+        imageHTML = `  
+  
+            <img  
+  
+                src="${escapeHTML(  
+                    product.image_url  
+                )}"  
+  
+                alt="${escapeHTML(  
+                    product.name  
+                )}"  
+  
+                loading="lazy"  
+  
+                onerror="  
+                    this.style.display='none';  
+  
+                    if(  
+                        this.nextElementSibling  
+                    ){  
+  
+                        this.nextElementSibling  
+                            .style.display='flex';  
+  
+                    }  
+                "  
+            >  
+  
+  
+            <div  
+                class="product-placeholder"  
+                style="display:none;"  
+            >  
+  
+                🛍️  
+  
+            </div>  
+  
+        `;  
+  
+    }  
+  
+  
+    let discountHTML = "";  
+  
+  
+    if(  
+        product.discount_percent !== null &&  
+        Number(  
+            product.discount_percent  
+        ) > 0  
+    ){  
+  
+        discountHTML = `  
+  
+            <div class="discount">  
+  
+                -${Number(  
+                    product.discount_percent  
+                )}%  
+  
+            </div>  
+  
+        `;  
+  
+    }  
+  
+  
+    const platform =  
+        String(  
+            product.platform || ""  
+        )  
+        .toLowerCase()  
+        .trim();  
+  
+  
+    const platformHTML =  
+        getPlatformHTML(  
+            platform  
+        );  
+  
+  
+    let originalPriceHTML = "";  
+  
+  
+    if(  
+        product.original_price &&  
+        Number(  
+            product.original_price  
+        ) >  
+        Number(  
+            product.price  
+        )  
+    ){  
+  
+        originalPriceHTML = `  
+  
+            <div class="original-price">  
+  
+                ${formatRupiah(  
+                    product.original_price  
+                )}  
+  
+            </div>  
+  
+        `;  
+  
+    }  
+  
+  
+    let metaHTML = "";  
+  
+  
+    if(  
+        product.rating !== null &&  
+        product.rating !== undefined &&  
+        product.rating !== ""  
+    ){  
+  
+        metaHTML += `  
+  
+            <span>  
+  
+                ⭐ ${Number(  
+                    product.rating  
+                ).toFixed(1)}  
+  
+            </span>  
+  
+        `;  
+  
+    }  
+  
+  
+    if(  
+        product.sold_count !== null &&  
+        product.sold_count !== undefined &&  
+        Number(  
+            product.sold_count  
+        ) > 0  
+    ){  
+  
+        metaHTML += `  
+  
+            <span>  
+  
+                ${Number(  
+                    product.sold_count  
+                ).toLocaleString("id-ID")}  
+  
+                terjual  
+  
+            </span>  
+  
+        `;  
+  
+    }  
+  
+  
+    /*  
+       LINK PRODUK YANG SUDAH DIPERBAIKI  
+  
+       product.html?slug=...  
+    */  
+  
+    const productURL =  
+        getProductUrl(  
+            product  
+        );  
+  
+  
+    return `  
+  
+        <div  
+  
+            class="product"  
+  
+            data-name="${escapeHTML(  
+                product.name  
+            )}"  
+  
+            data-category="${escapeHTML(  
+                product.category_id || ""  
+            )}"  
+  
+            data-platform="${escapeHTML(  
+                platform  
+            )}"  
+  
+        >  
+  
+  
+            <div class="product-img">  
+  
+                ${imageHTML}  
+  
+                ${discountHTML}  
+  
+                ${platformHTML}  
+  
+            </div>  
+  
+  
+            <div class="product-info">  
+  
+  
+                <h3>  
+  
+                    ${escapeHTML(  
+                        product.name  
+                    )}  
+  
+                </h3>  
+  
+  
+                <div class="product-price">  
+  
+                    ${formatRupiah(  
+                        product.price  
+                    )}  
+  
+                </div>  
+  
+  
+                ${originalPriceHTML}  
+  
+  
+                ${  
+                    metaHTML  
+                    ?  
+                    `  
+  
+                        <div  
+                            class="product-meta"  
+                        >  
+  
+                            ${metaHTML}  
+  
+                        </div>  
+  
+                    `  
+                    :  
+                    ""  
+                }  
+  
+  
+                <a  
+  
+                    href="${escapeHTML(  
+                        productURL  
+                    )}"  
+  
+                    class="btn"  
+  
+                    onclick="  
+                        handleProductClick(  
+                            event,  
+                            '${escapeHTML(  
+                                product.id  
+                            )}',  
+                            '${escapeHTML(  
+                                platform  
+                            )}',  
+                            '${escapeHTML(  
+                                productURL  
+                            )}'  
+                        )  
+                    "  
+                >  
+  
+                    Lihat Produk  
+  
+                </a>  
+  
+  
+            </div>  
+  
+        </div>  
+  
+    `;  
+  
+}  
+  
+  
+  
+/* =====================================================  
+   FEATURED PRODUCTS  
+===================================================== */  
+  
+function renderFeaturedProducts(  
+    products  
+){  
+  
+    const productList =  
+        document.getElementById(  
+            "productList"  
+        );  
+  
+  
+    if(  
+        !products ||  
+        products.length === 0  
+    ){  
+  
+        productList.innerHTML = `  
+  
+            <div class="empty">  
+  
+                <h3>  
+                    Belum ada produk  
+                </h3>  
+  
+                <p>  
+                    Produk akan tampil di sini  
+                    setelah ditambahkan dari admin.  
+                </p>  
+  
+            </div>  
+  
+        `;  
+  
+  
+        return;  
+  
+    }  
+  
+  
+    let featured =  
+        products.filter(  
+            product =>  
+                product.is_featured === true  
+        );  
+  
+  
+    /*  
+       Kalau belum ada produk  
+       yang ditandai featured,  
+       gunakan produk terbaru.  
+    */  
+  
+    if(  
+        featured.length === 0  
+    ){  
+  
+        featured =  
+            products.slice(  
+                0,  
+                12  
+            );  
+  
+    }else{  
+  
+        featured =  
+            featured.slice(  
+                0,  
+                12  
+            );  
+  
+    }  
+  
+  
+    productList.innerHTML =  
+        featured  
+            .map(  
+                createProductCard  
+            )  
+            .join("");  
+  
+}  
+  
+  
+  
+/* =====================================================  
+   PRODUCTS PER CATEGORY  
+===================================================== */  
+  
+function renderProductsPerCategory(  
+    products  
+){  
+  
+    const container =  
+        document.getElementById(  
+            "categoryProducts"  
+        );  
+  
+  
+    if(  
+        !allCategories.length  
+    ){  
+  
+        container.innerHTML = `  
+  
+            <div class="empty">  
+  
+                <h3>  
+                    Belum ada kategori  
+                </h3>  
+  
+            </div>  
+  
+        `;  
+  
+  
+        return;  
+  
+    }  
+  
+  
+    let html = "";  
+  
+  
+    allCategories.forEach(  
+        category => {  
+  
+            const categoryProducts =  
+                products.filter(  
+                    product =>  
+                        String(  
+                            product.category_id  
+                        ) ===  
+                        String(  
+                            category.id  
+                        )  
+                );  
+  
+  
+            if(  
+                categoryProducts.length === 0  
+            ){  
+  
+                return;  
+  
+            }  
+  
+  
+            const icon =  
+                getCategoryIcon(  
+                    category.name  
+                );  
+  
+  
+            html += `  
+  
+                <div  
+                    class="category-block"  
+                    data-category-block="${escapeHTML(  
+                        category.id  
+                    )}"  
+                >  
+  
+  
+                    <div  
+                        class="category-products-header"  
+                    >  
+  
+  
+                        <div  
+                            class="category-products-title"  
+                        >  
+  
+                            <span>  
+  
+                                ${icon}  
+  
+                            </span>  
+  
+  
+                            ${escapeHTML(  
+                                category.name  
+                            )}  
+  
+                        </div>  
+  
+  
+                        <div  
+                            class="category-products-count"  
+                        >  
+  
+                            ${categoryProducts.length}  
+                            Produk  
+  
+                        </div>  
+  
+  
+                    </div>  
+  
+  
+                    <div  
+                        class="category-products-grid"  
+                    >  
+  
+                        ${  
+                            categoryProducts  
+                                .slice(0,5)  
+                                .map(  
+                                    createProductCard  
+                                )  
+                                .join("")  
+                        }  
+  
+                    </div>  
+  
+  
+                </div>  
+  
+            `;  
+  
+        }  
+    );  
+  
+  
+    if(  
+        html === ""  
+    ){  
+  
+        html = `  
+  
+            <div class="empty">  
+  
+                <h3>  
+                    Belum ada produk  
+                </h3>  
+  
+                <p>  
+                    Tambahkan produk melalui dashboard.  
+                </p>  
+  
+            </div>  
+  
+        `;  
+  
+    }  
+  
+  
+    container.innerHTML =  
+        html;  
+  
+}  
+  
+  
+  
+/* =====================================================  
+   PRODUCT CLICK  
+===================================================== */  
+  
+async function handleProductClick(  
+    event,  
+    productId,  
+    platform,  
+    productURL  
+){  
+  
+    event.preventDefault();  
+  
+  
+    await trackEvent(  
+        "product_click",  
+        productId,  
+        platform || null  
+    );  
+  
+  
+    window.location.href =  
+        productURL;  
+  
+}  
+  
+  
+  
+/* =====================================================  
+   SEARCH  
+===================================================== */  
+  
+function cariProduk(){  
+  
+    const input =  
+        document  
+            .getElementById(  
+                "searchInput"  
+            )  
+            .value  
+            .toLowerCase()  
+            .trim();  
+  
+  
+    const products =  
+        document.querySelectorAll(  
+            ".product"  
+        );  
+  
+  
+    if(  
+        input === ""  
+    ){  
+  
+        products.forEach(  
+            product => {  
+  
+                product.style.display =  
+                    "";  
+  
+            }  
+        );  
+  
+  
+        document  
+            .getElementById(  
+                "produk"  
+            )  
+            .scrollIntoView({  
+                behavior:"smooth"  
+            });  
+  
+  
+        return;  
+  
+    }  
+  
+  
+    let ditemukan =  
+        false;  
+  
+  
+    products.forEach(  
+        product => {  
+  
+            const nama =  
+                (  
+                    product.getAttribute(  
+                        "data-name"  
+                    ) || ""  
+                )  
+                .toLowerCase();  
+  
+  
+            if(  
+                nama.includes(  
+                    input  
+                )  
+            ){  
+  
+                product.style.display =  
+                    "";  
+  
+                ditemukan =  
+                    true;  
+  
+            }else{  
+  
+                product.style.display =  
+                    "none";  
+  
+            }  
+  
+        }  
+    );  
+  
+  
+    document  
+        .getElementById(  
+            "produk"  
+        )  
+        .scrollIntoView({  
+            behavior:"smooth"  
+        });  
+  
+  
+    if(  
+        !ditemukan  
+    ){  
+  
+        alert(  
+            "Produk tidak ditemukan."  
+        );  
+  
+    }  
+  
+}  
+  
+  
+  
+/* =====================================================  
+   POPULAR SEARCH  
+===================================================== */  
+  
+function searchPopular(  
+    keyword  
+){  
+  
+    const input =  
+        document.getElementById(  
+            "searchInput"  
+        );  
+  
+  
+    input.value =  
+        keyword;  
+  
+  
+    document  
+        .querySelectorAll(  
+            ".popular-item"  
+        )  
+        .forEach(  
+            item =>  
+                item.classList.remove(  
+                    "active"  
+                )  
+        );  
+  
+  
+    if(  
+        keyword === ""  
+    ){  
+  
+        document  
+            .querySelector(  
+                ".popular-item"  
+            )  
+            ?.classList  
+            .add(  
+                "active"  
+            );  
+  
+    }  
+  
+  
+    cariProduk();  
+  
+}  
+  
+  
+  
+/* =====================================================  
+   ENTER SEARCH  
+===================================================== */  
+  
+document  
+    .getElementById(  
+        "searchInput"  
+    )  
+    .addEventListener(  
+        "keydown",  
+        function(event){  
+  
+            if(  
+                event.key === "Enter"  
+            ){  
+  
+                cariProduk();  
+  
+            }  
+  
+        }  
+    );  
+  
+  
+  
+/* =====================================================  
+   CATEGORY FILTER  
+===================================================== */  
+  
+function filterKategori(  
+    categoryId  
+){  
+  
+    const products =  
+        document.querySelectorAll(  
+            ".product"  
+        );  
+  
+  
+    let ditemukan =  
+        false;  
+  
+  
+    products.forEach(  
+        product => {  
+  
+            const productCategory =  
+                product.getAttribute(  
+                    "data-category"  
+                );  
+  
+  
+            if(  
+                String(  
+                    productCategory  
+                ) ===  
+                String(  
+                    categoryId  
+                )  
+            ){  
+  
+                product.style.display =  
+                    "";  
+  
+                ditemukan =  
+                    true;  
+  
+            }else{  
+  
+                product.style.display =  
+                    "none";  
+  
+            }  
+  
+        }  
+    );  
+  
+  
+    document  
+        .getElementById(  
+            "produk"  
+        )  
+        .scrollIntoView({  
+            behavior:"smooth"  
+        });  
+  
+  
+    if(  
+        !ditemukan  
+    ){  
+  
+        alert(  
+            "Belum ada produk di kategori ini."  
+        );  
+  
+    }  
+  
+}  
+  
+  
+  
+/* =====================================================  
+   PLATFORM FILTER  
+===================================================== */  
+  
+function filterPlatform(  
+    platform  
+){  
+  
+    const products =  
+        document.querySelectorAll(  
+            ".product"  
+        );  
+  
+  
+    let ditemukan =  
+        false;  
+  
+  
+    products.forEach(  
+        product => {  
+  
+            const productPlatform =  
+                (  
+                    product.getAttribute(  
+                        "data-platform"  
+                    ) || ""  
+                )  
+                .toLowerCase()  
+                .trim();  
+  
+  
+            if(  
+                platform === "all" ||  
+                productPlatform === platform  
+            ){  
+  
+                product.style.display =  
+                    "";  
+  
+                ditemukan =  
+                    true;  
+  
+            }else{  
+  
+                product.style.display =  
+                    "none";  
+  
+            }  
+  
+        }  
+    );  
+  
+  
+    document  
+        .querySelectorAll(  
+            ".bottom-menu-item"  
+        )  
+        .forEach(  
+            menu =>  
+                menu.classList.remove(  
+                    "active"  
+                )  
+        );  
+  
+  
+    if(  
+        platform === "all"  
+    ){  
+  
+        document  
+            .getElementById(  
+                "menuHome"  
+            )  
+            .classList.add(  
+                "active"  
+            );  
+  
+    }  
+  
+  
+    if(  
+        platform === "shopee"  
+    ){  
+  
+        document  
+            .getElementById(  
+                "menuShopee"  
+            )  
+            .classList.add(  
+                "active"  
+            );  
+  
+    }  
+  
+  
+    if(  
+        platform === "tiktok"  
+    ){  
+  
+        document  
+            .getElementById(  
+                "menuTiktok"  
+            )  
+            .classList.add(  
+                "active"  
+            );  
+  
+    }  
+  
+  
+    document  
+        .getElementById(  
+            "produk"  
+        )  
+        .scrollIntoView({  
+            behavior:"smooth"  
+        });  
+  
+  
+    if(  
+        platform !== "all" &&  
+        !ditemukan  
+    ){  
+  
+        alert(  
+            "Belum ada produk " +  
+            (  
+                platform === "shopee"  
+                    ? "Shopee"  
+                    : "TikTok"  
+            ) +  
+            "."  
+        );  
+  
+    }  
+  
+}  
+  
+  
+  
+/* =====================================================  
+   INITIALIZE  
+===================================================== */  
+  
+async function initializeApp(){  
+  
+    /*  
+       Kategori harus dimuat dulu  
+       agar categoryMap siap.  
+    */  
+  
+    await loadCategories();  
+  
+  
+    /*  
+       Setelah itu produk.  
+    */  
+  
+    await loadProducts();  
+  
+}  
+  
+  
+initializeApp();  
+  
+  
+</script>  </body>  </html>

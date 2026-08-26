@@ -136,7 +136,7 @@ function renderGallery(images,name){
 }
 function changeImage(src,el){const img=document.getElementById("mainImage");if(img){img.style.display="block";img.src=src}document.querySelectorAll(".thumb").forEach(x=>x.classList.remove("active"));el.classList.add("active");}
 
-function productUrl(product){return "/af/product/"+encodeURIComponent(makeSlug(product.slug||product.name));}
+function productUrl(product){return "/affiliamart/product/"+encodeURIComponent(makeSlug(product.slug||product.name));}
 
 async function loadProduct(){
   const slug=makeSlug(getSlug());
@@ -204,3 +204,5 @@ loadProduct();
 </html>
 
 <script>function compactNumber(n){n=Number(n||0);if(n>=1000000)return (n/1000000).toFixed(1).replace(".0","")+"M";if(n>=1000)return (n/1000).toFixed(1).replace(".0","")+"K";return String(n);}</script>
+
+<script>const BASE_PATH="/affiliamart";</script>

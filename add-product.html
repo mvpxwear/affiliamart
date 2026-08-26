@@ -1,0 +1,2311 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Tambah Produk - AffiliaMart</title>
+
+  <!-- =========================
+       SUPABASE
+  ========================= -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+  <!-- =========================
+       FONT
+  ========================= -->
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+
+  <style>
+
+    /* =========================
+       RESET
+    ========================= */
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+
+    body {
+
+      font-family:
+        "Inter",
+        Arial,
+        sans-serif;
+
+      background: #f5f7f6;
+
+      color: #17201a;
+
+      min-height: 100vh;
+
+      padding-bottom: 40px;
+
+    }
+
+
+    button,
+    input,
+    textarea,
+    select {
+
+      font-family: inherit;
+
+    }
+
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+
+      height: 76px;
+
+      background:
+        rgba(255,255,255,0.97);
+
+      backdrop-filter:
+        blur(12px);
+
+      border-bottom:
+        1px solid #e5e7eb;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      padding: 0 6%;
+
+      position: sticky;
+
+      top: 0;
+
+      z-index: 100;
+
+    }
+
+
+    .logo {
+
+      text-decoration: none;
+
+      color: #16a34a;
+
+      font-size: 25px;
+
+      font-weight: 800;
+
+      letter-spacing: -1px;
+
+    }
+
+
+    .header-right {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 10px;
+
+    }
+
+
+    .back-btn {
+
+      border: 1px solid #d1d5db;
+
+      background: #ffffff;
+
+      color: #374151;
+
+      padding: 10px 15px;
+
+      border-radius: 10px;
+
+      font-size: 13px;
+
+      font-weight: 600;
+
+      cursor: pointer;
+
+      transition: .2s;
+
+    }
+
+
+    .back-btn:hover {
+
+      border-color: #86efac;
+
+      color: #15803d;
+
+      background: #f0fdf4;
+
+    }
+
+
+    /* =========================
+       MAIN
+    ========================= */
+
+    .main {
+
+      max-width: 950px;
+
+      margin: 0 auto;
+
+      padding: 45px 20px 70px;
+
+    }
+
+
+    .page-header {
+
+      margin-bottom: 28px;
+
+    }
+
+
+    .page-header h1 {
+
+      font-size: 30px;
+
+      font-weight: 800;
+
+      letter-spacing: -.8px;
+
+      color: #111827;
+
+      margin-bottom: 8px;
+
+    }
+
+
+    .page-header p {
+
+      color: #6b7280;
+
+      font-size: 14px;
+
+    }
+
+
+    /* =========================
+       CARD
+    ========================= */
+
+    .card {
+
+      background: #ffffff;
+
+      border: 1px solid #e5e7eb;
+
+      border-radius: 18px;
+
+      padding: 25px;
+
+      margin-bottom: 20px;
+
+      box-shadow:
+        0 5px 20px rgba(0,0,0,.04);
+
+    }
+
+
+    .card-title {
+
+      font-size: 18px;
+
+      font-weight: 800;
+
+      color: #111827;
+
+      margin-bottom: 22px;
+
+    }
+
+
+    /* =========================
+       FORM
+    ========================= */
+
+    .form-group {
+
+      margin-bottom: 20px;
+
+    }
+
+
+    .form-group:last-child {
+
+      margin-bottom: 0;
+
+    }
+
+
+    label {
+
+      display: block;
+
+      margin-bottom: 8px;
+
+      font-size: 13px;
+
+      font-weight: 700;
+
+      color: #374151;
+
+    }
+
+
+    .required {
+
+      color: #16a34a;
+
+    }
+
+
+    input,
+    textarea,
+    select {
+
+      width: 100%;
+
+      border: 1px solid #dfe4e1;
+
+      background: #fafcfb;
+
+      color: #111827;
+
+      border-radius: 11px;
+
+      padding: 13px 14px;
+
+      outline: none;
+
+      font-size: 14px;
+
+      transition:
+        border-color .2s,
+        box-shadow .2s,
+        background .2s;
+
+    }
+
+
+    input {
+
+      height: 48px;
+
+    }
+
+
+    select {
+
+      height: 48px;
+
+      cursor: pointer;
+
+    }
+
+
+    textarea {
+
+      min-height: 170px;
+
+      resize: vertical;
+
+      line-height: 1.6;
+
+    }
+
+
+    input::placeholder,
+    textarea::placeholder {
+
+      color: #9ca3af;
+
+    }
+
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+
+      background: #ffffff;
+
+      border-color: #22c55e;
+
+      box-shadow:
+        0 0 0 3px
+        rgba(34,197,94,.10);
+
+    }
+
+
+    /* =========================
+       SLUG
+    ========================= */
+
+    .slug-wrapper {
+
+      position: relative;
+
+    }
+
+
+    .slug-input {
+
+      padding-right: 120px;
+
+    }
+
+
+    .slug-auto {
+
+      position: absolute;
+
+      right: 12px;
+
+      top: 50%;
+
+      transform:
+        translateY(-50%);
+
+      font-size: 11px;
+
+      color: #16a34a;
+
+      background: #ecfdf3;
+
+      padding: 5px 8px;
+
+      border-radius: 6px;
+
+      font-weight: 700;
+
+      pointer-events: none;
+
+    }
+
+
+    .slug-preview {
+
+      margin-top: 9px;
+
+      padding: 11px 12px;
+
+      background: #f0fdf4;
+
+      border: 1px solid #dcfce7;
+
+      border-radius: 9px;
+
+      font-size: 12px;
+
+      color: #15803d;
+
+      word-break: break-all;
+
+      line-height: 1.5;
+
+    }
+
+
+    .slug-preview-label {
+
+      color: #6b7280;
+
+      margin-right: 5px;
+
+    }
+
+
+    /* =========================
+       SWITCH
+    ========================= */
+
+    .status-list {
+
+      display: grid;
+
+      gap: 10px;
+
+    }
+
+
+    .switch-row {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 15px;
+
+      padding: 15px;
+
+      background: #f9fafb;
+
+      border: 1px solid #e5e7eb;
+
+      border-radius: 12px;
+
+    }
+
+
+    .switch-text strong {
+
+      display: block;
+
+      font-size: 13px;
+
+      color: #1f2937;
+
+      margin-bottom: 3px;
+
+    }
+
+
+    .switch-text span {
+
+      display: block;
+
+      font-size: 11px;
+
+      color: #6b7280;
+
+      line-height: 1.4;
+
+    }
+
+
+    .switch {
+
+      position: relative;
+
+      width: 48px;
+
+      height: 27px;
+
+      flex-shrink: 0;
+
+    }
+
+
+    .switch input {
+
+      opacity: 0;
+
+      width: 0;
+
+      height: 0;
+
+      position: absolute;
+
+    }
+
+
+    .slider {
+
+      position: absolute;
+
+      inset: 0;
+
+      background: #d1d5db;
+
+      border-radius: 30px;
+
+      cursor: pointer;
+
+      transition: .2s;
+
+    }
+
+
+    .slider::before {
+
+      content: "";
+
+      position: absolute;
+
+      width: 21px;
+
+      height: 21px;
+
+      left: 3px;
+
+      top: 3px;
+
+      background: white;
+
+      border-radius: 50%;
+
+      box-shadow:
+        0 1px 4px rgba(0,0,0,.18);
+
+      transition: .2s;
+
+    }
+
+
+    .switch input:checked + .slider {
+
+      background: #16a34a;
+
+    }
+
+
+    .switch input:checked + .slider::before {
+
+      transform:
+        translateX(21px);
+
+    }
+
+
+    /* =========================
+       ALERT
+    ========================= */
+
+    .alert {
+
+      display: none;
+
+      padding: 14px 16px;
+
+      border-radius: 11px;
+
+      margin-bottom: 20px;
+
+      font-size: 13px;
+
+      line-height: 1.5;
+
+    }
+
+
+    .alert.error {
+
+      display: block;
+
+      color: #b91c1c;
+
+      background: #fef2f2;
+
+      border: 1px solid #fecaca;
+
+    }
+
+
+    .alert.success {
+
+      display: block;
+
+      color: #15803d;
+
+      background: #f0fdf4;
+
+      border: 1px solid #bbf7d0;
+
+    }
+
+
+    /* =========================
+       ACTIONS
+    ========================= */
+
+    .actions {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: flex-end;
+
+      gap: 12px;
+
+      margin-top: 10px;
+
+    }
+
+
+    .btn {
+
+      min-height: 48px;
+
+      padding: 0 20px;
+
+      border: none;
+
+      border-radius: 11px;
+
+      font-size: 13px;
+
+      font-weight: 700;
+
+      cursor: pointer;
+
+      transition: .2s;
+
+    }
+
+
+    .btn-cancel {
+
+      background: #f3f4f6;
+
+      color: #374151;
+
+      border: 1px solid #e5e7eb;
+
+    }
+
+
+    .btn-cancel:hover {
+
+      background: #e5e7eb;
+
+    }
+
+
+    .btn-save {
+
+      min-width: 170px;
+
+      color: white;
+
+      background:
+        linear-gradient(
+          135deg,
+          #15803d,
+          #16a34a,
+          #22c55e
+        );
+
+      box-shadow:
+        0 7px 18px
+        rgba(22,163,74,.18);
+
+    }
+
+
+    .btn-save:hover {
+
+      transform:
+        translateY(-1px);
+
+      box-shadow:
+        0 10px 24px
+        rgba(22,163,74,.24);
+
+    }
+
+
+    .btn-save:disabled {
+
+      opacity: .6;
+
+      cursor: not-allowed;
+
+      transform: none;
+
+    }
+
+
+    /* =========================
+       LOADING
+    ========================= */
+
+    .loading-overlay {
+
+      display: none;
+
+      position: fixed;
+
+      inset: 0;
+
+      background:
+        rgba(17,24,39,.45);
+
+      backdrop-filter:
+        blur(4px);
+
+      z-index: 9999;
+
+      align-items: center;
+
+      justify-content: center;
+
+      padding: 20px;
+
+    }
+
+
+    .loading-box {
+
+      background: white;
+
+      border-radius: 16px;
+
+      padding: 25px 30px;
+
+      text-align: center;
+
+      box-shadow:
+        0 20px 50px
+        rgba(0,0,0,.15);
+
+    }
+
+
+    .spinner {
+
+      width: 35px;
+
+      height: 35px;
+
+      border: 3px solid #dcfce7;
+
+      border-top-color: #16a34a;
+
+      border-radius: 50%;
+
+      animation:
+        spin .8s linear infinite;
+
+      margin:
+        0 auto 13px;
+
+    }
+
+
+    .loading-text {
+
+      color: #374151;
+
+      font-size: 13px;
+
+      font-weight: 600;
+
+    }
+
+
+    @keyframes spin {
+
+      to {
+
+        transform:
+          rotate(360deg);
+
+      }
+
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media(max-width:700px) {
+
+      header {
+
+        height: 68px;
+
+        padding: 0 5%;
+
+      }
+
+
+      .logo {
+
+        font-size: 21px;
+
+      }
+
+
+      .back-btn {
+
+        padding: 8px 11px;
+
+        font-size: 12px;
+
+      }
+
+
+      .main {
+
+        padding:
+          30px 14px 50px;
+
+      }
+
+
+      .page-header h1 {
+
+        font-size: 25px;
+
+      }
+
+
+      .page-header p {
+
+        font-size: 13px;
+
+      }
+
+
+      .card {
+
+        padding: 18px;
+
+        border-radius: 15px;
+
+      }
+
+
+      .card-title {
+
+        font-size: 16px;
+
+        margin-bottom: 18px;
+
+      }
+
+
+      .actions {
+
+        flex-direction:
+          column-reverse;
+
+      }
+
+
+      .btn {
+
+        width: 100%;
+
+      }
+
+
+      .slug-input {
+
+        padding-right: 14px;
+
+      }
+
+
+      .slug-auto {
+
+        display: none;
+
+      }
+
+    }
+
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- =========================
+       HEADER
+  ========================= -->
+
+  <header>
+
+    <a
+      href="index.html"
+      class="logo"
+    >
+      AffiliaMart
+    </a>
+
+
+    <div class="header-right">
+
+      <button
+        type="button"
+        class="back-btn"
+        onclick="goDashboard()"
+      >
+        ← Dashboard
+      </button>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+       MAIN
+  ========================= -->
+
+  <main class="main">
+
+
+    <div class="page-header">
+
+      <h1>
+        Tambah Produk
+      </h1>
+
+      <p>
+        Tambahkan produk baru ke katalog AffiliaMart.
+      </p>
+
+    </div>
+
+
+    <div
+      id="alert"
+      class="alert"
+    ></div>
+
+
+    <form
+      id="productForm"
+      autocomplete="off"
+    >
+
+
+      <!-- =========================
+           INFORMASI PRODUK
+      ========================= -->
+
+      <div class="card">
+
+        <div class="card-title">
+          Informasi Produk
+        </div>
+
+
+        <!-- NAMA -->
+
+        <div class="form-group">
+
+          <label for="name">
+
+            Nama Produk
+
+            <span class="required">
+              *
+            </span>
+
+          </label>
+
+
+          <input
+            type="text"
+            id="name"
+            placeholder="Contoh: Samsung Galaxy A55 5G"
+            maxlength="200"
+            required
+          >
+
+        </div>
+
+
+        <!-- KATEGORI -->
+
+        <div class="form-group">
+
+          <label for="category">
+
+            Kategori
+
+            <span class="required">
+              *
+            </span>
+
+          </label>
+
+
+          <select
+            id="category"
+            required
+          >
+
+            <option value="">
+              Memuat kategori...
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- SLUG -->
+
+        <div class="form-group">
+
+          <label for="slug">
+
+            URL Produk
+
+            <span class="required">
+              *
+            </span>
+
+          </label>
+
+
+          <div class="slug-wrapper">
+
+            <input
+              type="text"
+              id="slug"
+              class="slug-input"
+              placeholder="nama-produk"
+              maxlength="200"
+              required
+            >
+
+
+            <div class="slug-auto">
+              OTOMATIS
+            </div>
+
+          </div>
+
+
+          <div
+            class="slug-preview"
+            id="slugPreview"
+          >
+
+            <span class="slug-preview-label">
+              URL:
+            </span>
+
+            Pilih kategori dan masukkan nama produk.
+
+          </div>
+
+        </div>
+
+
+        <!-- DESKRIPSI -->
+
+        <div class="form-group">
+
+          <label for="description">
+
+            Deskripsi Produk
+
+          </label>
+
+
+          <textarea
+            id="description"
+            placeholder="Tulis deskripsi singkat produk..."
+            maxlength="5000"
+          ></textarea>
+
+        </div>
+
+      </div>
+
+
+      <!-- =========================
+           STATUS
+      ========================= -->
+
+      <div class="card">
+
+        <div class="card-title">
+          Status Produk
+        </div>
+
+
+        <div class="status-list">
+
+
+          <!-- ACTIVE -->
+
+          <div class="switch-row">
+
+            <div class="switch-text">
+
+              <strong>
+                Produk Aktif
+              </strong>
+
+              <span>
+                Produk akan ditampilkan di homepage.
+              </span>
+
+            </div>
+
+
+            <label class="switch">
+
+              <input
+                type="checkbox"
+                id="is_active"
+                checked
+              >
+
+              <span class="slider"></span>
+
+            </label>
+
+          </div>
+
+
+          <!-- FEATURED -->
+
+          <div class="switch-row">
+
+            <div class="switch-text">
+
+              <strong>
+                Produk Pilihan
+              </strong>
+
+              <span>
+                Tampilkan produk pada bagian Produk Pilihan.
+              </span>
+
+            </div>
+
+
+            <label class="switch">
+
+              <input
+                type="checkbox"
+                id="is_featured"
+              >
+
+              <span class="slider"></span>
+
+            </label>
+
+          </div>
+
+
+          <!-- TRENDING -->
+
+          <div class="switch-row">
+
+            <div class="switch-text">
+
+              <strong>
+                Produk Trending
+              </strong>
+
+              <span>
+                Tandai produk sebagai produk trending.
+              </span>
+
+            </div>
+
+
+            <label class="switch">
+
+              <input
+                type="checkbox"
+                id="is_trending"
+              >
+
+              <span class="slider"></span>
+
+            </label>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+
+      <!-- =========================
+           BUTTON
+      ========================= -->
+
+      <div class="actions">
+
+
+        <button
+          type="button"
+          class="btn btn-cancel"
+          onclick="goDashboard()"
+        >
+          Batal
+        </button>
+
+
+        <button
+          type="submit"
+          class="btn btn-save"
+          id="saveBtn"
+        >
+          + Simpan Produk
+        </button>
+
+
+      </div>
+
+
+    </form>
+
+  </main>
+
+
+  <!-- =========================
+       LOADING
+  ========================= -->
+
+  <div
+    class="loading-overlay"
+    id="loadingOverlay"
+  >
+
+    <div class="loading-box">
+
+      <div class="spinner"></div>
+
+      <div class="loading-text">
+        Menyimpan produk...
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
+
+  <script>
+
+
+    /* =========================
+       SUPABASE
+    ========================= */
+
+    const SUPABASE_URL =
+      "https://fmftcisigssgfjqqezqz.supabase.co";
+
+
+    const SUPABASE_KEY =
+      "sb_publishable_0YyKpZ3_HOED9iHlgfJldw_4ZrugD7C";
+
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
+
+
+    /* =========================
+       ELEMENT
+    ========================= */
+
+    const form =
+      document.getElementById(
+        "productForm"
+      );
+
+
+    const nameInput =
+      document.getElementById(
+        "name"
+      );
+
+
+    const categoryInput =
+      document.getElementById(
+        "category"
+      );
+
+
+    const slugInput =
+      document.getElementById(
+        "slug"
+      );
+
+
+    const descriptionInput =
+      document.getElementById(
+        "description"
+      );
+
+
+    const slugPreview =
+      document.getElementById(
+        "slugPreview"
+      );
+
+
+    const alertBox =
+      document.getElementById(
+        "alert"
+      );
+
+
+    const saveBtn =
+      document.getElementById(
+        "saveBtn"
+      );
+
+
+    const loadingOverlay =
+      document.getElementById(
+        "loadingOverlay"
+      );
+
+
+    /* =========================
+       BASE URL
+    ========================= */
+
+    function getBaseUrl() {
+
+      /*
+       * Ketika website sudah online,
+       * menggunakan domain saat ini.
+       *
+       * Contoh:
+       * https://affiliamart.com
+       */
+
+      return window.location.origin;
+
+    }
+
+
+    /* =========================
+       SLUG
+    ========================= */
+
+    function makeSlug(text) {
+
+      return String(text || "")
+
+        .normalize("NFD")
+
+        .replace(
+          /[\u0300-\u036f]/g,
+          ""
+        )
+
+        .toLowerCase()
+
+        .replace(
+          /[^a-z0-9\s-]/g,
+          ""
+        )
+
+        .trim()
+
+        .replace(
+          /\s+/g,
+          "-"
+        )
+
+        .replace(
+          /-+/g,
+          "-"
+        );
+
+    }
+
+
+    /* =========================
+       ESCAPE HTML
+    ========================= */
+
+    function escapeHTML(value) {
+
+      return String(value || "")
+
+        .replace(
+          /&/g,
+          "&amp;"
+        )
+
+        .replace(
+          /</g,
+          "&lt;"
+        )
+
+        .replace(
+          />/g,
+          "&gt;"
+        )
+
+        .replace(
+          /"/g,
+          "&quot;"
+        )
+
+        .replace(
+          /'/g,
+          "&#039;"
+        );
+
+    }
+
+
+    /* =========================
+       CATEGORY SLUG
+    ========================= */
+
+    function getSelectedCategorySlug() {
+
+      const option =
+        categoryInput.options[
+          categoryInput.selectedIndex
+        ];
+
+
+      if (
+        !option ||
+        !option.value
+      ) {
+
+        return "";
+
+      }
+
+
+      return option.dataset.slug || "";
+
+    }
+
+
+    /* =========================
+       URL PREVIEW
+    ========================= */
+
+    function updateSlugPreview() {
+
+      const categorySlug =
+        getSelectedCategorySlug();
+
+
+      const slug =
+        slugInput.value.trim();
+
+
+      if (
+        !categorySlug ||
+        !slug
+      ) {
+
+        slugPreview.innerHTML = `
+
+          <span class="slug-preview-label">
+            URL:
+          </span>
+
+          Pilih kategori dan masukkan nama produk.
+
+        `;
+
+        return;
+
+      }
+
+
+      slugPreview.innerHTML = `
+
+        <span class="slug-preview-label">
+          URL:
+        </span>
+
+        <strong>
+          ${escapeHTML(
+            getBaseUrl()
+          )}/${escapeHTML(
+            categorySlug
+          )}/${escapeHTML(
+            slug
+          )}
+        </strong>
+
+      `;
+
+    }
+
+
+    /* =========================
+       NAME -> SLUG
+    ========================= */
+
+    nameInput.addEventListener(
+      "input",
+      function() {
+
+        slugInput.value =
+          makeSlug(
+            this.value
+          );
+
+
+        updateSlugPreview();
+
+      }
+    );
+
+
+    /* =========================
+       MANUAL SLUG
+    ========================= */
+
+    slugInput.addEventListener(
+      "input",
+      function() {
+
+        this.value =
+          makeSlug(
+            this.value
+          );
+
+
+        updateSlugPreview();
+
+      }
+    );
+
+
+    /* =========================
+       CATEGORY CHANGE
+    ========================= */
+
+    categoryInput.addEventListener(
+      "change",
+      function() {
+
+        updateSlugPreview();
+
+      }
+    );
+
+
+    /* =========================
+       LOAD CATEGORY
+    ========================= */
+
+    async function loadCategories() {
+
+      categoryInput.innerHTML = `
+
+        <option value="">
+          Memuat kategori...
+        </option>
+
+      `;
+
+
+      const {
+        data,
+        error
+      } =
+      await supabaseClient
+
+        .from("categories")
+
+        .select(`
+          id,
+          name,
+          slug
+        `)
+
+        .order(
+          "name",
+          {
+            ascending: true
+          }
+        );
+
+
+      if (error) {
+
+        console.error(
+          "Category error:",
+          error
+        );
+
+
+        /*
+         * Jika tabel categories belum
+         * mempunyai kolom slug, coba
+         * ambil id + name saja.
+         */
+
+        const fallback =
+          await supabaseClient
+
+            .from("categories")
+
+            .select(`
+              id,
+              name
+            `)
+
+            .order(
+              "name",
+              {
+                ascending: true
+              }
+            );
+
+
+        if (
+          fallback.error
+        ) {
+
+          categoryInput.innerHTML = `
+
+            <option value="">
+              Gagal memuat kategori
+            </option>
+
+          `;
+
+
+          showAlert(
+            "Kategori gagal dimuat: " +
+            fallback.error.message,
+            "error"
+          );
+
+
+          return;
+
+        }
+
+
+        populateCategories(
+          fallback.data || []
+        );
+
+
+        return;
+
+      }
+
+
+      populateCategories(
+        data || []
+      );
+
+    }
+
+
+    /* =========================
+       POPULATE CATEGORY
+    ========================= */
+
+    function populateCategories(
+      categories
+    ) {
+
+      categoryInput.innerHTML = `
+
+        <option value="">
+          Pilih kategori
+        </option>
+
+      `;
+
+
+      if (
+        !categories ||
+        categories.length === 0
+      ) {
+
+        categoryInput.innerHTML = `
+
+          <option value="">
+            Belum ada kategori
+          </option>
+
+        `;
+
+
+        showAlert(
+          "Belum ada kategori. Tambahkan kategori terlebih dahulu melalui dashboard.",
+          "error"
+        );
+
+
+        return;
+
+      }
+
+
+      categories.forEach(
+        function(category) {
+
+          const option =
+            document.createElement(
+              "option"
+            );
+
+
+          option.value =
+            category.id;
+
+
+          option.textContent =
+            category.name;
+
+
+          option.dataset.slug =
+            category.slug
+              ? makeSlug(
+                  category.slug
+                )
+              : makeSlug(
+                  category.name
+                );
+
+
+          categoryInput.appendChild(
+            option
+          );
+
+        }
+      );
+
+    }
+
+
+    /* =========================
+       CHECK SESSION
+    ========================= */
+
+    async function checkAuth() {
+
+      const {
+        data,
+        error
+      } =
+      await supabaseClient
+        .auth
+        .getSession();
+
+
+      if (error) {
+
+        console.error(
+          "Session error:",
+          error
+        );
+
+        return false;
+
+      }
+
+
+      if (
+        !data ||
+        !data.session
+      ) {
+
+        window.location.href =
+          "login.html";
+
+
+        return false;
+
+      }
+
+
+      return true;
+
+    }
+
+
+    /* =========================
+       ALERT
+    ========================= */
+
+    function showAlert(
+      message,
+      type
+    ) {
+
+      alertBox.className =
+        "alert " + type;
+
+
+      alertBox.textContent =
+        message;
+
+
+      alertBox.style.display =
+        "block";
+
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+
+
+    function hideAlert() {
+
+      alertBox.style.display =
+        "none";
+
+      alertBox.textContent = "";
+
+    }
+
+
+    /* =========================
+       LOADING
+    ========================= */
+
+    function setLoading(
+      status
+    ) {
+
+      loadingOverlay.style.display =
+        status
+          ? "flex"
+          : "none";
+
+
+      saveBtn.disabled =
+        status;
+
+    }
+
+
+    /* =========================
+       CHECK SLUG
+    ========================= */
+
+    async function checkSlug(
+      slug
+    ) {
+
+      const {
+        data,
+        error
+      } =
+      await supabaseClient
+
+        .from("products")
+
+        .select("id")
+
+        .eq(
+          "slug",
+          slug
+        )
+
+        .limit(1);
+
+
+      if (error) {
+
+        throw error;
+
+      }
+
+
+      return (
+        data &&
+        data.length > 0
+      );
+
+    }
+
+
+    /* =========================
+       SUBMIT
+    ========================= */
+
+    form.addEventListener(
+      "submit",
+      async function(event) {
+
+        event.preventDefault();
+
+
+        hideAlert();
+
+
+        const name =
+          nameInput.value.trim();
+
+
+        const categoryId =
+          categoryInput.value;
+
+
+        const slug =
+          slugInput.value.trim();
+
+
+        const description =
+          descriptionInput.value.trim();
+
+
+        const isActive =
+          document.getElementById(
+            "is_active"
+          ).checked;
+
+
+        const isFeatured =
+          document.getElementById(
+            "is_featured"
+          ).checked;
+
+
+        const isTrending =
+          document.getElementById(
+            "is_trending"
+          ).checked;
+
+
+        /* =====================
+           VALIDATION
+        ===================== */
+
+        if (!name) {
+
+          showAlert(
+            "Nama produk wajib diisi.",
+            "error"
+          );
+
+
+          nameInput.focus();
+
+          return;
+
+        }
+
+
+        if (!categoryId) {
+
+          showAlert(
+            "Silakan pilih kategori produk.",
+            "error"
+          );
+
+
+          categoryInput.focus();
+
+          return;
+
+        }
+
+
+        if (!slug) {
+
+          showAlert(
+            "Slug produk wajib diisi.",
+            "error"
+          );
+
+
+          slugInput.focus();
+
+          return;
+
+        }
+
+
+        setLoading(true);
+
+
+        try {
+
+
+          /* =====================
+             CEK SLUG
+          ===================== */
+
+          const slugExists =
+            await checkSlug(
+              slug
+            );
+
+
+          if (slugExists) {
+
+            showAlert(
+              "Slug produk sudah digunakan. Silakan gunakan nama produk yang berbeda.",
+              "error"
+            );
+
+
+            setLoading(false);
+
+
+            slugInput.focus();
+
+            return;
+
+          }
+
+
+          /* =====================
+             DATA PRODUK
+          ===================== */
+
+          const productData = {
+
+            category_id:
+              categoryId,
+
+            name:
+              name,
+
+            slug:
+              slug,
+
+            description:
+              description || null,
+
+            is_active:
+              isActive,
+
+            is_featured:
+              isFeatured,
+
+            is_trending:
+              isTrending
+
+          };
+
+
+          /* =====================
+             INSERT
+          ===================== */
+
+          const {
+            data,
+            error
+          } =
+          await supabaseClient
+
+            .from("products")
+
+            .insert(
+              productData
+            )
+
+            .select()
+            .single();
+
+
+          if (error) {
+
+            console.error(
+              "Insert product error:",
+              error
+            );
+
+
+            /*
+             * Pesan khusus RLS
+             */
+
+            if (
+              error.code ===
+              "42501"
+            ) {
+
+              showAlert(
+                "Produk tidak dapat disimpan karena RLS/izin database. Pastikan akun admin memiliki policy INSERT pada tabel products.",
+                "error"
+              );
+
+            } else {
+
+              showAlert(
+                "Produk gagal disimpan: " +
+                error.message,
+                "error"
+              );
+
+            }
+
+
+            setLoading(false);
+
+            return;
+
+          }
+
+
+          /* =====================
+             SUCCESS
+          ===================== */
+
+          const categorySlug =
+            getSelectedCategorySlug();
+
+
+          const productUrl =
+            getBaseUrl() +
+            "/" +
+            categorySlug +
+            "/" +
+            slug;
+
+
+          setLoading(false);
+
+
+          showAlert(
+            "Produk berhasil ditambahkan. URL: " +
+            productUrl,
+            "success"
+          );
+
+
+          /* =====================
+             RESET
+          ===================== */
+
+          form.reset();
+
+
+          document.getElementById(
+            "is_active"
+          ).checked = true;
+
+
+          updateSlugPreview();
+
+
+          /*
+           * Kembali dashboard
+           * setelah 1.5 detik.
+           */
+
+          setTimeout(
+            function() {
+
+              window.location.href =
+                "dashboard.html";
+
+            },
+            1500
+          );
+
+
+        } catch (error) {
+
+          console.error(
+            error
+          );
+
+
+          setLoading(false);
+
+
+          showAlert(
+            "Terjadi kesalahan: " +
+            (
+              error.message ||
+              "Tidak diketahui"
+            ),
+            "error"
+          );
+
+        }
+
+      }
+    );
+
+
+    /* =========================
+       DASHBOARD
+    ========================= */
+
+    function goDashboard() {
+
+      window.location.href =
+        "dashboard.html";
+
+    }
+
+
+    /* =========================
+       INITIALIZE
+    ========================= */
+
+    async function init() {
+
+      const loggedIn =
+        await checkAuth();
+
+
+      if (!loggedIn) {
+
+        return;
+
+      }
+
+
+      await loadCategories();
+
+    }
+
+
+    init();
+
+  </script>
+
+</body>
+
+</html>

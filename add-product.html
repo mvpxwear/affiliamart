@@ -27,21 +27,21 @@
 
 :root {
 
-  --bg: #f5f7f6;
-  --header: #ffffff;
-  --card: #ffffff;
-  --card2: #f9fafb;
+  --bg: #0b0d0f;
+  --header: #111315;
+  --card: #121518;
+  --card2: #171b1f;
 
-  --border: #e5e7eb;
+  --border: #272d32;
 
-  --text: #17201a;
-  --muted: #6b7280;
+  --text: #f5f7f8;
+  --muted: #8d969e;
 
-  --accent: #16a34a;
-  --accent2: #15803d;
+  --accent: #ff8a00;
+  --accent2: #ffb347;
 
-  --danger: #dc2626;
-  --success: #16a34a;
+  --danger: #ff4d4d;
+  --success: #32d583;
 
 }
 
@@ -107,8 +107,8 @@ body {
   background:
     linear-gradient(
       135deg,
-      #15803d,
-      #22c55e
+      #ff9b21,
+      #ff6b00
     );
 
   display: flex;
@@ -151,13 +151,11 @@ body {
 
 .back-btn {
 
-  color: #374151;
-
   border: 1px solid var(--border);
 
-  background: #f9fafb;
+  background: #171a1d;
 
-  color: #374151;
+  color: white;
 
   padding: 10px 15px;
 
@@ -175,7 +173,7 @@ body {
 
 .back-btn:hover {
 
-  background: #f3f4f6;
+  background: #20252a;
 
 }
 
@@ -334,7 +332,7 @@ label {
 
   margin-bottom: 8px;
 
-  color: #374151;
+  color: #dce1e5;
 
 }
 
@@ -352,9 +350,9 @@ select {
 
   border: 1px solid var(--border);
 
-  background: #ffffff;
+  background: #0d1012;
 
-  color: #17201a;
+  color: white;
 
   border-radius: 10px;
 
@@ -394,7 +392,7 @@ select option {
 
   background: #111315;
 
-  color: #17201a;
+  color: white;
 
 }
 
@@ -417,9 +415,9 @@ select option {
 
 .slug-box {
 
-  background: #f9fafb;
+  background: #0c0f11;
 
-  border: 1px dashed #d1d5db;
+  border: 1px dashed #3a4147;
 
   border-radius: 10px;
 
@@ -470,11 +468,11 @@ select option {
 
   height: 210px;
 
-  border: 1px dashed #d1d5db;
+  border: 1px dashed #343b41;
 
   border-radius: 12px;
 
-  background: #f9fafb;
+  background: #0c0f11;
 
   display: flex;
 
@@ -523,7 +521,7 @@ select option {
 
   justify-content: space-between;
 
-  background: #ffffff;
+  background: #0d1012;
 
   border: 1px solid var(--border);
 
@@ -589,7 +587,7 @@ select option {
 
   inset: 0;
 
-  background: #d1d5db;
+  background: #333a40;
 
   border-radius: 30px;
 
@@ -670,22 +668,22 @@ select option {
 
 .btn-cancel {
 
-  background: #f3f4f6;
+  background: #20252a;
 
-  color: #17201a;
+  color: white;
 
 }
 
 .btn-save {
 
-  color: white;
-
   background:
     linear-gradient(
       135deg,
-      #15803d,
-      #22c55e
+      #ff9b21,
+      #ff6b00
     );
+
+  color: white;
 
   min-width: 150px;
 
@@ -730,7 +728,7 @@ select option {
 
 .loading-box {
 
-  background: #ffffff;
+  background: #171b1f;
 
   border: 1px solid var(--border);
 
@@ -1079,14 +1077,9 @@ select option {
                 id="price"
                 min="0"
                 step="1"
-                placeholder="Otomatis dihitung"
-                readonly
+                placeholder="0"
                 required
               >
-
-              <div class="price-help">
-                Harga otomatis = Harga Asli − Diskon (%).
-              </div>
 
             </div>
 
@@ -2160,53 +2153,6 @@ function getNumberValue(id) {
 
 
 /* =========================================
-   HARGA OTOMATIS
-========================================= */
-
-function calculateProductPrice() {
-
-  const originalInput =
-    document.getElementById("original_price");
-
-  const discountInput =
-    document.getElementById("discount_percent");
-
-  const priceInput =
-    document.getElementById("price");
-
-  if (!originalInput || !discountInput || !priceInput) {
-    return;
-  }
-
-  const originalPrice = Number(originalInput.value) || 0;
-
-  let discount = Number(discountInput.value) || 0;
-
-  discount = Math.max(0, Math.min(100, discount));
-
-  const finalPrice = Math.round(
-    originalPrice * (1 - discount / 100)
-  );
-
-  priceInput.value =
-    finalPrice > 0 ? finalPrice : "";
-}
-
-
-document
-  .getElementById("original_price")
-  ?.addEventListener("input", calculateProductPrice);
-
-
-document
-  .getElementById("discount_percent")
-  ?.addEventListener("input", calculateProductPrice);
-
-
-calculateProductPrice();
-
-
-/* =========================================
    SUBMIT FORM
 ========================================= */
 
@@ -2704,10 +2650,8 @@ form.addEventListener(
 
     const productUrl =
       getBaseUrl()
-      + "/"
-      + categorySlug
-      + "/"
-      + slug;
+      + "/product.html?slug="
+      + encodeURIComponent(slug);
 
 
 

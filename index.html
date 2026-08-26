@@ -1284,11 +1284,8 @@ function getProductUrl(product, categoryMap) {
       : makeSlug(product.name);
 
   return (
-    getBaseUrl()
-    + "/"
-    + categorySlug
-    + "/"
-    + productSlug
+    "product.html?slug="
+    + encodeURIComponent(productSlug)
   );
 
 }

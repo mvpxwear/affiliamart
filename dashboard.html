@@ -2955,6 +2955,18 @@ function renderProducts(){
 }  
   
   
+function makeSlug(text){
+  return String(text||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9\s-]/g,"").trim().replace(/\s+/g,"-").replace(/-+/g,"-");
+}
+document.addEventListener("input",function(e){
+  if(e.target&&e.target.id==="productName"){
+    const slugField=document.getElementById("productSlug");
+    if(slugField){slugField.value=makeSlug(e.target.value);}
+  }
+  if(e.target&&e.target.id==="productSlug"){
+    e.target.value=makeSlug(e.target.value);
+  }
+});
 /* =====================================================  
    EDIT PRODUCT  
 ===================================================== */  

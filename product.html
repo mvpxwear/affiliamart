@@ -1,20 +1,11 @@
-<!DOCTYPE html>
-<html lang="id">
+<!DOCTYPE html><html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Produk - AffiliaMart</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>Produk - AffiliaMart</title>
   <meta name="description" content="Lihat detail produk pilihan AffiliaMart.">
-  <meta name="robots" content="index,follow">
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <meta name="robots" content="index,follow">  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">  <style>
     *{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
     body{font-family:"Inter",Arial,sans-serif;background:#f5f7f6;color:#17201a;line-height:1.6;padding-bottom:30px}
@@ -82,127 +73,1476 @@
       .main-image{height:430px}
       .related{grid-template-columns:repeat(2,1fr)}
     }
-    @media(max-width:600px){
-      header{height:68px;padding:0 5%}.logo{font-size:21px}nav{gap:8px}nav a:not(.back){display:none}.back{padding:7px 10px;font-size:12px}
-      .container{width:90%}.breadcrumb{padding-top:18px}.detail-card{padding:22px}.main-image{height:340px}.price{font-size:25px}.affiliate{flex-direction:column}.buy{width:100%}.related{grid-template-columns:1fr 1fr;gap:12px}.card-img{height:170px}.card-info{padding:12px}.card h3{font-size:13px}.card-price{font-size:14px}.section-head h2{font-size:24px}
-    }
-    @media(max-width:400px){.related{grid-template-columns:1fr}.card-img{height:210px}}
-  </style>
-</head>
-<body>
 
-<header>
-  <a href="index.html" class="logo">AffiliaMart</a>
-  <nav>
+    @media(max-width:600px){
+      header{height:68px;padding:0 5%}
+      .logo{font-size:21px}
+      nav{gap:8px}
+      nav a:not(.back){display:none}
+      .back{padding:7px 10px;font-size:12px}
+      .container{width:90%}
+      .breadcrumb{padding-top:18px}
+      .detail-card{padding:22px}
+      .main-image{height:340px}
+      .price{font-size:25px}
+      .affiliate{flex-direction:column}
+      .buy{width:100%}
+      .related{grid-template-columns:1fr 1fr;gap:12px}
+      .card-img{height:170px}
+      .card-info{padding:12px}
+      .card h3{font-size:13px}
+      .card-price{font-size:14px}
+      .section-head h2{font-size:24px}
+    }
+
+    @media(max-width:400px){
+      .related{grid-template-columns:1fr}
+      .card-img{height:210px}
+    }
+  </style></head><body><header>
+  <a href="index.html" class="logo">AffiliaMart</a>  <nav>
     <a href="index.html">Home</a>
     <a href="index.html#kategori">Kategori</a>
     <a href="index.html#produk">Produk</a>
     <a href="admin.html" class="back">🔐 Admin</a>
   </nav>
-</header>
-
-<main class="container">
-  <div class="breadcrumb" id="breadcrumb">Home / Produk</div>
-  <div id="content"><div class="loading">⏳ Memuat produk...</div></div>
-</main>
-
-<footer>
+</header><main class="container">  <div class="breadcrumb" id="breadcrumb">
+    Home / Produk
+  </div>  <div id="content">
+    <div class="loading">⏳ Memuat produk...</div>
+  </div></main><footer>
   <div class="footer-logo">AffiliaMart</div>
   <p>Platform rekomendasi produk affiliate Shopee &amp; TikTok.</p>
-</footer>
+</footer><script>
 
-<script>
-const SUPABASE_URL="https://fmftcisigssgfjqqezqz.supabase.co";
-const SUPABASE_KEY="sb_publishable_0YyKpZ3_HOED9iHlgfJldw_4ZrugD7C";
-const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const SUPABASE_URL =
+  "https://fmftcisigssgfjqqezqz.supabase.co";
 
-function escapeHTML(value){return String(value??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");}
-function formatRupiah(value){if(value===null||value===undefined||value==="")return "-";return new Intl.NumberFormat("id-ID",{style:"currency",currency:"IDR",maximumFractionDigits:0}).format(value);}
-function makeSlug(text){return String(text||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9\s-]/g,"").trim().replace(/\s+/g,"-").replace(/-+/g,"-");}
-function getSlug(){const q=new URLSearchParams(window.location.search).get("slug");if(q)return q;const path=window.location.pathname.split("/").filter(Boolean);const last=path[path.length-1]||"";return last&&last!=="product.html"?decodeURIComponent(last):"";}
-function getVisitorId(){let id=localStorage.getItem("affiliamart_visitor_id");if(!id){id=window.crypto&&crypto.randomUUID?crypto.randomUUID():"visitor-"+Date.now()+"-"+Math.random().toString(36).slice(2);localStorage.setItem("affiliamart_visitor_id",id)}return id;}
-async function trackEvent(eventType,productId=null,platform=null){try{await supabaseClient.from("analytics_events").insert({event_type:eventType,product_id:productId,platform:platform,visitor_id:getVisitorId()})}catch(e){console.error("Analytics:",e)}}
+const SUPABASE_KEY =
+  "sb_publishable_0YyKpZ3_HOED9iHlgfJldw_4ZrugD7C";
 
-function imageArray(product){
-  let arr=[];
-  if(product.image_url) arr.push(product.image_url);
-  if(Array.isArray(product.gallery)) arr=arr.concat(product.gallery);
-  return [...new Set(arr.filter(Boolean))];
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+/* =========================
+   UTILITY
+========================= */
+
+function escapeHTML(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
 }
 
-function renderGallery(images,name){
-  if(!images.length)return `<div class="main-image"><div class="placeholder">🛍️</div></div>`;
-  return `<div class="gallery-card"><div class="main-image" id="mainImageWrap"><img id="mainImage" src="${escapeHTML(images[0])}" alt="${escapeHTML(name)}" onerror="this.style.display='none'"></div>${images.length>1?`<div class="thumbs">${images.map((src,i)=>`<button class="thumb ${i===0?'active':''}" onclick="changeImage('${escapeHTML(src)}',this)"><img src="${escapeHTML(src)}" alt="Gambar ${i+1}" onerror="this.style.display='none'"></button>`).join("")}</div>`:""}</div>`;
-}
-function changeImage(src,el){const img=document.getElementById("mainImage");if(img){img.style.display="block";img.src=src}document.querySelectorAll(".thumb").forEach(x=>x.classList.remove("active"));el.classList.add("active");}
 
-function productUrl(product){return "/affiliamart/product/"+encodeURIComponent(makeSlug(product.slug||product.name));}
+function formatRupiah(value){
+
+  if(
+    value === null ||
+    value === undefined ||
+    value === ""
+  ){
+    return "-";
+  }
+
+  const number = Number(value);
+
+  if(!Number.isFinite(number)){
+    return "-";
+  }
+
+  return new Intl.NumberFormat(
+    "id-ID",
+    {
+      style:"currency",
+      currency:"IDR",
+      maximumFractionDigits:0
+    }
+  ).format(number);
+
+}
+
+
+function makeSlug(text){
+
+  return String(text || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g,"")
+    .replace(/[^a-z0-9\s-]/g,"")
+    .trim()
+    .replace(/\s+/g,"-")
+    .replace(/-+/g,"-");
+
+}
+
+
+/* =========================
+   GET SLUG
+========================= */
+
+function getSlug(){
+
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
+
+  const querySlug =
+    params.get("slug");
+
+  if(querySlug){
+
+    try{
+      return decodeURIComponent(querySlug);
+    }catch(e){
+      return querySlug;
+    }
+
+  }
+
+
+  const path =
+    window.location.pathname
+      .split("/")
+      .filter(Boolean);
+
+
+  const last =
+    path[path.length - 1] || "";
+
+
+  if(
+    last &&
+    last !== "product.html"
+  ){
+
+    try{
+      return decodeURIComponent(last);
+    }catch(e){
+      return last;
+    }
+
+  }
+
+
+  return "";
+
+}
+
+
+/* =========================
+   VISITOR
+========================= */
+
+function getVisitorId(){
+
+  let id =
+    localStorage.getItem(
+      "affiliamart_visitor_id"
+    );
+
+
+  if(!id){
+
+    id =
+      window.crypto &&
+      crypto.randomUUID
+        ? crypto.randomUUID()
+        : "visitor-" +
+          Date.now() +
+          "-" +
+          Math.random()
+            .toString(36)
+            .slice(2);
+
+    localStorage.setItem(
+      "affiliamart_visitor_id",
+      id
+    );
+
+  }
+
+
+  return id;
+
+}
+
+
+/* =========================
+   ANALYTICS
+========================= */
+
+async function trackEvent(
+  eventType,
+  productId = null,
+  platform = null
+){
+
+  try{
+
+    await supabaseClient
+      .from("analytics_events")
+      .insert({
+
+        event_type:eventType,
+
+        product_id:productId,
+
+        platform:platform,
+
+        visitor_id:getVisitorId()
+
+      });
+
+  }catch(error){
+
+    console.warn(
+      "Analytics tidak tersedia:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =========================
+   GALLERY
+========================= */
+
+function getGallery(product){
+
+  let result = [];
+
+
+  if(product.image_url){
+
+    result.push(
+      product.image_url
+    );
+
+  }
+
+
+  if(product.gallery){
+
+    if(Array.isArray(product.gallery)){
+
+      result =
+        result.concat(
+          product.gallery
+        );
+
+    }
+
+    else if(
+      typeof product.gallery === "string"
+    ){
+
+      try{
+
+        const parsed =
+          JSON.parse(product.gallery);
+
+        if(Array.isArray(parsed)){
+
+          result =
+            result.concat(parsed);
+
+        }
+
+      }catch(e){
+
+        /* gallery bukan JSON,
+           abaikan saja */
+
+      }
+
+    }
+
+  }
+
+
+  return [
+    ...new Set(
+      result
+        .map(x => String(x || "").trim())
+        .filter(Boolean)
+    )
+  ];
+
+}
+
+
+/* =========================
+   GALLERY RENDER
+========================= */
+
+function renderGallery(
+  images,
+  name
+){
+
+  if(!images.length){
+
+    return `
+      <div class="gallery-card">
+
+        <div class="main-image">
+
+          <div class="placeholder">
+            🛍️
+          </div>
+
+        </div>
+
+      </div>
+    `;
+
+  }
+
+
+  const first =
+    escapeHTML(images[0]);
+
+
+  let thumbs = "";
+
+
+  if(images.length > 1){
+
+    thumbs = `
+      <div class="thumbs">
+
+        ${images.map(
+          (src,index) => `
+
+            <button
+              type="button"
+              class="thumb ${
+                index === 0
+                  ? "active"
+                  : ""
+              }"
+              onclick="changeImage(
+                '${escapeHTML(src)}',
+                this
+              )"
+            >
+
+              <img
+                src="${escapeHTML(src)}"
+                alt="Gambar ${index + 1}"
+                loading="lazy"
+                onerror="this.style.display='none'"
+              >
+
+            </button>
+
+          `
+        ).join("")}
+
+      </div>
+    `;
+
+  }
+
+
+  return `
+
+    <div class="gallery-card">
+
+      <div
+        class="main-image"
+        id="mainImageWrap"
+      >
+
+        <img
+          id="mainImage"
+          src="${first}"
+          alt="${escapeHTML(name)}"
+          onerror="
+            this.style.display='none';
+            document.getElementById('mainImageWrap')
+              .insertAdjacentHTML(
+                'beforeend',
+                '<div class=&quot;placeholder&quot;>🛍️</div>'
+              );
+          "
+        >
+
+      </div>
+
+      ${thumbs}
+
+    </div>
+
+  `;
+
+}
+
+
+function changeImage(
+  src,
+  element
+){
+
+  const image =
+    document.getElementById(
+      "mainImage"
+    );
+
+
+  if(image){
+
+    image.style.display = "block";
+
+    image.src = src;
+
+  }
+
+
+  document
+    .querySelectorAll(".thumb")
+    .forEach(
+      item =>
+        item.classList.remove(
+          "active"
+        )
+    );
+
+
+  if(element){
+
+    element.classList.add(
+      "active"
+    );
+
+  }
+
+}
+
+
+/* =========================
+   PRODUCT URL
+========================= */
+
+function productUrl(product){
+
+  const slug =
+    makeSlug(
+      product.slug ||
+      product.name
+    );
+
+
+  return (
+    "product.html?slug=" +
+    encodeURIComponent(slug)
+  );
+
+}
+
+
+/* =========================
+   LOAD PRODUCT
+========================= */
 
 async function loadProduct(){
-  const slug=makeSlug(getSlug());
-  if(!slug){showError("Produk tidak ditemukan.");return;}
 
-  const {data:product,error}=await supabaseClient.from("products").select(`id,category_id,name,slug,description,image_url,gallery,price,original_price,discount_percent,platform,affiliate_url,rating,sold_count,is_featured,is_trending,is_active,created_at`).eq("slug",slug).eq("is_active",true).maybeSingle();
-  if(error){console.error(error);showError("Gagal memuat produk: "+error.message);return;}
-  if(!product){showError("Produk tidak ditemukan atau sudah tidak aktif.");return;}
+  const rawSlug =
+    getSlug();
 
-  await trackEvent("page_view",product.id,product.platform||null);
 
-  let category=null;
-  if(product.category_id){const r=await supabaseClient.from("categories").select("id,name,slug").eq("id",product.category_id).maybeSingle();category=r.data||null;}
+  const slug =
+    makeSlug(rawSlug);
 
-  document.title=(product.name||"Produk")+" - AffiliaMart";
-  const meta=document.querySelector('meta[name="description"]');if(meta)meta.content=(product.description||("Lihat detail "+product.name+" di AffiliaMart.")).slice(0,160);
-  document.getElementById("breadcrumb").innerHTML=`<a href="index.html">Home</a> / ${category?escapeHTML(category.name):"Produk"} / ${escapeHTML(product.name)}`;
 
-  const images=imageArray(product);
-  const platform=String(product.platform||"").toLowerCase().trim();
-  const affiliate=product.affiliate_url||"";
-  let affiliateHTML=affiliate?`<a class="buy" href="${escapeHTML(affiliate)}" target="_blank" rel="noopener noreferrer" onclick="affiliateClick(event,'${escapeHTML(product.id)}','${escapeHTML(platform)}','${escapeHTML(affiliate)}')">${platform==='tiktok'?'🎵':'🛍️'} Lihat di ${escapeHTML(platform?platform.charAt(0).toUpperCase()+platform.slice(1):'Marketplace')}</a>`:`<div class="buy" style="background:#9ca3af;cursor:not-allowed">Link affiliate belum tersedia</div>`;
-  const original=product.original_price&&Number(product.original_price)>Number(product.price)?`<div class="original">${formatRupiah(product.original_price)}</div>`:"";
-  const discount=product.discount_percent&&Number(product.discount_percent)>0?`<span>-${Number(product.discount_percent)}%</span>`:"";
-  const meta=[];if(product.rating!==null&&product.rating!==undefined&&product.rating!=="")meta.push("⭐ "+Number(product.rating).toFixed(1));if(Number(product.sold_count)>0)meta.push(Number(product.sold_count).toLocaleString("id-ID")+" terjual");
+  console.log(
+    "Slug produk:",
+    slug
+  );
 
-  document.getElementById("content").innerHTML=`
+
+  if(!slug){
+
+    showError(
+      "Slug produk tidak ditemukan."
+    );
+
+    return;
+
+  }
+
+
+  /*
+    Query berdasarkan slug.
+    limit(1) digunakan supaya halaman
+    tetap bisa tampil walaupun ada
+    data slug ganda.
+  */
+
+  const response =
+    await supabaseClient
+      .from("products")
+      .select(`
+        id,
+        category_id,
+        name,
+        slug,
+        description,
+        image_url,
+        gallery,
+        price,
+        original_price,
+        discount_percent,
+        platform,
+        affiliate_url,
+        rating,
+        sold_count,
+        is_featured,
+        is_trending,
+        is_active,
+        created_at
+      `)
+      .eq(
+        "slug",
+        slug
+      )
+      .eq(
+        "is_active",
+        true
+      )
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      )
+      .limit(1);
+
+
+  if(response.error){
+
+    console.error(
+      "Supabase product error:",
+      response.error
+    );
+
+
+    showError(
+      "Gagal memuat produk: " +
+      response.error.message
+    );
+
+    return;
+
+  }
+
+
+  let product =
+    response.data &&
+    response.data.length
+      ? response.data[0]
+      : null;
+
+
+  /*
+    Fallback:
+    jika slug di database ternyata
+    berbeda format, coba cari
+    berdasarkan nama.
+  */
+
+  if(!product){
+
+    const fallback =
+      await supabaseClient
+        .from("products")
+        .select(`
+          id,
+          category_id,
+          name,
+          slug,
+          description,
+          image_url,
+          gallery,
+          price,
+          original_price,
+          discount_percent,
+          platform,
+          affiliate_url,
+          rating,
+          sold_count,
+          is_featured,
+          is_trending,
+          is_active,
+          created_at
+        `)
+        .eq(
+          "is_active",
+          true
+        )
+        .ilike(
+          "name",
+          rawSlug
+            .replace(/-/g," ")
+        )
+        .order(
+          "created_at",
+          {
+            ascending:false
+          }
+        )
+        .limit(1);
+
+
+    if(
+      !fallback.error &&
+      fallback.data &&
+      fallback.data.length
+    ){
+
+      product =
+        fallback.data[0];
+
+    }
+
+  }
+
+
+  if(!product){
+
+    showError(
+      "Produk \"" +
+      rawSlug.replace(/-/g," ") +
+      "\" tidak ditemukan atau sudah tidak aktif."
+    );
+
+    return;
+
+  }
+
+
+  console.log(
+    "Produk ditemukan:",
+    product
+  );
+
+
+  await trackEvent(
+    "page_view",
+    product.id,
+    product.platform || null
+  );
+
+
+  /* =========================
+     CATEGORY
+  ========================= */
+
+  let category = null;
+
+
+  if(product.category_id){
+
+    const categoryResult =
+      await supabaseClient
+        .from("categories")
+        .select(
+          "id,name,slug"
+        )
+        .eq(
+          "id",
+          product.category_id
+        )
+        .limit(1);
+
+
+    if(
+      !categoryResult.error &&
+      categoryResult.data &&
+      categoryResult.data.length
+    ){
+
+      category =
+        categoryResult.data[0];
+
+    }
+
+  }
+
+
+  /* =========================
+     SEO
+  ========================= */
+
+  document.title =
+    (product.name || "Produk") +
+    " - AffiliaMart";
+
+
+  const descriptionMeta =
+    document.querySelector(
+      'meta[name="description"]'
+    );
+
+
+  if(descriptionMeta){
+
+    descriptionMeta.content =
+      (
+        product.description ||
+        "Lihat detail " +
+        product.name +
+        " di AffiliaMart."
+      ).slice(0,160);
+
+  }
+
+
+  /* =========================
+     BREADCRUMB
+  ========================= */
+
+  document.getElementById(
+    "breadcrumb"
+  ).innerHTML = `
+
+    <a href="index.html">
+      Home
+    </a>
+
+    /
+
+    ${
+      category
+        ? escapeHTML(category.name)
+        : "Produk"
+    }
+
+    /
+
+    ${escapeHTML(product.name)}
+
+  `;
+
+
+  /* =========================
+     DATA
+  ========================= */
+
+  const images =
+    getGallery(product);
+
+
+  const platform =
+    String(
+      product.platform || ""
+    )
+    .toLowerCase()
+    .trim();
+
+
+  const affiliate =
+    product.affiliate_url || "";
+
+
+  let affiliateHTML = "";
+
+
+  if(affiliate){
+
+    affiliateHTML = `
+
+      <a
+        class="buy"
+        href="${escapeHTML(affiliate)}"
+        target="_blank"
+        rel="noopener noreferrer"
+        onclick="
+          affiliateClick(
+            event,
+            '${escapeHTML(product.id)}',
+            '${escapeHTML(platform)}',
+            '${escapeHTML(affiliate)}'
+          )
+        "
+      >
+
+        ${
+          platform === "tiktok"
+            ? "🎵"
+            : "🛍️"
+        }
+
+        Lihat di
+
+        ${
+          platform
+            ? escapeHTML(
+                platform
+                  .charAt(0)
+                  .toUpperCase() +
+                platform.slice(1)
+              )
+            : "Marketplace"
+        }
+
+      </a>
+
+    `;
+
+  }else{
+
+    affiliateHTML = `
+
+      <div
+        class="buy"
+        style="
+          background:#9ca3af;
+          cursor:not-allowed;
+        "
+      >
+
+        Link affiliate belum tersedia
+
+      </div>
+
+    `;
+
+  }
+
+
+  const original =
+    product.original_price &&
+    Number(product.original_price) >
+    Number(product.price)
+
+      ? `
+
+        <div class="original">
+
+          ${formatRupiah(
+            product.original_price
+          )}
+
+        </div>
+
+      `
+      : "";
+
+
+  const discount =
+    product.discount_percent &&
+    Number(product.discount_percent) > 0
+
+      ? `
+
+        <div
+          style="
+            margin-top:5px;
+            color:#dc2626;
+            font-size:13px;
+            font-weight:700;
+          "
+        >
+
+          -${Number(
+            product.discount_percent
+          )}% hemat
+
+        </div>
+
+      `
+      : "";
+
+
+  const meta = [];
+
+
+  if(
+    product.rating !== null &&
+    product.rating !== undefined &&
+    product.rating !== ""
+  ){
+
+    meta.push(
+      "⭐ " +
+      Number(
+        product.rating
+      ).toFixed(1)
+    );
+
+  }
+
+
+  if(
+    Number(
+      product.sold_count
+    ) > 0
+  ){
+
+    meta.push(
+      compactNumber(
+        product.sold_count
+      ) +
+      " terjual"
+    );
+
+  }
+
+
+  /* =========================
+     RENDER PRODUCT
+  ========================= */
+
+  document.getElementById(
+    "content"
+  ).innerHTML = `
+
     <div class="product-layout">
-      ${renderGallery(images,product.name)}
+
+      ${renderGallery(
+        images,
+        product.name
+      )}
+
       <article class="detail-card">
-        ${platform?`<div class="platform">${escapeHTML(platform)}</div>`:""}
-        ${category?`<a class="category" href="index.html#kategori">${escapeHTML(category.name)}</a>`:""}
-        <h1>${escapeHTML(product.name)}</h1>
-        ${meta.length?`<div class="meta">${meta.map(escapeHTML).join("<span>•</span>")}</div>`:""}
-        <div class="price">${formatRupiah(product.price)}</div>
+
+        ${
+          platform
+            ? `
+              <div class="platform">
+
+                ${escapeHTML(
+                  platform
+                )}
+
+              </div>
+            `
+            : ""
+        }
+
+
+        ${
+          category
+            ? `
+              <a
+                class="category"
+                href="index.html#kategori"
+              >
+
+                ${escapeHTML(
+                  category.name
+                )}
+
+              </a>
+            `
+            : ""
+        }
+
+
+        <h1>
+          ${escapeHTML(
+            product.name
+          )}
+        </h1>
+
+
+        ${
+          meta.length
+            ? `
+              <div class="meta">
+
+                ${meta
+                  .map(
+                    item =>
+                      `<span>${escapeHTML(item)}</span>`
+                  )
+                  .join(
+                    "<span>•</span>"
+                  )}
+
+              </div>
+            `
+            : ""
+        }
+
+
+        <div class="price">
+
+          ${formatRupiah(
+            product.price
+          )}
+
+        </div>
+
+
         ${original}
-        ${discount?`<div style="margin-top:5px;color:#dc2626;font-size:13px;font-weight:700">${discount} hemat</div>`:""}
-        <div class="description">${escapeHTML(product.description||"Belum ada deskripsi produk.")}</div>
-        <div class="affiliate">${affiliateHTML}<a class="buy home-btn" href="index.html">← Kembali ke Produk</a></div>
+
+
+        ${discount}
+
+
+        <div class="description">
+
+          ${escapeHTML(
+            product.description ||
+            "Belum ada deskripsi produk."
+          )}
+
+        </div>
+
+
+        <div class="affiliate">
+
+          ${affiliateHTML}
+
+
+          <a
+            class="buy home-btn"
+            href="index.html"
+          >
+
+            ← Kembali ke Produk
+
+          </a>
+
+        </div>
+
       </article>
+
     </div>
+
+
     <section class="related-section">
-      <div class="section-head"><div><h2>Produk Terkait</h2><p>Produk lain yang mungkin kamu suka</p></div></div>
-      <div class="related" id="relatedList"><div class="loading">⏳ Memuat produk terkait...</div></div>
-    </section>`;
+
+      <div class="section-head">
+
+        <div>
+
+          <h2>
+            Produk Terkait
+          </h2>
+
+          <p>
+            Produk lain yang mungkin kamu suka
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div
+        class="related"
+        id="relatedList"
+      >
+
+        <div class="loading">
+          ⏳ Memuat produk terkait...
+        </div>
+
+      </div>
+
+    </section>
+
+  `;
+
 
   loadRelated(product);
+
 }
 
-async function loadRelated(product){
-  let query=supabaseClient.from("products").select("id,category_id,name,slug,image_url,gallery,price,platform,is_active").eq("is_active",true).neq("id",product.id).limit(4);
-  if(product.category_id)query=query.eq("category_id",product.category_id);
-  const {data,error}=await query.order("created_at",{ascending:false});
-  if(error){console.error(error);document.getElementById("relatedList").innerHTML="<div class='empty'>Produk terkait belum tersedia.</div>";return;}
-  let list=data||[];
-  if(!list.length){const fallback=await supabaseClient.from("products").select("id,category_id,name,slug,image_url,gallery,price,platform,is_active").eq("is_active",true).neq("id",product.id).order("created_at",{ascending:false}).limit(4);list=fallback.data||[];}
-  document.getElementById("relatedList").innerHTML=list.length?list.map(p=>{const img=p.image_url||(Array.isArray(p.gallery)&&p.gallery[0])||"";return `<a class="card" href="${escapeHTML(productUrl(p))}"><div class="card-img">${img?`<img src="${escapeHTML(img)}" alt="${escapeHTML(p.name)}" loading="lazy" onerror="this.style.display='none'">`:`<div class="placeholder" style="font-size:50px">🛍️</div>`}</div><div class="card-info"><h3>${escapeHTML(p.name)}</h3><div class="card-price">${formatRupiah(p.price)}</div><div class="card-platform">${escapeHTML(p.platform||"")}</div></div></a>`}).join(""):"<div class='empty'>Belum ada produk terkait.</div>";
+
+/* =========================
+   RELATED PRODUCTS
+========================= */
+
+async function loadRelated(
+  product
+){
+
+  let query =
+    supabaseClient
+      .from("products")
+      .select(`
+        id,
+        category_id,
+        name,
+        slug,
+        image_url,
+        gallery,
+        price,
+        platform,
+        is_active,
+        created_at
+      `)
+      .eq(
+        "is_active",
+        true
+      )
+      .neq(
+        "id",
+        product.id
+      );
+
+
+  if(product.category_id){
+
+    query =
+      query.eq(
+        "category_id",
+        product.category_id
+      );
+
+  }
+
+
+  const result =
+    await query
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      )
+      .limit(4);
+
+
+  if(result.error){
+
+    console.error(
+      "Related products:",
+      result.error
+    );
+
+
+    document.getElementById(
+      "relatedList"
+    ).innerHTML =
+      "<div class='empty'>Produk terkait belum tersedia.</div>";
+
+    return;
+
+  }
+
+
+  let list =
+    result.data || [];
+
+
+  /*
+    Jika kategori yang sama
+    tidak mempunyai produk lain,
+    tampilkan produk lain.
+  */
+
+  if(!list.length){
+
+    const fallback =
+      await supabaseClient
+        .from("products")
+        .select(`
+          id,
+          category_id,
+          name,
+          slug,
+          image_url,
+          gallery,
+          price,
+          platform,
+          is_active,
+          created_at
+        `)
+        .eq(
+          "is_active",
+          true
+        )
+        .neq(
+          "id",
+          product.id
+        )
+        .order(
+          "created_at",
+          {
+            ascending:false
+          }
+        )
+        .limit(4);
+
+
+    if(
+      !fallback.error
+    ){
+
+      list =
+        fallback.data || [];
+
+    }
+
+  }
+
+
+  const relatedList =
+    document.getElementById(
+      "relatedList"
+    );
+
+
+  if(!relatedList){
+
+    return;
+
+  }
+
+
+  if(!list.length){
+
+    relatedList.innerHTML =
+      "<div class='empty'>Belum ada produk terkait.</div>";
+
+    return;
+
+  }
+
+
+  relatedList.innerHTML =
+    list.map(
+      productItem => {
+
+        const gallery =
+          getGallery(
+            productItem
+          );
+
+
+        const image =
+          gallery.length
+            ? gallery[0]
+            : "";
+
+
+        return `
+
+          <a
+            class="card"
+            href="${escapeHTML(
+              productUrl(
+                productItem
+              )
+            )}"
+          >
+
+            <div class="card-img">
+
+              ${
+                image
+                  ? `
+
+                    <img
+                      src="${escapeHTML(image)}"
+                      alt="${escapeHTML(
+                        productItem.name
+                      )}"
+                      loading="lazy"
+                      onerror="
+                        this.style.display='none'
+                      "
+                    >
+
+                  `
+                  : `
+
+                    <div
+                      class="placeholder"
+                      style="font-size:50px"
+                    >
+                      🛍️
+                    </div>
+
+                  `
+              }
+
+            </div>
+
+
+            <div class="card-info">
+
+              <h3>
+                ${escapeHTML(
+                  productItem.name
+                )}
+              </h3>
+
+
+              <div class="card-price">
+
+                ${formatRupiah(
+                  productItem.price
+                )}
+
+              </div>
+
+
+              <div class="card-platform">
+
+                ${escapeHTML(
+                  productItem.platform || ""
+                )}
+
+              </div>
+
+            </div>
+
+          </a>
+
+        `;
+
+      }
+    )
+    .join("");
+
 }
 
-async function affiliateClick(event,id,platform,url){event.preventDefault();await trackEvent("product_click",id,platform);window.open(url,"_blank","noopener,noreferrer");}
-function showError(message){document.getElementById("content").innerHTML=`<div class="error-box"><h2>Produk tidak tersedia</h2><p style="margin-top:8px">${escapeHTML(message)}</p><a class="buy" style="margin-top:20px" href="index.html">← Kembali ke AffiliaMart</a></div>`;}
+
+/* =========================
+   AFFILIATE CLICK
+========================= */
+
+async function affiliateClick(
+  event,
+  id,
+  platform,
+  url
+){
+
+  event.preventDefault();
+
+
+  await trackEvent(
+    "product_click",
+    id,
+    platform
+  );
+
+
+  window.open(
+    url,
+    "_blank",
+    "noopener,noreferrer"
+  );
+
+}
+
+
+/* =========================
+   ERROR
+========================= */
+
+function showError(
+  message
+){
+
+  document.getElementById(
+    "content"
+  ).innerHTML = `
+
+    <div class="error-box">
+
+      <h2>
+        Produk tidak tersedia
+      </h2>
+
+
+      <p style="margin-top:8px">
+
+        ${escapeHTML(
+          message
+        )}
+
+      </p>
+
+
+      <a
+        class="buy"
+        style="margin-top:20px"
+        href="index.html"
+      >
+
+        ← Kembali ke AffiliaMart
+
+      </a>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================
+   COMPACT NUMBER
+========================= */
+
+function compactNumber(n){
+
+  n = Number(n || 0);
+
+
+  if(n >= 1000000){
+
+    return (
+      n / 1000000
+    )
+      .toFixed(1)
+      .replace(".0","") +
+      "M";
+
+  }
+
+
+  if(n >= 1000){
+
+    return (
+      n / 1000
+    )
+      .toFixed(1)
+      .replace(".0","") +
+      "K";
+
+  }
+
+
+  return String(n);
+
+}
+
+
+/* =========================
+   BASE PATH
+========================= */
+
+const BASE_PATH =
+  "/affiliamart";
+
+
+/* =========================
+   START
+========================= */
+
 loadProduct();
-</script>
-</body>
+
+</script></body>
 </html>
-
-<script>function compactNumber(n){n=Number(n||0);if(n>=1000000)return (n/1000000).toFixed(1).replace(".0","")+"M";if(n>=1000)return (n/1000).toFixed(1).replace(".0","")+"K";return String(n);}</script>
-
-<script>const BASE_PATH="/affiliamart";</script>

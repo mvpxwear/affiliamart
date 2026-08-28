@@ -1,11 +1,81 @@
 <!DOCTYPE html><html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>Produk - AffiliaMart</title>
-  <meta name="description" content="Lihat detail produk pilihan AffiliaMart.">
-  <meta name="robots" content="index,follow">  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">  <style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>Produk - AffiliaMart</title><meta
+name="description"
+content="Lihat detail produk pilihan AffiliaMart."
+
+«»
+
+<meta
+name="robots"
+content="index,follow,max-image-preview:large"
+
+«»
+
+  <!-- SEO canonical akan diisi otomatis berdasarkan slug produk -->  <link
+    id="canonical"
+    rel="canonical"
+    href=""
+  >  <!-- Open Graph -->  <meta property="og:type" content="product">
+  <meta
+    id="ogTitle"
+    property="og:title"
+    content="Produk - AffiliaMart"
+  >
+  <meta
+    id="ogDescription"
+    property="og:description"
+    content="Lihat detail produk pilihan AffiliaMart."
+  >
+  <meta
+    id="ogImage"
+    property="og:image"
+    content=""
+  >
+  <meta
+    id="ogUrl"
+    property="og:url"
+    content=""
+  >
+  <meta property="og:site_name" content="AffiliaMart">  <!-- Twitter --><meta
+name="twitter:card"
+content="summary_large_image"
+
+«»
+
+<meta
+id="twitterTitle"
+name="twitter:title"
+content="Produk - AffiliaMart"
+
+«»
+
+<meta
+id="twitterDescription"
+name="twitter:description"
+content="Lihat detail produk pilihan AffiliaMart."
+
+«»
+
+<meta
+id="twitterImage"
+name="twitter:image"
+content=""
+
+«»
+
+  <!-- Structured Data akan dibuat otomatis -->  <script
+    id="productSchema"
+    type="application/ld+json"
+  ></script>  <script
+    id="breadcrumbSchema"
+    type="application/ld+json"
+  ></script>  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >  <style>
     *{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
     body{font-family:"Inter",Arial,sans-serif;background:#f5f7f6;color:#17201a;line-height:1.6;padding-bottom:30px}
@@ -99,27 +169,47 @@
       .related{grid-template-columns:1fr}
       .card-img{height:210px}
     }
-  </style></head><body><header>
-  <a href="index.html" class="logo">AffiliaMart</a>  <nav>
-    <a href="index.html">Home</a>
-    <a href="index.html#kategori">Kategori</a>
-    <a href="index.html#produk">Produk</a>
-    <a href="admin.html" class="back">🔐 Admin</a>
-  </nav>
-</header><main class="container">  <div class="breadcrumb" id="breadcrumb">
+  </style></head><body><header>  <a href="index.html" class="logo">
+    AffiliaMart
+  </a>  <nav><a href="index.html">
+  Home
+</a>
+
+<a href="index.html#kategori">
+  Kategori
+</a>
+
+<a href="index.html#produk">
+  Produk
+</a>
+
+<a href="admin.html" class="back">
+  🔐 Admin
+</a>
+
+  </nav></header><main class="container">  <div
+    class="breadcrumb"
+    id="breadcrumb"
+  >
     Home / Produk
-  </div>  <div id="content">
-    <div class="loading">⏳ Memuat produk...</div>
-  </div></main><footer>
-  <div class="footer-logo">AffiliaMart</div>
-  <p>Platform rekomendasi produk affiliate Shopee &amp; TikTok.</p>
-</footer><script>
+  </div>  <div id="content"><div class="loading">
+  ⏳ Memuat produk...
+</div>
+
+  </div></main><footer>  <div class="footer-logo">
+    AffiliaMart
+  </div>  <p>
+    Platform rekomendasi produk affiliate Shopee &amp; TikTok.
+  </p></footer><script>
 
 const SUPABASE_URL =
   "https://fmftcisigssgfjqqezqz.supabase.co";
 
 const SUPABASE_KEY =
   "sb_publishable_0YyKpZ3_HOED9iHlgfJldw_4ZrugD7C";
+
+const BASE_URL =
+  "https://mvpxwear.github.io/affiliamart";
 
 const supabaseClient =
   window.supabase.createClient(
@@ -154,7 +244,8 @@ function formatRupiah(value){
     return "-";
   }
 
-  const number = Number(value);
+  const number =
+    Number(value);
 
   if(!Number.isFinite(number)){
     return "-";
@@ -197,15 +288,23 @@ function getSlug(){
       window.location.search
     );
 
+
   const querySlug =
     params.get("slug");
+
 
   if(querySlug){
 
     try{
-      return decodeURIComponent(querySlug);
-    }catch(e){
+
+      return decodeURIComponent(
+        querySlug
+      );
+
+    }catch(error){
+
       return querySlug;
+
     }
 
   }
@@ -227,15 +326,506 @@ function getSlug(){
   ){
 
     try{
-      return decodeURIComponent(last);
-    }catch(e){
+
+      return decodeURIComponent(
+        last
+      );
+
+    }catch(error){
+
       return last;
+
     }
 
   }
 
 
   return "";
+
+}
+
+
+/* =========================
+   CANONICAL
+========================= */
+
+function getProductURL(slug){
+
+  return (
+    BASE_URL +
+    "/product.html?slug=" +
+    encodeURIComponent(
+      makeSlug(slug)
+    )
+  );
+
+}
+
+
+/* =========================
+   SEO
+========================= */
+
+function updateSEO(
+  product,
+  category
+){
+
+  const name =
+    String(
+      product.name ||
+      "Produk"
+    ).trim();
+
+
+  const slug =
+    makeSlug(
+      product.slug ||
+      name
+    );
+
+
+  const description =
+    String(
+      product.description ||
+      `Lihat detail ${name} di AffiliaMart.`
+    )
+    .replace(/\s+/g," ")
+    .trim()
+    .slice(0,160);
+
+
+  const canonical =
+    getProductURL(slug);
+
+
+  const images =
+    getGallery(product);
+
+
+  const image =
+    images.length
+      ? images[0]
+      : "";
+
+
+  /*
+    TITLE
+  */
+
+  document.title =
+    `${name} - AffiliaMart`;
+
+
+  /*
+    META DESCRIPTION
+  */
+
+  const metaDescription =
+    document.querySelector(
+      'meta[name="description"]'
+    );
+
+
+  if(metaDescription){
+
+    metaDescription.setAttribute(
+      "content",
+      description
+    );
+
+  }
+
+
+  /*
+    CANONICAL
+  */
+
+  const canonicalElement =
+    document.getElementById(
+      "canonical"
+    );
+
+
+  if(canonicalElement){
+
+    canonicalElement.setAttribute(
+      "href",
+      canonical
+    );
+
+  }
+
+
+  /*
+    OPEN GRAPH
+  */
+
+  setMeta(
+    "ogTitle",
+    "content",
+    `${name} - AffiliaMart`
+  );
+
+
+  setMeta(
+    "ogDescription",
+    "content",
+    description
+  );
+
+
+  setMeta(
+    "ogUrl",
+    "content",
+    canonical
+  );
+
+
+  if(image){
+
+    setMeta(
+      "ogImage",
+      "content",
+      image
+    );
+
+  }
+
+
+  /*
+    TWITTER
+  */
+
+  setMeta(
+    "twitterTitle",
+    "content",
+    `${name} - AffiliaMart`
+  );
+
+
+  setMeta(
+    "twitterDescription",
+    "content",
+    description
+  );
+
+
+  if(image){
+
+    setMeta(
+      "twitterImage",
+      "content",
+      image
+    );
+
+  }
+
+
+  /*
+    PRODUCT SCHEMA
+  */
+
+  const productSchema = {
+
+    "@context":
+      "https://schema.org",
+
+    "@type":
+      "Product",
+
+    "name":
+      name,
+
+    "description":
+      description,
+
+    "url":
+      canonical
+
+  };
+
+
+  if(image){
+
+    productSchema.image =
+      images;
+
+  }
+
+
+  if(product.sku){
+
+    productSchema.sku =
+      String(
+        product.sku
+      );
+
+  }
+
+
+  if(category){
+
+    productSchema.category =
+      String(
+        category.name
+      );
+
+  }
+
+
+  /*
+    BRAND / SELLER
+  */
+
+  productSchema.brand = {
+
+    "@type":
+      "Brand",
+
+    "name":
+      "AffiliaMart"
+
+  };
+
+
+  /*
+    OFFER
+  */
+
+  const price =
+    Number(
+      product.price
+    );
+
+
+  if(
+    Number.isFinite(price) &&
+    price >= 0
+  ){
+
+    productSchema.offers = {
+
+      "@type":
+        "Offer",
+
+      "url":
+        canonical,
+
+      "priceCurrency":
+        "IDR",
+
+      "price":
+        price,
+
+      "availability":
+        product.is_active === false
+          ? "https://schema.org/OutOfStock"
+          : "https://schema.org/InStock",
+
+      "itemCondition":
+        "https://schema.org/NewCondition"
+
+    };
+
+  }
+
+
+  /*
+    AGGREGATE RATING
+  */
+
+  const rating =
+    Number(
+      product.rating
+    );
+
+
+  const soldCount =
+    Number(
+      product.sold_count
+    );
+
+
+  if(
+    Number.isFinite(rating) &&
+    rating > 0 &&
+    rating <= 5
+  ){
+
+    const ratingData = {
+
+      "@type":
+        "AggregateRating",
+
+      "ratingValue":
+        rating,
+
+      "bestRating":
+        5,
+
+      "worstRating":
+        1
+
+    };
+
+
+    if(
+      Number.isFinite(
+        soldCount
+      ) &&
+      soldCount > 0
+    ){
+
+      ratingData.ratingCount =
+        soldCount;
+
+    }
+
+
+    productSchema.aggregateRating =
+      ratingData;
+
+  }
+
+
+  const productSchemaElement =
+    document.getElementById(
+      "productSchema"
+    );
+
+
+  if(productSchemaElement){
+
+    productSchemaElement.textContent =
+      JSON.stringify(
+        productSchema
+      );
+
+  }
+
+
+  /*
+    BREADCRUMB SCHEMA
+  */
+
+  const breadcrumbItems = [
+
+    {
+
+      "@type":
+        "ListItem",
+
+      "position":
+        1,
+
+      "name":
+        "Home",
+
+      "item":
+        BASE_URL + "/index.html"
+
+    }
+
+  ];
+
+
+  let position = 2;
+
+
+  if(category){
+
+    breadcrumbItems.push({
+
+      "@type":
+        "ListItem",
+
+      "position":
+        position++,
+
+      "name":
+        String(
+          category.name
+        ),
+
+      "item":
+        BASE_URL +
+        "/index.html#kategori"
+
+    });
+
+  }
+
+
+  breadcrumbItems.push({
+
+    "@type":
+      "ListItem",
+
+    "position":
+      position,
+
+    "name":
+      name,
+
+    "item":
+      canonical
+
+  });
+
+
+  const breadcrumbSchema = {
+
+    "@context":
+      "https://schema.org",
+
+    "@type":
+      "BreadcrumbList",
+
+    "itemListElement":
+      breadcrumbItems
+
+  };
+
+
+  const breadcrumbSchemaElement =
+    document.getElementById(
+      "breadcrumbSchema"
+    );
+
+
+  if(breadcrumbSchemaElement){
+
+    breadcrumbSchemaElement.textContent =
+      JSON.stringify(
+        breadcrumbSchema
+      );
+
+  }
+
+}
+
+
+function setMeta(
+  id,
+  attribute,
+  value
+){
+
+  const element =
+    document.getElementById(
+      id
+    );
+
+
+  if(element){
+
+    element.setAttribute(
+      attribute,
+      value
+    );
+
+  }
 
 }
 
@@ -257,13 +847,16 @@ function getVisitorId(){
     id =
       window.crypto &&
       crypto.randomUUID
+
         ? crypto.randomUUID()
+
         : "visitor-" +
           Date.now() +
           "-" +
           Math.random()
             .toString(36)
             .slice(2);
+
 
     localStorage.setItem(
       "affiliamart_visitor_id",
@@ -291,23 +884,29 @@ async function trackEvent(
   try{
 
     await supabaseClient
-      .from("analytics_events")
+      .from(
+        "analytics_events"
+      )
       .insert({
 
-        event_type:eventType,
+        event_type:
+          eventType,
 
-        product_id:productId,
+        product_id:
+          productId,
 
-        platform:platform,
+        platform:
+          platform,
 
-        visitor_id:getVisitorId()
+        visitor_id:
+          getVisitorId()
 
       });
 
   }catch(error){
 
     console.warn(
-      "Analytics tidak tersedia:",
+      "Analytics:",
       error
     );
 
@@ -336,7 +935,11 @@ function getGallery(product){
 
   if(product.gallery){
 
-    if(Array.isArray(product.gallery)){
+    if(
+      Array.isArray(
+        product.gallery
+      )
+    ){
 
       result =
         result.concat(
@@ -346,25 +949,32 @@ function getGallery(product){
     }
 
     else if(
-      typeof product.gallery === "string"
+      typeof product.gallery ===
+      "string"
     ){
 
       try{
 
         const parsed =
-          JSON.parse(product.gallery);
+          JSON.parse(
+            product.gallery
+          );
 
-        if(Array.isArray(parsed)){
+
+        if(
+          Array.isArray(parsed)
+        ){
 
           result =
-            result.concat(parsed);
+            result.concat(
+              parsed
+            );
 
         }
 
-      }catch(e){
+      }catch(error){
 
-        /* gallery bukan JSON,
-           abaikan saja */
+        /* Abaikan */
 
       }
 
@@ -374,11 +984,20 @@ function getGallery(product){
 
 
   return [
+
     ...new Set(
+
       result
-        .map(x => String(x || "").trim())
+        .map(
+          item =>
+            String(
+              item || ""
+            ).trim()
+        )
         .filter(Boolean)
+
     )
+
   ];
 
 }
@@ -396,6 +1015,7 @@ function renderGallery(
   if(!images.length){
 
     return `
+
       <div class="gallery-card">
 
         <div class="main-image">
@@ -407,13 +1027,10 @@ function renderGallery(
         </div>
 
       </div>
+
     `;
 
   }
-
-
-  const first =
-    escapeHTML(images[0]);
 
 
   let thumbs = "";
@@ -422,6 +1039,7 @@ function renderGallery(
   if(images.length > 1){
 
     thumbs = `
+
       <div class="thumbs">
 
         ${images.map(
@@ -434,17 +1052,21 @@ function renderGallery(
                   ? "active"
                   : ""
               }"
-              onclick="changeImage(
-                '${escapeHTML(src)}',
-                this
-              )"
+              onclick="
+                changeImage(
+                  '${escapeHTML(src)}',
+                  this
+                )
+              "
             >
 
               <img
                 src="${escapeHTML(src)}"
                 alt="Gambar ${index + 1}"
                 loading="lazy"
-                onerror="this.style.display='none'"
+                onerror="
+                  this.style.display='none'
+                "
               >
 
             </button>
@@ -453,6 +1075,7 @@ function renderGallery(
         ).join("")}
 
       </div>
+
     `;
 
   }
@@ -469,15 +1092,10 @@ function renderGallery(
 
         <img
           id="mainImage"
-          src="${first}"
+          src="${escapeHTML(images[0])}"
           alt="${escapeHTML(name)}"
           onerror="
-            this.style.display='none';
-            document.getElementById('mainImageWrap')
-              .insertAdjacentHTML(
-                'beforeend',
-                '<div class=&quot;placeholder&quot;>🛍️</div>'
-              );
+            this.style.display='none'
           "
         >
 
@@ -505,15 +1123,19 @@ function changeImage(
 
   if(image){
 
-    image.style.display = "block";
+    image.style.display =
+      "block";
 
-    image.src = src;
+    image.src =
+      src;
 
   }
 
 
   document
-    .querySelectorAll(".thumb")
+    .querySelectorAll(
+      ".thumb"
+    )
     .forEach(
       item =>
         item.classList.remove(
@@ -537,18 +1159,18 @@ function changeImage(
    PRODUCT URL
 ========================= */
 
-function productUrl(product){
-
-  const slug =
-    makeSlug(
-      product.slug ||
-      product.name
-    );
-
+function productUrl(
+  product
+){
 
   return (
     "product.html?slug=" +
-    encodeURIComponent(slug)
+    encodeURIComponent(
+      makeSlug(
+        product.slug ||
+        product.name
+      )
+    )
   );
 
 }
@@ -565,7 +1187,9 @@ async function loadProduct(){
 
 
   const slug =
-    makeSlug(rawSlug);
+    makeSlug(
+      rawSlug
+    );
 
 
   console.log(
@@ -584,13 +1208,6 @@ async function loadProduct(){
 
   }
 
-
-  /*
-    Query berdasarkan slug.
-    limit(1) digunakan supaya halaman
-    tetap bisa tampil walaupun ada
-    data slug ganda.
-  */
 
   const response =
     await supabaseClient
@@ -635,7 +1252,6 @@ async function loadProduct(){
   if(response.error){
 
     console.error(
-      "Supabase product error:",
       response.error
     );
 
@@ -658,10 +1274,7 @@ async function loadProduct(){
 
 
   /*
-    Fallback:
-    jika slug di database ternyata
-    berbeda format, coba cari
-    berdasarkan nama.
+    FALLBACK NAMA
   */
 
   if(!product){
@@ -695,8 +1308,10 @@ async function loadProduct(){
         )
         .ilike(
           "name",
-          rawSlug
-            .replace(/-/g," ")
+          rawSlug.replace(
+            /-/g,
+            " "
+          )
         )
         .order(
           "created_at",
@@ -725,7 +1340,10 @@ async function loadProduct(){
 
     showError(
       "Produk \"" +
-      rawSlug.replace(/-/g," ") +
+      rawSlug.replace(
+        /-/g,
+        " "
+      ) +
       "\" tidak ditemukan atau sudah tidak aktif."
     );
 
@@ -743,7 +1361,8 @@ async function loadProduct(){
   await trackEvent(
     "page_view",
     product.id,
-    product.platform || null
+    product.platform ||
+      null
   );
 
 
@@ -751,7 +1370,8 @@ async function loadProduct(){
      CATEGORY
   ========================= */
 
-  let category = null;
+  let category =
+    null;
 
 
   if(product.category_id){
@@ -784,31 +1404,13 @@ async function loadProduct(){
 
 
   /* =========================
-     SEO
+     SEO UPDATE
   ========================= */
 
-  document.title =
-    (product.name || "Produk") +
-    " - AffiliaMart";
-
-
-  const descriptionMeta =
-    document.querySelector(
-      'meta[name="description"]'
-    );
-
-
-  if(descriptionMeta){
-
-    descriptionMeta.content =
-      (
-        product.description ||
-        "Lihat detail " +
-        product.name +
-        " di AffiliaMart."
-      ).slice(0,160);
-
-  }
+  updateSEO(
+    product,
+    category
+  );
 
 
   /* =========================
@@ -827,13 +1429,17 @@ async function loadProduct(){
 
     ${
       category
-        ? escapeHTML(category.name)
+        ? escapeHTML(
+            category.name
+          )
         : "Produk"
     }
 
     /
 
-    ${escapeHTML(product.name)}
+    ${escapeHTML(
+      product.name
+    )}
 
   `;
 
@@ -843,22 +1449,27 @@ async function loadProduct(){
   ========================= */
 
   const images =
-    getGallery(product);
+    getGallery(
+      product
+    );
 
 
   const platform =
     String(
-      product.platform || ""
+      product.platform ||
+      ""
     )
     .toLowerCase()
     .trim();
 
 
   const affiliate =
-    product.affiliate_url || "";
+    product.affiliate_url ||
+    "";
 
 
-  let affiliateHTML = "";
+  let affiliateHTML =
+    "";
 
 
   if(affiliate){
@@ -867,21 +1478,30 @@ async function loadProduct(){
 
       <a
         class="buy"
-        href="${escapeHTML(affiliate)}"
+        href="${escapeHTML(
+          affiliate
+        )}"
         target="_blank"
         rel="noopener noreferrer"
         onclick="
           affiliateClick(
             event,
-            '${escapeHTML(product.id)}',
-            '${escapeHTML(platform)}',
-            '${escapeHTML(affiliate)}'
+            '${escapeHTML(
+              product.id
+            )}',
+            '${escapeHTML(
+              platform
+            )}',
+            '${escapeHTML(
+              affiliate
+            )}'
           )
         "
       >
 
         ${
-          platform === "tiktok"
+          platform ===
+          "tiktok"
             ? "🎵"
             : "🛍️"
         }
@@ -926,8 +1546,12 @@ async function loadProduct(){
 
   const original =
     product.original_price &&
-    Number(product.original_price) >
-    Number(product.price)
+    Number(
+      product.original_price
+    ) >
+    Number(
+      product.price
+    )
 
       ? `
 
@@ -940,12 +1564,15 @@ async function loadProduct(){
         </div>
 
       `
+
       : "";
 
 
   const discount =
     product.discount_percent &&
-    Number(product.discount_percent) > 0
+    Number(
+      product.discount_percent
+    ) > 0
 
       ? `
 
@@ -965,6 +1592,7 @@ async function loadProduct(){
         </div>
 
       `
+
       : "";
 
 
@@ -1004,7 +1632,7 @@ async function loadProduct(){
 
 
   /* =========================
-     RENDER PRODUCT
+     RENDER
   ========================= */
 
   document.getElementById(
@@ -1054,9 +1682,11 @@ async function loadProduct(){
 
 
         <h1>
+
           ${escapeHTML(
             product.name
           )}
+
         </h1>
 
 
@@ -1068,7 +1698,9 @@ async function loadProduct(){
                 ${meta
                   .map(
                     item =>
-                      `<span>${escapeHTML(item)}</span>`
+                      `<span>${escapeHTML(
+                        item
+                      )}</span>`
                   )
                   .join(
                     "<span>•</span>"
@@ -1151,7 +1783,9 @@ async function loadProduct(){
       >
 
         <div class="loading">
+
           ⏳ Memuat produk terkait...
+
         </div>
 
       </div>
@@ -1161,13 +1795,15 @@ async function loadProduct(){
   `;
 
 
-  loadRelated(product);
+  loadRelated(
+    product
+  );
 
 }
 
 
 /* =========================
-   RELATED PRODUCTS
+   RELATED
 ========================= */
 
 async function loadRelated(
@@ -1224,7 +1860,6 @@ async function loadRelated(
   if(result.error){
 
     console.error(
-      "Related products:",
       result.error
     );
 
@@ -1242,12 +1877,6 @@ async function loadRelated(
   let list =
     result.data || [];
 
-
-  /*
-    Jika kategori yang sama
-    tidak mempunyai produk lain,
-    tampilkan produk lain.
-  */
 
   if(!list.length){
 
@@ -1283,9 +1912,7 @@ async function loadRelated(
         .limit(4);
 
 
-    if(
-      !fallback.error
-    ){
+    if(!fallback.error){
 
       list =
         fallback.data || [];
@@ -1320,17 +1947,17 @@ async function loadRelated(
 
   relatedList.innerHTML =
     list.map(
-      productItem => {
+      item => {
 
-        const gallery =
+        const images =
           getGallery(
-            productItem
+            item
           );
 
 
         const image =
-          gallery.length
-            ? gallery[0]
+          images.length
+            ? images[0]
             : "";
 
 
@@ -1339,9 +1966,7 @@ async function loadRelated(
           <a
             class="card"
             href="${escapeHTML(
-              productUrl(
-                productItem
-              )
+              productUrl(item)
             )}"
           >
 
@@ -1352,9 +1977,11 @@ async function loadRelated(
                   ? `
 
                     <img
-                      src="${escapeHTML(image)}"
+                      src="${escapeHTML(
+                        image
+                      )}"
                       alt="${escapeHTML(
-                        productItem.name
+                        item.name
                       )}"
                       loading="lazy"
                       onerror="
@@ -1381,16 +2008,18 @@ async function loadRelated(
             <div class="card-info">
 
               <h3>
+
                 ${escapeHTML(
-                  productItem.name
+                  item.name
                 )}
+
               </h3>
 
 
               <div class="card-price">
 
                 ${formatRupiah(
-                  productItem.price
+                  item.price
                 )}
 
               </div>
@@ -1399,7 +2028,8 @@ async function loadRelated(
               <div class="card-platform">
 
                 ${escapeHTML(
-                  productItem.platform || ""
+                  item.platform ||
+                  ""
                 )}
 
               </div>
@@ -1498,7 +2128,8 @@ function showError(
 
 function compactNumber(n){
 
-  n = Number(n || 0);
+  n =
+    Number(n || 0);
 
 
   if(n >= 1000000){
@@ -1507,7 +2138,10 @@ function compactNumber(n){
       n / 1000000
     )
       .toFixed(1)
-      .replace(".0","") +
+      .replace(
+        ".0",
+        ""
+      ) +
       "M";
 
   }
@@ -1519,7 +2153,10 @@ function compactNumber(n){
       n / 1000
     )
       .toFixed(1)
-      .replace(".0","") +
+      .replace(
+        ".0",
+        ""
+      ) +
       "K";
 
   }
@@ -1531,18 +2168,10 @@ function compactNumber(n){
 
 
 /* =========================
-   BASE PATH
-========================= */
-
-const BASE_PATH =
-  "/affiliamart";
-
-
-/* =========================
    START
 ========================= */
 
 loadProduct();
 
 </script></body>
-</html>
+  </html>

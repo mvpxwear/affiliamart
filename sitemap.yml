@@ -1,0 +1,157 @@
+name: Update AffiliaMart Sitemap
+
+on:
+push:
+branches:
+- main
+workflow_dispatch:
+schedule:
+- cron: "0 */6 * * *"
+
+permissions:
+contents: write
+
+jobs:
+sitemap:
+runs-on: ubuntu-latest
+
+steps:
+  - name: Checkout repository
+    uses: actions/checkout@v4
+
+  - name: Generate sitemap
+    env:
+      SUPABASE_URL: https://fmftcisigssgfjqqezqz.supabase.co
+      SUPABASE_KEY: ${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
+    run: |
+      python3 <<'PY'
+      import json
+      import os
+      import urllib.parse
+      import urllib.request
+      from datetime import datetime, timezone
+
+      base = "https://mvpxwear.github.io/affiliamart"
+      api = os.environ["SUPABASE_URL"] + "/rest/v1/products"
+
+      params = urllib.parse.urlencode({
+          "select": "slug,updated_at,created_at,is_active",
+          "is_active": "eq.true",
+          "order": "created_at.desc"
+      })
+
+      request = urllib.request.Request(
+          api + "?" + params,
+          headers={
+              "apikey": os.environ["SUPABASE_KEY"],
+              "Authorization": "Bearer " + os.environ["SUPABASE_KEY"]
+          }
+      )
+
+      with urllib.request.urlopen(request) as response:
+          products = json.load(response)
+
+      urls = []
+
+      urls.append({
+          "loc": base + "/index.html",
+          "priority": "1.0",
+          "changefreq": "daily"
+      })
+
+      for product in products:
+          slug = str(product.get("slug") or "").strip()
+
+          if not slug:
+              continue
+
+          url = (
+              base +
+              "/product.html?slug=" +
+              urllib.parse.quote(slug, safe="")
+          )
+
+          updated = (
+              product.get("updated_at") or
+              product.get("created_at")
+          )
+
+          lastmod = ""
+
+          if updated:
+              try:
+                  dt = datetime.fromisoformat(
+                      updated.replace("Z", "+00:00")
+                  )
+
+                  lastmod = (
+                      dt.astimezone(timezone.utc)
+                      .strftime("%Y-%m-%d")
+                  )
+              except Exception:
+                  pass
+
+          urls.append({
+              "loc": url,
+              "lastmod": lastmod,
+              "priority": "0.8",
+              "changefreq": "weekly"
+          })
+
+      lines = [
+          '<?xml version="1.0" encoding="UTF-8"?>',
+          '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+      ]
+
+      for item in urls:
+          lines.append("  <url>")
+          lines.append(
+              "    <loc>" +
+              item["loc"] +
+              "</loc>"
+          )
+
+          if item.get("lastmod"):
+              lines.append(
+                  "    <lastmod>" +
+                  item["lastmod"] +
+                  "</lastmod>"
+              )
+
+          lines.append(
+              "    <changefreq>" +
+              item["changefreq"] +
+              "</changefreq>"
+          )
+
+          lines.append(
+              "    <priority>" +
+              item["priority"] +
+              "</priority>"
+          )
+
+          lines.append("  </url>")
+
+      lines.append("</urlset>")
+
+      with open("sitemap.xml", "w", encoding="utf-8") as file:
+          file.write("\n".join(lines) + "\n")
+
+      print(
+          f"Sitemap dibuat: {len(urls)} URL"
+      )
+      PY
+
+  - name: Commit sitemap
+    run: |
+      git config user.name "github-actions[bot]"
+      git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      git add sitemap.xml
+
+      if git diff --cached --quiet; then
+        echo "Tidak ada perubahan sitemap."
+      else
+        git commit -m "Update sitemap"
+        git push
+      fi
